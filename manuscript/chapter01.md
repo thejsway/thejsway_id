@@ -1,6 +1,6 @@
-# 3, 2, 1... Code!
+# 3, 2, 1... Kode!
 
-Let's get started! This chapter will introduce you to the fundamentals of programming including values, types, and program structure.
+Mari kita mulai! Di bab ini, Kamu akan dikenalkan tentang pemrograman dasar seperti *values*, *types*, dan struktur program.
 
 ## TL;DR
 

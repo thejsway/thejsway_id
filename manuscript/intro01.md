@@ -1,30 +1,34 @@
-# About this book
+# Tentang buku ini
 
-First thing first: thanks for having chosen this book. I hope reading it will be both beneficial and pleasurable to you.
+Pertama-tama: terima kasih sudah memilih buku ini. Saya harap dengan membaca buku ini akan memberi manfaat dan kesenangan bagi Kamu.
 
-## Who this book is for
+## Untuk siapa buku ini
 
-This book is primarily designed for beginners. Having taught programming basics to hundreds of students, I tried to write it in the most friendly and accessible way possible. My goal was that no matter their background, everyone interested in programming should be able to follow along without too much difficulty.
+Buku ini didesain terutama untuk pemula. Berdasarkan pengalaman mengajar pemrograman ke ratusan murid, saya mencoba untuk menulis buku ini semudah mungkin. Tujuan saya adalah apapun latar belakang pendidikannya, semua orang yang tertarik pada pemrograman harus bisa mengikuti tanpa banyak kesulitan.
 
-However, this book can also be useful to people having some experience in software development. The JavaScript language is kind of a strange beast. It shares some similarities with other well-known programming languages such as Java or C#, starting with its syntax. On the other hand, JavaScript has *a lot* of unique characteristics that are worth learning. This book covers a fair number of them. As such, it will be of interest to those wanting to get serious with JavaScript or needing their skills refreshed with the latest language evolutions.
+Walaupun begitu, buku ini juga berguna untuk orang-orang yang mempunyai pengalaman dalam pengembangan *software*. Bahasa JavaScript merupakan salah satu makhluk buas yang aneh. Bahasa ini memiliki kesamaan dengan bahasa pemrograman populer lainnya seperti Java atau C#, mulai dari sintaksnya. Di sisi lain, JavaScript punya banyak karakteristik unik yang pantas dipelajari. Buku ini mencakup beberapa di antaranya. Dengan demikian, buku ini akan menjadi hal menarik bagi mereka yang ingin mempelajari JavaScript dengan serius atau bagi mereka yang perlu menyegarkan kembali keterampilan tentang evolusi bahasa terbaru ini.
 
-## Overview
+## Gambaran umum
 
-This book is divided into three main parts. The first one teaches the basics of programming with JavaScript. The second one explains how to use JavaScript to create interactive web pages. The third one deals with web application development on both the client and server sides. Each part depends on the previous ones, but there's no other prerequisite to reading.
+Buku ini dibagi menjadi 3 bagian utama. Bagian pertama mengajarkan dasar pemrograman JavaScript. Bagian kedua menjelaskan bagaimana menggunakan JavaScript untuk membuat halaman web interaktif. Bagian ketiga tentang bagaimana mengembangkan aplikasi web di sisi *client* dan *server*. Setiap bagian bergantung pada bagian sebelumnya, tetapi tidak ada prasyarat lain untuk membaca.
 
 Each chapter starts with a **TL;DR** paragraph which summarizes it, so you'll be able to skip ahead if you already know a chapter's content.
 
+Di setiap bab dimulai dengan **TL;DR** (Too Long; Didn't Read), ringkasan paragraf, sehingga Kamu bisa melanjutkan ke bab berikutnya kalau Kamu sudah tahu konten pada bab tersebut.
+
 At the end of each chapter, a series of short and focused exercises will make you put your newly acquired skills into practice. Each part ends with a project guiding you in the creation of a social news web application.
 
-## Following along
+Setiap akhir bab, ada latihan terfokus dan singkat yang akan membantu Kamu menerapkan apa yang sudah Kamu pelajari. Setiap bagian diakhiri dengan satu proyek yang akan memandu Kamu dalam membuat aplikasi web berita sosial.
 
-You have two options for following along, depending on how eager you are to get into the action and how comfortable you feel setting up your local machine:
+## Cara mengikuti
 
-* Coding online, using feature-packed JavaScript playgrounds like [CodePen](https://codepen.io) and [Glitch](https://glitch.com).
-* Building a local development environment.
+Kamu punya dua opsi untuk mengikuti, tergantung seberapa kemauan dan fasihnya Kamu mengatur *environment* lokal di perangkat yang Kamu gunakan:
 
-First option is the easiest and quickest; second one is more powerful and will probably become necessary as you tackle bigger programming challenges in a not-so-distant future. Refer to the "Environment setup" chapter for details on both.
+* Koding online, menggunakan fitur JavaScript *playgrounds* seperti [CodePen](https://codepen.io) dan [Glitch](https://glitch.com).
+* Membangun *environment* lokal di perangkat Kamu.
 
-Whichever solution you may choose, be sure to test *every* code sample and search *every* exercise and project. Reading along is not enough: coding along is mandatory to get a real grasp of how things work and become a capable programmer.
+Opsi pertama adalah yang termudah dan tercepat; opsi kedua lebih *powerful* dan kemungkinan akan diperlukan saat Kamu menghadapi tantangan pemrograman lebih besar ke depannya. Kamu bisa lihat di bab "Environment setup" sebagai referensi untuk penjelasan lebih detailnya.
 
-I wish you a great journey in the wonderful world of JavaScript!
+Solusi manapun yang Kamu pilih, pastikan untuk mengetes setiap contoh kode dan cari setiap latihan dan proyek. Membaca saja tidak cukup: belajar sambil koding merupakan kewajiban untuk dapat mengetahui benar bagaimana pemrograman bekerja dan merupakan salah satu keterampilan yang harus dimiliki oleh programer mumpuni.
+
+Saya harap Kamu menikmati perjalanan hebat di dunia JavaScript yang indah!

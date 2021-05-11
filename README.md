@@ -5,7 +5,7 @@
 
 # The JavaScript Way
 
-Pengenalan sederhana untuk sebuah bahasa yang penting.
+Pengenalan modern untuk sebuah bahasa yang penting.
 
 Hak Cipta © 2017-2020 [Baptiste Pesquet](http://bpesquet.fr).
 
@@ -17,15 +17,15 @@ Buku ini dapat digunakan sebagai panduan bagi siapa saja yang ingin menemu-kemba
 
 * **Cocok untuk pemula namun komprehensif**. Mulai dari panduan dasar pemrograman sampai dengan *front-end* dan *back-end* pengembangan web, mencakup banyak topik yang dijelaskan secara sederhana dan mudah dipahami. Tidak perlu pengetahuan JavaScript sebelumnya!
 * **Sudah disesuaikan dengan standar**. Buku ini seluruhnya ditulis menggunakan sintaks **ES2015**, sehingga Kamu mendapatkan pengetahuan yang dapat Kamu tetap gunakan di masa depan. Hal ini dapat membuat Kamu menerapkan kebiasaan pemrograman yang baik dari mulai awal sampai akhir, serta penggunaan JavaScript *tool* yang banyak digunakan seperti [ESLint](http://eslint.org) dan [Prettier](https://github.com/prettier/prettier). Selain itu juga mengikuti panduan ala AirBnb yang populer ([AirBnb Style Guide](https://github.com/airbnb/javascript)).
-* **Banyak Latihan**. Tidak bisa belajar tanpa latihan! Setiap bab akan ada latihan yang dapat Kamu aplikasikan. Ada 3 proyek yang akan memandu Kamu agar bisa membuat aplikasi berita sosial berbasis web. Kamu bisa lihat contohnya [di sini](https://thejsway-publink.herokuapp.com).
+* **Banyak Latihan**. Pembelajaran Kamu tidak akan lengkap tanpa latihan! Setiap bab akan ada latihan yang dapat Kamu aplikasikan. Ada 3 proyek yang akan memandu Kamu agar bisa membuat aplikasi berita sosial berbasis web. Kamu bisa lihat contohnya [di sini](https://thejsway-publink.herokuapp.com).
 * **Mudah diikuti**. Koding dilakukan langsung dari browser atau bisa juga dilakukan di *environment* lokal perangkat Kamu.
 
 ## Dukungan
 
-Banyak waktu dan tenaga dicurahkan untuk konten ini. Kalau Kamu merasa ini berguna dan ingin mendukung karya ini, begini yang bisa Kamu lakukan:
+Banyak waktu dan tenaga dicurahkan untuk konten ini. Kalau Kamu merasa ini berguna dan ingin mendukung karya ini, berikut yang bisa Kamu lakukan:
 
 * Beli buku ini. Kamu bisa mendapatkannya dalam format yang tersedia (lihat di atas). Kontribusi finansial sangat diapresiasi.
-* Nilai atau ulas buku ini di [Goodreads](https://www.goodreads.com/book/show/35875290-the-javascript-way-a-modern-introduction-to-an-essential-language?from_search=true) or [Amazon](https://www.amazon.com/dp/2956444611?ref_=pe_3052080_397514860).
+* Nilai atau ulas buku ini di [Goodreads](https://www.goodreads.com/book/show/35875290-the-javascript-way-a-modern-introduction-to-an-essential-language?from_search=true) atau [Amazon](https://www.amazon.com/dp/2956444611?ref_=pe_3052080_397514860).
 * Viralkan buku ini.
 
 Terima kasih sebelumnya atas semua dukungan Kamu!
@@ -54,7 +54,7 @@ Terima kasih sebelumnya atas semua dukungan Kamu!
 * Bagian II: Buat halaman web interaktif 
   * [Apa itu halaman web](manuscript/chapter12.md)
   * [Temukan DOM](manuscript/chapter13.md)
-  * [Lintasi DOM](manuscript/chapter14.md)
+  * [Jelajahi DOM](manuscript/chapter14.md)
   * [Modifikasi struktur halaman](manuscript/chapter15.md)
   * [Reaksi terhadap event](manuscript/chapter16.md)
   * [Manipulasi form](manuscript/chapter17.md)
