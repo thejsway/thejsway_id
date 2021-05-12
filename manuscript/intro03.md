@@ -1,45 +1,46 @@
-# Introducing JavaScript
+# Pengenalan JavaScript
 
 ## TL;DR
 
-* Originally created to animate web pages, the JavaScript language can now be used almost everywhere, from servers to mobile apps and connected devices.
+* Awalnya dibuat untuk menghidupkan halaman web, bahasa JavaScript sekarang bisa digunakan hampir di mana-mana, mulai dari server sampai dengan aplikasi mobile dan perangkat terhubung.
 
-* JavaScript is becoming essential for many software developers. It's an excellent choice as a first language for learning programming.
+* JavaScript berkembang menjadi bagian sangat penting bagi banyak software developer. Bahasa ini sering dijadikan pilihan utama untuk belajar pemrograman.
 
-* It's been standardized under the name **ECMAScript** and is continuously improved ever since.
+* Distandarisasi dengan nama **ECMAScript** dan terus menerus dikembangkan secara berkesinambungan.
 
-* The JavaScript version used in this book is **ES2015**, otherwise known as **ES6**. Albeit recent, it is now well supported by most environments.
+* Versi JavaScript yang digunakan di buku ini adalah **ES2015** atau dikenal dengan nama **ES6**. Meskipun terbilang masih baru, sekarang versi ini sudah banyak didukung di hampir semua *environment*.
 
-## History of JavaScript
 
-JavaScript is first and foremost the programming language of the web. It was invented in 1995 by [Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich), who at the time worked for [Netscape](https://en.wikipedia.org/wiki/Netscape_Communications), which created the first popular web browser (Firefox's ancestor).
+## Sejarah JavaScript
 
-I> A **browser** is the software you use to visit webpages and use web applications.
+JavaScript adalah bahasa pemrograman pertama untuk web. Ditemukan di tahun 1995 oleh [Brendan Eich](https://en.wikipedia.org/wiki/Brendan_Eich), yang pada saat itu bekerja di [Netscape](https://en.wikipedia.org/wiki/Netscape_Communications), perusahaan yang pertama kali menciptakan web browser populer (nenek moyangnya Firefox). 
 
-W> JavaScript should not be confused with Java, another language invented at the same time! Both share a similar syntax, but their use cases and "philosophies" are very different.
+> **Browser** adalah software yang Kamu gunakan untuk mengunjungi website dan aplikasi web.
 
-The idea behind JavaScript was to create a simple language to make web pages dynamic and interactive, since back then, pages were very simple.
+> JavaScript jangan tertukar dengan Java, bahasa pemrograman lain yang ditemukan secara bersamaan! Keduanya memiliki sintaks yang mirip, tetapi penggunaan dan "filosofinya" berbeda.
+
+Ide di balik JavaScript adalah untuk membuat bahasa sederhana untuk membuat halaman web yang dinamik dan interaktif, sebelum itu, halaman web sangatlah sederhana.
 
 ![Yahoo's home page circa 1994](images/intro03-01.jpg)
 
-Web builders started gradually enriching their pages by adding JavaScript code. For this code to work, the recipient web browser (the software used to surf the web) had to be able to process JavaScript. This language has been progressively integrated into browsers, and now all browsers are able to handle it!
+Pengembang web mulai memperkaya halaman mereka dengan menambahkan kode JavaScript. Agar kode ini berjalan, web browser penerima (software yang digunakan untuk menjelajahi web) harus bisa memproses JavaScript. Bahasa ini telah terintegrasi ke berbagai browser secara progresif dan sekarang semua browser sudah memiliki kemampuan menangani bahasa ini.
 
-Because of the explosion of the Web and the advent of the web 2.0 (based on rich, interactive pages), JavaScript has become increasingly popular. Web browser designers have optimized the execution speed of JavaScript, which means it's now a very fast language.
+Karena teknologi web yang meledak dan penemuan web 2.0 (berdasarkan halaman kaya dan interaktif), JavaScript menjadi sangat populer. Desainer web browser telah mengoptimasi kecepatan eksekusi JavaScript, yang artinya sekarang menjadi bahasa yang sangat cepat.
 
-This led to the emergence of the [Node.js](https://nodejs.org) platform, which allows you to create JavaScript applications outside the browser. Thanks to a software called [MongoDB](https://www.mongodb.com), JavaScript has even entered the database world (software whose role is to store information).
+Hal ini berujung pada kemunculan platform [Node.js](https://nodejs.org), yang Kamu bisa gunakan untuk membuat aplikasi JavaScript di luar web browser. Berkat software yang dinamakan [MongoDB](https://www.mongodb.com), JavaScript telah memasuki dunia database (software yang berperan untuk menyimpan informasi.
 
-Finally, the popularity of smartphones and tablets with different systems (iOS, Android, Windows Phone) has led to the emergence of so-called cross-platform development tools. They allow you to write a single mobile application that's compatible with these systems. These tools are almost always based on... JavaScript!
+Akhirnya, popularitas *smartphone* dan tablet dengan sistem yang berbeda (iOS, Android, Windows Phone) telah memunculkan *tool* pengembang yang *cross-platform*. Hal ini memungkinan Kamu untuk bisa menulis satu aplikasi *mobile*yang kompatibel dengan sistem ini. *Tool* ini hampir biasanya berbasis... JavaScript!
 
-## JavaScript: an essential language
+## JavaScript: sebuah bahasa yang esensi
 
-In short, JavaScript is everywhere. It sits on top of a rich ecosystem of **components** (small software *bricks* that you can easily plug into your project) and a vibrant developer community. Knowing it will open the doors of the web browser-side programming (known as front-end development), server side development (backend), and mobile development. A growing number of people see JavaScript as the most important technology in software development nowadays.
+Singkatnya, JavaScript ada di mana-mana. JavaScript menduduki singgasana di puncak **komponen** ekosistem (*blok* software kecil yang dengan mudah dapat Kamu masukkan di proyek Kamu) dan komunitas developer yang antusias. Mengetahui hal ini akan membuka pintu pemgrograman di sisi web browser (terkenal dengan nama pengembangan *front-end*), pengembangan di sisi server (*backend*), dan pengembangan *mobile*. Banyak orang melihat JavaScript sebagai teknologi yang paling penting di pengembangan software saat ini.
 
-Both ubiquitous and still relatively easy to learn, JavaScript is also a [great choice](https://medium.freecodecamp.com/what-programming-language-should-i-learn-first-%CA%87d%C4%B1%C9%B9%C9%94s%C9%90%CA%8C%C9%90%C9%BE-%C9%B9%C7%9D%CA%8Dsu%C9%90-19a33b0a467d#.3yu73z1px) as a first language for learning programming.
+Karena ada di mana-mana dan masih relatif mudah dipelajari, JavaScript juga [menjadi pilihan tepat](https://medium.freecodecamp.com/what-programming-language-should-i-learn-first-%CA%87d%C4%B1%C9%B9%C9%94s%C9%90%CA%8C%C9%90%C9%BE-%C9%B9%C7%9D%CA%8Dsu%C9%90-19a33b0a467d#.3yu73z1px) sebagai bahasa pemrograman pertama untuk belajar pemrograman.
 
-## Version used in this book
+## Versi yang digunakan di buku ini
 
-JavaScript was standardized in 1997 under the name [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript). Since then, the language has undergone several rounds of improvements to fix some awkwardness and support new features.
+JavaScript distandarisasi di tahun 1997 di bawah nama [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript). Sejak itu, bahasa ini telah mengalami banyak peningkatan untuk memperbaiki berbagai keanehan dan penambahan fitur baru.
 
 ![ECMAScript/JavaScript versions timeline](images/intro03-02.png)
 
-This book uses the most recently standardized version of JavaScript, called **ES2015** or sometimes **ES6**. This version brings a lot of interesting novelties to the table. It is now well supported by most environments and platforms, starting with web browsers (more details in this [compatibility table](http://kangax.github.io/compat-table/es6/)).
+Buku ini menggunakan versi standarisasi terbaru JavaScript, dinamakan **ES2015** atau **ES6**. Versi ini membawa banyak fitur baru dan saat ini didukung oleh hampir semua *environments* dan platform, mulai dari web browser (lebih detail di [tabel *compatibility*](http://kangax.github.io/compat-table/es6/).

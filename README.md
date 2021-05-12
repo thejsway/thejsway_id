@@ -5,7 +5,7 @@
 
 # The JavaScript Way
 
-Pengenalan modern untuk sebuah bahasa yang penting.
+Pengenalan modern untuk satu bahasa yang esensi.
 
 Hak Cipta © 2017-2020 [Baptiste Pesquet](http://bpesquet.fr).
 

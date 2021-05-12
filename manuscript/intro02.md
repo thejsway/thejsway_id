@@ -16,7 +16,7 @@
 
 Sejak ditemukan di tahun 1950, **komputer** telah merevolusi kehidupan kita sehari-hari. Mengkalkulasi rute dari website atau GPS, memesan tiket kereta atau pesawat, atau bertemu dan *chatting* bersama teman di balik belahan dunia: semua ini bisa dilakukan dan dimungkinkan berkat komputer.
 
-I> Mari ambil istilah "komputer" dalam pandangan umum, yang artinya mesin yang dapat melakukan operasi aritmetik dan logik. Bisa juga berarti *desktop* atau laptop komputer (PC, Mac), server komputer, atau perangkat *mobile* seperti tablet atau *smartphone*.
+> Mari ambil istilah "komputer" dalam pandangan umum, yang artinya mesin yang dapat melakukan operasi aritmetik dan logik. Bisa juga berarti *desktop* atau laptop komputer (PC, Mac), server komputer, atau perangkat *mobile* seperti tablet atau *smartphone*.
 
 Meskipun demikian, komputer hanya bisa melakukan serangkaian operasi sederhana ketika diinstruksikan. Komputer biasanya tidak memiliki kemampuan untuk belajar, menilai, atau berimprovisasi. Hanya bisa melakukan apa yang diperintahkan oleh pengguna! Nilai komputer didapat dari bagaimana komputer bisa memproses informasi yang sangat melimpah.
 
@@ -115,15 +115,11 @@ Mulai
     Tumis sayuran
     Cicipi sayuran
         Kalau sayurannya enak
-            Remove them from the stove
             Keluarkan dari kompor
-        If the veggies aren't good
         Kalau sayurannya kurang enak
             Tambahkan lada dan bumbu
-        If the veggies aren't cooked enough
         Kalau sayurannya kurang matang
             Tumis kembali sayurannya
-    Heat the tortilla
     Panaskan tortilla
     Tambahkan nasi ke tortilla
     Tambahkan sayuran ke tortilla
@@ -133,16 +129,16 @@ Selesai
 
 ![Mmmmmm!](images/intro02-02.jpg)
 
-Kamu capai tujuan Kamu dengan mengkombinasikan serangkaian aksi dalam urutan yang spesifik. Ada beberapa jenis aksi yang berbeda:
+Kamu capai tujuan Kamu dengan mengkombinasikan serangkaian perintah dalam urutan yang spesifik. Ada beberapa jenis perintah yang berbeda:
 
-* Aksi sederhana ("Ambil penanak nasi")
-* Aksi dengan syarat ("Kalau sayurannya kurang enak")
-* Aksi yang berulang ("Tumis kembali sayurannya")
+* Perintah sederhana ("Ambil penanak nasi")
+* Perintah dengan syarat ("Kalau sayurannya kurang enak")
+* Perintah yang berulang ("Tumis kembali sayurannya")
 
 Kita gunakan gaya menulis yang sederhana, dan bukan bahasa pemrograman yang spesifik. Faktanya, kita hanya menulis apa yang dinamakan **algoritma**. Kita bisa mendefinisikan algoritma sebagai perintah berurut untuk menyelesaikan suatu persoalan. Algoritma memilah persoalan yang rumit ke serangkaian operasi sederhana.
 
 ### Peran programer
 
-Menulis program yang dapat mensolusikan persoalan yang diharapkan merupakan tujuan dari programer. Seorang pemula bisa belajar dengan cepat untuk membuat program yang sederhana. Menjadi suatu hal yang sangat rumit ketika program bervolusi dan menjadi sangat kompleks. Dibutuhkan pengalaman dan banyak latihan sebelum Kamu merasa bisa mengendalikan kompleksitas ini! Ketika Kamu sudah mempunya dasar yang kuat, batasannya hanyalah imajinasi Kamu!
+Menulis program yang dapat mensolusikan persoalan yang diharapkan merupakan tujuan dari programer. Seorang pemula bisa belajar dengan cepat untuk membuat program yang sederhana. Menjadi suatu hal yang sangat rumit ketika program bervolusi dan menjadi sangat kompleks. Dibutuhkan pengalaman dan banyak latihan sebelum Kamu merasa bisa mengendalikan kompleksitas ini! Ketika Kamu sudah mempunyai dasar yang kuat, batasannya hanyalah imajinasi Kamu!
 
 > "Programer komputer adalah kreator semesta yang dia sendiri merupakan hakim. Bukan penulis naskah, bukan sutradara, bukan kaisar, tetapi *powerful*, bisa menggerakan dan mengatur pentas dan medan perang dengan teguhnya memerintah aktor dan pasukan yang sangat patuh kepadanya." (Joseph Weizenbaum)
