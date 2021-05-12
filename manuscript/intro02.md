@@ -1,38 +1,38 @@
-# Welcome to programming
+# Selamat datang di pemrograman
 
 ## TL;DR
 
-* A **computer** is a machine whose role is to execute quickly and flawlessly a series of actions given to it.
+* **Komputer** adalah mesin yang berfungsi untuk mengeksekusi serangkaian aksi atau perintah yang diberikan oleh penggunanya.
 
-* A **program** is a list of actions given to a computer. These actions take the form of textual commands. All these commands form the program's **source code**.
+* **Program** adalah serangkaian aksi yang diberikan ke komputer. Aksi ini diberikan dalam bentuk perintah tekstual. Semua perintah ini membentuk **sumber kode** program.
 
-* The **programmer**'s task is to create programs. To accomplish this goal, he can use different programming languages.
+* Tugas **programer** membuat program. Untuk mencapai tujuan ini, programer bisa menggunakan bahasa pemrograman yang berbeda.
 
-* Before writing code, one must think ahead and decompose the problem to be addressed in a series of elementary operations forming an **algorithm**.
+* Sebelum menulis kode, programer harus berpikir ke depan dan memilah permasalahan dan operasi dasar dalam bentuk **algoritma**.
 
-## What's a program?
+## Apa itu program?
 
 ![Evolution (?)](images/intro02-01.jpg)
 
-Since their invention in the 1950s, **computers** have revolutionized our daily lives. Calculating a route from a website or a GPS, booking a train or plane ticket, or seeing and chatting with friends on the other side of the world: all these actions are possible thanks to computers.
+Sejak ditemukan di tahun 1950, **komputer** telah merevolusi kehidupan kita sehari-hari. Mengkalkulasi rute dari website atau GPS, memesan tiket kereta atau pesawat, atau bertemu dan *chatting* bersama teman di balik belahan dunia: semua ini bisa dilakukan dan dimungkinkan berkat komputer.
 
-I> Let's take the term "computer" in its broadest sense, meaning a machine that can perform arithmetic and logical operations. It could mean either a desktop or laptop computer (PC, Mac), a computing server, or a mobile device like a tablet or smartphone.
+I> Mari ambil istilah "komputer" dalam pandangan umum, yang artinya mesin yang dapat melakukan operasi aritmetik dan logik. Bisa juga berarti *desktop* atau laptop komputer (PC, Mac), server komputer, atau perangkat *mobile* seperti tablet atau *smartphone*.
 
-Nonetheless, a computer can only perform a series of simple operations when instructed to do so. They normally have no ability to learn, judge, or improvise. They simply do what they're told to do! Their value comes from how they can quickly handle and process huge amounts of information.
+Meskipun demikian, komputer hanya bisa melakukan serangkaian operasi sederhana ketika diinstruksikan. Komputer biasanya tidak memiliki kemampuan untuk belajar, menilai, atau berimprovisasi. Hanya bisa melakukan apa yang diperintahkan oleh pengguna! Nilai komputer didapat dari bagaimana komputer bisa memproses informasi yang sangat melimpah.
 
-A computer often requires human intervention. That's where programmers and developers come in! They write programs that result in instructions to a computer.
+Komputer seringkali membutuhkan intervensi manusia. Inilah di mana programer dan developer dibutuhkan! Mereka menulis program yang menghasilkan instruksi ke komputer.
 
-A **computer program** (also called an application or software) is usually comprised of one or more text files containing commands in the form of code. This is why developers are also called coders.
+**Program komputer** (atau biasa disebut aplikasi atau *software*) biasanya terdiri dari satu atau beberapa file yang berisi perintah dalam bentuk kode. Inilah kenapa developer juga disebut koder.
 
-A **programming language** is a way to give orders to a computer. It's a bit like a human language! Each programming language has vocabulary (keywords that each play a specific role) and grammar (rules defining how to write programs in that language).
+**Bahasa pemgrograman** merupakan salah satu cara untuk memberi perintah ke komputer. Ini seperti bahasa manusia! Setiap bahasa pemrograman memiliki kosa kata (kata kunci yang memiliki peran atau instruksi tertentu) dan tata bahasa (aturan yang menentukan bagaimana cara menulis program dalam bahasa tersebut).
 
-## How do you create programs?
+## Bagaimana Kamu membuat program?
 
-### Closest to the hardware: assembly language
+### Mendekati perangkat keras: bahasa assembly
 
-The only programming language directly understandable by a computer is machine language. A more human-readable representation of machine language is **assembly language**. It is a set of very primitive operations linked to a specific family of processors (the computer's "brain") and manipulating its memory.
+Bahasa pemrograman yang langsung dimengerti oleh komputer adalah bahasa mesin. Representasi bahasa mesin yang lebih bisa dibaca oleh manusia adalah **bahasa asembly**. Bahasa ini terdiri dari serangkaian operasi primitif yang terhubung dengan keluarga prosesor yang spesifik ("otak" komputer) dan memanipulasi memori.
 
-Here's an example of a basic program written in assembly language. It displays `"Hello"` to the user.
+Berikut contoh pemrograman dasar yang ditulis dalam bahasa assembly. Program ini menampilkan `"Hello"` ke pengguna.
 
 ```assembly
 str:
@@ -49,18 +49,16 @@ movl $1, %eax
 movl $0, %ebx
 int $0x80
 ```
+Sangat menyeramkan, ya? Untungnya, bahasa pemrograman lainnya lebih sederhana dan mudah digunakan dibandingkan bahasa assembly.
 
-Pretty scary, isn't it? Fortunately, other programming languages are much simpler and convenient to use than assembly language.
+### Keluarga bahasa pemgrograman
 
-### The family of programming languages
-
-There are a large number of programming languages, each adapted to different uses and with its own syntax. However, there are similarities between the most popular programming languages. For example, here's a simple program written in Python:
+Bahasa pemrograman ada banyak, masing-masing menyesuaikan terhadap penggunaan tertentu dan memiliki sintaks tersendiri. Walaupun begitu, banyak persamaan diantara bahasa pemrograman yang populer. Berikut ini contoh program sederhana yang ditulis dalam bahasa Python:
 
 ```python
 print("Hello")
 ```
-
-You can also write the same thing in PHP:
+Kamu juga bisa menulis hal yang sama dalam bahasa PHP:
 
 ```php
 <?php
@@ -68,7 +66,7 @@ You can also write the same thing in PHP:
 ?>
 ```
 
-Or even C#!
+Atau bahkan bahasa C#!
 
 ```csharp
 class Program {
@@ -77,8 +75,7 @@ class Program {
     }
 }
 ```
-
-What about Java?
+Bagaimana dengan bahasa Java?
 
 ```java
 public class Program {
@@ -88,60 +85,64 @@ public class Program {
 }
 ```
 
-All these programs display `"Hello"` through a different set of instructions.
+Semua program ini menampilkan `"Hello"` melalui serangkaian instruksi yang berbeda.
 
-### Program execution
+### Eksekusi program
 
-The fact of asking a computer to process the orders contained in a program is called **execution**. Regardless of which programming language is used, a program must be translated into assembly code in order to be executed. The translation process depends on the language used.
+Fakta meminta komputer untuk memproses perintah yang terdapat dalam program disebut **eksekusi**. Terlepas dari bahasa pemrograman yang digunakan, sebuah program harus diterjemahkan ke kode assembly agar bisa dieksekusi. Proses penerjemahan tergantung dari bahasa yang digunakan.
 
-With some languages, the translation into assembly code happens line by line in real time. In this case, the program is executed like a human reads a book, starting at the top and working down line-by-line. These languages are said to be **interpreted**. Python and PHP are examples of interpreted languages.
+Dengan menggunakan beberapa bahasa, terjemahan ke kode assembly terjadi baris demi baris secara *real time*. Dalam kasus ini, program dieksekusi seperti halnya manusia membaca sebuah buku, di mulai dari atas halaman, lalu ke bawah baris demi baris. Bahasa ini disebut **terinterpretasi** *(interpreted)*. Python dan PHP merupakan contoh bahasa terinterpretasi.
 
-Another possibility is to read and check for errors throughout the whole source code before execution. If no errors are detected, an executable targeting one specific hardware platform is generated. The intermediate step is called **compilation**, and the programming languages which use it are said to be **compiled**.
+Kemungkinan lainnya adalah membaca dan mengecek eror di seluruh sumber kode sebelum eksekusi. Kalau tidak ada eror terdeteksi, sebuah sasaran yang dapat dieksekusi untuk platform perangkat keras spesifik akan dihasilkan. Langkah selanjutnya disebut **kompilasi** *(compilation)*, dan bahasa pemrograman yang menggunakan itu disebut **terkompilasi** *(compiled)*.
 
-Lastly, some languages are pseudo-compiled in order to be executed on different hardware platforms. This is the case for the Java language and also for those of the Microsoft .NET family (VB.NET, C#, etc).
+Yang terakhir, beberapa bahasa ter-*pseudo-compiled* agar bisa dieksekusi di platform perangkat keras yang berbeda. Contohnya ada di bahasa Java dan juga pada keluarga Microsoft .NET (VB.NET, C#, dan lainnya).
 
-## Learn to code
+## Belajar koding
 
-### Introduction to algorithms
+### Pengenalan algoritma
 
-Except in very simple cases, you don't create programs by writing source code directly. You'll first need to think about the instructions you'll want to convey.
+Kecuali terjadi di kasus sangat sederhana, Kamu tidak membuat program dengan cara langsung menuliskan sumber kodenya. Pertama-tama, Kamu harus berpikir terlebih dulu tentang instruksi yang akan Kamu buat.
 
-Take a concrete example from everyday life: I want to make a burrito. What are the steps that will enable me to achieve my goal?
+Ambil contoh nyata dalam kehidupan sehari-hari: Saya ingin membuat burrito (kebab meksiko). Langkah apa yang harus saya lakukan agar tujuan saya tercapai?
 
 ```text
-Begin
-    Get out the rice cooker
-    Fill it with rice
-    Fill it with water
-    Cook the rice
-    Chop the vegetables
-    Stir-fry the vegetables
-    Taste-test the vegetables
-        If the veggies are good
+Mulai
+    Ambil penanak nasi
+    Isi dengan beras
+    Isi dengan air
+    Masak nasi
+    Potong sayuran
+    Tumis sayuran
+    Cicipi sayuran
+        Kalau sayurannya enak
             Remove them from the stove
+            Keluarkan dari kompor
         If the veggies aren't good
-            Add more pepper and spices
+        Kalau sayurannya kurang enak
+            Tambahkan lada dan bumbu
         If the veggies aren't cooked enough
-            Keep stir-frying the veggies
+        Kalau sayurannya kurang matang
+            Tumis kembali sayurannya
     Heat the tortilla
-    Add rice to tortilla
-    Add vegetables to tortilla
-    Roll tortilla
-End
+    Panaskan tortilla
+    Tambahkan nasi ke tortilla
+    Tambahkan sayuran ke tortilla
+    Gulung tortilla
+Selesai
 ```
 
 ![Mmmmmm!](images/intro02-02.jpg)
 
-You reach your goal by combining a set of actions in a specific order. There are different types of actions:
+Kamu capai tujuan Kamu dengan mengkombinasikan serangkaian aksi dalam urutan yang spesifik. Ada beberapa jenis aksi yang berbeda:
 
-* Simple actions ("get out the rice cooker")
-* Conditional actions ("if the veggies are good")
-* Actions that are repeated ("keep stir-frying the veggies")
+* Aksi sederhana ("Ambil penanak nasi")
+* Aksi dengan syarat ("Kalau sayurannya kurang enak")
+* Aksi yang berulang ("Tumis kembali sayurannya")
 
-We used a simple writing style, not a specific programming language. In fact, we just wrote what is called an **algorithm**. We can define an algorithm as an ordered sequence of operations for solving a given problem. An algorithm breaks down a complex problem into a series of simple operations.
+Kita gunakan gaya menulis yang sederhana, dan bukan bahasa pemrograman yang spesifik. Faktanya, kita hanya menulis apa yang dinamakan **algoritma**. Kita bisa mendefinisikan algoritma sebagai perintah berurut untuk menyelesaikan suatu persoalan. Algoritma memilah persoalan yang rumit ke serangkaian operasi sederhana.
 
-### The role of the programmer
+### Peran programer
 
-Writing programs that can reliably perform expected tasks is a programmer's goal. A beginner can learn to quickly create simple programs. Things get more complicated when the program evolves and becomes more complex. It takes experience and a lot of practice before you feel like you'll control this complexity! Once you have the foundation, the only limit is your imagination!
+Menulis program yang dapat mensolusikan persoalan yang diharapkan merupakan tujuan dari programer. Seorang pemula bisa belajar dengan cepat untuk membuat program yang sederhana. Menjadi suatu hal yang sangat rumit ketika program bervolusi dan menjadi sangat kompleks. Dibutuhkan pengalaman dan banyak latihan sebelum Kamu merasa bisa mengendalikan kompleksitas ini! Ketika Kamu sudah mempunya dasar yang kuat, batasannya hanyalah imajinasi Kamu!
 
-> "The computer programmer is a creator of universes for which he alone is the lawgiver. No playwright, no stage director, no emperor, however powerful, has ever exercised such absolute authority to arrange a stage or field of battle and to command such unswervingly dutiful actors or troops." (Joseph Weizenbaum)
+> "Programer komputer adalah kreator semesta yang dia sendiri merupakan hakim. Bukan penulis naskah, bukan sutradara, bukan kaisar, tetapi *powerful*, bisa menggerakan dan mengatur pentas dan medan perang dengan teguhnya memerintah aktor dan pasukan yang sangat patuh kepadanya." (Joseph Weizenbaum)
