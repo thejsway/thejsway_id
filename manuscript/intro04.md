@@ -1,104 +1,102 @@
 # Environment setup
 
-## Prerequisite: a modern browser
+## Prasyarat: browser modern
 
-This book targets a recent version of the JavaScript language. More specifically, you'll need a browser able to run code written in the ES2015 (ES6) language specification.
+Buku ini menyesuaikan dengan bahasa JavaScript versi terbaru. Lebih spesifik lagi, Kamu membutuhkan browser yang dapat menjalankan kode yang ditulis dalam spesifikasi bahasa ES2015 (ES6).
 
-A **browser** is the software you use to visit webpages and use web applications. Check this [compatibility table](https://kangax.github.io/compat-table/es6/) for more detail about ES2015 support among browsers.
+Sebuah **browser** adalah software yang Kamu gunakan untuk mengunjungi halaman web dan aplikasi web. Cek ini: [tabel *compatibility*](https://kangax.github.io/compat-table/es6/) untuk melihat lebih detail tentang dukungan ES2015 di berbagai browser.
 
-The safest bet is to choose either Google Chrome or Mozilla Firefox, two "evergreen" (self-updated) browsers with excellent ES2015 support in their recent versions. Other capable browsers include Opera and Microsoft Edge (Windows 10's default browser). On the contrary, all versions of Internet Explorer will have issues with ES2015 code: stay away from them.
+Pilihan paling aman: gunakan antara Google Chrome atau Mozilla Firefox. Browser versi terbarunya memiliki dukungan ES2015 yang sangat baik dan bisa meng-update sendiri. Browser lain yang kapabel di antaranya adalah Opera dan Microsoft Edge (browser bawaan di Windows 10). Di lain pihak, semua versi Internet Explorer memiliki banyak isu dengan kode ES2015: jangan pakai ini.
 
-## Solution A: coding online
+## Solusi: koding online 
 
-Maybe you're a little bit of the impatient type, or maybe you'd rather not set up your local machine right now. Fortunately, one of the beauties of JavaScript is that it can run on almost any browser. All you'll need in addition is an active Internet connection.
+Mungkin Kamu orang yang sedikit kurang sabaran, atau mungkin Kamu lebih memilih untuk tidak mengeset mesin lokal Kamu sekarang. Untungnya, salah satu keindahan JavaScript adalah bahasa ini bisa jalan di hampir semua browser. Semua yang perlu Kamu lakukan hanyalah dengan menggunakan koneksi Internet. 
 
-Coding online requires a **JavaScript playground**, an online service where you can type some JavaScript code and immediately visualize its result.
+Koding online perlu **JavaScript playground**, suatu layanan online di mana Kamu bisa mengetik kode JavaScript dan langsung bisa melihat hasilnya.
 
-### For chapters 1 to 23: CodePen
+### Untuk bab 11 sampai 23: CodePen
 
-To follow along these chapters, you'll need a **front-end** coding playground able to run HTML, CSS and JavaScript code. There is a handful of front-end playgrounds online. My personal favorite is [CodePen](http://codepen.io), but there are alternatives like [JSFiddle](https://jsfiddle.net/) and [JS Bin](http://jsbin.com/).
+Untuk mengikuti bab ini, Kamu perlu koding *playground* **front-end** yang dapat menjalankan kode HTML, CSS dan JavaScript. Ada banyak online front-end playgrounds. Favorit saya adalah [CodePen](http://codepen.io), tetapi juga ada alternatif lain seperti [JSFiddle](https://jsfiddle.net/) dan [JS Bin](http://jsbin.com/).
 
 ![The JSFiddle, CodePen and JS Bin logos](images/appendix01-01.png)
 
-If you choose to use CodePen, you *really* should start by visiting [Welcome to CodePen](https://codepen.io/hello/). It introduces the platform in a very friendly way and gives you everything you need to get started.
+Kalau Kamu memilih CodePen, Kamu *benar-benar harus* mulai mengunjungi [Welcome to CodePen](https://codepen.io/hello/). Halaman web ini akan mengenalkan Kamu tentang platform tersebut dengan cara yang bersahabat dan memberi Kamu segala keperluan untuk memulai.
 
-In addition, there are some helpful articles in the CodePen documentation about [autocomplete](https://blog.codepen.io/documentation/editor/autocomplete/), the [console](https://blog.codepen.io/documentation/editor/console/), [pen autosaving](https://blog.codepen.io/documentation/editor/autosave/), [keybindings](https://blog.codepen.io/documentation/editor/key-bindings/) and [auto-updating](https://blog.codepen.io/documentation/editor/auto-updating-previews/). Albeit not mandatory, mastering CodePen will make you more productive while studying this book.
+Selain itu, banyak artikel yang dapat membantu Kamu dengan membaca dokumentasi CodePen tentang [autocomplete](https://blog.codepen.io/documentation/editor/autocomplete/), [console](https://blog.codepen.io/documentation/editor/console/), [pen autosaving](https://blog.codepen.io/documentation/editor/autosave/), [keybindings](https://blog.codepen.io/documentation/editor/key-bindings/) dan [auto-updating](https://blog.codepen.io/documentation/editor/auto-updating-previews/). Walaupun bukan suatu keharusan, menguasai CodePen akan membuat Kamu lebih produktif ketika mempelajari buku ini.
 
-T> I advise you to enable autosave and disable auto-update for all your book-related pens. Showing the CodePen console will often be needed to look at the results produced by the code.
+> Saya sarankan Kamu untuk mengaktifkan *autosave* dan menon-aktifkan *auto-update* untuk semua *book-related pens*. Menampilkan console CodePen seringkali dibutuhkan untuk dapat melihat hasil dari kode.
 
-You should use a pen (not necessarily saved) to try every code sample this book contains. You should also dedicate a specific and saved pen to each exercise and project you'll search.
+Kamu sebaiknya menggunakan *pen* (tidak perlu disimpan) untuk mencoba setiap contoh kode yag ada di buku ini. Kamu juga sebaiknya mendedikasikan satu *pen* yang spesifik dan tersimpan untuk setiap latihan dan proyek yang akan Kamu cari nantinya.
 
-> For performance reasons, the CodePen console does not always show the same amount of information as the "real" browser console.
+> Untuk alasan performansi, console CodePen tidak selalu menampilkan sejumlah informasi yang sama seperti halnya console browser yang "asli".
 
-### From chapter 24 onwards: Glitch
+### Dari bab 24 dan selanjutnya: Glitch
 
-Starting with chapter 24, a **back-end** playground will be necessary to create Node.js applications. The prominent choice is [Glitch](https://glitch.com), a platform for quickly building Node-based web applications. Glitch emulates a local Node setup and automates things like code execution, package management, hosting and deployment. You can also remix (clone) any Glitch app to personalize it for your needs.
+Mulai bab 24, playground **back-end** akan diperlukan untuk membuat aplikasiNode.js. Pilihan terkenal adalah [Glitch](https://glitch.com), platform untuk membuat aplikasi web berbasis Node dengan cepat. Glitch meniru setup Node lokal dan mengotomasi hal-hal seperti eksekusi kode, manajemen paket, *hosting* dan *deployment*. Kamu juga bisa mengkostumisasi (duplikasi) aplikasi Glitch untuk kebutuhan sesuai selera Kamu.
 
 ![The Glitch logo](images/appendix01-02.png)
 
-You can learn more about Glitch [here](https://glitch.com/about/) and start by remixing [this project](https://glitch.com/edit/#!/thejsway-starterapp).
+Kamu bisa mempelajari lebih banyak tentang Glitch [di sini](https://glitch.com/about/) dan mulai memadukan [proyek ini](https://glitch.com/edit/#!/thejsway-starterapp).
 
-## Solution B: building a local development environment
+## Solusi B: membangun environment pengembangan lokal 
 
-Setting up your local machine takes a bit of work, but will give you a tailored and powerful environment. This is also your only choice if you need to work offline.
+Mengeset mesin lokal Kamu memerlukan banyak usaha, tetapi akan memberikan Kamu *environment* yang *powerful* dan sesuai yang Kamu butuhkan. Hal ini akan menjadi pilihan utama Kamu kalau Kamu perlu bekerja dalam mode offline.
 
-The following steps will help you code effectively on your machine.
+Langkah berikut ini akan membantu Kamu agar bisa koding secara efektif di mesin Kamu.
 
-### Install a code editor
+### Instal editor kode 
 
-At heart, programming is typing code as text in a number of files.
-To actually program, you'll need to use a **code editor** on your machine. Here are some of them:
+Intinya, pemrograman adalah mengetik kode sebagai teks di berbagai file. Untuk benar-benar memprogram, Kamu akan membutuhkan sebuah **editor kode** di mesin Kamu. Ini beberapa yang bisa Kamu gunakan:
 
-* [Visual Studio Code](https://code.visualstudio.com/) (my editor of choice).
+* [Visual Studio Code](https://code.visualstudio.com/) (pilihan saya).
 * [Brackets](http://brackets.io/).
 * [Atom](https://atom.io/).
 * [Sublime Text](https://www.sublimetext.com/).
 
-### Install Node.js and npm
+### Instal Node.js dan npm
 
-The **Node.js** platform is necessary from chapter 24 onwards. The **npm** package manager is automatically installed along with Node.
+Platform **Node.js** diperlukan pada bab 24 dan selanjutnya. Manajemen paket **npm** akan terotomatis ter-instal bersama dengan Node.
 
-To setup Node on your local machine, download the latest version [here](https://nodejs.org), execute the downloaded file and follow the instructions.
+Untuk mengeset Node di mesin lokal Kamu, untuk versi terbarunya [di sini](https://nodejs.org), eksekusi file hasil unduhan dan ikuti instruksinya.
 
-> Some examples in this book need Node 8 or higher.
+> Beberapa contoh di buku ini perlu versi 8 atau versi yang lebih baru.
 
-The easiest way to test that node is installed is to run the `node --version` command in your terminal/command prompt, and check that a version string is returned.
+Cara termudah untuk mengetes apakah node sudah ter-instal adalah dengan menjalankan perintah `node --version` di terminal dan cek hasil outputnya. Perintah ini akan menampilkan versi node yang sedang Kamu gunakan.
 
 ```console
 node --version
 ```
+### Instal *formatter* kode dan *linter*
 
-### Install a code formatter and a linter
+Bertahun-tahun, banyak *tool* telah dibuat untuk memudahkan developer JavaScript. Secara umum, 2 jenis *tool* ini banyak digunakan oleh para profesional JavaScript:
 
-Over the years, a lot of tools have been created to ease a JavaScript developer's life. In particular, two kinds of tools are of great interest to any JavaScript professional:
+* **Formatter kode** membebaskan Kamu dari beban berat untuk mem-format kode secara manual dan meningkatkan konsistensi. [Prettier](https://github.com/prettier/prettier) merupakan standar yang banyak digunakan saat ini.
+* **Linter** bisa membuat Kamu meningkatkan kualitas kode Kamu secara signifikan, mendeteksi *bug* dan membuat Kamu mengikuti praktik yang baik. [ESLint](http://eslint.org) merupakan pilihan yang umum.
 
-* A **code formatter** frees you from the burden of formatting your code manually and improves consistency. [Prettier](https://github.com/prettier/prettier) is the current standard.
-* A **linter** can greatly improve your code's quality, detecting bugs and enforcing good practices. [ESLint](http://eslint.org) is a common choice.
-
-The easiest way to setup ESLint and Prettier is to add them as **extensions** (sometimes named add-ons) to your code editor. For VS Code, use these links:
+Cara termudah untuk mengeset ESLint dan Prettier adalah dengan menambahkannya sebagai **extension** (terkadang dinamakan *add-ons*) ke editor kode Kamu. Untuk VS Code, gunakan tautan berikut:
 
 * [Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 * [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
-Follow the instructions provided in their documentation to setup them.
+Ikuti instruksi yang disediakan di dokumentasi tersebut.
 
-> ESLint configuration is discussed in the next chapter.
+> Konfigurasi ESLint akan dibahas di bab berikutnya. 
 
-### Organize your code
+### Atur kode Kamu
 
-It's important to set up your basic folder and file structure before actually starting to code. That way, your project will be organized, and you'll be starting off with some good programming habits.
+Mengeset berkas (folder) dan struktur file sebelum mulai kode sangatlah penting. Dengan melakukan ini, proyek Kamu akan lebih terorganisir, dan Kamu bisa memulai koding dengan kebiasaan pemrograman yang baik.
 
-Create a folder in your storage disk dedicated to coding along this book. The folder name doesn't matter, `thejsway-code` will do nicely. All local files you subsequently create should be stored in subfolders of this root folder. The most logical solution is to create a subfolder for each chapter of the book.
+Buat berkas di komputer Kamu secara terpisah untuk mengikuti koding di buku ini. Nama berkas Kamu tidaklah penting, `kode thejsway` juga bisa. Semua file lokal yang Kamu buat harus disimpan di sub-berkas dari berkas utama ini. Solusi yang paling logis adalah dengan membuat sub-berkas untuk setiap bab dari buku ini.
 
-You can either download a [predefined folder structure](https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/code-skeleton.zip) or follow the next few paragraphs to create this folder structure by hand.
+Kamu juga bisa mengunduh [struktur berkas yang sudah diatur](https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/code-skeleton.zip) atau mengikuti instruksi di paragraf berikut untuk membuat struktur berkas secara manual.
 
-#### For chapters 1 to 23
+#### Untuk bab 1 sampai 23
 
-In these chapters, you'll execute your JavaScript code in the browser. Your files will be stored according to their type: HTML files (the ones with an `.html` extension) in an `html` subfolder, CSS files (`.css`) in a `css` subfolder and JavaScript files (`.js`) in a `js` subfolder. Each chapter is set up in a series of folders as follows.
+Di bab ini, Kamu akan mengeksekusi kode JavaScript Kamu di browser. File Kamu akan disimpan berdasarkan tipenya: file HTML (`.html` extension) di sub-berkas `html`, file CSS (`.css`) di sub-berkas `css` dan file JavaScript (`.js`) di sub-berkas `js`. Setiap bab diset dalam berkas sebagai berikut.
 
 ![Folder structure for chapter 1](images/appendix01-03.png)
 
-For examples and each exercise of a chapter, create an HTML file in the `html` subfolder of the chapter folder. In these HTML files, a `<script>` will load the associated JavaScript code.
+Sebagai contoh untuk setiap latihan di satu bab, buat file HTML di sub-berkas `html` dari berkas bab. Di file HTML ini, sebuah `<script>` akan memuat kode JavaScript terkait.
 
 ```html
 <!doctype html>
@@ -106,42 +104,41 @@ For examples and each exercise of a chapter, create an HTML file in the `html` s
 
 <head>
     <meta charset="utf-8">
-    <title>Code examples</title>
+    <title>Contoh kode</title>
 </head>
 
 <body>
-    <!-- HTML code goes here -->
+    <!-- Kode HTML di sini -->
 
     <script src="../js/examples.js"></script>
 </body>
 
 </html>
 ```
+Tag `<script>` ini memerintahkan browser untuk memuat file JavaScript `examples.js` dengan lokasi path `../js/examples.js`. Dua titik (`..`) di setiap awal path mengindikasikan bahwa Kamu kembali ke satu level struktur direktori relatif terhadap file HTML, sebelum mencari sub-berkas `js`, ke file bernama `examples.js`.
 
-This `<script>` tag asks the browser to load the `examples.js` JavaScript file, located at path `../js/examples.js`. The two dots (`..`) at the beginning of the path indicate you're going back one level in the directory structure relative to the HTML file itself before looking in the `js` subfolder for a file named `examples.js`.
+Selanjutnya, buka file HTML di browser Kamu untuk mengeksekusi kode JavaScript yang tersimpan di file `.js`. Hasilnya akan terihat di console browser (lihat di bawah).
 
-Next, open the HTML file in your browser to execute the JavaScript code stored in the `.js` file. Its result will be shown in the browser console (see below).
+#### Mulai bab 24 dan selanjutnya 
 
-#### From chapter 24 onwards
+Di bab ini, Kamu akan membuat aplikasi Node.js untuk mengeksekusi kode JavaScript. Setiap aplikasi Node harus berada di berkasnya sendiri dan terlihat di file `package.json` yang berlokasi di root berkas ini. Sub-direktori mungkin akan digunakan untuk menyimpan file spesifik berikut:
 
-In these chapters, you'll create Node.js applications to execute your JavaScript code. Each Node app must sit in its own folder and is described by a `package.json` file located at the root of this folder. Subdirectories may be used to store specific files:
+* `node_modules` (otomatis terbuat) untuk dependensi eksternal.
+* `public` untuk *client assets* yang dimuat oleh browser, seperti file CSS dan JavaScript.
+* `views` untuk file HTML.
+* `modules` untuk internal modul.
 
-* `node_modules` (automatically created) for external dependencies.
-* `public` for client assets loaded by the browser, like CSS and JavaScript files.
-* `views` for HTML files.
-* `modules` for internal modules.
+### Gunakan *tool* pengembangan browser
 
-### Use the browser's development tools
+Browser modern memiliki **developer tools** untuk membantu pengembangan web. Setiap browser berbeda satu sama lainnya, namun ada juga beberapa persamaannya.
 
-Modern browsers include **developer tools** to help with web development. Each browser differs in exactly which tools they provide, but there are more similarities than differences among them.
-
-These tools usually include a **JavaScript console** (to show JS output and type commands), a **page inspector** (to browse the page structure) and many more!
+Tool ini biasanya ada **JavaScript console** (untuk menampilkan output JS dan mengetik perintah), **page inspector** (untuk melihat struktur halaman) dan lainnya!
 
 ![The Firefox JavaScript console](images/chapter12-01.png)
 
-Check out the following links to discover more about browser developer tools:
+Lihat tautan berikut untuk mengetahui tentang *browser developer tool*:
 
-* [Khan Academy - Inspecting HTML and CSS](https://www.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/using-the-browser-developer-tools).
-* [OpenClassrooms - Optimize your website with DevTools](https://openclassrooms.com/courses/optimize-your-website-with-devtools).
+* [Khan Academy - Inspeksi HTML dan CSS](https://www.khanacademy.org/computing/computer-programming/html-css/web-development-tools/a/using-the-browser-developer-tools).
+* [OpenClassrooms - Optimasi website Mamu dengan DevTools](https://openclassrooms.com/courses/optimize-your-website-with-devtools).
 * [Chrome DevTools Overview](https://developer.chrome.com/devtools).
 * [Firefox Developer Tools](https://developer.mozilla.org/en-US/docs/Tools).
