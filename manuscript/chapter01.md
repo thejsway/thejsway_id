@@ -1,85 +1,85 @@
 # 3, 2, 1... Kode!
 
-Mari kita mulai! Di bab ini, Kamu akan dikenalkan tentang pemrograman dasar seperti *values*, *types*, dan struktur program.
+Mari kita mulai! Di bab ini, Kamu akan belajar tentang pemrograman dasar seperti nilai, tipe, dan struktur program.
 
 ## TL;DR
 
-* The JavaScript command `console.log()` shows a message in the **console**, an information zone available in most JavaScript environments.
+* Perintah JavaScript `console.log()` menampilkan pesan di **console**, zona informasi yang ada di hampir semua *environment* JavaScript.
 
-* A **value** is a piece of information. The **type** of a value defines its role and the operations applicable to it.
+* **Nilai** adalah satu potongan informasi. **Tipe** dari nilai mendefinisikan fungsinya dan operasi yang berlaku pada tipe tersebut.
 
-* The JavaScript language uses the **number** type to represent a numerical value (with or without decimals) and the **string** type to represent text.
+* Bahasa JavaScript menggunakan tipe **bilangan** untuk merepresentasikan nilai angka (dengan atau tanpa desimal) dan tipe **string** untuk merepresentasikan teks.
 
-* A string value is surrounded by a pair of single quotes (`'...'`) or a pair of quotation marks (`"..."`).
+* Nilai string diapit oleh sepasang tanda kutip tunggal (`'...'`) atau sepasang tanda kutip ganda (`"..."`).
 
-* Arithmetic operations between numbers are provided by the `+`, `-`, `*` and `/` operators. Applied to two strings, the `+` operator joins them together. This operation is called **concatenation**.
+* Operasi aritmetika antar bilangan dapat digunakan operator `+`, `-`, `*` dan `/`. Operator `+` akan menggabungkan 2 string. Operasi ini dinamakan **concatenation**.
 
-* A computer program is made of several **lines of code** read sequentially during execution.
+* Program komputer dibuat dari **beberapa baris kode** yang dibaca secara beruturan saat eksekusi.
 
-* **Comments** (`// ...` or `/* ... */`) are non-executed parts of code. They form a useful program documentation.
+* **Komentar** (`// ...` or `/* ... */`) adalah bagian kode yang tidak dieksekusi. Komentar ini berguna sebagai dokumentasi atau penjelasan program.
 
-## Your first program
+## Program pertama Kamu 
 
-Here's our very first JavaScript program.
+Berikut program JavaScript kita yang paling pertama.
 
 ```js
 console.log("Hello from JavaScript!");
 ```
 
-This program displays the text `"Hello from JavaScript!"` in the **console**, a zone displaying textual information available in most JavaScript environments, such as browsers.
+Program ini menampilkan teks `"Hello from JavaScript!"` di **console**, zona yang menampilkan informasi teks tersedia di hampir semua *environment* JavaScript, seperti browser.
 
-To achieve this, it uses a JavaScript command named `console.log()`, whose role is to display a piece of information. The text to be displayed is placed between parentheses and followed by a semicolon, which marks the end of the line.
+Untuk bisa menampilkan ini, digunakan perintah JavaSript bernama `console.log()`, yang berfungsi menampilkan potongan informasi. Teks yang ditampilkan berada diantara tanda kurung diikuti dengan tanda titik koma, yang menandai akhir baris.
 
-Displaying a text on the screen (the famous [Hello World](https://en.wikipedia.org/wiki/Hello_world) all programmers know) is often the first thing you'll do when you learn a new programming language. It's the classic example. You've already taken that first step!
+Menampilkan teks di layar ([Hello World](https://en.wikipedia.org/wiki/Hello_world) terkenal yang semua programer tahu) merupakan hal yang seringkali Kamu akan lakukan ketika Kamu belajar bahasa pemrograman yang baru. Ini adalah contoh klasik. Kamu telah mengambil langkah pertama!
 
-## Values and types
+## Nilai dan tipe 
 
-A **value** is a piece of information used in a computer program. Values exist in different forms called types. The **type** of a value determines its role and operations available to it.
+**Nilai** adalah potongan informasi yang digunakan di program komputer. Nilai dapat ditampilkan dalam bentuk yang berbeda yang dinamakan tipe. **Tipe** dari nilai menentukan perannya dan operasi yang dapat dilakukan.
 
-Every computer language has its own types and values. Let's look at two of the types available in JavaScript.
+Setiap bahasa komputer mempunyai tipe dan nilai masing-masing. Mari kita lihat dua dari tipe yang tersedia di JavaScript.
 
-### Number
+### Bilangan
 
-A **number** is a numerical value (thanks Captain Obvious). Let's go beyond that though! Like mathematics, you can use integer values (or whole numbers) such as 0, 1, 2, 3, etc, or real numbers with decimals for greater accuracy.
+**Bilangan** adalah nilai angka (*ya jelaslah*). Mari kita perjelas! Seperti matematika, Kamu bisa menggunakan nilai integer (nilai bulat) seperti 0, 1, 2, 3, dan seterusnya, atau angka desimal untuk mendapatkan akurasi lebih tinggi.
 
-Numbers are mainly used for counting. The main operations you'll see are summarized in the following table. All of them produce a number result.
+Bilangan biasanya digunakan untuk perhitungan. Operasi utama bisa Kamu lihat di tabel berikut. Semua menghasilkan nilai bilangan.
 
-|Operator|Role|
+|Operator|Fungsi|
 |---------|----|
-|`+`|Addition|
-|`-`|Subtraction|
-|`*`|Multiplication|
-|`/`|Division|
+|`+`|Penambahan|
+|`-`|Pengurangan|
+|`*`|Perkalian|
+|`/`|Pembagian|
 
 ### String
 
-A **string** in JavaScript is text surrounded by quotation marks, such as `"This is a string"`.
+**String** di JavaScript adalah teks yang diapit oleh tanda kutip, seperti `"Ini adalah string"`.
 
-You can also define strings with a pair of single quotes: `'This is another string'`. The best practice for single or double quotes is a whole political thing. Use whichever you like, but don't mix the two in the same program!
+Kamu juga mendefinisikan string dengan menggunakan sepasang tanda kutip tunggal: `'Ini adalah string lain'`. Penerapan praktis terbaik dalam menggunakan tanda kutip tunggal atau ganda sama seperti pilpres. Terserah Kamu, yang pasti, jangan dicampur di program yang sama!
 
-W> Always remember to close a string with the same type of quotation marks you started it with.
+> Selalu ingat untuk menutup string dengan tanda kutip yang sama dengan yang Kamu ketik di awal.
 
-To include special characters in a string, use the `\` character (*backslash*) before the character. For example, type `\n` to add a new line within a string: `"This is\na multiline string"`.
+Untuk memuat karakter spesial dalam string, gunakan karakter `\` (*backslash*) sebelumnya. Contohnya, ketik `\n` untuk menambah baris baru dalam string:`"Ini adalah\n beberapa baris string"`.
 
-You cannot add or subtract string values like you'd do with numbers. However, the `+` operator has a special meaning when applied to two string values. It will join the two chains together, and this operation is called a **concatenation**. For example, `"Hel" + "lo"` produces the result `"Hello"`.
+Kamu tidak bisa menambah atau mengurangi nilai string seperti halnya tipe bilangan. Meskipun demikian, operator `+` memiliki arti spesial ketika diterapkan ke dua nilai string. Hal ini akan menggabungkan kedua string tersebut, dan operasi ini dinamakan **concatenation**. Contohnya, `"Ha" + "lo"` menghasilkan `"Hello"`.
 
-## Program structure
+## Struktur program 
 
-We already defined a computer program as a list of commands telling a computer what to do. These orders are written as text files and make up what's called the "source code" of the program. The lines of text in a source code file are called **lines of code**.
+Kita sudah mendefinisikan program komputer sebagai daftar perintah yang memberitahu komputer apa yang harus dilakukan. Perintah ini ditulis sebagai file teks dan membentuk yang dinamakan "sumber kode" program. Baris teks pada sumber kode disebut **baris kode**.
 
-The source code may include empty lines: these will be ignored when the program executes.
+Sumber kode dapat memuat baris kosong: ini akan tidak akan dieksekusi oleh program.
 
 ### Statements
 
-Each instruction inside a program is called a **statement**. A statement in JavaScript usually ends with a **semicolon** (albeit it's not strictly mandatory). Your program will be made up of a series of these statements.
+Setiap instruksi di dalam program dinamakan **pernyataan**. Pernyataan di JavaScript biasanya berakhir dengan **tanda titik koma** (walaupun bukan suatu keharusan). Program Kamu akan dibuat dari beberapa pernyataan.
 
-I> You usually write only one statement per line.
+> Kamu biasanya menulis hanya satu pernyataan per baris.
 
-### Execution flow
+### Aliran eksekusi
 
-When a program is executed, the statements in it are "read" one after another. It's the combination of these individual results that produces the final result of the program.
+Ketika program dieksekusi, pernyataan di dalamnya "dibaca" baris per baris. Kombinasi dari masing-masing ini akan menghasilkan program akhir.
 
-Here's an example of a JavaScript program including several statements, followed by the result of its execution.
+Berikut contoh program JavaScript yang di dalamnya terdapat pernyataan yang diikuti hasil dari eksekusinya.
 
 ```js
 console.log("Hello from JavaScript!");
@@ -91,15 +91,15 @@ console.log("Goodbye!");
 
 ![Execution result on CodePen](images/chapter01-01.png)
 
-Depending on your work environment, the execution result may not include quotes around text.
+Tergantung *environment* Kamu, hasil eksekusi kemungkinan tidak ada tanda kutip diantara teks.
 
 ![Execution result in browser console](images/chapter01-04.png)
 
-I> As expected, a division by zero (`12/0`) results in an `Infinity` value.
+> Sesuai perkiraan, pembagian oleh nol (`12/0`) menghasilkan nilai `Infinity`.
 
-### Comments
+### Komentar
 
-By default, each line of text in the source files of a program is considered a statement that should be executed. You can prevent certain lines from executing by putting a double slash before them: `//`. This turns the code into a **comment**.
+Secara normal, setiap baris teks dalam sumber file program dipertimbangkan sebagai pernyataan yang harus dieksekusi. Kamu bisa mencegah eksekusi baris tertentu dengan cara menempatkan garis miring ganda sebelumnya: `//`. Ini akan mengubah kode menjadi **komentar**.
 
 ```js
 console.log("Hello from JavaScript!");
@@ -109,41 +109,41 @@ console.log(4 + 7);
 console.log("Goodbye!");
 ```
 
-During execution, the commented-out lines no longer produce results. As we hoped, they weren't executed.
+Saat eksekusi, baris yang di-komentar tidak menghasilkan apa-apa. Seperti yang kita harapkan, baris ini tidak dieksekusi.
 
 ![Execution result](images/chapter01-02.png)
 
-Comments are great for developers so you can write comments to yourself, explanations about your code, and more, without the computer actually executing any of it.
+Komentar sangatlah membantu developer dalam pengembangan program. Kamu bisa menulis komentar ke diri sendiri, penjelasan tentang kode Kamu, dan lainnya, tanpa dieksekusi oleh komputer.
 
-You can also write comments by typing `/*  */` around the code you want commented out.
+Kamu juga bisa menulis komentar dengan mengetik `/*  */` di antara kode yang akan Kamu komentari.
 
 ```js
-/* A comment
-written on
-several lines */
+/* Komentar 
+ditulis di 
+beberapa baris*/
 
-// A one line comment
+// Satu baris komentar
 ```
 
-Comments are a great source of info about a program's purpose or structure. Adding comments to complicated or critical parts is a good habit you should build right now!
+Komentar merupakan sumber informasi yang sangat baik tentang tujuan dan struktur program. Menambahkan komentar pada bagian kode yang kompleks adalah satu kebiasaan baik yang harus Kamu mulai sekarang juga!
 
-## Coding time!
+## Waktu koding!
 
-Let's put your brand new coding skills into practice.
+Mari kita coba keterampilan koding baru Kamu ke dalam latihan.
 
-### Presentation
+### Presentasi
 
-Write a program that displays your name and age. Here's the result for mine.
+Tulis program yang menampilkan nama dan usia. Berikut hasil yang saya buat.
 
 ![](images/chapter01-03.png)
 
-### Minimalistic calculator
+### Kalkulator minimalis 
 
-Write a program that displays the results of adding, subtracting, multiplying and dividing 6 by 3.
+Tulis satu program yang menampilkan hasil dari penambahan, pengurangan, perkalian, dan pembagian 6 oleh 3.
 
-### Values prediction
+### Prediksi nilai
 
-Observe the following program and try to predict the values it displays.
+Amati program berikut dan coba prediksi nilai yang akan ditampilkan.
 
 ```js
 console.log(4 + 5);
@@ -151,4 +151,4 @@ console.log("4 + 5");
 console.log("4" + "5");
 ```
 
-Check your prediction by executing it.
+Cek prediksi Kamu setelah program mengeksekusinya.
