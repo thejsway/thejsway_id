@@ -1,69 +1,69 @@
-# Play with variables
+# Bermain dengan variabel
 
-You know how to use JavaScript to display values. However, for a program to be truly useful, it must be able to store data, like information entered by a user. Let's check that out.
+Kamu tahu cara menggunakan JavaScript untuk menampilkan nilai. Walaupun begitu, agar program bisa benar-benar berguna, harus memiliki kemampuan untuk menyimpan data, seperti informasi yang di-input oleh pengguna. Mari kita cek.
 
 ## TL;DR
 
-* A **variable** is an information storage area. Every variable has a **name**, a **value** and a **type**. In JavaScript, the type of a variable is deduced from the value stored in it: JavaScript is a **dynamically typed** language.
+* **Variabel** adalah area penyimpanan informasi. Setiap variabel memiliki **nama**, **nilai**, dan **tipe**. Di JavaScript, tipe variabel didapat dari nilai yang tersimpan di dalamnya: JavaScript adalah bahasa yang **dynamically typed**.
 
-* A variable is declared using the `let` keyword followed by the variable name. To declare a **constant** (a variable whose initial value will never change), it's better to use the `const` keyword instead.
+* Variabel dideklarasikan menggunakan kata kunci `let` diikuti dengan nama variabel. Untuk mendeklarasikan **konstanta** (variabel yang nilai awalnya tidak akan berubah), lebih baik menggunakan kata kunci `const`.
 
-* To give a value to a variable, we use the **assignment operator** `=`. For number variables, the operator `+=` can increase and the operator `++` can **increment** their value.
+* Untuk memberikan nilai pada variabel, kita gunakan **operator penugasan** `=`. Untuk variabel bilangan, operator `+=` bisa menambahkan dan operator `++` bisa **menaikkan (increment)** nilainya.
 
-* The **scope** of a variable is the part of the program where the variable is visible. Variables declared with `let` or `const` are **block-scoped**. A **code block** is a portion of a program delimited by a pair of opening and closing curly braces `{ ... }`.
+* **Scope** variabel adalah bagian program di mana variabel terlihat. Variabel dengan deklarasi `let` atau `const` adalah **block-scoped**. **Code block** adalah porsi program yang diapit oleh sepasang kurung kurawal pembuka dan penutup `{ ... }`.
 
-* An **expression** is a piece of code that combines variables, values and operators. Evaluating an expression produces a value, which has a type.
+* **Ekspresi** adalah bagian kode yang mengkombinasikan variabel, nilai, dan operator. Mengevaluasi ekspresi menghasilkan nilai yang memiliki tipe.
 
-* Expressions may be included in strings delimited by a pair of backticks (\`). Such a string is called a **template literal**.
+* Ekspresi termasuk string yang diapit oleh sepasang backtick (\`). String seperti ini disebut **template literal**.
 
-* **Type conversions** may happen implicitly during the evaluation of an expression, or explicitly when using the `Number()` and `String()` commands, to obtain respectively a number or a string.
+* **Konversi tipe** mungkin terjadi secara implisit ketika evaluasi ekspresi, atau secara eksplisit ketika menggunakan perintah `Number()` dan `String()`, untuk mendapatkan bilangan atau string.
 
-* The `prompt()` and `alert()` commands deal with information input and display under the form of dialog boxes.
+* Perintah `prompt()` dan `alert()` menangani informasi tentang input dan tampilan berupa kotak dialog.
 
-* Variable naming is essential to program visibility. Following a naming convention like [camelCase](https://en.wikipedia.org/wiki/Camel_case) is good practice.
+* Penamaan variabel sangat penting dalam visibilitas program. Ketentuan penamaan seperti [camelCase](https://en.wikipedia.org/wiki/Camel_case) merupakan praktik yang baik.
 
-## Variables
+## Variabel
 
-### Role of a variable
+### Peran variabel 
 
-A computer program stores data using variables. A **variable** is an information storage area. We can imagine it as a box in which you can put and store things!
+Program komputer menyimpan data menggunakan variabel. **Variabel** adalah area penyimpanan informasi. Kita bisa membayangkannya sebagai kotak di mana Kamu bisa menaruh dan menyimpan barang-barang!
 
-### Variable properties
+### Properti variabel 
 
-A variable has three main properties:
+Variabel memiliki 3 properti utama:
 
-* Its **name**, which identifies it. A variable name may contain upper and lower case letters, numbers (not in the first position) and characters like the dollar sign (`$`) or underscore (`_`).
-* Its **value**, which is the data stored in the variable.
-* Its **type**, which determines the role and actions available to the variable.
+* **Nama**, yang mengidentifikasinya. Nama variabel bisa terdiri dari huruf kecil dan kapital, angka (tidak di posisi awal) dan karakter seperti tanda dollar (`$`) atau garis bawah (`_`).
+* **Nilai**, yang merupakan data yang tersimpan dalam variabel.
+* **Tipe**, yang menentukan peran dan perintah yang tersedia pada variabel.
 
-I> You don't have to define a variable type explicitly in JavaScript. Its type is deduced from the value stored in the variable and may change while the program runs. That's why we say that JavaScript is a **dynamically typed** language. Other languages, like C or Java, require variable types to always be defined. This is called **static typing**.
+> Kamu tidak harus mendefinisikan tipe variabel secara eksplisit di JavaScript. Tipenya didapat dari nilai yang tersimpan dalam variabel dan kemungkinan bisa berubah ketika program berjalan. Inilah kenapa JavaScript disebut bahasa yang **dynamically typed**. Bahasa lain, seperti C atau Java, membutuhkan tipe variabel yang selalu didefinisikan terlebih dulu. Ini dinamakan **static typing**.
 
-### Declaring a variable
+### Mendeklarasikan variabel 
 
-Before you can store information in a variable, you have to create it! This is called declaring a variable. **Declaring** a variable means the computer reserves memory in which to store the variable. The program can then read or write data in this memory area by manipulating the variable.
+Sebelum Kamu bisa menyimpan informasi pada sebuah variabel, Kamu harus membuatnya dulu! Hal ini disebut mendeklarasikan variabel. **Mendeklarasikan** variabel artinya komputer mencadangkan memori di mana variabel tersebut disimpan. Program ini lalu bisa membaca atau menulis data di memori area tersebut dengan memanipulasi variabel.
 
-Here's a code example that declares a variable and shows its contents:
+Berikut contoh kode yang mendeklarasikan satu variabel dan menampilkan isinya:
 
 ```js
 let a;
 console.log(a);
 ```
 
-In JavaScript, you declare a variable with the `let`  keyword followed by the variable name. In this example, the variable created is called `a`.
+Di JavaScript, Kamu mendeklarasikan variabel dengan kata kunci `let` diikuti oleh nama variabel. Di contoh ini, variabel yang dibuat dinamakan `a`.
 
-I> Previously, JavaScript variables were declared using the `var` keyword. It's still possible, but in most cases it's simpler to use `let` and `const` instead.
+> Sebelumnya, variabel JavaScript dideklarasikan menggunakan kata kunci `var`. Hal ini masih memungkinkan, tetapi di banyak kasus, lebih mudah menggunakan `let` dan `const`.
 
-Here's the execution result for this program.
+Berikut hasil eksekusinya.
 
 ![Execution result](images/chapter02-01.png)
 
-Note that the result is `undefined`. This is a special JavaScript type indicating no value. I declared the variable, calling it `a`, but didn't give it a value!
+Catatan: hasilnya `undefined`. Ini adalah tipe spesial di JavaScript yang menyatakan tidak ada nilai. Saya mendeklarasikan variabel, memanggilnya dengan `a`, tetapi tidak memberikan nilai!
 
-### Assign values to variables
+### Mengisi nilai ke variabel 
 
-While a program is running, the value stored in a variable can change. To give a new value to a variable, use the `=` operator called the **assignment operator**.
+Ketika program berjalan, nilai yang tersimpan di variabel bisa berubah. Untuk memberikan nilai baru ke variabel, gunakan operator `=` yang disebut **operator penugasan**.
 
-Check out the example below:
+Lihat contoh di bawah: 
 
 ```js
 let a;
@@ -73,172 +73,173 @@ console.log(a);
 
 ![Execution result](images/chapter02-02.png)
 
-We modified the variable by assigning it a value. `a = 3.14` reads as "a receives the value 3.14".
+Kita memodifikasi variabel dengan mengisinya dengan sebuah nilai. `a = 3.14` dibaca "a menerima nilai 3.14". 
 
-E> Be careful not to confuse the assignment operator `=` with mathematical equality! You'll soon see how to express equality in JavaScript.
+> Hati-hati, jangan bingung antara operator penugasan `=` dengan persamaan matematika! Kamu akan lihat nanti bagaimana mengekspresikan persamaan di JavaScript.
 
-You can also combine declaring a variable and assigning it a value in one line. Just know that, within this line, you're doing two different things at once:
+Kamu juga bisa mengkombinasikan dalam mendeklarasikan variabel dan mengisinya dengan satu nilai di satu baris. Harus Kamu tahu bahwa di baris ini, Kamu melakukan dua hal yang berbeda sekaligus:
 
 ```js
 let a = 3.14;
 console.log(a);
 ```
 
-### Declaring a constant variable
+### Mendeklarasikan variabel konstanta 
 
-If the initial value of a variable won't ever change during the rest of program execution, this variable is called a **constant**. This constantness can be enforced by using the keyword `const` instead of `let` to declare it. Thus, the program is more expressive and further attempts to modify the variable can be detected as errors.
+Jika nilai awal dari satu variabel tidak akan pernah berubah selama eksekusi program, maka variabel ini disebut **konstanta**. Hal ini bisa dilakukan dengan menggunakan kata kunci `const` dibandingkan `let` untuk mendeklarasikannya. Dengan ini, program lebih ekspresif dan ketika ada modifikasi terhadap variabel tersebut akan dideteksi sebagai eror.
 
 ```js
-const a = 3.14; // The value of a cannot be modified
-a = 6.28;       // Impossible!
+const a = 3.14; // Nilai a tidak akan bisa diubah 
+a = 6.28;       // Mustahil!
 ```
 
 ![Attempt to modify a constant variable](images/chapter02-03.png)
 
-### Increment a number variable
+### Menaikkan variabel bilangan 
 
-You can also increase the value of a number with `+=` and `++`. The latter is called the **increment operator**, as it allows incrementation (increase by 1) of a variable's value.
+Kamu juga bisa menaikkan nilai satu bilangan dengan `+=` dan `++`. Yang terahir disebut **increment operator**. Operator ini menaikkan/menambah nilai 1 pada nilai variabel.
 
-In the following example, lines 2 and 3 each increase the value of variable b  by 1.
+Di contoh berikut, baris 2 dan 3 sama-sama menaikkan nilai variabel sebanyak 1.
 
 ```js
-let b = 0;      // b contains 0
-b += 1;         // b contains 1
-b++;            // b contains 2
-console.log(b); // Shows 2
+let b = 0;      // b bernilai 0
+b += 1;         // b bernilai 1
+b++;            // b bernilai 2
+console.log(b); // Menampilkan 2
 ```
 
-### Variable scope
+### Scope variabel 
 
-The **scope** of a variable is the part of the program where the variable is visible and usable. Variables declared with `let` or `const` are **block-scoped**: their visibility is limited to the block where they are declared (and every sub-block, if any). In JavaScript and many other programming languages, a **code block** is a portion of a program delimited by a pair of opening and closing braces. By default, a JavaScript program forms one block of code.
+**Scope** variabel adalah bagian program di mana variabel terlihat dan bisa digunakan. Variabel yang dideklarasikan dengan `let` atau `const` adalah **block-scoped**: visibilitasnya terbatas pada blok di mana variabel dideklarasikan (dan setiap sub-bloknya, jika ada). Di JavaScript dan banyak bahasa pemrograman lainnya, **code block** adalah bagian dari program yang diapit oleh sepasang tanda kurung kurawal pembuka dan penutup. Biasanya, program JavaScript membentuk satu kode blok.
 
 ```js
 let num1 = 0;
 {
-  num1 = 1; // OK : num1 is declared in the parent block
+  num1 = 1; // OK : num1 dideklarasikan di parent *block*
   const num2 = 0;
 }
-console.log(num1); // OK : num1 is declared in the current block
-console.log(num2); // Error! num2 is not visible here
+console.log(num1); // OK : num1 dideklarasikan di blok yang sama
+console.log(num2); // Eror! num2 tidak dieksekusi
 ```
 
-## Expressions
+## Ekspresi
 
-An **expression** is a piece of code that produces a value. An expression is created by combining variables, values and operators. Every expression has a value and thus a type. Calculating an expression's value is called **evaluation**. During evaluation, variables are replaced by their values.
+**Ekspresi** adalah bagian kode yang menghasilkan nilai. Ekspresi dibuat dari kombinasi variabel, nilai, dan operator. Setiap ekspresi memiliki satu nilai dan satu tipe. Menghitung nilai ekspresi disebut **evaluasi**. Saat evaluasi, variabel ditukar dengan nilainya.
 
 ```js
-// 3 is an expression whose value is 3
+// 3 adalah ekspresi yang nilainya 3 
 const c = 3;
-// c is an expression whose value is the value of c (3 here)
+// c adalah ekspresi yang nilainya adalah nilai c (3 di sini)
 let d = c;
-// (d + 1) is an expression whose value is d's + 1 (4 here)
-d = d + 1; // d now contains the value 4
-console.log(d); // Show 4
+// (d + 1) adalah ekspresi yang nilainya adalah d + 1 (4 di sini)
+d = d + 1; // d sekarang berisi nilai 4
+console.log(d); // Menampilkan 4
 ```
 
-Operator priority inside an expression is the same as in math. However, an expression can integrate **parenthesis** that modify these priorities.
+Prioritas operator di dalam ekspresi sama dengan matematika. Namun, ekspresi bisa memakai **tanda kurung** yang bisa mengubah prioritas ini.
 
 ```js
-let e = 3 + 2 * 4; // e contains 11 (3 + 8)
-e = (3 + 2) * 4;   // e contains 20 (5 * 4)
+let e = 3 + 2 * 4; // e bernilai 11 (3 + 8)
+e = (3 + 2) * 4;   // e bernilai 20 (5 * 4)
 ```
 
-It is possible to include expressions in a string by using **backticks** (\`) to delimit the string. Such a string is called a **template literal**. Inside a template literal, expressions are identified by the `${expression}` syntax.
+Bisa juga memasukkan ekspresi dalam string menggunakan **backtick** (\`) untuk pembatasan. String ini dinamakan **template literal**. Di dalam template literal, ekspresi diidentifikasi oleh sintaks `${expression}`.
 
-This is often used to create strings containing the values of some variables.
+Hal ini sering digunakan untuk membuat string yang berisi nilai dari veraibel.
 
 ```js
-const country = "France";
-console.log(`I live in ${country}`); // Show "I live in France"
+const negara = "Indonesia";
+console.log(`Saya tinggal di ${negara}`); // Menampilkan "Saya tinggal di Indonesia"
 const x = 3;
 const y = 7;
-console.log(`${x} + ${y} = ${x + y}`); // Show "3 + 7 = 10"
+console.log(`${x} + ${y} = ${x + y}`); // Menampilkan "3 + 7 = 10"
 ```
 
-## Type conversions
+## Konversi tipe
 
-An expression's evaluation can result in type conversions. These are called **implicit** conversions, as they happen automatically without the programmer's intervention. For example, using the `+` operator between a string and a number causes the concatenation of the two values into a string result.
+Evaluasi ekspresi bisa menghasilkan konversi tipe. Ini dinamakan konversi **implicit**, di mana hal tersebut terjadi secara otomatis tanpa invertensi programer. Contohnya, menggunakan operator `+` diantara string dan bilangan akan menggabungkan dua nilai menjadi string.
 
 ```js
 const f = 100;
-// Show "Variable f contains the value 100"
-console.log("Variable f contains the value " + f);
+// Menampilkan "Variabel f bernilai 100"
+console.log("Variabel f bernilai" + f);
 ```
 
-JavaScript is extremely tolerant in terms of type conversion. However, sometimes conversion isn't possible. If a value fails to convert into a number, you'll get the result `NaN` (*Not a Number*).
+JavaScript sangatlah toleran terhadap konversi tipe. Walaupun, terkadang konversi tipe tidak memungkinkan. Kalau nilai gagal dikonversi ke bilangan, Kamu akan mendapatkan hasil `NaN` (*Not a Number*).
 
 ```js
 const g = "five" * 2;
-console.log(g); // Show NaN
+console.log(g); // Menampilkan NaN
 ```
 
-Sometimes you'll wish to convert the value of another type. This is called **explicit** conversion. JavaScript has the `Number()`  and `String()` commands that convert the value between the parenthesis to a number or a string.
+Terkadang, Kamu ingin mengkonversi nilai ke tipe lainnya. Ini dinamakan konversi **explicit**. JavaScript memiliki perintah `Number()` dan  `String()` yang mengkonversi nilai yang diapit tanda kurung untuk menjadi bilangan atau string.
 
 ```js
 const h = "5";
-console.log(h + 1); // Concatenation: show the string "51"
+console.log(h + 1); // Penggabungan: menampilkan string "51"
 const i = Number("5");
-console.log(i + 1); // Numerical addition: show the number 6
+console.log(i + 1); // Penambahan bilangan: menampilkan angka 6
 ```
 
-## User interactions
+## Interaksi pengguna
 
-### Entering information
+### Memasukkan informasi 
 
-Once you start using variables, you can write programs that exchange information with the user.
+Ketika Kamu mulai menggunakan variabel. Kamu bisa menulis program yang dapat bertukar informasi dengan pengguna.
 
 ```js
 const name = prompt("Enter your first name:");
 alert(`Hello, ${name}`);
 ```
 
-During execution, a dialog box pops up, asking for your name.
+Saat eksekusi, kotak dialog muncul, menanyakan nama Kamu. 
 
 ![Execution result](images/chapter02-04.png)
 
-This is the result of the JavaScript command `prompt("Enter your first name:")`.
+Ini hasil dari perintah JavaScript `prompt("Enter your first name:")`.
 
-Type your name and click **OK**. You'll then get a personalized greeting.
+Ketik nama Kamu dan klik **OK**. Kamu akan mendapatkan salam personal.
 
 ![Execution result](images/chapter02-05.png)
 
-The value you entered in the first dialog box has been stored as a string in the variable `name`. The JavaScript command `alert()`  then triggered the display of the second box, containing the result of the concatenation of the string `"Hello, "`  with the value of the `name` variable.
+Nilai yang Kamu ketik pada kotak dialog pertama telah terimpan sebagai string pada variabel `name`. Perintah JavaScript `alert()` lalu memicu tampilan kotak kedua, berisi nilai dari penggabungan string `"Hello, "` dengan variabel `name`.
 
-### Displaying information
+### Menampilkan informasi
 
-Both `console.log()` (encountered in the previous chapter) and `alert()` can be used to display information to the user. Unlike `alert()`, `console.log()` does not stop program execution and is often a better choice.
+`console.log()` (sudah dibahas di bab sebelumnya) dan `alert()` bisa digunakan untuk menampilkan informasi ke pengguna. Tidak seperti `alert()`, `console.log()` tidak memberhentikan eksekusi program dan sering menjadi pilihan lebih baik.
 
-`console.log()` can also display several comma-separated values at once.
+`console.log()` bisa juga menampilkan nilai yang dipisah oleh tanda koma sekaligus.
 
 ```js
 const temp1 = 36.9;
 const temp2 = 37.6;
 const temp3 = 37.1;
-console.log(temp1, temp2, temp3); // Show "36.9 37.6 37.1"
+console.log(temp1, temp2, temp3); // Menampilkan "36.9 37.6 37.1"
 ```
 
-### Entering a number
+### Memasukkan bilangan
 
-Regardless of the entered data, the `prompt()` command always returns a string value. If this value is to be used in numerical expressions, it *must* be converted into a number with the `Number()` command.
+Terlepas dari data yang dimasukkan, perintah `prompt()` selalu mengembalikan nilai string. Jika nilai ini digunakan pada ekspresi bilangan, maka nilai ini *harus* dikonversi ke bilangan dengan perintah `Number()`.
 
 ```js
-const input = prompt("Enter a number:"); // input's type is string
-const nb = Number(input); // nb's type is number
+const input = prompt("Masukkan angka:"); // tipe input adalah string
+const nb = Number(input); // tipe nb adalah bilangan 
 ```
 
-Both operations can be combined in one line for the same result.
+Kedua operasi ini bisa dikombinasikan di satu baris dengan hasil yang sama.
 
 ```js
 const nb = Number(prompt("Enter a number:")); // nb's type is number
 ```
 
-In this example, the user input is directly converted in a number value by the `Number()` command and stored in the `nb` variable.
+Pada contoh ini, input pengguna langsung dikonversi ke nilai bilangan dengan perintah `Number()` dan disimpan di variabel`nb`.
 
-## Variable naming
+## Penamaan variabel
 
-To close this chapter, let's discuss variable naming. The computer doesn't care about variable names. You could name your variables using the classic example of a single letter (`a`, `b`, `c`...) or choose absurd names like `burrito`  or `puppieskittens90210`.
+Untuk menutup bab ini, mari kita diskusikan penamaan variabel. Komputer tidak peduli tentang penamaan variabel. Kamu bisa memberi nama variabel Kamu menggunakan contoh klasik: satu huruf (`a`, `b`, `c`...) atau pilih nama konyol seperti `burrito` atau `puppieskittens90210`.
 
-Nonetheless, naming variables well can make your code much easier to read. Check out these two examples:
+Meskipun demikian, penamaan variabel yang baik bisa membuat kode Kamu lebih mudah dibaca. Lihat dua contoh berikut:
+
 
 ```js
 const a = 5.5;
@@ -254,21 +255,21 @@ const perimeter = 2 * pi * radius;
 console.log(perimeter);
 ```
 
-They function in the same way, but the second version is much easier to understand.
+Kedua kode ini menghasilkan nilai yang sama, tetapi versi kedua lebih mudah dimengerti.
 
-Naming things is an important part of the programmer's job. Refer to the appendix for some useful advice.
+Penamaan variabel ini sangatlah penting dalam tugas programer. Lihat lampiran untuk saran yang berguna tentang ini.
 
-## Coding time!
+## Waktu koding!
 
-Build a habit of choosing good variable names in all exercises, starting with these ones.
+Bangun kebiasaan memilih nama variabel yang baik di semua latihan, mulai dari sini.
 
-### Improved hello
+### Perbaikan hello
 
-Write a program that asks the user for his first name and his last name. The program then displays them in one sentence.
+Tulis satu program yang menanyakan pengguna tentang nama pertama dan terakhirnya. Lalu program menampilkannya di satu kalimat.
 
-### Final values
+### Nilai akhir
 
-Observe the following program and try to predict the final values of its variables.
+Observasi program berikut dan coba prediksi nilai akhir dari variabelnya.
 
 ```js
 let a = 2;
@@ -284,32 +285,32 @@ const g = b / a * a;
 console.log(a, b, c, d, e, f, g);
 ```
 
-Check your prediction by executing it.
+Cek prediksi Kamu dengan mengeksekusinya.
 
-### VAT calculation
+### Perhitungan PPN
 
-Write a program that asks the user for a raw price. After that, it calculates the corresponding final price using a VAT rate of 20.6%.
+Tulis satu program yang menanyakan pengguna tentang harga. Setelah itu, hitung harga terakhir menggunakan PPN (Pajak Pertambahan Nilai) sebesar 20.6%.
 
-### From Celsius to Fahrenheit degrees
+### Dari Celsius ke Fahrenheit 
 
-Write a program that asks for a temperature in Celsius degrees, then displays it in Fahrenheit degrees.
+Tulis sebuah program yang menayakan temperatur Celsius, lalu menampilkannya dalam skala Fahrenheit.
 
-> The conversion between scales is given by the formula: [°F] = [°C] x 9/5 + 32.
+> Konversi skala bisa menggunakan rumus berikut: [°F] = [°C] x 9/5 + 32.
 
-### Variable swapping
+### Penukaran variabel 
 
-Observe the following program.
+Oberservasi program berikut.
 
 ```js
 let number1 = 5;
 let number2 = 3;
 
-// TODO: type your code here (and nowhere else!)
+// TODO: ketik kode Kamu di sini (tidak di baris yang lain)
 
-console.log(number1); // Should show 3
-console.log(number2); // Should show 5
+console.log(number1); // Harus menampilkan 3
+console.log(number2); // Harus menampilkan 5
 ```
 
-Add the necessary code to swap the values of variables `number1` and `number2`.
+Tambahkan kode yang diperlukan untuk menukar nilai dari variabel `number1` dan `number2`.
 
-T> This exercise has several valid solutions. You may use more than two variables to solve it.
+> Latihan ini memiliki beberapa solusi yang valid. Kamu bisa menggunakan lebih dari dua variabel untuk menyelesaikannya. 

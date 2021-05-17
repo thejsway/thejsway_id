@@ -12,21 +12,21 @@ Mari kita mulai! Di bab ini, Kamu akan belajar tentang pemrograman dasar seperti
 
 * Nilai string diapit oleh sepasang tanda kutip tunggal (`'...'`) atau sepasang tanda kutip ganda (`"..."`).
 
-* Operasi aritmetika antar bilangan dapat digunakan operator `+`, `-`, `*` dan `/`. Operator `+` akan menggabungkan 2 string. Operasi ini dinamakan **concatenation**.
+* Operasi aritmatika antar bilangan dapat digunakan operator `+`, `-`, `*` dan `/`. Operator `+` akan menggabungkan 2 string. Operasi ini dinamakan **concatenation**.
 
 * Program komputer dibuat dari **beberapa baris kode** yang dibaca secara beruturan saat eksekusi.
 
-* **Komentar** (`// ...` or `/* ... */`) adalah bagian kode yang tidak dieksekusi. Komentar ini berguna sebagai dokumentasi atau penjelasan program.
+* **Komentar** (`// ...` atau `/* ... */`) adalah bagian kode yang tidak dieksekusi. Komentar ini berguna sebagai dokumentasi atau penjelasan program.
 
 ## Program pertama Kamu 
 
 Berikut program JavaScript kita yang paling pertama.
 
 ```js
-console.log("Hello from JavaScript!");
+console.log("Halo dari JavaScript!");
 ```
 
-Program ini menampilkan teks `"Hello from JavaScript!"` di **console**, zona yang menampilkan informasi teks tersedia di hampir semua *environment* JavaScript, seperti browser.
+Program ini menampilkan teks `"Halo dari JavaScript!"` di **console**, zona yang menampilkan informasi teks tersedia di hampir semua *environment* JavaScript, seperti browser.
 
 Untuk bisa menampilkan ini, digunakan perintah JavaSript bernama `console.log()`, yang berfungsi menampilkan potongan informasi. Teks yang ditampilkan berada diantara tanda kurung diikuti dengan tanda titik koma, yang menandai akhir baris.
 
@@ -40,7 +40,7 @@ Setiap bahasa komputer mempunyai tipe dan nilai masing-masing. Mari kita lihat d
 
 ### Bilangan
 
-**Bilangan** adalah nilai angka (*ya jelaslah*). Mari kita perjelas! Seperti matematika, Kamu bisa menggunakan nilai integer (nilai bulat) seperti 0, 1, 2, 3, dan seterusnya, atau angka desimal untuk mendapatkan akurasi lebih tinggi.
+**Bilangan** adalah nilai angka (*ya iyalah*). Mari kita perjelas! Seperti matematika, Kamu bisa menggunakan nilai integer (nilai bulat) seperti 0, 1, 2, 3, dan seterusnya, atau angka desimal untuk mendapatkan akurasi lebih tinggi.
 
 Bilangan biasanya digunakan untuk perhitungan. Operasi utama bisa Kamu lihat di tabel berikut. Semua menghasilkan nilai bilangan.
 
@@ -61,7 +61,7 @@ Kamu juga mendefinisikan string dengan menggunakan sepasang tanda kutip tunggal:
 
 Untuk memuat karakter spesial dalam string, gunakan karakter `\` (*backslash*) sebelumnya. Contohnya, ketik `\n` untuk menambah baris baru dalam string:`"Ini adalah\n beberapa baris string"`.
 
-Kamu tidak bisa menambah atau mengurangi nilai string seperti halnya tipe bilangan. Meskipun demikian, operator `+` memiliki arti spesial ketika diterapkan ke dua nilai string. Hal ini akan menggabungkan kedua string tersebut, dan operasi ini dinamakan **concatenation**. Contohnya, `"Ha" + "lo"` menghasilkan `"Hello"`.
+Kamu tidak bisa menambah atau mengurangi nilai string seperti halnya tipe bilangan. Meskipun demikian, operator `+` memiliki arti spesial ketika diterapkan ke dua nilai string. Hal ini akan menggabungkan kedua string tersebut, dan operasi ini dinamakan **concatenation**. Contohnya, `"Ha" + "lo"` menghasilkan `"Halo"`.
 
 ## Struktur program 
 
@@ -69,7 +69,7 @@ Kita sudah mendefinisikan program komputer sebagai daftar perintah yang memberit
 
 Sumber kode dapat memuat baris kosong: ini akan tidak akan dieksekusi oleh program.
 
-### Statements
+### Pernyataan
 
 Setiap instruksi di dalam program dinamakan **pernyataan**. Pernyataan di JavaScript biasanya berakhir dengan **tanda titik koma** (walaupun bukan suatu keharusan). Program Kamu akan dibuat dari beberapa pernyataan.
 
