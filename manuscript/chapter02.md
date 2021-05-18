@@ -299,7 +299,7 @@ Tulis sebuah program yang menayakan temperatur Celsius, lalu menampilkannya dala
 
 ### Penukaran variabel 
 
-Oberservasi program berikut.
+Observasi program berikut.
 
 ```js
 let number1 = 5;

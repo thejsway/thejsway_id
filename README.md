@@ -41,7 +41,7 @@ Terima kasih sebelumnya atas semua dukungan Kamu!
   * [Environment setup](manuscript/intro04.md)
 * Bagian I: Belajar kode pemrograman
   * [3, 2, 1... Kode!](manuscript/chapter01.md)
-  * [Bermain dengan variable](manuscript/chapter02.md)
+  * [Bermain dengan variabel](manuscript/chapter02.md)
   * [Tambah kondisi](manuscript/chapter03.md)
   * [Pernyataan berulang](manuscript/chapter04.md)
   * [Tulis fungsi](manuscript/chapter05.md)

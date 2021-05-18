@@ -1,228 +1,229 @@
-# Add conditions
+# Tambah kondisi
 
-Up until now, all the code in our programs has been executed chronologically. Let's enrich our code by adding conditional execution!
+Sampai saat ini, semua kode di program kita telah dieksekusi secara berurutan. Mari perkaya kode kita dengan menambahkan eksekusi kondisi.
 
 ## TL;DR
 
-* The `if` keyword defines a **conditional statement**, also called a **test**. The associated code block is only run if the **condition** is satisfied (its value is `true`). Thus, a condition is an expression whose evaluation always produces a boolean result (`true` or `false`).
+* Kata kunci `if` mendefinisikan **pernyataan kondisi**, disebut juga **tes**. Blok kode terkait akan dieksekusi kalau **kondisi** terpenuhi (nilainya `true`). Jadi, ekspresi kondisi adalah evaluasi yang selalu menghasilkan nilai boolean: `true` (benar) atau `false` (salah).
 
 ```js
-if (condition) {
-  // Code to run when the condition is true
+if (kondisi) {
+  // Kode yang dieksekusi ketika kondisinya true
 }
 ```
 
-* The code block associated to an `if` is delimited by a pair of opening and closing braces. To improve visibility, its statements are generally **indented** (shifted to the right).
+* Blok kode yang terdapat kata kunci `if` diapit sepasang tanda kurung pembuka dan penutup. Agar mudah dibaca, pernyataan ini biasanya **terindentasi** (spasi kosong ke kanan) pada baris kode. 
 
-* The **comparison operators** `===`, `!==`, `<`, `<=`, `>` and `>=` are used to compare numbers inside a condition. All of them return a boolean result.
+* **Operator pembanding** `===`, `!==`, `<`, `<=`, `>` dan `>=` digunakan untuk membandingkan bilangan di dalam pernyataan kondisi. Semua ini mengembalikan nilai boolean.
 
-* An `else` statement can be associated to an `if` to express an **alternative**. Depending on the condition value, either the code block associated to the `if` or the one associated to the `else` will be run, but never both. There is no limit to the depth of condition nesting.
+* Pernyataan `else` bisa diasosiasikan dengan `if` untuk mengekspresikan **alternatif**. Tergantung dari nilai kondisi, kode blok yang terdapat `if` atau `else` akan dieksekusi salah satu diantaranya, tetapi tidak pernah keduanya. Tidak ada batas terkait kedalaman kondisi bersarang.
 
 ```js
-if (condition) {
-  // Code to run when the condition is true
+if (kondisi) {
+  // Kode yang dieksekusi ketika kondisi true 
 }
 else {
-  // Code to run when the condition is false
+  // Kode yang dieksekusi ketika kondisi false 
 }
 ```
 
-* Complex conditions can be created using the **logical operators** `&&` ("and"), `||` ("or") and `!` ("not").
+* Kondisi complex bisa dibuat menggunakan **operator logika** `&&` ("dan"), `||` ("atau") dan `!` ("tidak").
 
-* The `switch` statement is used to kick off the execution of one code block among many, depending on the value of an expression.
+* Pernyataan `switch` digunakan mengeksekusi satu blok diantara beberapa kode, tergantung nilai dari suatu ekspresi. 
 
 ```js
-switch (expression) {
-case value1:
-  // Code to run when the expression matches value1
+switch (ekspresi) {
+case nilai1:
+  // Kode yang dieksekusi ketika ekspresi cocok dengan nilai1
   break;
-case value2:
-  // Code to run when the expression matches value2
+case nilai2:
+  // Kode yang dieksekusi ketika ekspresi cocok dengan nilai2
   break;
 ...
 default:
-  // Code to run when neither case matches
+  // Kode yang dieksekusi ketika ekspresi tidak ada yang ada cocok 
 }
 ```
 
-## What's a condition?
+## Apa itu kondisi?
 
-Suppose we want to write a program that asks the user to enter a number and then displays a message if the number is positive. Here is the corresponding algorithm.
+Misalnya kita ingin menulis satu program yang meminta pengguna untuk memasukkan angka, lalu menampilkan satu pesan apakah angkanya positif. Berikut algoritmanya.
 
 ```text
-Enter a number
-If the number is positive
-    Display a message
+Masukkan angka
+Jika angkanya positif
+  Tampilkan pesan
 ```
 
-The message should display only if the number is positive; this means it's "subject" to a **condition**.
+Pesan harus tampil hanya jika angkanya positif; ini artinya pesan tersebut adalah "subyek" terhadap **kondisi**.
 
-### The `if` statement
+### Pernyataan `if`
 
-Here's how you translate the program to JavaScript.
+Berikut bagaimana Kamu menerjemahkan program ke JavaScript.
 
 ```js
-const number = Number(prompt("Enter a number:"));
-if (number > 0) {
-  console.log(`${number} is positive`);
+const angka = Number(prompt("Masukkan angka:"));
+if (angka > 0) {
+  console.log(`${angka} positif`);
 }
 ```
 
-The `console.log(...)` command is executed only *if* the number is positive. Test this program to see for yourself!
+Perintah `console.log(...)` dieksekusi hanya *jika* angkanya positif. Tes program ini dan lihat sendiri!
 
-Conditional syntax looks like this:
+Sintaks kondisi terlihat seperti ini:
 
 ```js
-if (condition) {
-  // Code to run when the condition is true
+if (kondisi) {
+  // Kode yang akan dieksekusi ketika kondisi true
 }
 ```
 
-The pair of opening and closing braces defines the block of code associated with an `if` statement. This statement represents a **test**. It results in the following: "If the condition is true, then execute the instructions contained in the code block".
+Sepasang tanda kurung pembuka dan penutup mendefinisikan blok kode yang diasosiasikan dengan pernyataan `if`. Pernyataan ini merepresentasikan **tes**. Hasilnya: "Jika kondisi true, maka eksekusi instruksi yang ada di blok kode".
 
-The condition is always placed in parentheses after the `if`. The statements within the associated code block are shifted to the right. This practice is called **indentation** and helps make your code more readable. As your programs grow in size and complexity, it will become more and more important. The indentation value is often 2 or 4 spaces.
+Kondisi ini selalu ditempatkan di dalam tanda kurung setelah `if`. Pernyataan yang ada di dalam kode blok akan tergerser ke kanan. Praktik ini disebut **indentasi** dan membantu agar kode Kamu mudah dibaca. Seiring pengembangan program Kamu menjadi lebih besar dan lebih kompleks, hal ini akan menjadi sangat penting. Nilai indentasi biasanya 2 atau 4 spasi.
 
-I> When the code block has only one statement, braces may be omitted. As a beginner, you should nonetheless always use braces when writing your first conditions.
+> Kalau blok kode hanya memiliki satu pernyataan, tanda kurung bisa dihilangkan. Sebagai pemula, Kamu sebaiknya selalu menggunakan tanda kurung ketika menulis kondisi pertama Kamu.
 
-### Conditions
+### Kondisi
 
-A **condition** is an expression that evaluates as a value either true or false: it's called a **boolean** value. When the value of a condition is true, we say that this condition is satisfied.
+**Kondisi** adalah ekspresi yang mengevaluasi nilai antara true (benar) atau false (salah): ini dinamakan nilai **boolean**. Kalau nilai kondisi bernilai true, kita katakan bahwa kondisi ini terpenuhi.
 
-We have already studied numbers and strings, two types of data in JavaScript. Booleans are another type. This type has only two possible values: `true` and `false`.
+Kita sudah belajar bilangan dan string, dua tipe data di JavaScript. Booleans merupakan tipe lainnya. Tipe ini hanya memiliki dua kemungkinan nilai: `true` dan `false`.
 
-Any expression producing a boolean value (either `true` or `false`) can be used as a condition in an `if` statement. If the value of this expression is `true`, the code block associated with it is executed.
+Ekspresi apa pun yang mengasilkan nilai boolean (apakah `true` atau `false`) bisa digunakan sebagai kondisi dalam pernyataan `if`. Jika nilai ekspresi tersebut adalah `true`, kode blok terkait akan dieksekusi.
 
 ```js
 if (true) {
-  // The condition for this if is always true
-  // This block of code will always be executed
+  // Kondisi dari if ini selalu true
+  // Blok kode ini selalu dieksekusi
 }
 if (false) {
-  // The condition for this if is always false
-  // This block of code will never be executed
+  // Kondisi dari if ini selalu false
+  // Blok kode ini tidak akan pernah dieksekusi
 }
 ```
 
-Boolean expressions can be created using the comparison operators shown in the following table.
+Ekspresi boolean bisa dibuat menggunakan operator pembanding yang terlihat di tabel berikut.
 
-|Operator|Meaning|
+|Operator|Arti|
 |---------|----|
-|`===`|Equal|
-|`!==`|Not equal to|
-|`<`|Less than|
-|`<=`|Less than or equal to|
-|`>`|Greater than|
-|`>=`|Greater than or equal to|
+|`===`|Sama dengan|
+|`!==`|Tidak sama dengan|
+|`<`|Kurang dari|
+|`<=`|Kurang dari atau sama dengan|
+|`>`|Lebih dari|
+|`>=`|Lebih dari atau sama dengan|
 
-In some other programming languages, equality and inequality operators are `==` and `!=`. They also exist in JavaScript, but it's safer to use `===` and `!==` ([more details](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)).
+Di beberapa bahasa pemrograman lainnya, operator persamaan dan pertidaksamaan menggunakan tanda `==` dan `!=`. Hal ini juga berlaku di JavaScript, tetapi lebih aman menggunakan `===` dan `!==` ([lebih detail](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)).
 
-E> It's easy to confuse comparison operators like `===` (or `==`) with the assignment operator `=`. They're very, very different. Be warned!
+> Jangan bingung terhadap operator pembanding seperti `===` (atau `==`) dengan operator penugasan `=`. Ini sangat, sangat berbeda. Hati-hati!
 
-Now let's modify the example code to replace `>` with `>=` and change the message, then test it with the number 0.
+Sekarang mari kita modifikasi contoh kode berikut dengan menukar `>` dengan `>=` dan ganti pesannya, lalu tes dengan angka 0.
+
 
 ```js
-const number = Number(prompt("Enter a number:"));
-if (number >= 0) {
-  console.log(`${number} is positive or zero`);
+const angka = Number(prompt("Masukkan angka:"));
+if (angka >= 0) {
+  console.log(`${angka} positif atau nol`);
 }
 ```
 
-If the user input is 0, the message appears in the console, which means that the condition`(number >= 0)` was satisfied.
+Jika pengguna meng-input angka 0, pesan muncul di console, yang artinya kondisi `(angka >= 0)` terpenuhi.
 
-## Alternative conditions
+## Kondisi alternatif
 
-You'll often want to have your code execute one way when something's true and another way when something's false.
+Kamu akan sering menginginkan kode Kamu dieksekusi satu kondisi ketika sesuatu bernilai true dan kondisi lainnya ketika sesuatu bernilai false.
 
-### The `else` statement
+### Pernyataan `else`
 
-Let's enrich our sample with different messages depending if the number's positive or not.
+Mari kita perkaya contoh kode kita dengan pesan yang berbeda tergantung apakah angkanya positif atau tidak.
 
 ```js
-const number = Number(prompt("Enter a number:"));
-if (number > 0) {
-  console.log(`${number} is positive`);
+const angka = Number(prompt("Masukkan angka:"));
+if (angka > 0) {
+  console.log(`${angka} positif`);
 }
 else {
-  console.log(`${number} is negative or zero`);
+  console.log(`${angka} negatif atau nol`);
 }
 ```
 
-Test this code with a positive number, negative number, and zero, while watching the result in the console. The code executes differently depending if the condition `(number > 0)` is true or false.
+Tes kode ini dengan angka positif, angka negatif, dan angka nol, saat melihat hasilnya di console. Kode tersebut dieksekusi tergantung jika kondisi`(angka > 0)` true atau false.
 
-The syntax for creating an alternative is to add an `else` keyword after an initial `if`.
+Sintaks untuk membuat alternatif adalah dengan menambahkan kata kunci `else` setelah inisial `if`.
 
 ```js
-if (condition) {
-  // Code to run when the condition is true
+if (kondisi) {
+  // Kode yang akan diekseksui jika kondisi true
 }
 else {
-  // Code to run when the condition is false
+  // Kode yang akan diekseksui jika kondisi false
 }
 ```
 
-You can translate an `if`/`else` statement like this: "If the condition is true, then execute this first set of code; otherwise, execute this next set of code". Only one of the two code blocks will be executed.
+Kamu bisa terjemahkan pernyataan `if`/`else` seperti ini: "Jika kondisi true, maka eksekusi set kode pertama; jika tidak, eksekusi set kode selanjutnya". Hanya satu dari dua kode blok yang akan dieksekusi.
 
-### Nesting conditions
+### Kondisi bersarang
 
-Let's go to the next level and display a specific message if the entered number is zero. See this example, which has a positive test case, negative test case, and a last resort of the number being zero.
+Mari kita ke level selanjutnya dan tampilkan pesan spesifik jika angka yang dimasukkan adalah nol. Lihat contoh ini, yang memiliki tes postif, negatif tes, dan angka nol.
 
 ```js
-const number = Number(prompt("Enter a number:"));
-if (number > 0) {
-  console.log(`${number} is positive`);
+const angka = Number(prompt("Masukkan angka:"));
+if (angka > 0) {
+  console.log(`${angka} positif`);
 } else {
-  // number <= 0
-  if (number < 0) {
-    console.log(`${number} is negative`);
+  // angka <= 0
+  if (angka < 0) {
+    console.log(`${angka} negatif`);
   } else {
-    // number === 0
-    console.log(`${number} is zero`);
+    // angka === 0
+    console.log(`${angka} nol`);
   }
 }
 ```
 
-Let's wrap our heads around it. If the code block associated to the first `else` is run, then the number has to be either strictly negative or zero. Inside this block, a second `if` statement checks if the number is negative. If it's not, we know for sure that it's zero.
+Mari kita bahas. Jika blok kode yang diasosiasikan pada `else` berjalan, maka angka seharusnya antara negatif atau nol. Di dalam blok ini, pernyataan `if` kedua mengecek apakah angka bernilai negatif. Jika tidak, maka kita tahu betul bahwa angka tersebut adalah nol.
 
-I> When learning to write nested conditions, you should add descriptive comments to each condition, just like in the previous example.
+> Ketika belajar menulis kondisi bersarang, Kamu harus menambahkan komentar deskriptif untuk setiap kondisi, seperti contoh sebelumnya.
 
-The execution flow for the previous program can be expressed graphically using a **flow diagram**.
+Aliran eksekusi untuk program sebelumnya dapat diekspresikan dengan menggunakan **flow diagram** berikut.
 
 ![Example flow diagram](images/chapter03-01.png)
 
-This example shows how essential indentation is for understanding a program's flow. There is no limit to the possible depth of condition nesting, but too many will affect program visibility.
+Contoh ini menunjukkan bahwa indentasi sangatlah penting untuk mengerti aliran dari satu program. Tidak ada batas kedalaman kondisi bersarang, tetapi kalau terlalu banyak akan mempengaruhi kerapihan program.
 
-A particular case happens when the only statement in an `else` block is an `if`. In that case, you can write this `else` on the same line as the `if` and without braces. Here's a more concise way to write our example program.
+Kasus tertentu terjadi saat pernyataan satu-satunya dalam blok `else` adalah `if`. Kamu bisa menulis `else` ini pada baris yang sama dengan baris`if` dan tapa tanda kurung. Berikut cara yang lebih ringkas untuk menulis contoh program kita.
 
 ```js
-const number = Number(prompt("Enter a number:"));
-if (number > 0) {
-  console.log(`${number} is positive`);
-} else if (number < 0) {
-  console.log(`${number} is negative`);
+const angka = Number(prompt("Masukkan angka:"));
+if (angka > 0) {
+  console.log(`${angka} positif`);
+} else if (angka < 0) {
+  console.log(`${angka} negatif`);
 } else {
-  console.log(`${number} is zero`);
+  console.log(`${angka} nol`);
 }
 ```
 
-## Add additional logic
+## Tambah logika kondisi
 
-### "And" operator
+### Operator "dan" 
 
-Suppose you want to check if a number is between 0 and 100. You're essentially checking if it's "greater than or equal to 0" and "less than or equal to 100". Both sub-conditions must be satisfied at the same time.
+Misalnya, Kamu ingin mengecek apakah angka diantara 0 dan 100. Kamu sebenarnya mengecek apakah nilai tersebut "lebih besar atau sama dengan 0" dan "lebih kecil atau sama dengan 100". Kedua sub-kondisi ini harus terpenuhi secara bersamaan.
 
-I> The expression `0 <= number <= 100` is correct from a mathematical point of view but cannot be written in JavaScript (neither in most other programming languages).
+> ekspresi `0 <= angka <= 100` adalah benar jika dilihat dari sudut pandang matematika, tetapi tidak bisa ditulis di javascript (tidak juga di kebanyakan bahasa pemrograman lainnya).
 
-Here's how you'd translate that same check into JS.
+Berikut bagaimana Kamu terjemahkan ke JS.
 
 ```js
-if ((number >= 0) && (number <= 100)) {
-  console.log(`${number} is between 0 and 100, both included`);
+if ((angka >= 0) && (angka <= 100)) {
+  console.log(`${angka} diantara 0 dan 100, kedua angka termasuk`);
 }
 ```
 
-I> Parentheses between sub-conditions are not mandatory but I advise you to add them anyway, to avoid nasty bugs in some special cases.
+> Tanda kurung diantara sub-kondisi tidaklah wajib tetapi saya menyarankan Kamu untuk menambahkannya, untk mencegah bug pada beberapa kasus tertentu.
 
-The `&&` operator ("logical and") can apply to both types of boolean values. `true` will only be the result of the statement if both conditions are true.
+operator `&&` ("logika dan") bisa diterapkan pada kedua tipe nilai boolean. `true` akan dihasilkan jika kedua kondisi adalah benar.
 
 ```js
 console.log(true && true);   // true
@@ -231,21 +232,21 @@ console.log(false && true);  // false
 console.log(false && false); // false
 ```
 
-The previous result is the **truth table** of the `&&` operator.
+Hasil sebelumnya merupakan **tabel truth** dari operator `&&`.
 
-### "Or" operator
+### operator "atau" 
 
-Now imagine you want to check that a number is outside the range of 0 and 100. To meet this requirement, the number should be less than 0 or greater than 100.
+Sekarang bayangkan Kamu ingin mengecek apakah angka di luar 0 dan 100. Untuk memenuhi syarat ini, angka harus lebih kecil dari 0 dan lebih besar dari 100.
 
-Here it is, translated into JavaScript:
+Berikut translasinya ke JavaScript:
 
 ```js
-if ((number < 0) || (number > 100)) {
-  console.log(`${number} is not in between 0 and 100`);
+if ((angka < 0) || (angka > 100)) {
+  console.log(`${angka} is not in between 0 and 100`);
 }
 ```
 
-The `||` operator ("logical or") makes statements `true` if at least one of the statements is true. Here's its truth table:
+Operator `||` ("logika atau") menghasilkan pernyataan `true` jika setidaknya satu dari beberapa pernyataan benilai true. Berikut tabel truth-nya:
 
 ```js
 console.log(true || true);   // true
@@ -254,32 +255,32 @@ console.log(false || true);  // true
 console.log(false || false); // false
 ```
 
-### Short-circuit evaluation
+### Evaluasi short-circuit 
 
-As logical expressions are evaluated left to right, they are tested for possible "short-circuit" evaluation using the following rules:
+Ekspresi logika dievaluasi dari kiri ke kanan. Ekspresi ini dites untuk kemungkinan evaluasi "short-circuit" menggunakan aturan berikut:
 
-* `false && expr` returns `false`.
-* `true || expr` returns `true`.
+* `false && expr` mengembalikan nilai `false`.
+* `true || expr` mengembalikan nilai `true`.
 
-In both cases, the `expr` expression is not evaluated.
+Pada kedua contoh di atas, ekspresi `expr` tidak dievaluasi.
 
-### Usage with non-boolean values
+### Penggunaan pada nilai non-boolean 
 
-The `&&` and `||` operators can also be applied to non-boolean values. In these cases, they may not return a boolean value.
+Operator `&&` dan `||` juga bisa diterapkan pada nilai non-boolean. Pada kasus ini, operator ini mungkin juga tidak mengembalikan nilai boolean.
 
-* `expr1 && expr2` returns `expr1` if this expression can be converted to `false`. Otherwise, it returns `expr2`.
-* `expr1 || expr2` returns `expr1` if this expression can be converted to `true`. Otherwise, it returns `expr2`.
+* `expr1 && expr2` mengembalikan `expr1` jika ekspresi ini bisa dikonversi ke `false`. Sebaliknya, ekspresi ini mengembalikan `expr2`.
+* `expr1 || expr2` mengembalikan `expr1` jika ekspresi ini bisa dikonversi ke `true`. Sebaliknya, ekspresi ini mengembalikan `expr2`.
 
-In JavaScript, a value or an expression that can be converted to `false` is said to be *falsy*. If, on the contrary, it can be converted to `true`, it is so-called *truthy*. All values are considered *truthy* except for the following *falsy* ones:
+Di JavaScript, nilai atau ekspresi yang dapat dikonversi ke `false` disebut *falsy*. Sebaliknya, bisa juga dikonversi ke `true`, ini disebut *truthy*. Semua nilai bisa disimpulkan *truthy* kecuali *falsy* berikut:
 
-* `false` (obviously!)
+* `false` (jelas!)
 * `undefined`
 * `null`
 * `NaN` (*Not A Number*)
 * `0`
 * `""` or `''`
 
-Here are a few examples illustrating this JS-specific behaviour.
+Berikut sedikit contohnya.
 
 ```js
 console.log(true && "Hello");      // "Hello"
@@ -295,126 +296,126 @@ console.log("" || "Hello");        // "Hello"
 console.log("Hello" || "Goodbye")  // "Hello"
 ```
 
-### "Not" operator
+### Operator "tidak"
 
-There's another operator for when you know what you don't want: the not operator! You'll use a `!` for this.
+Ada operator yang bisa digunakan ketika Kamu tahu apa yang tidak Kamu inginkan: operator tidak! Untuk ini, Kamu akan menggunakan `!`.
 
 ```js
-if (!(number > 100)) {
-  console.log(`${number} is less than or equal to 100`);
+if (!(angka > 100)) {
+  console.log(`${angka} kurang dari atau sama dengan 100`);
 }
 ```
 
-Here's the truth table of the `!` operator.
+Berikut tabel truth dari operator `!`.
 
 ```js
 console.log(!true);  // false
 console.log(!false); // true
 ```
 
-## Multiple choices
+## Pilihan ganda
 
-Let's write some code that helps people decide what to wear based on the weather using `if`/`else`.
+Mari kita tulis kode yang membantu orang memutuskan apa yang akan dipakai berdasarkan cuaca menggunakan `if`/`else`.
 
 ```js
-const weather = prompt("What's the weather like?");
-if (weather === "sunny") {
-  console.log("T-shirt time!");
-} else if (weather === "windy") {
-  console.log("Windbreaker life.");
-} else if (weather === "rainy") {
-  console.log("Bring that umbrella!");
-} else if (weather === "snowy") {
-  console.log("Just stay inside!");
+const cuaca = prompt("Bagaimana cuacanya?");
+if (cuaca === "cerah") {
+  console.log("Waktunya pakai T-shirt!");
+} else if (cuaca === "berangin") {
+  console.log("Pakai jaket");
+} else if (cuaca === "hujan") {
+  console.log("Bawa payung!");
+} else if (cuaca === "salju") {
+  console.log("Di rumah saja!");
 } else {
-  console.log("Not a valid weather type");
+  console.log("Bukan cuaca yang valid");
 }
 ```
 
-When a program should trigger a block from several operations depending on the value of an expression, you can write it using the JavaScript statement `switch` to do the same thing.
+Saat program harus memicu satu blok dari beberapa operasi tergantung dari ekspresinya, Kamu bisa menuliskannya dengan menggunakan pernyataan JavaScript `switch` untuk melakukan hal yang sama.
 
 ```js
-const weather = prompt("What's the weather like?");
-switch (weather) {
-  case "sunny":
-    console.log("T-shirt time!");
+const cuaca = prompt("Bagaimana cuacanya?");
+switch (cuaca) {
+  case "cerah":
+    console.log("Waktunya pakai T-shirt!");
     break;
-  case "windy":
-    console.log("Windbreaker life.");
+  case "berangin":
+    console.log("Pakai jaket");
     break;
-  case "rainy":
-    console.log("Bring that umbrella!");
+  case "hujan":
+    console.log("Bawa payung!");
     break;
-  case "snowy":
-    console.log("Winter is coming! Just stay inside!");
+  case "salju":
+    console.log("Di rumah saja!");
     break;
   default:
-    console.log("Not a valid weather type");
+    console.log("Bukan cuaca yang valid");
 }
 ```
 
-If you test it out, the result will be the same as the previous version.
+Kalau Kamu tes, hasilnya akan sama dengan versi sebelumnya.
 
-The `switch` statement kicks off the execution of one code block among many. Only the code block that matches the relevant situation will be executed.
+Pernyataan `switch` memulai eksekusi satu blok kode dari beberapa baris yang ada. Hanya kode blok yang cocok dengan situasi yang relevan yang akan dieksekusi.
 
 ```js
-switch (expression) {
-  case value1:
-    // Code to run when the expression matches value1
+switch (ekspresi) {
+  case nilai1:
+    // Kode yang akan dieksekusi ketika ekspresi cocok dengan nilai1
     break;
-  case value2:
-    // Code to run when the expression matches value2
+  case nilai2:
+    // Kode yang akan dieksekusi ketika ekspresi cocok dengan nilai2
     break;
   // ...
   default:
-  // Code to run when neither case matches
+  // Kode yang berjalan ketika tidak ada kasus atau ekspresi yang cocok
 }
 ```
 
-You can set as many cases as you want! The word `default`, which is put at the end of `switch`, is optional. It can let you handle errors or unexpected values.
+Kamu bisa menge-set case sebanyak yang Kamu inginkan! Kata `default`, yang ditempatkan di akhir `switch`, adalah opsional. Hal ini dilakukan agar Kamu bisa menangani eror atau nilai yang tidak diinginkan. 
 
-Adding a `break;` in each block is important so you get out of the switch statement!
+Menambahkan `break;` pada setiap blok merupakan hal yang penting sehingga Kamu bisa keluar dari pernyataan switch!
 
 ```js
 const x = "abc";
 switch (x) {
   case "abc":
     console.log("x = abc");
-  // break omitted: the next block is also run!
+  // break diabaikan: blok selanjutnya akan dieksekusi juga!
   case "def":
     console.log("x = def");
     break;
 }
 ```
 
-The previous example show `"x = abc"` (the correct result) but also `"x = def"`.
+Pada contoh sebelumnya menunjukkan `"x = abc"` (hasil yang benar) tetapi juga `"x = def"`.
 
-## Coding time!
+## Waktunya koding!
 
-Here are a few pieces of advice about these exercises:
+Berikut beberapa saran tentang latihan ini:
 
-* Keep on choosing your variable names wisely, and respect indentation when creating code blocks associated to `if`, `else` and `switch` statements.
+* Pilih nama variabel Kamu dengan bijak, dan gunakan indentasi saat membuat kode blok terkait `if`, `else` dan pernyataan `switch`.
 
-* Try to find alternative solutions. For example, one using an `if` and another using a `switch`.
+* Coba cari solusi alternatif. Contohnya, satu solusi menggunakan `if` dan solusi lainnya menggunakan `switch`.
 
-* Test your programs thoroughly, without fear of finding mistakes. It's a very important skill.
+* Tes program Kamu secara menyeluruh, jangan takut salah. Ini merupakan keterampilan yang sangat penting.
 
-### Following day
+### Hari selanjutnya
 
-Write a program that accepts a day name from the user, then shows the name of the following day. Incorrect inputs must be taken into account.
+Tulis program yang menerima satu nama hari dari pengguna, lalu tampilkan nama hari selanjutnya. Input yang tidak benar harus diperhatikan juga.
 
-### Number comparison
+### Perbandingkan angka
 
-Write a program that accepts two numbers, then compares their values and displays an appropriate message in all cases.
+Tulis program yang menerima dua angka, lalu bandingkan nilainya dan tampilkan pesan di semua kondisi.
 
-### Final values
+### Nilai akhir
 
-Take a look at the following program.
+Lihat program berikut.
 
 ```js
-let nb1 = Number(prompt("Enter nb1:"));
-let nb2 = Number(prompt("Enter nb2:"));
-let nb3 = Number(prompt("Enter nb3:"));
+let nb1 = Number(prompt("Masukkan nb1:"));
+let nb2 = Number(prompt("Masukkan nb2:"));
+let nb3 = Number(prompt("Masukkan nb3:"));
 
 if (nb1 > nb2) {
   nb1 = nb3 * 2;
@@ -430,26 +431,26 @@ if (nb1 > nb2) {
 console.log(nb1, nb2, nb3);
 ```
 
-Before executing it, try to guess the final values of variables `nb1`, `nb2` and `nb3` depending on their initial values. Complete the following table.
+Sebelum mengeksekusinya, coba tebak nilai akhir dari variabel `nb1`, `nb2` dan `nb3` tergantung nilai awalnya. Isi tabel berikut.
 
-|Initial values       |`nb1` final value |`nb2` final value|`nb3` final value|
+|Nilai awal           |nilai akhir `nb1`|nilai akhir `nb2`|nilai akhir `nb3`|
 |---------------------|------------------|-----------------|-----------------|
 |`nb1=nb2=nb3=4`      |                  |                 |                 |
 |`nb1=4,nb2=3,nb3=2`  |                  |                 |                 |
 |`nb1=2,nb2=4,nb3=0`  |                  |                 |                 |
 
-Check your predictions by executing the program.
+Cek prediksi Kamu dengan mengeksekusi programnya.
 
-### Number of days in a month
+### Jumlah hari dalam satu bulan 
 
-Write a program that accepts a month number (between 1 and 12), then shows the number of days of that month. Leap years are excluded. Incorrect inputs must be taken into account.
+Tulis program yang menerima bilangan bulan (antara 1 dan 12), lalu tampilkan jumlah hari dari bulan tersebut. Tahun kabisat tidak perlu dimasukkan. Perhatikan kesalahan input.
 
-### Following second
+### Detik selanjutnya
 
-Write a program that asks for a time under the form of three information (hours, minutes, seconds). The program calculates and shows the time one second after. Incorrect inputs must be taken into account.
+Tulis program yang menerima waktu dalam bentuk tiga informasi (jam, menit, detik). Program mengkalkulasi dan menampilkan waktu satu detik setelahnya. Kesalahan input harus diperhatikan.
 
-> This is not as simple as it seems... Look at the following results to see for yourself:
+> Hal ini tidaklah semudah yang dikira... Kamu bisa lihat contoh dan hasilnya berikut ini:
 >
-> * 14h17m59s => 14h18m0s
-> * 6h59m59s => 7h0m0s
-> * 23h59m59s => 0h0m0s (midnight)
+> * 14j17m59d => 14j18m0d
+> * 6j59m59d => 7j0m0d
+> * 23j59m59d => 0j0m0d (tengah malam)
