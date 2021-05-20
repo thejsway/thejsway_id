@@ -80,7 +80,7 @@ if (kondisi) {
 
 Sepasang tanda kurung pembuka dan penutup mendefinisikan blok kode yang diasosiasikan dengan pernyataan `if`. Pernyataan ini merepresentasikan **tes**. Hasilnya: "Jika kondisi true, maka eksekusi instruksi yang ada di blok kode".
 
-Kondisi ini selalu ditempatkan di dalam tanda kurung setelah `if`. Pernyataan yang ada di dalam kode blok akan tergerser ke kanan. Praktik ini disebut **indentasi** dan membantu agar kode Kamu mudah dibaca. Seiring pengembangan program Kamu menjadi lebih besar dan lebih kompleks, hal ini akan menjadi sangat penting. Nilai indentasi biasanya 2 atau 4 spasi.
+Kondisi ini selalu ditempatkan di dalam tanda kurung setelah `if`. Pernyataan yang ada di dalam kode blok akan tergeser ke kanan. Praktik ini disebut **indentasi** dan membantu agar kode Kamu mudah dibaca. Seiring pengembangan, program Kamu menjadi lebih besar dan lebih kompleks, hal ini akan sangat penting. Jarak indentasi biasanya 2 atau 4 spasi.
 
 > Kalau blok kode hanya memiliki satu pernyataan, tanda kurung bisa dihilangkan. Sebagai pemula, Kamu sebaiknya selalu menggunakan tanda kurung ketika menulis kondisi pertama Kamu.
 
@@ -234,7 +234,7 @@ console.log(false && false); // false
 
 Hasil sebelumnya merupakan **tabel truth** dari operator `&&`.
 
-### operator "atau" 
+### Operator "atau" 
 
 Sekarang bayangkan Kamu ingin mengecek apakah angka di luar 0 dan 100. Untuk memenuhi syarat ini, angka harus lebih kecil dari 0 dan lebih besar dari 100.
 
