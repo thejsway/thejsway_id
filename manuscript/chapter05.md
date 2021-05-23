@@ -1,103 +1,103 @@
-# Write functions
+# Tulis Fungsi
 
-In this chapter, you'll learn how to break down a program into subparts called functions.
+Di bab ini, Kamu akan belajar bagaimana membagi program menjadi beberapa bagian yang dinamakan fungsi.
 
 ## TL;DR
 
-* A **function** is a group of statements that performs a particular task. JavaScript functions are created using the `function` keyword.
+* **Fungsi** adalah sekelompok pernyataan yang memiliki tugas tertentu. Fungsi JavaScript dibuat menggunakan kata kunci `function`.
 
-* Written as a combination of several short and focused functions, a program will generally be easier to understand and more **modular** than a monolithic one.
+* Ditulis dengan kombinasi beberapa fungsi pendek dan terfokus, program secara umum akan lebih mudah dibaca dan lebih **modular** dibandingkan dengan yang monolitik.
 
-* A **function call** triggers the execution of the function code. After it's done, execution resumes at the place where the call was made.
+* **Pemanggilan fungsi** memicu ekeskusi kode fungsi. Setelah selesai, eksekusi dilanjutkan di tempat di mana pemanggilan dilakukan.
 
-* Variables declared inside a function are limited in scope to the function body. They are called **local variables**.
+* Variabel dideklarasi di dalam fungsi terbatas pada lingkup body fungsi. Ini dinamakan **variabel lokal**.
 
-* A `return` statement inside the function body defines the **return value** of the function. A function can accept zero, one or several **parameters** in order to work. For a particular call, supplied parameter values are called **arguments**.
+* Pernyataan `return` di dalam body fungsi mendefinisikan **pengembalian nilai** dari fungsi. Fungsi bisa menerima parameter kosong, satu atau beberapa **parameter** untuk bisa bekerja. Untuk pemanggilan tertentu, pemenuhan nilai parameter dinamakan **argument**.
 
-* There are several ways to create a function in JavaScript. A first one is to use a **function declaration**.
+* Ada beberapa cara untuk membuat fungsi di JavaScript. Yang pertama adalah dengan menggunakan **deklarasi fungsi**.
 
 ```js
-// Function declaration
+// Deklarasi fungsi
 function myFunction(param1, param2, ...) {
-  // Function code using param1, param2, ...
+  // Kode fungsi menggunakan param1, param2, ...
 }
 
-// Function call
+// Pemanggilan fungsi
 myFunction(arg1, arg2, ...);
 ```
 
-* Another way to create a function is to use a **function expression**. A function expression can be assigned to a variable because in JavaScript, a variable's value can be a function. Function expressions are often used to create **anonymous functions** (functions without a name).
+* Cara lain untuk membuat fungsi adalah dengan menggunakan **ekspresi fungsi**. Ekspresi fungsi bisa dilakukan pada variabel karena di JavaScript, nilai variabel bisa merupakan sebuah fungsi. Ekspresi fungsi sering digunakan untuk membuat **fungsi anonim** (fungsi tanpa nama).
 
 ```js
-// Anonymous function created with a function expression and assigned to a variable
+// Fungsi anonim dibuat dengan ekspresi fungsi dan ditempatkan pada satu variabel
 const myFunc = function(param1, param2, ...) {
-  // Function code using param1, param2, ...
+  // Kode fungsi menggunakan param1, param2, ...
 };
 
-// Function call
+// Pemanggilan fungsi
 myFunc(arg1, arg2, ...);
 ```
 
-* A third way to create an anonymous function is the more recent **fat arrow syntax**.
+* Cara ketiga untuk membuat fungsi anonim adalah dengan menggunakan **sintaks panah gemuk**.
 
 ```js
-// Fat arrow anonymous function assigned to a variable
+// Fungsi anonim panah gemuk ditempatkan pada satu variabel
 const myFunc = (param1, param2, ...) => {
-  // Function code using param1, param2, ...
+  // Kode fungsi menggunakan param1, param2, ...
 };
 
-// Function call
+// Pemanggilan fungsi
 myFunc(arg1, arg2, ...);
 ```
 
-* No matter how it's created, each function should have a precise **purpose** and a well chosen **name** (often including an action verb). JavaScript offers a lot of **predefined functions** covering various needs.
+* Bagaimanapun cara dibuatnya, fungsi harus memiliki **tujuan** dan nama yang tepat (sering menggunakan kata kerja). JavaScript menawarkan banyak **fungsi predefined** yang mencakupi segala kebutuhan.
 
-## Introduction: the role of functions
+## Pengenalan: peran fungsi
 
-To understand why functions are important, check out our example from a previous chapter: the burrito algorithm :)
+Untuk mengerti kenapa fungsi itu penting, lihat contoh pada bab sebelumnya: algoritma burrito :)
 
 ```text
-Begin
-  Get out the rice cooker
-  Fill it with rice
-  Fill it with water
-  Cook the rice
-  Chop the vegetables
-  Stir-fry the vegetables
-  Taste-test the vegetables
-    If the veggies are good
-      Remove them from the stove
-    If the veggies aren't good
-      Add more pepper and spices
-    If the veggies aren't cooked enough
-      Keep stir-frying the veggies
-  Heat the tortilla
-  Add rice to the tortilla
-  Add vegetables to the tortilla
-  Roll tortilla
+Mulai
+    Ambil penanak nasi
+    Isi dengan beras
+    Isi dengan air
+    Masak nasi
+    Potong sayuran
+    Tumis sayuran
+    Cicipi sayuran
+        Kalau sayurannya enak
+            Keluarkan dari kompor
+        Kalau sayurannya kurang enak
+            Tambahkan lada dan bumbu
+        Kalau sayurannya kurang matang
+            Tumis kembali sayurannya
+    Panaskan tortilla
+    Tambahkan nasi ke tortilla
+    Tambahkan sayuran ke tortilla
+    Gulung tortilla
+Selesai
+```
+
+Berikut ide yang sama, ditulis dengan cara berbeda.
+
+```text
+Mulai
+  Masak nasi
+  Tumis sayuran
+  Tambah bumbu dan isinya
+  Gulung bersamaan
 End
 ```
 
-Here's the same general idea, written in a different way.
+Versi pertama mendetail semua tindakan dalam proses memasak. Versi kedua membagi resep ke dalam **langkah umum** dan mengenalkan konsep yang dapat digunakan untuk makanan lainnya seperti *masak*, *tumis*, *tambah*, dan *gulung*.
 
-```text
-Begin
-  Cook rice
-  Stir-fry vegetables
-  Add fillings
-  Roll together
-End
-```
+Program kita sampai sini meniru contoh pertama, tetapi sekarang saatnya memulai membagi kode kita menjadi langkah kecil sehingga kita bisa menggunakan kembali potongan dan bagian kode sesuai kebutuhan. Di JavaScript, langkah kecil ini dinamakan **fungsi**!
 
-The first version details all the individual actions that make up the cooking process. The second breaks down the recipe into **broader steps** and introduces concepts that could be re-used for other dishes as well like *cook*, *stir-fry*, *add* and *roll*.
+## Menemukan fungsi
 
-Our programs so far have mimicked the first example, but it's time to start modularizing our code into sub-steps so we can re-use bits and pieces as needed. In JavaScript, these sub-steps are called **functions**!
+**Fungsi** adalah sekelompok pernyataan yang melakukan tugas tertentu.
 
-## Discovering functions
-
-A **function** is a group of statements that performs a particular task.
-
-Here's a basic example of a function.
+ Berikut contoh dasar dari sebuah fungsi.
 
 ```js
 function sayHello() {
@@ -111,11 +111,11 @@ console.log("End of program");
 
 ![Execution result](images/chapter05-01.png)
 
-Let's study what just happened.
+Mari kita pelajari apa yang baru saja terjadi.
 
-### Declaring a function
+### Mendeklarasikan fungsi
 
-Check out the first lines of the example above.
+Cek baris pertama dari contoh di atas. heck out the first lines of the example above.
 
 ```js
 function sayHello() {
@@ -123,22 +123,22 @@ function sayHello() {
 }
 ```
 
-This creates a function called `sayHello()`. It consists of only one statement that will make a message appear in the console: `"Hello!"`.
+Di baris ini ada fungsi yang dinamakan `sayHello()`. Fungsi ini terdiri dari satu pernytaan yang akan menampilan pesan di console: `"Hello!"`.
 
-This is an example of a function **declaration**.
+Ini adalah contoh dari **deklarasi** fungsi.
 
 ```js
-// Declare a function called myFunction
+// Deklarasi fungsi bernama myFunction
 function myFunction() {
-  // Function code
+  // Kode fungsi
 }
 ```
 
-The declaration of a function is performed using the JavaScript keyword `function`, followed by the function name and a pair of parentheses. Statements that make up the function constitute the **body** of the function. These statements are enclosed in curly braces and indented.
+Deklarasi fungsi dilakukan dengan menggunakan kata kunci JavaScript `function`, diikuti oleh nama fungsi dan sepasang tanda kurun. Pernyataan yang ada di dalam fungsi dinamakan **body**. Pernyataan ini diapit oleh tanda kurung kurawal dan terindentasi. 
 
-### Calling a function
+### Pemanggilan fungsi
 
-Functions must be called in order to actually run. Here's the second part of our example program.
+Fungsi harus dipanggil untuk bisa berjalan. Berikut bagian kedua dari contoh program kita.
 
 ```js
 console.log("Start of program");
@@ -146,82 +146,82 @@ sayHello();
 console.log("End of program");
 ```
 
-The first and third statements explicitly display messages in the console. The second line makes a **call** to the function `sayHello()`.
+Pernyataan pertama dan ketiga menampilkan pesan di console secara eksplisit. Pada baris kedua di **panggil** fungsi `sayHello()`.
 
-You can call a function by writing the name of the function followed by a pair of parentheses.
+Kamu bisa memanggil fungsi dengan menuliskan nama fungsi diikuti dengan sepasang tanda kurung.
 
 ```js
 // ...
-myFunction(); // Call myFunction
+myFunction(); // Memanggil fungsi myFunction
 // ...
 ```
 
-Calling a function triggers the execution of actions listed therein (the code in its body). After it's done, execution resumes at the place where the call was made.
+Memanggil fungsi memicu eksekusi daftar tindakan (kode di dalam body). Setelah selesai, eksekusi dilanjutkan di baris di mana panggilan dilakukan.
 
 ![Function call mechanism](images/chapter05-02.png)
 
-### Usefulness of functions
+### Kegunaan fungsi
 
-A complex problem is generally more manageable when broken down into simpler subproblems. Computer programs are no exception to this rule. Written as a combination of several short and focused functions, a program will be easier to understand and to update than a monolithic one. As an added bonus, some functions could be reused in other programs!
+Permasalahan kompleks biasanya lebih mudah dikelola jika dipecah menjadi permasalahan kecil. Program komputer juga sama. Dengan penulisan kombinasi beberapa fungsi singkat dan terfokus, program akan lebih mudah dimengerti dan lebih mudah diperbaruhi daripada fungsi monolitik. Bonus tambahan, beberapa fungsi dapat digunakan kembali di program yang lain!
 
-Creating functions can also be a solution to the problem of [code duplication](https://en.wikipedia.org/wiki/Duplicate_code); instead of being duplicated in several places, a piece of code can be centralized in a function and called from anywhere when needed.
+Membuat fungsi juga bisa menjadi solusi dari permasalahan [duplikasi kode](https://en.wikipedia.org/wiki/Duplicate_code); daripada menduplikasi di beberapa program, sebagian kode bisa disentralisasi di sebuah fungsi dan dapat dipanggil dari mana saja ketika diperlukan.
 
-## Function contents
+## Konten fungsi
 
-### Return value
+### Nilai kembali
 
-Here is a variation of our example program.
+Berikut variasi dari contoh program kita.
 
 ```js
 function sayHello() {
   return "Hello!";
 }
 
-console.log("Start of program");
-const message = sayHello(); // Store the function return value in a variable
-console.log(message);       // Show the return value
-console.log("End of program");
+console.log("Awal program");
+const message = sayHello(); // Menyimpan fungsi nilai kembali di variabel
+console.log(message);       // Menampilkan nilai kembali
+console.log("Akhir program");
 ```
 
-Run this code, and you'll see the same result as before.
+Jalankan kode ini, dan Kamu akan melihat hasil yang sama dengan sebelumnya.
 
-In this example, the body of the `sayHello()` function has changed: the statement `console.log("Hello!")` was replaced by `return "Hello!"`.
+Di contoh ini, body dari fungsi `sayHello()` telah berubah: pernyataan `console.log("Hello!")` diganti oleh `return "Hello!"`.
 
-The keyword `return` indicates that the function will return a value, which is specified immediately after the keyword. This **return value** can be retrieved by the caller.
+Kata kunci `return` mengindikasikan bahwa fungsi akan mengembalikan satu nilai, yang ditentukan secara langsung setelah kata kunci. **Nilai kembali** ini bisa didapatkan oleh pemanggil. 
 
 ```js
-// Declare myFunction
+// Deklarasi myFunction
 function myFunction() {
   let returnValue;
-  // Calculate return value
+  // Hitung nilai kembali
   // returnValue = ...
   return returnValue;
 }
 
-// Get return value from myFunction
-const result = myFunction();
+// Mendapatkan nilai kembali dari myFunction
+const hasil = myFunction();
 // ...
 ```
 
-This return value can be of any type (number, string, etc). However, a function can return only one value.
+Nilai kembali ini bisa berupa tipe apa saja (bilangan, string, dan lainnya). Namun, satu fungsi hanya bisa mengembalikan satu nilai.
 
-W> Retrieving a function's return value is not mandatory, but in that case the return value is "lost".
+> Mendapatkan nilai kembali dari fungsi tidaklah wajib, tetapi dalam hal ini nilai kembali "hilang".
 
-If you try to retrieve the return value of a function that does not actually have one, we get the JavaScript value `undefined`.
+Kalau Kamu mencoba mendapatkan nilai kembali dari fungsi yang tidak ada pemiliknya, kita akan mendapatkan nilai JavaScript: `undefined`.
 
 ```js
 function myFunction() {
   // ...
-  // No return value
+  // Tidak ada nilai kembali
 }
 
-const result = myFunction();
-console.log(result); // undefined
+const hasil = myFunction();
+console.log(hasil); // undefined
 ```
 
-W> A function stops running immediately after the `return` statement is executed. Any further statements are never run.
+> Fungsi langsung berhenti setelah pernyataan `return` dieksekusi. Pernyataan apapun setelahnya tidak akan pernah berjalan. 
 
-Let's simplify our example a bit by getting rid of the variable that stores the function's return value.
+Mari sederhanakan sedikit contoh kita dengan menghilangkan variabel yang menyimpan fungsi nilai kembali.
 
 ```js
 function sayHello() {
@@ -231,11 +231,11 @@ function sayHello() {
 console.log(sayHello()); // "Hello!"
 ```
 
-The return value of the `sayHello()` function is directly output through the `console.log()` command.
+Nilai kembali dari fungsi `sayHello()` dapat dilihat melalui perintah `console.log()`.
 
-### Local variables
+### Variabel lokal 
 
-You can declare variables inside a function, as in the example below.
+Kamu bisa mendeklarasikan variabel di dalam fungsi, seperti contoh berikut.
 
 ```js
 function sayHello() {
@@ -246,9 +246,9 @@ function sayHello() {
 console.log(sayHello()); // "Hello!"
 ```
 
-The function `sayHello()` declares a variable named `message` and returns its value.
+Fungsi `sayHello()` mendeklarasikan variabel yang dinamakan `message` dan mengembalikan nilainya.
 
-The variables declared in the body of a function are called **local variables**. Their **scope** is limited to the function body (hence their name). If you try to use these local variables outside the function, you won't be able to!
+Variabel yang dideklarasikan di body fungsi disebut **variabel lokal**. **Lingkup** variabel ini terbatas di body fungsi (sesuai namanya). Kalau Kamu coba menggunakan variabel lokal ini di luar fungsi, maka Kamu tidak akan bisa!
 
 ```js
 function sayHello() {
@@ -257,20 +257,20 @@ function sayHello() {
 }
 
 console.log(sayHello()); // "Hello!"
-console.log(message); // Error: the message variable is not visible here
+console.log(message); // Eror: variabel message tidak berjalan 
 ```
 
-Each function call will redeclare the function's local variables, making the calls perfectly independent from one another.
+Setiap pemenggilan fungsi akan mendeklarasikan ulang fungsi variabel lokal, membuat pemanggilan tersebut berlaku independen antara satu dengan lainnya.
 
-Not being able to use local variables outside the functions in which they are declared may seem like a limitation. Actually, it's a good thing! This means functions can be designed as autonomous and reusable. Moreover, this prevents **naming conflicts**: allowing variables declared in different functions to have the same name.
+Tidak bisa menggunakan variabel lokal di luar fungsi di mana variabel tersebut dideklarasikan mungkin dianggap sebagai keterbatasan. Sebenarnya, ini adalah hal yang baik! Ini artinya fungsi bisa di desain dengan autonomous dan bisa digunakan kembali. Selain itu, hal ini juga akan mencegah **konflik penamaan**: variabel yang dideklarasikan di fungsi yang berbeda namun memiliki nama yang sama. 
 
-### Parameter passing
+### Parameter fungsi
 
-A **parameter** is information that the function needs in order to work. The function parameters are defined in parentheses immediately following the name of the function. You can then use the parameter value in the body of the function.
+**Parameter** adalah informasi yang dibutuhkan fungsi agar bisa bekerja. Parameter fungsi didefinisikan langsung di dalam tanda kurung setelah nama fungsi. Kamu bisa menggunakan nilai parameter di dalam body fungsi. 
 
-You supply the parameter value when calling the function. This value is called an **argument**.
+Kamu menempatkan nilai parameter saat memanggil fungsi. Nilai ini disebut **argumen**.
 
-Let's edit the above example to add a personalized greeting:
+Mari kita ubah contoh di atas untuk menambah sapaan personal:
 
 ```js
 function sayHello(name) {
@@ -282,40 +282,40 @@ console.log(sayHello("Baptiste")); // "Hello, Baptiste!"
 console.log(sayHello("Thomas"));   // "Hello, Thomas!"
 ```
 
-The declaration of the `sayHello()` function now contains a parameter called `name`.
+Deklarasi fungsi `sayHello()` sekarang mengandung satu parameter bernama `name`.
 
-In this example, the first call to `sayHello()` is done with the argument `"Baptiste"` and the second one with the argument `"Thomas"`. In the first call, the value of the `name` parameter is `"Baptiste"`, and `"Thomas"` in the second.
+Di contoh ini, pemanggilan pertama `sayHello()` dijalankan dengan argumen `"Baptiste"` dan yang kedua dengan argumen `"Thomas"`. Di pemanggilan pertama, nilai parameter `name` adalah `"Baptiste"`, dan yang kedua adalah `"Thomas"`.
 
-Here's the general syntax of a function declaration with parameters. The number of parameters is not limited, but more than 3 or 4 is rarely useful.
+Berikut adalah sintaks umum dari deklarasi fugsi dari parameter. Jumlah parameter tidak terbatas, tetapi biasanya tidak lebih dari 3 atau 4.
 
 ```js
-// Declare a function myFunction with parameters
+// Deklarasi fungsi myFunction dengan parameter
 function myFunction(param1, param2, ...) {
-  // Statements using param1, param2, ...
+  // Pernyataan menggunakan param1, param2, ...
 }
 
-// Function call
-// param1 value is set to arg1, param2 to arg2, ...
+// Pemanggilan fungsi 
+// Nilai param1 di-set ke arg1, param2 ke arg2, ...
 myFunction(arg1, arg2, ...);
 ```
 
-Just like with local variables, parameter scope is limited to the function body. Thus, an external variable used as an argument in a function call may have the same name as a function parameter. The following example is perfectly valid.
+Seperti halnya pada variabel lokal, lingkup parameter dibatasi di hody fungsi. Maka, variabel eksternal yang digunakan sebagai argumen dalam pemanggilan fungsi kemungkinan memiliki nama yang sama dengan parameter fungsi. Berikut contoh yang valid.
 
 ```js
 function sayHello(name) {
-  // Here, "name" is the function parameter
+  // Di sini, "name" adalah parameter fungsi
   const message = `Hello, ${name}!`;
   return message;
 }
 
-// Here, "name" is a variable used as an argument
+// Di sini, "name" adalah variabel yang digunakan sebagai argumen
 let name = "Baptiste";
 console.log(sayHello(name)); // "Hello, Baptiste!"
 name = "Thomas";
 console.log(sayHello(name)); // "Hello, Thomas!"
 ```
 
-When calling a function, respecting the number and order of parameters is paramount! Check out the following example.
+Saat pemanggilan fungsi, mematuhi jumlah dan urutan parameter sangatlah penting! Cek contoh berikut.
 
 ```js
 function presentation(name, age) {
@@ -326,11 +326,11 @@ presentation("Garance", 9); // "Your name is Garance and you're 9 years old"
 presentation(5, "Prosper"); // "Your name is 5 and you're Prosper years old"
 ```
 
-The second call arguments are given in reverse order, so `name` gets the value `5` and `age` gets `"Prosper"` for that call.
+Pemanggilan argumen kedua dilakukan secara kebalikannya, jadi `name` mendapatkan nilai `5` dan `age` mendapatkan nilai `"Prosper"` di pemanggilan ini.
 
-## Anonymous functions
+## Fungsi anonim
 
-Declaration is not the only way to create functions in JavaScript. Check out this example.
+Deklarasi bukan satu-satunya cara untuk membuat fungsi di JavaScript. Cek contoh berikut.
 
 ```js
 const hello = function(name) {
@@ -341,24 +341,24 @@ const hello = function(name) {
 console.log(hello("Richard")); // "Hello, Richard!"
 ```
 
-In this example, the function is assigned to the `hello` variable. The value of this variable is a function. We call the function using that variable. This is an example of a **function expression**. A function expression defines a function as part of a larger expression, typically a variable assignment.
+Di contoh ini, fungsi ditempatkan pada variabel `hello`. Nilai variabel ini adalah sebuah fungsi. Kita memanggil fungsi menggunakan variabel tersebut. Ini adalah contoh **ekspresi fungsi**. Ekspresi fungsi mendefinisikan fungsi sebagai bagian dari ekspresi yang besar, tepatnya pada penempatan variabel.
 
-The function created in this example has no name: it is **anonymous**. As you'll soon discover, anonymous functions are heavily used in JavaScript.
+Fungsi yang dibuat pada contoh ini tidak memiliki nama: ini adalah **anonim**. Nanti Kamu akan menemukan, fungsi anonim sangat sering digunakan di JavaScript.
 
-Here's how to create an anonymous function and assign it to a variable.
+Berikut cara membuat fungsi anonim dan menempatkannya pada sebuah variabel.
 
 ```js
-// Assignment of an anonymous function to the myFunc variable
+// Penempatan fungsi anonim pada variabel myFunc 
 const myFunc = function(param1, param2, ...) {
-  // Statements using param1, param2, ...
+  // Pernyataan menggunakan param1, param2, ...
 };
 
-// Anonymous function call
-// param1 value is set to arg1, param2 to arg2, ...
+// Pemanggilan fungsi anonim
+// nilai param1 di-set ke arg1, param2 ke arg2, ...
 myFunc(arg1, arg2, ...);
 ```
 
-Recent language evolutions have introduced a more concise way to create anonymous functions:
+Evolusi bahasa akhir-akhir ini telah mengenalkan cara singkat untuk membuat fungsi anonim:
 
 ```js
 const hello = (name) => {
@@ -369,73 +369,73 @@ const hello = (name) => {
 console.log(hello("William")); // "Hello, William!"
 ```
 
-Functions created this way are called **fat arrow functions**.
+Fungsi yang dibuat dengan cara ini dinamakan **fungsi panah gemuk**.
 
 ```js
-// Assignment of an anonymous function to the myFunc variable
+// Penempatan fungsi anonim pada variabel myFunc 
 const myFunc = (param1, param2, ...) => {
-  // Statements using param1, param2, ...
+  // Pernyataan menggunakan param1, param2, ...
 };
 
-// Anonymous function call
-// param1 value is set to arg1, param2 to arg2, ...
+// Pemanggilan fungsi anonim
+// nilai param1 di-set ke arg1, param2 ke arg2, ...
 myFunc(arg1, arg2, ...);
 ```
 
-Fat arrow function syntax can be further simplified in some particular cases:
+Sintaks fungsi panah gemuk bisa disederhanakan pada kasus tertentu:
 
-* When there's only one statement in the function body, everything can be written on the same line without curly braces. The `return` statement is omitted and implicit.
-* When the function accepts only one parameter, parentheses around it can be omitted.
+* Ketika hanya ada satu pernytaan di dalam body fungsi, semuanya bisa ditulis di baris yang sama tanpa tanda kurung kurawal. Pernyataan `return` dihilangkan dan implisit.
+* Ketika fungsi menerima hanya satu parameter, tanda kurung disekitarnya bisa dihilangkan.
 
 ```js
-// Minimalist to the max
+// Super minimalis
 const hello = name => `Hello, ${name}!`;
 
 console.log(hello("Kate")); // "Hello, Kate!"
 ```
 
-Functions are a core part of the JavaScript toolset. You'll use them constantly in your programs.
+Fungsi adalah bagian inti dari toolset JavaScript. Kamu akan sering menggunakannya di program Kamu.
 
-## Guidelines for programming with functions
+## Pedoman pemrograman dengan fungsi
 
-### Creating functions wisely
+### Buat fungsi dengan bijak
 
-Functions can include everything you can use in a regular program: variables, conditionals, loops, etc. Functions can call one another, giving the programmer an enormous amount of freedom for building programs.
+Fungsi bisa mencakup segala yang Kamu gunakan di program reguler: variabel, kondisi, loop, dan lainnya. Fungsi bisa memanggil semuanya, memberikan programer banyak kebebasan dalam membangun program.
 
-However, not everything deserves to be in its own function. It's better to write short and focused ones, in order to limit dependencies and improve program understanding.
+Namun, tidak semuanya pantas untuk dibuat fungsi. Lebih baik menulis fungsi yang singkat dan terfokus, untuk membatasi ketergantungan dan meningkatkan pemahaman program.
 
-### Leveraging JavaScript predefined functions
+### Memaksimalkan fungsi predefine JavaScript 
 
-We have already used several predefined JavaScript functions like `prompt()` and `alert()`. There are many others in the language specification. Get to know them instead of reinventing the wheel!
+Kita sudah menggunakan beberapa fungsi predefine seperti `prompt()` dan `alert()`. Ada banyak fungsi predefine lainnya di spesifikasi bahasa JavaScript. Kamu harus tahu hal ini daripada harus membuat ulang fungsi yang Kamu perlukan!
 
-Here' an example demonstrating two of the JavaScript mathematical functions.
+Berikut contoh demonstrasi 2 fungsi matematika JavaScript.
 
 ```js
 console.log(Math.min(4.5, 5)); // 4.5
 console.log(Math.min(19, 9));  // 9
 console.log(Math.min(1, 1));   // 1
-console.log(Math.random());    // A random number between 0 and 1
+console.log(Math.random());    // Angka acak antara 0 dan 1
 ```
 
-The function `Math.min()` returns the minimum number among its arguments. The function `Math.random()` generates a random number between 0 and 1.
+Function `Math.min()` menembalikan angka minimum di antara argumennya. Fungsi `Math.random()` menghasilkan angka acak antara 0 dan 1.
 
-This book will introduce many other JavaScript functions.
+Buku ini akan mengenalkan fungsi JavaScript lainnya.
 
-### Limiting function complexity
+### Membatasi kompleksitas fungsi
 
-A function body must be kept simple, or otherwise split into several sub-functions. As a rule of thumb, 30 lines of code should be a max for non-specific cases.
+Body fungsi harus sederhana, atau dipecah menjadi beberapa sub-fungsi. Aturan praktisnya, 30 baris kode maksimum untuk kasus tidak spesifik.
 
-### Naming functions and parameters well
+### Penamaan fungsi dan parameter dengan baik
 
-Function naming is just as important as variable naming. You should choose names that express clearly the function purpose and follow a naming convention. Refer to the appendix for some useful advice.
+Penamaan fungsi sama pentingnya dengan penamaan variabel. Kamu harus pilih nama yang menekspresikan tujuan fungsi dengan jelas dan mengikuti aturan penamaan. Sebagai saran, Kamu bisa mengacu lampiran pada buku ini.
 
-T> If you have difficulties coming up with a good name for a function, then maybe its purpose is not that clear and you should ask yourself if this function deserves to exist.
+> Kalau Kamu mempunyai kesulitan dalam memberi nama fungsi, lalu mungkin tujuan dari fungsi ini tidak terlalu jelas dan Kamu harus tanya kepada diri sendiri apakah fungsi ini benar-benar diperlukan.
 
-## Coding time!
+## Waktunya koding!
 
-### Improved hello
+### Peningkatan hello
 
-Complete the following program so that it asks the user for his first and last names, then show the result of the `sayHello()` function.
+Lengkapi program berikut sehingga dapat meminta pengguna untuk memasukkan nama pertama dan terakhirnya, lalu tampilkan hasil dari fungsi `sayHello()`.
 
 ```js
 // Say hello to the user
@@ -444,70 +444,70 @@ function sayHello(firstName, lastName) {
   return message;
 }
 
-// TODO: ask user for first and last name
-// TODO: call sayHello() and show its result
+// TODO: meminta nama pertama dan terakhir dari pengguna
+// TODO: memanggil sayHello() dan tampilkan hasilnya.
 ```
 
-### Number squaring
+### Kuadrat angka
 
-Complete the following program so that the `square1()` and `square2()` functions work properly.
+Lengkapi program berikut sehingga fungsi `square1()` dan `square2()` berjalan dengan baik
 
 ```js
-// Square the given number x
+// Kuadrat dari angka x
 function square1(x) {
-  // TODO: complete the function code
+  // TODO: lengkapi kode fungsi 
 }
 
-// Square the given number x
-const square2 = x => // TODO: complete the function code
+// Kuadrat dari angka x
+const square2 = x => // TODO: lengkapi kode fungsi 
 
-console.log(square1(0)); // Must show 0
-console.log(square1(2)); // Must show 4
-console.log(square1(5)); // Must show 25
+console.log(square1(0)); // Harus menampilkan 0
+console.log(square1(2)); // Harus menampilkan 4
+console.log(square1(5)); // Harus menampilkan 25
 
-console.log(square2(0)); // Must show 0
-console.log(square2(2)); // Must show 4
-console.log(square2(5)); // Must show 25
+console.log(square2(0)); // Harus menampilkan 0
+console.log(square2(2)); // Harus menampilkan 4
+console.log(square2(5)); // Harus menampilkan 25
 ```
 
-When it's done, update the program so that it shows the square of every number between 0 and 10.
+Ketika sudah selesai, perbarui program sehingga dapat menampilkan kuadrat untuk setiap angka antara 0 dan 10.
 
-> Writing 10 dumb calls to `square()` is forbidden! You know how to repeat statements, don't you? ;)
+> Dilarang menulis 10 panggilan bodoh fungsi `square()`! Kamu tahu cara pengulangan (repeat) pernyataan, kan? ;)
 
-### Minimum of two numbers
+### Minimum dari dua angka
 
-Let's pretend the JavaScript `Math.min()` function doesn't exist. Complete the following program so that the `min()` function returns the minimum of its two received numbers.
+Mari berpura-pura bahwa fungsi JavaScript `Math.min()` tidak ada. Lengkapi program berikut sehingga fungsi `min()` dapat mengembalikan nilai minimum dari dua angka yang diterima.
 
 ```js
-// TODO: write the min() function
+// TODO: tulis fungsi min() 
 
-console.log(min(4.5, 5)); // Must show 4.5
-console.log(min(19, 9));  // Must show 9
-console.log(min(1, 1));   // Must show 1
+console.log(min(4.5, 5)); // Harus menampilkan 4.5
+console.log(min(19, 9));  // Harus menampilkan 9
+console.log(min(1, 1));   // Harus menampilkan 1
 ```
 
-### Calculator
+### Kalkulator
 
-Complete the following program so that it offers the four basic arithmetical operations: addition, subtraction, multiplication and division. You can use either a function declaration or a function expression.
+Lengkapi program berikut sehingga dapat melakukan 4 operasi aritmetik dasar: penambahan, pangurangan, perkalian dan pembagian. Kamu bisa menggunakan deklarasi fungsi atau ekspresi fungsi.
 
 ```js
-// TODO: complete program
+// TODO: lengkapi program
 
-console.log(calculate(4, "+", 6));  // Must show 10
-console.log(calculate(4, "-", 6));  // Must show -2
-console.log(calculate(2, "*", 0));  // Must show 0
-console.log(calculate(12, "/", 0)); // Must show Infinity
+console.log(calculate(4, "+", 6));  // Harus menampilkan 10
+console.log(calculate(4, "-", 6));  // Harus menampilkan -2
+console.log(calculate(2, "*", 0));  // Harus menampilkan 0
+console.log(calculate(12, "/", 0)); // Harus menampilkan Infinity
 ```
 
-### Circumference and area of a circle
+### Keliling dan luas lingkaran
 
-Write a program containing two functions to calculate the circumference and area of a circle defined by its radius. Test it using user input.
+Tulis satu program mengandung 2 fungsi untuk menghitung keliling dan luas lingkaran dari jari-jarinya. Tes dengan input pengguna.
 
-Here are some tips for solving this exercise:
+Berikut beberapa tips untuk menyelesaikan latihan ini: 
 
-* Circumference and area calculation formulas should be part of your secondary school memories... Or a Google click away :)
-* The value of number π (Pi) is obtained with `Math.PI` in JavaScript.
-* You might want to use the [exponentiation operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators) `**` to perform computations.
+* Formula perhitungan keliling dan lingkaran sudah diajarkan di SD, kan? Kalau lupa, tinggal Googling. 
+* Nilai π (Pi) didapat dengan menggunakan fungsi `Math.PI` di JavaScript.
+* Kamu juga mungkin ingin menggunakan [exponentiation operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators) `**` untuk melakukan komputasi.
 
 ```js
 console.log(2 ** 3); // 8: 2 * 2 * 2
