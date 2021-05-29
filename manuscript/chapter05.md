@@ -115,7 +115,7 @@ Mari kita pelajari apa yang baru saja terjadi.
 
 ### Mendeklarasikan fungsi
 
-Cek baris pertama dari contoh di atas. heck out the first lines of the example above.
+Cek baris pertama dari contoh di atas. 
 
 ```js
 function sayHello() {
@@ -427,7 +427,7 @@ Body fungsi harus sederhana, atau dipecah menjadi beberapa sub-fungsi. Aturan pr
 
 ### Penamaan fungsi dan parameter dengan baik
 
-Penamaan fungsi sama pentingnya dengan penamaan variabel. Kamu harus pilih nama yang menekspresikan tujuan fungsi dengan jelas dan mengikuti aturan penamaan. Sebagai saran, Kamu bisa mengacu lampiran pada buku ini.
+Penamaan fungsi sama pentingnya dengan penamaan variabel. Kamu harus pilih nama yang mengekspresikan tujuan fungsi dengan jelas dan mengikuti aturan penamaan. Sebagai saran, Kamu bisa mengacu lampiran pada buku ini.
 
 > Kalau Kamu mempunyai kesulitan dalam memberi nama fungsi, lalu mungkin tujuan dari fungsi ini tidak terlalu jelas dan Kamu harus tanya kepada diri sendiri apakah fungsi ini benar-benar diperlukan.
 

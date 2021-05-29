@@ -1,14 +1,14 @@
-# Create your first objects
+# Buat objek pertama Kamu
 
-This chapter will introduce objects and the way they are created and used in JavaScript.
+Di bab ini akan dibahas tentang object dan bagaimana cara membuat dan menggunakannya di JavaScript.
 
 ## TL;DR
 
-* A JavaScript **object** is an entity that has properties. Each property is a key/value pair. The key is the property name.
+* **Objek** (object) JavaScript adalah entintas yang memiliki properti (property). Setiap properti adalah sepasang kunci/nilai. Kunci adalah nama properti.
 
-* The value of a property can be a piece of information (number, string, etc) or a function. In the latter case, the property is called a **method**.
+* Nilai properti bisa merupakan satu bagian informasi (angka, string, dan lainnya) atau sebuah fungsi. Pada kasus yang terakhir, properti ini dinamakan **method**.
 
-* A JavaScript **object literal** is created by simply setting its properties within a pair of curly braces.
+* **Object literal** JavaScript dibuat dengan menge-set propertinya di dalam tanda kurung kurawal. 
 
 ```js
 const myObject = {
@@ -24,36 +24,36 @@ const myObject = {
   // ...
 };
 
-myObject.property1 = newValue; // Set the new value of property1 for myObject
-console.log(myObject.property1); // Show the value of property1 for myObject
-myObject.method1(...);           // Call method1 on myObject
+myObject.property1 = newValue; // Mengset nilai baru dari property1 untuk myObject
+console.log(myObject.property1); // Menampilkan nilai dari property1 untuk myObject
+myObject.method1(...);           // Memanggil method1 pada myObject
 ```
 
-* Inside a method, the `this` keyword represents the object on which the method is called.
+* Di dalam sebuah method, kata kunci `this` merepresentasikan  objek di mana method dipanggil.
 
-* The JavaScript language predefines many useful objects like `console` or `Math`.
+* Banyak objek predefine dari bahasa JavaScript yang sangat berguna seperti `console` atau `Math`.
 
-## Introduction
+## Pengenalan
 
-### What's an object?
+### Apa itu objek?
 
-Think about objects in the non-programming sense, like a pen. A pen can have different ink colors, be manufactured by different people, have a different tip, and many other properties.
+Bayangkan tentang objek di luar pemrograman, seperti pulpen. Sebuah pulpen bisa memiliki warna tinta yang berbeda, diproduksi oleh orang-orang yang berbeda, memiliki ujung pena yang berbeda, dan banyak properti lainnya.
 
-Similarly, an **object** in programming is an **entity that has properties**. Each property defines a characteristic of the object. A property can be a piece of information associated with the object (the color of the pen) or an action (the pen's ability to write).
+Sama juga, **objek** pada pemrograman adalah **entitas yang memiliki properti** . Setiap properti mendefinisikan karakteristik objek. Sebuah properti bisa berupa sebagian informasi yang terasosiasi dengan objek (warna pulpen) atau tindakan/aksi (kemampuan pulpen untuk menulis). 
 
-### What does this have to do with code?
+### Apa hubungannya dengan kode?
 
-**Object-oriented programming** (OOP for short) is a way to write programs using objects. When using OOP, you write, create, and modify objects, and the objects make up your program.
+**Pemrograman berorientasi objek atau Object-oriented programming** (disingkat OOP) adalah satu cara menulis program menggunakan objek. Ketika menggunakan OOP, Kamu menulis, membuat, dan memodifikasi objek, dan objek membuat program Kamu.
 
-OOP changes the way a program is written and organized. So far, you've been writing function-based code, sometimes called [procedural programming](https://en.wikipedia.org/wiki/Procedural_programming). Now let's discover how to write object-oriented code.
+OOP mengubah cara program ditulis dan dikelola. Sejauh ini, Kamu telah menulis kode berbasis fungsi, terkadang dinamakan [pemrograman prosedural](https://en.wikipedia.org/wiki/Procedural_programming). Sekarang akan kita bahas bagaimana cara menulis kode berorientasi objek.
 
-## JavaScript and objects
+## JavaScript dan objek
 
-Like many other languages, JavaScript supports programming with objects. It provides a number of predefined objects while also letting you create your own.
+Seperti bahasa lainnya, JavaScript mendukung pemrograman dengan objek. JavaScript menyediakan beberapa objek predefine juga bisa membuat objek buatan Kamu sendiri. 
 
-### Creating an object
+### Membuat objek
 
-Here is the JavaScript representation of a blue Bic ballpoint pen.
+Berikut representasi JavaScript untuk pulpen (ballpoint) biru dengan brand Bic.
 
 ```js
 const pen = {
@@ -63,15 +63,15 @@ const pen = {
 };
 ```
 
-As stated earlier, a JavaScript object can be created by simply setting its properties within a pair of curly braces: `{...}`. Each property is a key/value pair. This is called an **object literal**.
+Seperti disebutkan sebelumnya, objek JavaScript bisa dibuat dengan menge-set objek properti didalam tanda kurung kurawal: `{...}`. Setiap properti adalah sepasang kunci/nilai. Hal ini dinamakan **object literal**.
 
-W> The semicolon `;` after the closing brace is optional, but it's safer to add it anyway.
+> Tanda titik koma `;` setelah tanda kurung penutup adalah opsional, tetapi lebih aman menambahkan tanda ini.
 
-The above code defines a variable named `pen` whose value is an object: you can therefore say `pen` is an object. This object has three properties: `type`, `color` and `brand`. Each property has a name and a value and is followed by a comma `,` (except the last one).
+Kode di atas mendefinisikan variabel bernama `pen` yang nilainya adalah sebuah objek: Kamu bisa katakan bahwa `pen` adalah sebuah objek. Objek ini memiliki tiga properti: `type`, `color` dan `brand`. Setiap properti memiliki nama dan nilai dan diikuti oleh tanda koma `,` (kecuali yang terakhir).
 
-### Accessing an object's properties
+### Mengakses properti objek
 
-After creating an object, you can access the value of its properties using **dot notation** such as `myObject.myProperty`.
+Setelah membuat sebuah objek, Kamu bisa mengakses nilai dari properti menggunakan **notasi dot** seperti `myObject.myProperty`.
 
 ```js
 const pen = {
@@ -85,7 +85,7 @@ console.log(pen.color); // "blue"
 console.log(pen.brand); // "Bic"
 ```
 
-Accessing an object's property is an **expression** that produces a value. Such an expression can be included in more complex ones. For example, here's how to show our pen properties in one statement.
+Mengakses properti objek adalah **ekspresi** yang menghasilkan sebuah nilai. Ekspresi ini bisa dimasukkan dalam objek yang kompleks. Contohnya, berikut ini bagaimana menampilkan properti pulpen dalam satu pernyataan baris.
 
 ```js
 const pen = {
@@ -99,9 +99,9 @@ console.log(`I write with a ${pen.color} ${pen.brand} ${pen.type} pen`);
 
 ![Execution result](images/chapter06-01.png)
 
-### Modifying an object
+### Memodifikasi objek
 
-Once an object is created, you can change the value of its properties with the syntax `myObject.myProperty = newValue`.
+Sesudah objek dibuat, Kamu bisa mengubah nilai properti dengan sintaks `myObject.myProperty = newValue`.
 
 ```js
 const pen = {
@@ -110,14 +110,14 @@ const pen = {
   brand: "Bic"
 };
 
-pen.color = "red"; // Modify the pen color property
+pen.color = "red"; // Memodifikasi properti warna pulpen 
 
 console.log(`I write with a ${pen.color} ${pen.brand} ${pen.type} pen`);
 ```
 
 ![Execution result](images/chapter06-02.png)
 
-JavaScript even offers the ability to dynamically add new properties to an already created object.
+JavaScript bahkan menawarkan kemampuan untuk menambahkan properti baru secara dinamis ke objek yang sudah dibuat. 
 
 ```js
 const pen = {
@@ -126,30 +126,30 @@ const pen = {
   brand: "Bic"
 };
 
-pen.price = "2.5"; // Set the pen price property
+pen.price = "2.5"; // Set properti harga pulpen
 
 console.log(`My pen costs ${pen.price}`);
 ```
 
 ![Execution result](images/chapter06-03.png)
 
-## Programming with objects
+## Pemrograman dengan objek 
 
-Many books and courses teach object-oriented programming through examples involving animals, cars or bank accounts. Let's try something cooler and create a mini-role playing game (RPG) using objects.
+Banyak buku dan kursus mengajarkan pemrograman berorientasi objek melalui contoh yang melibatkan hewan, mobil, atau akun bank. Mari kita coba sesuatu yang lebih keren dan membuat mini-role playing game (RPG) menggunakan objek.
 
-In a role-playing game, each character is defined by many attributes like strength, stamina or intelligence. Here's the character screen of a very popular online RPG.
+Di RPG, setiap karakter didefinisikan oleh banyak atribut seperti strength (kekuatan), stamina atau intelligence (kecerdasan). Berikut ini adalah layar karakter dari game RPG online yang sangat populer.
 
 ![No, it's not mine!](images/chapter06-04.png)
 
-In our simpler example, a character will have three attributes:
+Di contoh sederhana kita, satu karakter akan memiliki tiga atribut:
 
-* her name,
-* her health (number of life points),
-* her strength.
+* name (nama),
+* health (jumlah poin hidup),
+* strength.
 
-### A naive example
+### Contoh sederhana
 
-Let me introduce you to Aurora, our first RPG character.
+Saya kenalkan Kamu ke Aurora, karakter RPG kita yang pertama.
 
 ```js
 const aurora = {
@@ -159,11 +159,11 @@ const aurora = {
 };
 ```
 
-The `aurora` object has three properties: `name`, `health` and `strength`.
+Objek `aurora` memiliki tiga properti: `name`, `health` dan `strength`.
 
-I> As you can see, you can assign numbers, strings, and even other objects to properties!
+> Seperti yang Kamu lihat, Kamu bisa menempatkan angka, string, dan bahkan objek lainnya ke properti!
 
-Aurora is about to start a series of great adventures, some of which will update her attributes. Check out the following example.
+Aurora akan memulai serangkaian petualangannya, beberapa atributnya nanti akan di update. Cek contoh berikut ini.
 
 ```js
 const aurora = {
@@ -174,10 +174,10 @@ const aurora = {
 
 console.log(`${aurora.name} has ${aurora.health} health points and ${aurora.strength} as strength`);
 
-// Aurora is harmed by an arrow
+// Aurora dilukai oleh sebuah panah
 aurora.health -= 20;
 
-// Aurora equips a strength necklace
+// Aurora memakai kalung penguat
 aurora.strength += 10;
 
 console.log(`${aurora.name} has ${aurora.health} health points and ${aurora.strength} as strength`);
@@ -185,13 +185,13 @@ console.log(`${aurora.name} has ${aurora.health} health points and ${aurora.stre
 
 ![Execution result](images/chapter06-05.png)
 
-### Introducing methods
+### Pengenalan method
 
-In the above code, we had to write lengthy `console.log` statements each time to show our character state. There's a cleaner way to accomplish this.
+Di kode di atas, kita harus menulis pernyataan panjang `console.log` setiap kali menampilkan status karakter kita. Ada cara yang lebih rapih untuk menampilkan status ini.
 
-#### Adding a method to an object
+#### Menambah method ke sebuah objek
 
-Observe the following example.
+Perhatikan contoh berikut.
 
 ```js
 const aurora = {
@@ -200,7 +200,7 @@ const aurora = {
   strength: 25
 };
 
-// Return the character description
+// Menampilkan deskripsi karakter
 function describe(character) {
   return `${character.name} has ${character.health} health points and ${character.strength} as strength`;
 }
@@ -210,9 +210,9 @@ console.log(describe(aurora));
 
 ![Execution result](images/chapter06-07.png)
 
-The `describe()` function takes an object as a parameter. It accesses that object's properties to create a description string.
+Fungsi `describe()` menempatkan objek sebagai parameter. Fungsi ini mengakses properti objek tersebut untuk membuat string deskripsi.
 
-Below is an alternative approach, using a `describe()` property *inside* the object.
+Berikut ini alternatif lainnya, menggunakan properti `describe()` *di dalam* objek.
 
 ```js
 const aurora = {
@@ -220,7 +220,7 @@ const aurora = {
   health: 150,
   strength: 25,
 
-  // Return the character description
+  // Menampilkan deskripsi karakter
   describe() {
     return `${this.name} has ${this.health} health points and ${this
       .strength} as strength`;
@@ -232,31 +232,31 @@ console.log(aurora.describe());
 
 ![Execution result](images/chapter06-07.png)
 
-Now our object has a new property available to it: `describe()`. The value of this property is a function that returns a textual description of the object. The execution result is exactly the same as before.
+Sekarang objek kita punya properti baru yang tersedia: `describe()`. Nilai properti ini adalah fungsi yang mengembalikan deskripsi teks dari objek. Hasil eksekusi sama persis dengan yang sebelumnya.
 
-An object property whose value is a function is called a **method**. Methods are used to define **actions** for an object. A method adds some **behavior** to an object.
+Objek properti yang nilainya adalah fungsi dinamakan **method**. Method digunakan untuk mendefinisikan  **aksi** dari sebuah objek. Method menambakan beberapa **perilaku** kepada objek. 
 
-#### Calling a method on an object
+#### Memanggil method pada objek
 
-Let's look at the last line of our previous example.
+Mari lihat baris terakhir pada contoh sebelumnya.
 
 ```js
 console.log(aurora.describe());
 ```
 
-To show the character description, we use the `aurora.describe()` expression instead of `describe(aurora)`. It makes a *crucial* difference:
+Untuk menampilkan deskripsi karakter, kita menggunakan ekspresi `aurora.describe()` dibandingkan `describe(aurora)`. Hal ini merupakan satu perbedaan yang *krusial*:
 
-* `describe(aurora)` calls the `describe()` function with the `aurora` object as an argument. The function is external to the object. This is an example of procedural programming.
+* `describe(aurora)` memanggil fungsi `describe()` dengan objek `aurora` sebagai argumen. Fungsi ini adalah eksternal terhadap objek. Ini adalah contoh dari pemrograman prosedural.
 
-* `aurora.describe()` calls the `describe()` function on the `aurora` object. The function is one of the object's properties: it is a method. This is an example of object-oriented programming.
+* `aurora.describe()` memanggil fungsi `describe()` pada objek `aurora`. Fungsi ini adalah salah satu properti objek: method. Ini aadlah contoh dari pemrograman berorientasi objek.
 
-To call a method named `myMethod()` on an object `myObject`, the syntax is `myObject.myMethod()`.
+Untuk memanggil method bernama `myMethod()` pada objek `myObject`, sintaksnya adalah `myObject.myMethod()`.
 
-W> Remember the parentheses, even if empty, when calling a method!
+> Ingat tanda kurung, walaupun kosong, ketika memanggil method!
 
-### The `this` keyword
+### Kata kunci `this` 
 
-Now look closely at the body of the `describe()` method on our object.
+Sekarang perhtaikan baik-baik body dari method `describe()` pada objek kita.
 
 ```js
 const aurora = {
@@ -264,7 +264,7 @@ const aurora = {
   health: 150,
   strength: 25,
 
-  // Return the character description
+  // Menampilkan deskripsi karakter 
   describe() {
     return `${this.name} has ${this.health} health points and ${this
       .strength} as strength`;
@@ -272,34 +272,34 @@ const aurora = {
 };
 ```
 
-You see a new keyword: `this`. This is automatically set by JavaScript inside a method and represents **the object on which the method was called**.
+Kamu lihat kata kunci baru: `this`. Kata kunci ini diset secara otomatis oleh JavaScript di dalam method dan merepresentasikan **objek di mana method dipanggil**.
 
-The `describe()` method doesn't take any parameters. It uses `this` to access the properties of the object on which it is called.
+Method `describe()` tidak mengambil parameter apapun. Method ini menggunakan `this` untuk mengakses properti objek di mana objek dipanggil.
 
-## JavaScript predefined objects
+## Objek predefined JavaScript 
 
-The JavaScript language has many predefined objects serving various purposes. We have already encountered some of them:
+Bahasa JavaScript memiliki banyak objek predefine yang dapat digunakan untuk berbagai tujuan. Kita sudah kenal beberapa di antaranya:
 
-* The `console` object gives access to the environment console. `console.log()` is actually a method call.
+* Objek `console` memberikan akses ke environment console. `console.log()` sebenarnya adalah panggilan method.
 
-* The `Math` object contains many mathematical properties. For example, `Math.PI` returns an approximate value of the number π (Pi) and the `Math.random()` function returns a random number between 0 and 1.
+* Objek `Math` mengandung banyak properti tentang matematika. Contohnya, `Math.PI` mengembalikan nilai perkiraan dari π (Pi) dan fungsi `Math.random()` mengembalikan nilai acak antara 0 dan 1.
 
-## Coding time!
+## Waktu koding!
 
-### Adding character experience
+### Menambah experience (pengalaman) karakter
 
-Improve our example RPG program to add an experience property named `xp` to the character. Its initial value is 0. Experience must appear in character description.
+Perbaharui program RPG kita sehingga ada penambahan properti experience bernama `xp` pada karakter. Nilai awalnya adalah 0. Experience harus muncul di deskripsi karakter.
 
 ```js
-// TODO: create the character object here
+// TODO: Buat objek karakter di sini
 
-// Aurora is harmed by an arrow
+// Aurora terluka oleh panah
 aurora.health -= 20;
 
-// Aurora equips a strength necklace
+// Aurora memakai kaluing penguat
 aurora.strength += 10;
 
-// Aurora learn a new skill
+// Aurora belajar keterampilan (skill) baru
 aurora.xp += 15;
 
 console.log(aurora.describe());
@@ -307,12 +307,12 @@ console.log(aurora.describe());
 
 ![Execution result](images/chapter06-08.png)
 
-### Modeling a dog
+### Memodelkan seekor dog (anjing)
 
-Complete the following program to add the `dog` object definition.
+Lengkapi program berikut untuk menambah definisi objek `dog`.
 
 ```js
-// TODO: create the dog object here
+// TODO: Buat objek dog di sini
 
 console.log(`${dog.name} is a ${dog.species} dog measuring ${dog.size}`);
 console.log(`Look, a cat! ${dog.name} barks: ${dog.bark()}`);
@@ -320,28 +320,28 @@ console.log(`Look, a cat! ${dog.name} barks: ${dog.bark()}`);
 
 ![Execution result](images/chapter06-09.png)
 
-### Modeling a circle
+### Memodelkan sebuah lingkaran
 
-Complete the following program to add the `circle` object definition. Its radius value is input by the user.
+Lengkapi program berikut untuk menambah definisi objek `circle`. Nilai jari-jarinya didapat dari inputan pengguna.  
 
 ```js
-const r = Number(prompt("Enter the circle radius:"));
+const r = Number(prompt("Masukkan jari-jari lingkaran"));
 
-// TODO: create the circle object here
+// TODO: Buat objek circle di sini
 
-console.log(`Its circumference is ${circle.circumference()}`);
-console.log(`Its area is ${circle.area()}`);
+console.log(`Kelilingnya adalah ${circle.circumference()}`);
+console.log(`Luasnya adalah ${circle.area()}`);
 ```
 
-### Modeling a bank account
+### Memodelkan akun bank
 
-Write a program that creates an `account` object with the following characteristics:
+Tulis program dengan membuat objek `account` yang memiliki karakteristik sebagai berikut:
 
-* A `name` property set to "Alex".
-* A `balance` property set to 0.
-* A `credit` method adding the (positive or negative) value passed as an argument to the account balance.
-* A `describe` method returning the account description.
+* Properti `name` diset ke "Alex".
+* Properti `balance` diset ke nilai 0.
+* Method `credit` yang menambahkan nilai (positif atau negatif) digunakan sebagai argumen ke account balance.
+* Method `describe` yang menampilkan deskripsi akun.
 
-Use this object to show its description, crediting 250, debiting 80, then show its description again.
+Gunakan objek ini untuk menampilkan deskripsi, credit 250, debit 80, lalu tampilkan deskripsinya lagi.
 
 ![Execution result](images/chapter06-10.png)
