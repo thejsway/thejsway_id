@@ -1,6 +1,6 @@
 # Buat objek pertama Kamu
 
-Di bab ini akan dibahas tentang object dan bagaimana cara membuat dan menggunakannya di JavaScript.
+Di bab ini akan dibahas tentang objek dan bagaimana cara membuat dan menggunakannya di JavaScript.
 
 ## TL;DR
 
@@ -24,7 +24,7 @@ const myObject = {
   // ...
 };
 
-myObject.property1 = newValue; // Mengset nilai baru dari property1 untuk myObject
+myObject.property1 = newValue; // Mengeset nilai baru dari property1 untuk myObject
 console.log(myObject.property1); // Menampilkan nilai dari property1 untuk myObject
 myObject.method1(...);           // Memanggil method1 pada myObject
 ```
@@ -210,7 +210,7 @@ console.log(describe(aurora));
 
 ![Execution result](images/chapter06-07.png)
 
-Fungsi `describe()` menempatkan objek sebagai parameter. Fungsi ini mengakses properti objek tersebut untuk membuat string deskripsi.
+Fungsi `describe()` menempatkan objek sebagai parameter. Fungsi ini mengakses properti objek tersebut untuk membuat deskripsi string.
 
 Berikut ini alternatif lainnya, menggunakan properti `describe()` *di dalam* objek.
 
@@ -248,7 +248,7 @@ Untuk menampilkan deskripsi karakter, kita menggunakan ekspresi `aurora.describe
 
 * `describe(aurora)` memanggil fungsi `describe()` dengan objek `aurora` sebagai argumen. Fungsi ini adalah eksternal terhadap objek. Ini adalah contoh dari pemrograman prosedural.
 
-* `aurora.describe()` memanggil fungsi `describe()` pada objek `aurora`. Fungsi ini adalah salah satu properti objek: method. Ini aadlah contoh dari pemrograman berorientasi objek.
+* `aurora.describe()` memanggil fungsi `describe()` pada objek `aurora`. Fungsi ini adalah salah satu properti objek: method. Ini adalah contoh dari pemrograman berorientasi objek.
 
 Untuk memanggil method bernama `myMethod()` pada objek `myObject`, sintaksnya adalah `myObject.myMethod()`.
 

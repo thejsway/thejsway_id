@@ -1,40 +1,40 @@
-# Store data in arrays
+# Simpan data di array
 
-This chapter will introduce you to [arrays]( https://en.wikipedia.org/wiki/Array_data_type ), a type of variable used in many computer programs to store data.
+Bab ini akan mengenalkan Kamu ke [array]( https://en.wikipedia.org/wiki/Array_data_type ), satu tipe variabel yang banyak digunakan program komputer untuk menyimpan data. 
 
 ## TL;DR
 
-* An **array** represents a list of elements. A JavaScript array is an object that has special properties, like `length` to access its size (number of elements).
+* **Array** merepresentasikan sekumpulan daftar elemen. Array JavaScript adalah objek yang memiliki properti spesial, seperti `length` untuk mengakses ukuran array (jumlah elemen).
 
-* You can think of an array as a set of boxes, each storing a specific value and associated with a number called its **index**. The first element of an array will be index number 0 - not 1.
+* Kamu bisa bayangkan array sebagai sejumlah kotak. Setiap kotak menyimpan nilai spesifik dan berkaitan dengan angka yang dinamakan **index**. Elemen pertama dari array adalah 0, bukan 1.
 
-* You can access a particular element by passing its index within **square brackets** `[]`.
+* Kamu bisa mengakses elemen tertentu dengan menempatkan index di dalam tanda **kurung siku** `[]`.
 
-* To iterate over an array (browsing it element by element), you can use the `for` loop, the `forEach()` method or the newer `for-of` loop.
+* Untuk meng-iterasi array (mengecek setiap elemen), Kamu bisa gunakan loop `for`, metodh `forEach()` atau loop baru `for-of`.
 
 ```js
 for (let i = 0; i < myArray.length; i++) {
-  // Use myArray[i] to access each array element one by one
+  // Gunakan  myArray[i] untuk mengakses setiap elemen array satu demi satu 
 }
 
 myArray.forEach(myElement => {
-  // Use myElement to access each array element one by one
+  // Gunakan  myArray[i] untuk mengakses setiap elemen array satu demi satu 
 });
 
 for (const myElement of myArray) {
-  // Use myElement to access each array element one by one
+  // Gunakan  myArray[i] untuk mengakses setiap elemen array satu demi satu 
 }
 ```
 
-* The `push()` method adds an element at the end of an array. The `unshift()` method adds it at the beginning.
+* Method `push()` menambahkan satu elemen di akhir array. Method `unshift()` menambahkan satu elemen di awal.
 
-* The `pop()` and `splice()` are used to remove elements from the array.
+* `pop()` dan `splice()` digunakan untuk menghapus dari array.
 
-## Introduction to arrays
+## Pengenalan array
 
-Imagine you want to create a list of all the movies you've seen this year.
+Bayangkan Kamu ingin membuat daftar semua film yang Kamu tonton di tahun ini.
 
-One solution would be to create several variables:
+Satu solusinya adalah dengan membuat beberapa variabel:
 
 ```js
 const movie1 = "The Wolf of Wall Street";
@@ -43,9 +43,9 @@ const movie3 = "Babysitting";
 // ...
 ```
 
-If you're a movie buff, you may find yourself with too many variables in your program. The worst part is that these variables are completely independent from one another.
+Kalau Kamu maniak film, Kamu akan mendapati banyak variabel di program Kamu. Lebih parahnya lagi adalah variabel ini independen satu dengan yang lainnya.
 
-Another possibility is to group the movies in an object.
+Kemungkinan lainnya adalah dengan mengelompokkan film di satu objek.
 
 ```js
 const movies = {
@@ -56,61 +56,61 @@ const movies = {
 };
 ```
 
-This time, the data is centralized in the object `movies`. The names of its properties (`movie1`, `movie2`, `movie3`...) are, however, unnecessary and repetitive.
+Kali ini, data dipusatkan di objek `movies`. Nama propertinya (`movie1`, `movie2`, `movie3`...) sebenarnya tidak perlu dan repetitif.
 
-You need a solution to store items together without naming them individually!
+Kamu perlu satu solusi untuk menyimpan data secara bersamaan tanpa menamainya satu per satu!
 
-Luckily, there is indeed a solution: use an array. An **array** is a data type that can store a set of elements.
+Untungnya, ada solusi: menggunakan array. **Array** adalah tipe data yang bisa menyimpan satu set elemen.
 
-## Manipulating arrays in JavaScript
+## Memanipulasi array di JavaScript
 
-In JavaScript, an array is an object that has special properties.
+Di JavaScript, array adalah objek yang memiliki properti spesial.
 
-### Creating an array
+### Membuat array
 
-Here's how to create our list of movies in the form of an array.
+Begini cara membuat daftar film kita dalam bentuk array.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
 ```
 
-An array is created with a pair of square brackets `[]`. Everything within the brackets makes up the array.
+Array dibuat dengan sepasang tanda kurung siku `[]`. Apapun yang ada di dalam tanda kurung siku adalah array.
 
-You can store different types of elements within an array, including strings, numbers, booleans and even objects.
+Kamu bisa menyimpan tipe elemen yang berbeda di dalam array, termasuk string, angka, boolean, dan bahkan objek.
 
 ```js
 const elements = ["Hello", 7, { message: "Hi mom" }, true];
 ```
 
-T> Since an array may contain multiple elements, it's good to name the array plurally (for example, `movies`).
+> Karena array mungkin mengandung bermacam elemen, alangkah baiknya jika menamai array dengan kata jamak (seperti, `movies`).
 
-### Obtaining an array's size
+### Mendapatkan ukuran array
 
-The number of elements stored in an array is called its **size**. Here's how to access it.
+Jumlah elemen tersimpan di array dinamakan **ukuran**. Berikut bagaimana cara mengaksesnya.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
 console.log(movies.length); // 3
 ```
 
-You access the size of an array via its `length` property, using the dot notation.
+Kamu mengakses ukuran array melalui properti `length`, menggunakan notasi titik.
 
-Of course, this `length` property returns 0 in case of an empty array.
+Tentu saja, properti `length` ini mengembalikan 0 jika array-nya kosong.
 
 ```js
-const emptyArray = []; // Create an empty array
+const emptyArray = []; // Membuat array kosong
 console.log(emptyArray.length); // 0
 ```
 
-### Access an element in an array
+### Akses satu elemen array
 
-Each item in an array is identified by a number called its **index** - an integer pointer that identifies an element of the array. We can think of an array as a set of boxes, each storing a specific value and associated with an index. Here's the trick: the first element of an array will be index number 0 - not 1. The second element will be index number 1, and so on. The index of the last array element would be the array's size minus 1.
+Setiap isi di dalam array diidentifikasi dengan angka yang dinamakan **index** - pointer integer yang mengidentifikasi satu elemen di dalam array. Kita bisa bayangkan array sebagai satu set kotak. Setiap kotak menyimpan nilai spesifik dan berkaitan dengan index. Begini triknya: elemen pertama dari array adalah index nomor 0 - bukan 1. Elemen kedua berindex nomor 1, dan seterusnya. Index dari elemen terakhir adalah ukuran array dikurangi 1.
 
-Here is how you might represent the `movies` array:
+Berikut cara bagaimana Kamu merepresentasikan array `movies`:
 
 ![Movies array representation](images/chapter07-01.png)
 
-You can access a particular element by passing its index within **square brackets** `[]`:
+Kamu bisa mengakses elemen tertentu dengan menempatkan index di dalam tanda **kurug siku** `[]`:
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
@@ -119,18 +119,18 @@ console.log(movies[1]); // "Zootopia"
 console.log(movies[2]); // "Babysitting"
 ```
 
-Using an invalid index to access a JavaScript array element returns the value `undefined`.
+Menggunakan index yang tidak valid untuk mengakses array JavaScript akan mengembalikan nilai `undefined`.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
-console.log(movies[3]); // undefined: last element is at index 2
+console.log(movies[3]); // undefined: elemen terakhir berada di index 2
 ```
 
-## Iterating over an array
+## Iterasi array
 
-There are several ways to browse an array element by element.
+Ada beberapa cara untuk menjelajahi array elemen demi elemen.
 
-The first is to use a `for` loop as discussed previously.
+Yang pertama adalah dengan menggunakan loop `for` seperti yang sudah dibahas sebelumnya.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
@@ -139,17 +139,17 @@ for (let i = 0; i < movies.length; i++) {
 }
 ```
 
-The `for` loop runs through each element in the array starting with index 0 all the way up to the length of the array minus 1, which is its last element.
+Loop `for` menjelajahi setiap elemen di array dimulai dari index 0 sampai dengan ukuran atau panjang array dikurangi 1, yang merupakan elemen terakhir.
 
-Another way is to call the `forEach()` method on the array. It takes as a parameter a **function** that will be applied to each array element.
+Cara lainnya adalah dengan memanggil method `forEach()` pada array. Method ini mengambil parameter sebagai **fungsi** yang akan dijalankan di setiap elemen array.
 
 ```js
 myArray.forEach(myElement => {
-  // Use myElement to access each array element one by one
+  // Menggunakan myElement untuk mengakses setiap elemen satu demi satu
 });
 ```
 
-Here's the previous example, rewritten with this method and a fat arrow function.
+Berikut contoh sebelumnya, ditulis ulang dengan menggunakan metode ini dan fungsi panah gemuk.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
@@ -158,17 +158,17 @@ movies.forEach(movie => {
 });
 ```
 
-During execution, each array element is passed as a parameter (named `movie` in this example) to the anonymous function associated to `forEach()`.
+Saat eksekusi, setiap elemen array dijadikan sebagai parameter (dinamakan `movie` di contoh ini) ke fungsi anonim yang berkaitan dengan `forEach()`.
 
-Lastly, you can use the `for-of` loop, a special kind of loop dealing with [iterable objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#iterable) like arrays. Here is its syntax.
+Terakhir, Kamu bisa gunakan loop `for-of` loop, satu jenis loop spesial untuk menangani [objek yang dapat di-iterasi](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#iterable) seperti array. Berikut ini sintaksnya.
 
 ```js
 for (const myElement of myArray) {
-  // Use myElement to access each array element one by one
+  // Menggunakan myElement untuk mengakses setiap elemen satu demi satu
 }
 ```
 
-Check out the previous example written with a `for-of` loop.
+Lihat contoh sebelumnya yang ditulis dengan loop `for-of`.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
@@ -177,11 +177,11 @@ for (const movie of movies) {
 }
 ```
 
-## Updating an array's content
+## Update konten array 
 
-### Adding an element to an array
+### Menambah elemen pada array
 
-Don't lie to me: you've just watched Ghostbusters *yet another time*. Let's add it to the list. Here's how you'd do so.
+Jangan bohongi saya: Kamu baru saja nonton Ghostbusters. Mari kita tambah dalam daftar. Berikut caranya.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
@@ -189,9 +189,9 @@ movies.push("Ghostbusters");
 console.log(movies[3]); // "Ghostbusters"
 ```
 
-You add a new item to an array with the `push()` method. The new element to be added is passed as a parameter to the method. It is inserted at the end of the array.
+Kamu menambah *item* baru ke array dengan method `push()`. Elemen baru ini dilalui sebagai parameter pada method dan disisipkan di akhir array.
 
-To add an element at the beginning of an array, use the `unshift()` method instead of `push()`.
+Untuk menambah elemen di awal array, gunakan method `unshift()` dibandingkan `push()`.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
@@ -199,9 +199,9 @@ movies.unshift("Pacific Rim");
 console.log(movies[0]); // "Pacific Rim"
 ```
 
-### Removing an element from an array
+### Menghapus elemen dari array
 
-You can remove the last element of an array using the `pop()` method.
+Kamu bisa menghapus elemen terakhir dari array menggunakan method `pop()`.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
@@ -210,47 +210,47 @@ console.log(movies.length); // 2
 console.log(movies[2]); // undefined
 ```
 
-Alternatively, you can use the `splice()` method with two parameters: the first one is the index from which to begin removing, and the second one is the number of elements to remove.
+Alternatif lainnya, Kamu bisa gunakan method `splice()` dengan dua parameter: yang pertama adalah nomor index awal dan yang kedua jumlah elemen yang akah dihapus.
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
-movies.splice(0, 1); // Remove 1 element starting at index 0
+movies.splice(0, 1); // Menghapus 1 elemen dimulai dari 0
 console.log(movies.length); // 2
 console.log(movies[0]); // "Zootopia"
 console.log(movies[1]); // "Babysitting"
 ```
 
-## Coding time!
+## Waktu koding!
 
-Create all these programs in a generic fashion: the program output should reflect any update in the array's content.
+Buat program ini secara generik: ouput pogram harus merefleksikan semua update di konten array.
 
 ### Musketeers
 
-Write a program that:
+Tulis program sebagai berikut:
 
-* Creates an array named `musketeers` containing values "Athos", "Porthos" and "Aramis".
-* Shows each array element using a `for` loop.
-* Adds the "D'Artagnan" value to the array.
-* Shows each array element using the `forEach()` method.
-* Remove poor Aramis.
-* Shows each array element using a `for-of` loop.
+* Buat satu array bernama `musketeers` dengan nilai "Athos", "Porthos" dan "Aramis".
+* Tampilkan setiap elemen array menggunakan loop`for`.
+* Tambah nilai "D'Artagnan" ke array.
+* Tampilkan setiap elemen array mengunakan method `forEach()`.
+* Hapus Aramis.
+* Tampilkan setiap elemen array menggunakan loop `for-of`.
 
-### Sum of values
+### Penjumlahan nilai
 
-Write a program that creates the following array, then calculates and shows the sum of its values (42 in that case).
-
-```js
-const values = [3, 11, 7, 2, 9, 10];
-```
-
-### Array maximum
-
-Write a program that creates the following array, then calculates and shows the array's maximum value.
+Tulis satu program yang membuat array berikut, lalu hitung dan tampilkan jumlah dari semua nilainya (42 di sini).
 
 ```js
 const values = [3, 11, 7, 2, 9, 10];
 ```
 
-### List of words
+### Maksimum array 
 
-Write a program that asks the user for a word until the user types `"stop"`. The program then shows each of these words, except `"stop"`.
+Tulis satu program yang membuat array berikut, lalu hitung dan tampilkan nilai maksimumnya.
+
+```js
+const values = [3, 11, 7, 2, 9, 10];
+```
+
+### Daftar kata
+
+Tulis program yang meminta pengguna untuk memasukkan satu kata, yang berhenti meminta sampai dengan pengguna mengetikkan `"stop"`. Program lalu menampilkan semua kata, kecuali `"stop"`.
