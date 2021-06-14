@@ -48,7 +48,7 @@ Terima kasih sebelumnya atas semua dukungan Kamu!
   * [Buat object pertama Kamu](manuscript/chapter06.md)
   * [Simpan data di array](manuscript/chapter07.md)
   * [Bekerja dengan string](manuscript/chapter08.md)
-  * [Mengerti pemrograman object-oriented](manuscript/chapter09.md)
+  * [Memahami pemrograman object-oriented](manuscript/chapter09.md)
   * [Temukan pemrograman functional](manuscript/chapter10.md)
   * [Proyek: program berita sosial](manuscript/chapter11.md)
 * Bagian II: Buat halaman web interaktif 

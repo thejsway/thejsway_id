@@ -110,7 +110,7 @@ Berikut cara bagaimana Kamu merepresentasikan array `movies`:
 
 ![Movies array representation](images/chapter07-01.png)
 
-Kamu bisa mengakses elemen tertentu dengan menempatkan index di dalam tanda **kurug siku** `[]`:
+Kamu bisa mengakses elemen tertentu dengan menempatkan index di dalam tanda **kurung siku** `[]`:
 
 ```js
 const movies = ["The Wolf of Wall Street", "Zootopia", "Babysitting"];
