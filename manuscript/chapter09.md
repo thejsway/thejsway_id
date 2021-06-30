@@ -1,14 +1,14 @@
-# Understand object-oriented programming
+# Memahami pemrograman object-oriented 
 
-A few chapters ago, you learned how to create your first objects in JavaScript. Now it's time to better understand how to work with them.
+Pada bab sebelumnya, Kamu belajar bagaimana cara membuat objek pertama Kamu di JavaScript. Sekarang waktunya untuk lebih memahami cara menggunakannya.
 
 ## TL;DR
 
-* **Object-Oriented Programming**, or OOP, is a [programming paradigm](https://en.wikipedia.org/wiki/Programming_paradigm) that uses objects containing both **data** and **behavior** to create programs.
+* **Pemrograman object-Oriented** (Object Oriented Programming), atau OOP, adalah [paradigma pemrograman](https://en.wikipedia.org/wiki/Programming_paradigm) yang menggunakan objek, mengandung **data** dan **perilaku** untuk membuat program.
 
-* A **class** is an object-oriented abstraction for an idea or a concept manipulated by a program. It offers a convenient syntax to create objects representing this concept.
+* **class** adalah abstraksi object-oriented untuk ide atau konsep yang dimanipluasi oleh program. Class menawarkan kemudahan sintaks untuk membuat objek yang merepresentasikan konsep ini.
 
-* A JavaScript class is defined with the `class` keyword. It can only contain **methods**. The `constructor()` method, called during object creation, is used to initialize the object, often by giving it some data properties. Inside methods, the `this` keyword represents **the object on which the method was called**.
+* Class JavaScript didefinisikan dengan kata kunci `class`. Di dalamnya terdapat **methods**. Method `constructor()`, dipanggil saat pembuatan objek, digunakan untuk meng-inisialisasi objek, seringnya dengan memberikan data properti. Di dalam method, the kata kunci `this` merepresentasikan **objek di mana method dipanggil**.
 
 ```js
 class MyClass {
@@ -27,29 +27,29 @@ class MyClass {
 }
 ```
 
-* Objects are created from a class with the `new` operator. It calls the class constructor to initialize the newly created object.
+* Objek dibuat dari class dengan operator `new`. Operator ini memanggil constructor class untuk meng-inisialisasi objek yang baru dibuat.
 
 ```js
 const myObject = new MyClass(arg1, arg2, ...);
 // ...
 ```
 
-* JavaScript's OOP model is based on **prototypes**. Any JavaScript object has an internal property which is a link (a **reference**) to another object: its prototype. Prototypes are used to share properties and delegate behavior between objects.
+* Model OOP JavaScript berdasarkan **prototype**. Semua objek JavaScript memiliki properti internal yang merupakan kaitan (**referensi**) ke objek lainnya: prototype objek tersebut. Prototype digunakan untuk membagi properti dan mendelegasikan perilaku antar objek.
 
-* When trying to access a property that does not exist in an object, JavaScript tries to find this property in the **prototype chain** of this object by first searching its prototype, then its prototype's own prototype, and so on.
+* Ketika mencoba mengakses properti yang tidak ada di sebuah objek, JavaScript mencoba untuk mencari properti ini di **rantai prototype** dari objek ini dengan cara pertama-tama mencari prototype objek ini, lalu protoype objek dari prototype-nya itu sendiri, dan seterusnya. 
 
-* There are several ways to create and link JavaScript objects through prototypes. One is to use the `Object.create()` method.
+* Ada beberapa cara untuk membuat dan menghubungkan objek JavaScript melalui prototype. Salah satunya dengan menggunakan method `Object.create()`.
 
 ```js
-// Create an object linked to myPrototypeObject
+// Membuat sebuah objek terhubung ke myPrototypeObject
 const myObject = Object.create(myPrototypeObject);
 ```
 
-* The JavaScript `class` syntax is another, arguably more convenient way to create relationships between objects. It emulates the class-based OOP model found in languages like C++, Java or C#. It is, however, just **syntactic sugar** on top of JavaScript's own prototype-based OOP model.
+* Sintaks JavaScript `class` adalah cara lainnya, bisa dibilang cara lebih mudah untuk membuat hubungan antar objek. Cara ini meniru model OOP berbasis class yang berada di pemrograman lainnya seperti C++, Java atau C#. Namun, hal ini hanyalah **syntactic sugar** yang ditambahkan pada model OOP berbasis prototype pada JavaScript.
 
-## Context: a multiplayer RPG
+## Konteks: multiplayer RPG
 
-As a reminder, here's the code for our minimalist RPG taken from a previous chapter. It creates an object literal named `aurora` with four properties (`name`, `health`, `strength` and `xp`) and a `describe()` method.
+Sebagai pengingat, berikut adalah kode minimalis RPG kita yang diambil dari bab sebelumnya. Kita membuat objek literal bernama `aurora` dengan empat properti (`name`, `health`, `strength` dan `xp`) dan sebuah  method `describe()`.
 
 ```js
 const aurora = {
@@ -58,26 +58,26 @@ const aurora = {
   strength: 25,
   xp: 0,
 
-  // Return the character description
+  // Mengembalikan deskripsi karakter 
   describe() {
     return `${this.name} has ${this.health} health points, ${this
       .strength} as strength and ${this.xp} XP points`;
   }
 };
 
-// Aurora is harmed by an arrow
+// Aurora terluka oleh panah
 aurora.health -= 20;
 
-// Aurora gains a strength necklace
+// Aurora mendapatkan kekuatan dari kalungnya
 aurora.strength += 10;
 
-// Aurora learns a new skill
+// Aurora mempelajari keterampilan baru
 aurora.xp += 15;
 
 console.log(aurora.describe());
 ```
 
-To make the game more interesting, we'd like to have more characters in it. So here comes Glacius, Aurora's fellow.
+Untuk membuat permainan menjadi lebih menarik, kita akan menambahkan karakter baru. Sambutlah Glacius, teman Aurora.
 
 ```js
 const glacius = {
@@ -86,7 +86,7 @@ const glacius = {
   strength: 30,
   xp: 0,
 
-  // Return the character description
+  // Mengembalikan deskripsi karakter 
   describe() {
     return `${this.name} has ${this.health} health points, ${this
       .strength} as strength and ${this.xp} XP points`;
@@ -94,19 +94,19 @@ const glacius = {
 };
 ```
 
-Our two characters are strikingly similar. They share the same properties, with the only difference being some property values.
+Kedua karakter kita sangatlah mirip. Mereka memiliki properti yang sama, dengan perbedaan nilai propertinya.
 
-You should already be aware that code duplication is dangerous and should generally be avoided. We must find a way to share what's common to our characters.
+Kamu harusnya sudah tahu betul bahwa duplikasi kode adalah hal berbahaya dan harus dihindari. Kita harus cari cara untuk mengetahui apa saja persamaan karakter kita.
 
-## JavaScript classes
+## Class JavaScript 
 
-Most object-oriented languages use classes as **abstractions** for the ideas or concepts manipulated by a program. A **class** is used to create objects representing a concept. It offers a convenient syntax to give both **data** and **behavior** to these objects.
+Kebanyakan bahasa object-oriented menggunakan class sebagai **abstraksi** untuk ide atau konsep yang dimanipulasi oleh program. **class** digunakan untuk membuat objek yang merepresentasikan konsep. Hal ini menawarkan kemudahan sintaks untuk menempelkan **data** dan **perilaku** pada objek ini.
 
-JavaScript is no exception and supports programming with classes (but with a twist -- more on that later).
+JavaScript bukan pengecualian dan mendukung pemrograman dengan class (tetapi ada twist-nya -- kita bahas nanti).
 
-### Creating a class
+### Membuat class
 
-Our example RPG deals with characters, so let's create a `Character` class to express what a character is.
+Contoh RPG kita terpusat pada karakter, mari kita buat satu class `Character` untuk mengekspresikan seperti apa karakternya.
 
 ```js
 class Character {
@@ -114,9 +114,9 @@ class Character {
     this.name = name;
     this.health = health;
     this.strength = strength;
-    this.xp = 0; // XP is always zero for new characters
+    this.xp = 0; // XP selalu nol untuk karakter baru
   }
-  // Return the character description
+  // Mengembalikan deskripsi karakter
   describe() {
     return `${this.name} has ${this.health} health points, ${this
       .strength} as strength and ${this.xp} XP points`;
@@ -124,29 +124,29 @@ class Character {
 }
 ```
 
-This example demonstrates several key facts about JavaScript classes:
+Contoh ini mendemonstrasikan beberapa fakta kunci tentang class JavaScript:
 
-* A class is created with the `class` keyword, followed by the name of the class (usually starting with an uppercase letter).
-* Contrary to object literals, there is no separating punctuation between the elements inside a class.
-* A class can only contain **methods**, not data properties.
-* Just like with object literals, the `this` keyword is automatically set by JavaScript inside a method and represents **the object on which the method was called**.
-* A special method named `constructor()` can be added to a class definition. It is called during object creation and is often used to give it data properties.
+* Sebuah class dibuat dengan kata kunci `class`, diikuti oleh namanya (biasanya dimulai dengan huruf kapital).
+* Kebalikan dari objek literal, tidak ada tanda baca pemisah antar elemen di dalam class.
+* Sebuah class hanya bisa memiliki **method**, dan tidak memiliki properti data. 
+* Seperti halnya objek literal, kata kunci `this` di-set secara otomatis oleh JavaScript di dalam method dan merepresentasikan **objek di mana method dipanggil**.
+* Method spesial dinamakan `constructor()` bisa ditambahkan ke definisi class. Method ini dipanggil saat pembuatan objek dan sering digunakan untuk menempelkan properti data. 
 
-### Using a class
+### Menggunakan class
 
-Once a class is defined, you can use it to create objects. Check out the rest of the program.
+Saat class didefinisikan, Kamu bisa menggunakannya untuk membuat objek. Cek program selanjutnya.
 
 ```js
 const aurora = new Character("Aurora", 150, 25);
 const glacius = new Character("Glacius", 130, 30);
 
-// Aurora is harmed by an arrow
+// Aurora terluka oleh panah
 aurora.health -= 20;
 
-// Aurora gains a strength necklace
+// Aurora mendaptkan kalung penguat
 aurora.strength += 10;
 
-// Aurora learns a new skill
+// Aurora mempelajari skill baru
 aurora.xp += 15;
 
 console.log(aurora.describe());
@@ -155,9 +155,9 @@ console.log(glacius.describe());
 
 ![Execution result](images/chapter09-01.png)
 
-The `aurora` and `glacius` objects are created as characters with the `new` operator. This statement calls the class constructor to initialize the newly created object. After creation, an object has access to the properties defined inside the class.
+Objek `aurora` dan `glacius` dibuat sebagai karakter dengan operator `new`. Pernyataan ini memanggil class constructor untuk menginisialisasi objek yang baru dibuat. Setelah pembuatan, objek memiliki akses ke properti yang didefinisikan di dalam class.
 
-Here's the canonical syntax for creating an object using a class.
+Berikut sintaks resmi untuk membuat objek menggunakan class.
 
 ```js
 class MyClass {
@@ -180,77 +180,77 @@ myObject.method1(/* ... */);
 // ...
 ```
 
-## Under the hood: objects and prototypes
+## Di balik layar: objek dan prototype
 
-If you come from another programming background, chances are you already encountered classes and feel familiar with them. But as you'll soon discover, JavaScript classes are not quite like their C++, Java or C# counterparts.
+Jika Kamu memiliki pengetahuan di pemrograman yang lain, Kamu seharusnya sudah familiar dengan class. Tetapi, nanti Kamu akan mengetahui bahwa class JavaScript tidak seperti pemrograman C++, Java or C#.
 
-### JavaScript's object-oriented model
+### Model object-oriented JavaScript
 
-To create relationships between objects, JavaScript uses **prototypes**.
+Untuk membuat hubungan antar object, JavaScript menggunakan **prototype**.
 
-In addition to its own particular properties, any JavaScript object has an internal property which is a link (known as a **reference**) to another object called its **prototype**. When trying to access a property that does not exist in an object, JavaScript tries to find this property in the prototype of this object.
+Sebagai tambahan dari properti khususnya sendiri, objek JavaScript memiliki properti internal yang merupakan kaitan (dikenal sebagai **referensi**) ke objek lain yang dinamakan **prototype**. Ketika mencoba mengakses satu properti yang tidak ada di sebuah objek, JavaScript mencoba mencari properti ini pada prototype dari objek ini.
 
-Here's an example (borrowed from Kyle Simpson's great book series [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)).
+Berikut contohnya (diambil dari seri buku Simpson [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)).
 
 ```js
 const anObject = {
   myProp: 2
 };
 
-// Create anotherObject using anObject as a prototype
+// Membuat anotherObject menggunakan anObject sebagai prototype
 const anotherObject = Object.create(anObject);
 
 console.log(anotherObject.myProp); // 2
 ```
 
-In this example, the JavaScript statement `Object.create()` is used to create the object `anotherObject` with object `anObject` as its prototype.
+Di contoh ini, pernyataan JavaScript `Object.create()` digunakan untuk membuat objek `anotherObject` dengan objek `anObject` sebagai prototype-nya.
 
 ```js
-// Create an object linked to myPrototypeObject
+// Membuat sebuah objek yang terkait ke myPrototypeObject
 const myObject = Object.create(myPrototypeObject);
 ```
 
-When the statement `anotherObject.myProp` is run, the `myProp` property of `anObject` is used since `myProp` doesn't exist in `anotherObject`.
+Ketika pernyataan `anotherObject.myProp` dijalankan, properti `myProp` dari `anObject` digunakan karena `myProp` tidak ada di `anotherObject`.
 
-If the prototype of an object does not have a desired property, then the search continues in the object's own prototype until we get to the end of the **prototype chain**. If the end of this chain is reached without having found the property, an attempted access to the property returns the value `undefined`.
+Jika objek prototype tidak memiliki properti yang diinginkan, pencarian selanjutnya di dalam prototype objek itu sendiri sampai akhir **rantai prototype**. Jika di akhir rantai ini tercapai tanpa penemuan properti, percobaan akses ke properti mengembalikan nilai `undefined`.
 
 ```js
 const anObject = {
   myProp: 2
 };
 
-// Create anotherObject using anObject as a prototype
+// Membuat anotherObject menggunakan anObject sebagai prototype
 const anotherObject = Object.create(anObject);
 
-// Create yetAnotherObject using anotherObject as a prototype
+// Membuat yetAnotherObject menggunakan anotherObject sebagai prototype
 const yetAnotherObject = Object.create(anotherObject);
 
-// myProp is found in yetAnotherObject's prototype chain (in anObject)
+// myProp ditemukan di rantai prototype yetAnotherObject (di anObject)
 console.log(yetAnotherObject.myProp); // 2
 
-// myOtherProp can't be found in yetAnotherObject's prototype chain
+// myOtherProp tidak dapat ditemukan di rantai prototype yetAnotherObject 
 console.log(yetAnotherObject.myOtherProp); // undefined
 ```
 
-This type of relationship between JavaScript objects is called **delegation**: an object delegates part of its operation to its prototype.
+Tipe relasi antar objek JavaScript ini dinamakan **delegasi**: sebuah objek mendelegasikan bagian dari operasinya ke prototype-nya sendiri.
 
-### The true nature of JavaScript classes
+### Sifat sejati class JavaScript 
 
-In *class-based* object-oriented languages like C++, Java and C#, classes are static **blueprints** (templates). When an object is created, the methods and properties of the class are copied into a new entity, called an **instance**. After instantiation, the newly created object has no relation whatsoever with its class.
+Pada bahasa *class-based* object-oriented seperti C++, Java and C#, class adalah **blueprints** (templates) yang statis. Saat objek dibuat, method dan properti dari class disalin ke entitas baru, dinamakan **instance**. Setelah *instantiation*, objek yang baru saja dibuat tidak memiliki relasi apapun juga dengan class-nya.
 
-JavaScript's object-oriented model is based on prototypes, *not* classes, to share properties and delegate behavior between objects. In JavaScript, a class is itself an object, not a static blueprint. "Instantiating" a class creates a new object linked to a prototype object. Regarding classes behavior, the JavaScript language is quite different from C++, Java or C#, but close to other object-oriented languages like Python, Ruby and Smalltalk.
+Model object-oriented JavaScript berdasarkan prototype, *bukan* class, untuk membagi properti dan mendelegasikan perilaku antar objek. Di JavaScript, sebuah class adalah objek itu sendiri, bukan blueprint yang statis. "Instantiating" class membuat objek baru yang berkaitan ke objek prototype. Tentang perilaku class, bahasa JavaScript sangatlah berbeda dengan C++, Java atau C#, tetapi mirip dengan bahasa seperti Python, Ruby dan Smalltalk.
 
-The JavaScript `class` syntax is merely a more convenient way to create relationships between objects through prototypes. Classes were introduced to emulate the class-based OOP model on top of JavaScript's own prototype-based model. It's an example of what programmers call [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar).
+Sintaks `class` JavaScript hanyalah sebuah cara yang lebih mudah untuk membuat relasi antar objek melalui prototype. Class diintroduksi untuk menyerupai model class berbasis OOP di atas model berbasi prototype JavaScript. Ini merupakan contoh dari apa yang progammer sebut sebagai [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar).
 
-> The usefulness of the `class` syntax is a pretty heated debate in the JavaScript community.
+> Kegunaan sintaks `class` banyak diperdebatkan di komunitas JavaScript.
 
-## Object-oriented programming
+## Pemrograman berbasis objek (object-oriented)
 
-Now back to our RPG, which is still pretty boring. What does it lack? Monsters and fights, of course!
+Sekarang kembali ke game RPG kita, yang masih membosankan. Apa yang kurang? Monster dan pertarungan, tentu saja!
 
-Following is how a fight will be handled. If attacked, a character sees their life points decrease from the strength of the attacker. If its health value falls below zero, the character is considered dead and cannot attack anymore. Its vanquisher receives a fixed number of 10 experience points.
+Berikut adalah bagaimana pertarungan ditangani. Jika diserang, life point karakter berkurang dari kekuatan penyerang. Jika nilai health-nya berkurang di bawah nol, karakter akan dimatikan dan tidak bisa menyerang lagi. Pemusnah karakter mendapatkan nilai tetap sebanyak 10 poin experience.
 
-First, let's add the capability for our characters to fight one another. Since it's a shared ability, we define it as a method named `attack()` in the `Character` class.
+Pertama-tama, mari kita tambah kapabilitas karakter kita untuk bertarung satu dengan yang lainnya. Karena kemampuan ini bisa dibagi, kita definisikan sebagai method bernama `attack()` di class `Character`.
 
 ```js
 class Character {
@@ -258,9 +258,9 @@ class Character {
     this.name = name;
     this.health = health;
     this.strength = strength;
-    this.xp = 0; // XP is always zero for new characters
+    this.xp = 0; // XP selalu nol untuk karakter baru
   }
-  // Attack a target
+  // Serang satu target
   attack(target) {
     if (this.health > 0) {
       const damage = this.strength;
@@ -283,7 +283,7 @@ class Character {
       console.log(`${this.name} can't attack (they've been eliminated)`);
     }
   }
-  // Return the character description
+  // Mengembalikan deskripsi karakter
   describe() {
     return `${this.name} has ${this.health} health points, ${this
       .strength} as strength and ${this.xp} XP points`;
@@ -291,7 +291,7 @@ class Character {
 }
 ```
 
-Now we can introduce a monster in the game and make it fight our players. Here's the rest of the final code of our RPG.
+Sekarang kita bisa memperkenalkan satu monter di dalam game dan membuatnya bertarung dengan pemain kita. Berikut kode akhir dari RPG kita.
 
 ```js
 const aurora = new Character("Aurora", 150, 25);
@@ -315,19 +315,18 @@ console.log(glacius.describe());
 
 ![Execution result](images/chapter09-02.png)
 
-The previous program is a short example of **Object-Oriented Programming** (in short: OOP), a programming
-[paradigm](https://en.wikipedia.org/wiki/Programming_paradigm) (a programming style) based on objects containing both data and behavior.
+Program sebelumnya merupakan contoh singkat dari **Object-Oriented Programming** (disingkat: OOP), [paradigma](https://en.wikipedia.org/wiki/Programming_paradigm) pemrograman (gaya pemrograman) berbasis pada objek yang mengandung data dan perilaku.
 
-## Coding time!
+## Waktu koding!
 
 ### Dogs
 
-Complete the following program to add the definition of the `Dog` class.
+Lengkapi program berikut sehingga ada penambahan definisi class `Dog`.
 
 > Dogs taller than 60 emote `"Grrr! Grrr!"` when they bark, other ones yip `"Woof! Woof!"`.
 
 ```js
-// TODO: define the Dog class here
+// TODO: definisikan class Dog di sini
 
 const fang = new Dog("Fang", "boarhound", 75);
 console.log(`${fang.name} is a ${fang.species} dog measuring ${fang.size}`);
@@ -340,31 +339,31 @@ console.log(`Look, a cat! ${snowy.name} barks: ${snowy.bark()}`);
 
 ![Execution result](images/chapter09-03.png)
 
-### Character inventory
+### Inventori karakter
 
-Improve the example RPG to add character inventory management according to the following rules:
+Kembangkan contoh RPG sehingga ada penambahan manajemen inventori karakter dengan aturan sebagai berikut:
 
-* A character's inventory contains a number of gold and a number of keys.
+* Satu inventori karakter terdiri dari beberapa emas dan beberapa kunci. 
 
-* Each character begins with 10 gold and 1 key.
+* Setiap karakter mulai dengan 10 emas dan 1 kunci.
 
-* The character description must show the inventory state.
+* Deskripsi karakter harus menampilkan status inventori.
 
-* When a character slays another character, the victim's inventory goes to its vanquisher.
+* Ketika karakter memusnahkan karakter lainnya, inventori korban menjadi milik pemusnahnya.
 
-Here's the expected execution result.
+Berikut hasil eksekusi yang diharapkan. 
 
 ![Execution result](images/chapter09-04.png)
 
-### Account list
+### Daftar akun
 
-Let's build upon a previous account object exercise. A bank account is still defined by:
+Mari kita buat dari latihan objek akun sebelumnya. Akun bank masih didefinisikan sebagai:
 
-* A `name` property.
-* A `balance` property, initially set to 0.
-* A `credit` method adding the value passed as an argument to the account balance.
-* A `describe` method returning the account description.
+* Satu properti `name`.
+* Satu properti `balance` yang awalnya di-set ke nilai 0.
+* Satu method `credit`, penambahan nilai yang dilewatkan sebagai argumen ke saldo akun. 
+* Satu method `describe` yang mengembalikan deskripsi akun.
 
-Write a program that creates three accounts: one belonging to Sean, another to Brad and the third one to Georges. These accounts are stored in an array. Next, the program credits 1000 to each account and shows its description.
+Tulis program yang membuat tiga akun: satu milik Sean, lainnya milik Brad dan yang ketiga untuk Georges. Akun ini disimpan di sebuah array. Selanjutnya, program meng-kredit 1000 di setiap akun dan menampilkan deskripsinya.
 
 ![Execution result](images/chapter09-05.png)
