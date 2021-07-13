@@ -49,7 +49,7 @@ Terima kasih sebelumnya atas semua dukungan Kamu!
   * [Simpan data di array](manuscript/chapter07.md)
   * [Bekerja dengan string](manuscript/chapter08.md)
   * [Memahami pemrograman object-oriented](manuscript/chapter09.md)
-  * [Temukan pemrograman functional](manuscript/chapter10.md)
+  * [Temukan pemrograman fungsional](manuscript/chapter10.md)
   * [Proyek: program berita sosial](manuscript/chapter11.md)
 * Bagian II: Buat halaman web interaktif 
   * [Apa itu halaman web](manuscript/chapter12.md)
