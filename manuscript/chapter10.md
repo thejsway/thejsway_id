@@ -1,26 +1,26 @@
-# Discover functional programming
+# Temukan pemrograman fungsional
 
-Object-oriented programming, albeit quite popular, is not the only way to create programs. This chapter will introduce you to another important paradigm: functional programming.
+Pemrograman berorientasi objek, walaupun populer, bukanlah satu-satunya cara untuk membuat program. Di bab ini akan mengenalkan Kamu paradigma penting lainnya: pemrograman fungsional.
 
 ## TL;DR
 
-* **Functional programming** is about writing programs by combining functions expressing *what* the program should do, rather than *how* to do it (which is the imperative way).
+* **Pemrograman fungsional** adalah tentang menulis program dengan mengkombinasikan fungsi yang mengekspresikan *apa* yang harus program lakukan, dibandingkan *cara* mengerjakannya (yang merupakan cara imperatif).
 
-* The **state** of a program is the value of its **global variables** at a given time. A goal of functional programming is to minimize state **mutations** (changes) that make the code harder to understand. Some possible solutions are declaring variables with `const` instead of `let`, splitting the code into functions, and favoring local over global variables.
+* **Keadaan** program adalah nilai dari **variabel global** pada saat itu. Tujuan pemrograman fungsional adalah untuk meminimalisir keadaan **mutasi** (perubahan) yang membuat kode lebih sulit dipahami. Beberapa kemungkinan solusi adalah dengan mendeklarasikan variabel dengan `const` daripada `let`, membagi kode ke dalam fungsi, dan memilih variabel lokal dibandingkan variabel global.
 
-* A **pure function** depends solely on its inputs for computing its outputs and has no **side effect**. Pure functions are easier to understand, combine together, and debug. Functional programming favors the use of pure functions whenever possible.
+* **Fungsi murni** tergantung sepenuhnya pada input-nya untuk menghitung output-nya dan tidak memiliki **efek samping**. Fungsi murni lebih mudah dipahami, digabungkan, dan debug. Pemrograman fungsional mementingkan penggunakan fungsi murni sebisa mungkin.
 
-* The `map()`, `filter()` and `reduce()` methods can replace loops for array traversal and let you program with arrays in a functional way.
+* Method `map()`, `filter()` dan `reduce()` bisa menggantikan loop untuk menjelajahi array dan memungkinkan Kamu memprogram array dengan cara fungsional.
 
-* JavaScript functions can be passed around just like any other value: they are **first-class citizens**, enabling functional programming. A function that operates on another function (taking it as a parameter or returning it) is called a **higher-order function**.
+* Fungsi JavaScript bisa dipindahkan seperti halnya nilai lainnya: fungsi ini adalah **penduduk kelas utama**, yang memungkinkan pemrograman fungsional. Fungsi yang mengoperasikan fungsi lainnya (mengambil fungsi tersebut sebagai parameter dan mengembalikannya) dinamakan **fungsi higher-order**.
 
-* JavaScript is a **multi-paradigm** language: you can write programs using an imperative, object-oriented or functional programming style.
+* JavaScript adalah bahasa **multi-paradigma** language: Kamu bisa menulis program menggunakan imperatif, berorientasi objek atau dengan gaya pemrograman fungsional.
 
-## Context: a movie list
+## Konteks: daftar film
 
-In this chapter, we'll start with an example program and improve it little by little, without adding any new functionality. This important programming task is called **refactoring**.
+Di bab ini, kita akan memulai dengan contoh program dan mengembangkannya sedikit demi sedikit, tanpa menambah fungsi baru. Aktivitas penting ini dinamakan **refactoring**.
 
-Our initial program is about recent Batman movies. The data comes under the form of an array of objects, with each object describing a movie.
+Program awal kita adalah tentang film Batman terbaru. Data dalam bentuk objek array, di mana setiap objek mendeskripsikan satu film.
 
 ```js
 const movieList = [
@@ -69,17 +69,17 @@ const movieList = [
 ];
 ```
 
-And here is the rest of the program that uses this data to show some results about the movies. Check it out, it should be pretty self-explanatory.
+Dan berikut ini adalah keseluruhan program yang menggunakan data ini untuk menampilkan beberapa hasil tentang film. Coba lihat, program ini cukup jelas.
 
 ```js
-// Get movie titles
+// Menampilkan judul film
 const titles = [];
 for (const movie of movieList) {
   titles.push(movie.title);
 }
 console.log(titles);
 
-// Count movies by Christopher Nolan
+// Menghitung film Christopher Nolan
 const nolanMovieList = [];
 for (const movie of movieList) {
   if (movie.director === "Christopher Nolan") {
@@ -88,7 +88,7 @@ for (const movie of movieList) {
 }
 console.log(nolanMovieList.length);
 
-// Get titles of movies with an IMDB rating greater or equal to 7.5
+// Menampilkan judul film yang memiliki rating IMDB lebih dari atau sama dengan 7.5
 const bestTitles = [];
 for (const movie of movieList) {
   if (movie.imdbRating >= 7.5) {
@@ -97,7 +97,7 @@ for (const movie of movieList) {
 }
 console.log(bestTitles);
 
-// Compute average movie rating of Christopher Nolan's movies
+// Menghitung rata-rata rating film Christopher Nolan
 let ratingSum = 0;
 let averageRating = 0;
 for (const movie of nolanMovieList) {
@@ -109,17 +109,17 @@ console.log(averageRating);
 
 ![Execution result](images/chapter10-01.png)
 
-## Program state
+## Keadaan program 
 
-The previous program is an example of what is called **imperative programming**. In this paradigm, the programmer gives orders to the computer through a series of statements that modify the program state. Imperative programming focuses on describing *how* a program operates.
+Program sebelumnya adalah contoh dari yang dinamakan **pemrograman imperatif**. Pada paradigma ini, pemrogram memberikan perintah pada komputer melalui serangkain pernyataan yang memodifikasi keadaan program. Pemrograman imperatif fokus dalam mendeskripsikan *bagaimana* program beroperasi.
 
-The concept of state is an important one. The **state** of a program is the value of its **global variables** (variables accessible everywhere in the code) at a given time. In our example, the values of `movieList`, `titles`, `nolanMovieCount`, `bestTitles`, `ratingSum` and `averageRating` form the state of the program. Any assignment to one of these variables is a state change, often called a **mutation**.
+Konsep keadaan merupakan hal yang penting. **Keadaan** program adalah nilai dari **variabel globalnya** (variabel yang dapat diakses dari mana saja di dalam kode) pada saat itu. Pada contoh kita, nilai dari `movieList`, `titles`, `nolanMovieCount`, `bestTitles`, `ratingSum` dan `averageRating` membentuk keadaan program. Perintah apapun ke salah satu variabel ini adalah perubahan keadaan, atau sering disebut **mutasi**.
 
-In imperative programming, the state can be modified anywhere in the source code. This is convenient, but can also lead to nasty bugs and maintenance headaches. As a program grows in size and complexity, it becomes easier for the programmer to mutate a part of the state by mistake and harder to monitor state modifications.
+Pada pemgrograman imperatif, keadaan bisa dimodifikasi di manapun di sumber kode. Hal ini memudahkan, tapi bisa berujung kepada bug dan pemeliharaan yang rumit. Seiring program berkembang dalam skala besar dan kompleksitasnya, akan lebih mudah bagi pemrogram untuk memutasi bagian dari keadaan program secara tidak sengaja dan lebih sulit untuk memonitor modifikasi keadaan.
 
-### Limiting mutations with `const` variables
+### Membatasi mutasi dengan variabel `const` 
 
-In order to decrease the risk of accidental state mutation, a first step is to favor `const` over `let` whenever applicable for variable declarations. A variable declared with the `const` keyword cannot be further reassigned. Array and object content can still be mutated, though. Check the following code for details.
+Untuk menurunkan risiko kejadian mutasi keadaan, langkah pertama adalah dengan lebih memilih `const` dibandingkan `let` kapanpun dimungkinkan untuk deklarasi variabel. Deklarasi variabel dengan kata kunci `const` tidak bisa di-assign kembali. Konten array dan objek masih bisa dimutasi, sebenarnya. Cek kode berikut untuk detailnya.
 
 ```js
 const n = 10;
@@ -129,9 +129,9 @@ const obj = {
 };
 const animals = ["Elephant", "Turtle"];
 
-obj.myProp = 3; // Mutating a property is OK even for a const object
-obj.myOtherProp = "abc"; // Adding a new property is OK even for a const object
-animals.push("Gorilla"); // Updating content is OK even for a const array
+obj.myProp = 3; // Memutasi properti boleh saja walaupun untuk objek const
+obj.myOtherProp = "abc"; // Menambah properti baru boleh saja walaupun untuk objek const
+animals.push("Gorilla"); // Meng-update kontent boleh saja untuk array const
 
 n++; // Illegal
 fruit = "orange"; // Illegal
@@ -139,14 +139,14 @@ obj = {}; // Illegal
 animals = ["Bee"]; // Illegal
 ```
 
-### Splitting the program into functions
+### Membagi program ke beberapa fungsi
 
-Another solution is to split the source code into subroutines called procedures or **functions**. This approach is called **procedural programming** and has the benefit of transforming some variables into **local variables**, which are only visible in the subroutine code.
+Solusi lainnya adalah dengan membagi sumber kode ke sub-rutin yang dinamakan prosedur atau **fungsi**. Pendekatan ini dinamakan **pemrograman prosedural** dan memiliki keunggulan dapat mengubah variabel ke **variabel lokal**, yang hanya bisa dilihan di kode sub-rutin.
 
-Let's try to introduce some functions in our code.
+Mari kita coba untuk memperkenalkan fungsi di kode kita.
 
 ```js
-// Get movie titles
+// Mendapatkan judul film 
 const titles = () => {
   const titles = [];
   for (const movie of movieList) {
@@ -157,7 +157,7 @@ const titles = () => {
 
 const nolanMovieList = [];
 
-// Get movies by Christopher Nolan
+// Mendapatkan film Christopher Nolan
 const nolanMovies = () => {
   for (const movie of movieList) {
     if (movie.director === "Christopher Nolan") {
@@ -166,7 +166,7 @@ const nolanMovies = () => {
   }
 };
 
-// Get titles of movies with an IMDB rating greater or equal to 7.5
+// Mendapatkan judul film dengan rating IMDB lebih dari atau sama dengan 7.5
 const bestTitles = () => {
   const bestTitles = [];
   for (const movie of movieList) {
@@ -177,7 +177,7 @@ const bestTitles = () => {
   return bestTitles;
 };
 
-// Compute average rating of Christopher Nolan's movies
+// Menghitung rata-rata rating film Christopher Nolan
 const averageNolanRating = () => {
   let ratingSum = 0;
   for (const movie of nolanMovieList) {
@@ -193,29 +193,29 @@ console.log(bestTitles());
 console.log(averageNolanRating());
 ```
 
-The state of our program is now limited to two variables: `movieList` and `nolanMovieList` (the latter being necessary in functions `nolanMovies()` and `averageNolanRating()`). The other variables are now local to the functions they are used into, which limits the possibility of an accidental state mutation.
+Keadaan program kita sekarang terbatas pada dua variabel: `movieList` dan `nolanMovieList` (yang terakhir diperlukan pada fungsi `nolanMovies()` dan `averageNolanRating()`). Variabel lainnya sekarang lokal terhadap fungsi yang biasa digunakan, yang membatasi kemungkinan terjadinya mutasi keadaan program secara tidak sengaja.
 
-Also, this version of the program is easier to understand than the previous one. Functions with appropriate names help describe a program's behavior. Comments are now less necessary than before.
+Selain itu, versi program ini lebih mudah dipahami dari sebelumnya. FUngsi dengan nama yang tepat dapat membantu mendeskripsikan perilaku program. Komentar sekarang sedikit tidak diperlukan dari sebelumnya.
 
-## Pure functions
+## Fungsi murni
 
-Merely introducing some functions in a program is not enough to follow the functional programming paradigm. Whenever possible, we also need to use pure functions.
+Hanya mengenalkan beberapa fungsi pada program tidaklah cukup untuk mengikuti paradigma pemgrograman fungsional. Sebisa mungkin, kita juga perlu menggunakan fungsi murni.
 
-A **pure function** is a function that has the following characteristics:
+**Fungsi murni** adalah satu fungsi yang memiliki karakteristik berikut:
 
-* Its outputs depend solely on its inputs.
-* It has no side effect.
+* Outputnya tergantung sepenuhnya pada input.
+* Tidak memiliki efek samping.
 
-A **side effect** is a change in program state or an interaction with the outside world. A database access or a `console.log()` statement are examples of side effects.
+**Efek samping** adalah perubahan pada keadaan program atau interaksi dengan dunia luar. Akses database atau pernyataan`console.log()` adalah contoh dari efek samping.
 
-Given the same data, a pure function will always produce the same result. By design, a pure function is independent from the program state and must not access it. Such a function must accept **parameters** in order to do something useful. The only way for a function without parameters to be pure is to return a constant value.
+Dengan data yang sama, fungsi murni akan selalu memberikan hasil yang sama. Secara desain, fungsi murni independen dari keadaan program dan tidak boleh mengakses fungsi tersebut. Fungsi ini harus menerima **parameter** untuk melakukan hal yang berguna. Satu-satunya cara fungsi tanpa parameter untuk menjadi murni adalah dengan mengembalikan nilai yang konstan.
 
-Pure functions are easier to understand, combine together, and debug: contrary to their *impure* counterparts, there's no need to look outside the function body to reason about it. Still, a number of side effects are necessary in any program, like showing output to the user or updating a database. In functional programming, the name of the game is to create those side effects only in some dedicated and clearly identified parts of the program. The rest of the code should be written as pure functions.
+Fungsi murni lebih mudah dipahami, dikombinasikan, dan debug: berbeda dengan yang *tidak murni*, tidak perlu melihat body fungsi-nya agar mudah dimengerti. Meskipun begitu, beberapa efek samping diperlukan di program apapun, seperti menampilkan output ke pengguna atau meng-update database. Pada pemrograman fungsional, nama permainannya adalah dengan membuat efek samping tersebut hanya di beberapa bagian program yang terdedikasi dan teridentifikasi secara jelas. Kode sisanya harus ditulis dengan fungsi murni.
 
-Let's refactor our example code to introduce pure functions.
+Mari kita refactor contoh kode kita untuk mengenali fungsi murni.
 
 ```js
-// Get movie titles
+// Mendapatkan judul film
 const titles = movies => {
   const titles = [];
   for (const movie of movies) {
@@ -224,7 +224,7 @@ const titles = movies => {
   return titles;
 };
 
-// Get movies by Christopher Nolan
+// Mendapatkan film Christopher Nolan
 const nolanMovies = movies => {
   const nolanMovies = [];
   for (const movie of movies) {
@@ -235,7 +235,7 @@ const nolanMovies = movies => {
   return nolanMovies;
 };
 
-// Get titles of movies with an IMDB rating greater or equal to 7.5
+// Mendapatkan judul film dengan rating IMDB lebih besar atau sama dengan 7.5
 const bestTitles = movies => {
   const bestTitles = [];
   for (const movie of movies) {
@@ -246,7 +246,7 @@ const bestTitles = movies => {
   return bestTitles;
 };
 
-// Compute average rating of a movie list
+// Menghitung rata-rata rating di daftar film
 const averageRating = movies => {
   let ratingSum = 0;
   for (const movie of movies) {
@@ -262,35 +262,35 @@ console.log(bestTitles(movieList));
 console.log(averageRating(nolanMovieList));
 ```
 
-Since we only do refactoring, the program output is still the same.
+Karena kita hanya melakukan refactoring, output program masih sama.
 
-The program state (`movieList` and `nolanMovieList`) hasn't changed. However, all our functions are now pure; instead of accessing the state, they use parameters to achieve their desired behavior. As an added benefit, the function `averageRating()` can now compute the average rating of any movie list; it has become more **generic**.
+Keadaan program (`movieList` dan `nolanMovieList`) belum berubah. Walaupun begitu, semua fungsi kita sekarang murni; daripada mengakses keadaan, fungsi ini menggunakan parameter untuk mendapatkan perilaku yang diinginkan. Sebagai tambahan keunggulan, fungsi `averageRating()` sekarang bisa menghitung rata-rata rating dari daftar film; fungsi ini menjadi lebih **generik**.
 
-## Array operations
+## Operasi array 
 
-Functional programming is about writing programs by combining functions expressing *what* the program should do, rather than *how* to do it. JavaScript offers several array-related methods that favor a functional programming style.
+Pemrograman fungsional adalah tentang bagaimana menulis program dengan mengkombinasikan fungsi yang mengekspresikan *apa* yang harus program lakukan, dibandingkan dengan *bagaimana* melakukannya. JavaScript menawarkan beberapa array yang berelasi dengan method yang lebih mengutamakan gaya pemrograman fungsional.
 
-### The `map()` method
+### Method `map()` 
 
-The `map()` method takes an array as a parameter and creates a new array with the results of calling a provided function on every element in this array. A typical use of `map()` is to replace a loop for array traversal.
+Method `map()` mengambil array sebagai parameter dan membuat array baru dengan hasil dari pemanggilan fungsi yang tersedia pada setiap elemen di array ini. Penggunaan `map()` secara khusus adalah dengan menggantikan loop untuk menjelajahi array.
 
-Let's see `map()` in action.
+Mari kita lihat aksi `map()`.
 
 ```js
 const numbers = [1, 5, 10, 15];
-// The associated function multiply each array number by 2
+// Fungsi yang diasosiasikan mengali setiap angka array dengan 2
 const doubles = numbers.map(x => x * 2);
 
 console.log(numbers); // [1, 5, 10, 15] (no change)
 console.log(doubles); // [2, 10, 20, 30]
 ```
 
-Here's how our `titles()` could be rewritten using `map()`. Look how the function code is now more concise and expressive.
+Berikut cara `titles()` kita bisa ditulis ulang dengan `map()`. Lihat bagaimana kode fungsi sekarang lebih ringkas dan ekspresif.
 
 ```js
-// Get movie titles
+// Mendapatkan judul film
 const titles = movies => {
-  /* Previous code
+  /* Kode sebelumnya
   const titles = [];
   for (const movie of movies) {
     titles.push(movie.title);
@@ -298,32 +298,32 @@ const titles = movies => {
   return titles;
   */
 
-  // Return a new array containing only movie titles
+  // Mengembalikan array baru yang di dalamnya ada judul film
   return movies.map(movie => movie.title);
 };
 ```
 
-### The `filter()` method
+### Method `filter()` 
 
-The `filter()` method offers a way to test every element of an array against a provided function. Only elements that pass this test are added to the returned array.
+Method `filter()` menawarkan satu cara untuk mengetes setiap elemen array terhadap fungsi yang tersedia. Hanya elemen yang lulus tes ini ditambahkan pada array yang dikembalikan.
 
-Here's an example of using `filter()`.
+Berikut contoh menggunakan `filter()`.
 
 ```js
 const numbers = [1, 5, 10, 15];
-// Keep only the number greater than or equal to 10
+// Simpan hanya angka yang lebih dari atau sama dengan 10
 const bigOnes = numbers.filter(x => x >= 10);
 
-console.log(numbers); // [1, 5, 10, 15] (no change)
+console.log(numbers); // [1, 5, 10, 15] (tidak ada perubahan)
 console.log(bigOnes); // [10, 15]
 ```
 
-We can use this method in the `nolanMovies()` function.
+Kita bisa menggunakan method ini pada fungsi `nolanMovies()`.
 
 ```js
-// Get movies by Christopher Nolan
+// Mendapatkan film Christopher Nolan
 const nolanMovies = movies => {
-  /* Previous code
+  /* Kode sebelumnya
   const nolanMovies = [];
   for (const movie of movies) {
     if (movie.director === "Christopher Nolan") {
@@ -333,17 +333,17 @@ const nolanMovies = movies => {
   return nolanMovies;
   */
 
-  // Return a new array containing only movies by Christopher Nolan
+  // Mengembalikan nilai array baru yang mengandung hanya film Christopher Nolan
   return movies.filter(movie => movie.director === "Christopher Nolan");
 };
 ```
 
-The `map()` and `filter()` method can be used together to achieve powerful effects. Look at this new version of the `bestTitles()` function.
+Method `map()` dan `filter()` bisa digunakan bersamaan untuk mendapatkan efek yang powerful. Lihat versi baru dari fungsi `bestTitles()` ini.
 
 ```js
-// Get titles of movies with an IMDB rating greater or equal to 7.5
+// Mendapatkan judul film dengan rating IMDB rating lebih besar atau sama dengan 7.5
 const bestTitles = movies => {
-  /* Previous code
+  /* Kode sebelumnya
   const bestTitles = [];
   for (const movie of movies) {
     if (movie.imdbRating >= 7.5) {
@@ -353,38 +353,38 @@ const bestTitles = movies => {
   return bestTitles;
   */
 
-  // Filter movies by IMDB rating, then creates a movie titles array
+  // Mem-filter film berdasarkan rating IMDB rating, lalu membuat array judul film
   return movies.filter(movie => movie.imdbRating >= 7.5).map(movie => movie.title);
 };
 ```
 
-### The `reduce()` method
+### Method `reduce()` 
 
-The `reduce()` method applies a provided function to each array element in order to *reduce* it to one value. This method is typically used to perform calculations on an array.
+Method `reduce()` menerapkan fungsi yang tersedia pada setiap elemen array untuk *memperkecil* ke satu nilai. Method ini biasanya digunakan untuk mengkalkulasi array.
 
-Here's an example of reducing an array to the sum of its values.
+Berikut contoh memperkecil array menjadi penjumlahan seluruh nilainya.
 
 ```js
 const numbers = [1, 5, 10, 15];
-// Compute the sum of array elements
+// Menghitung jumlah elemen array
 const sum = numbers.reduce((acc, value) => acc + value, 0);
 
-console.log(numbers); // [1, 5, 10, 15] (no change)
+console.log(numbers); // [1, 5, 10, 15] (tidak ada perubahan)
 console.log(sum);     // 31
 ```
 
-The `reduce()` method can take several parameters:
+Method `reduce()` bisa dimasukkan beberapa parameter:
 
-* The first one is the function associated to `reduce()` and called for each array element. It takes two parameters: the first is an **accumulator** which contains the accumulated value previously returned by the last invocation of the function. The other function parameter is the array element.
+* Yang pertama adalah fungsi yang berkaitan dengan `reduce()` dan dipanggil untuk setiap elemen array. Fungsi ini dua parameter: yang pertama adalah **accumulator** yang terdiri dari nilai yang diakumulasi sebelum dikembalikan oleh permintaan terakhir dari fungsi. Fungsi lainnya adalah elemen array.
 
-* The second one is the initial value of the accumulator (often 0).
+* Yang kedua aadlah nilai inisial accumulator (seringnya bernilai 0).
 
-Here's how to apply `reduce()` to calculate the average rating of a movie list.
+Berikut cara menerapkan `reduce()` untuk menghitung rata-rata rating film.
 
 ```js
-// Compute average rating of a movie list
+// Menghitung rata-rata rating film
 const averageRating = movies => {
-  /* Previous code
+  /* Kode sebelumnya
   let ratingSum = 0;
   for (const movie of movies) {
     ratingSum += movie.imdbRating;
@@ -392,28 +392,28 @@ const averageRating = movies => {
   return ratingSum / movies.length;
   */
 
-  // Compute the sum of all movie IMDB ratings
+  // Menghitung semua jumlah rating film IMDB 
   const ratingSum = movies.reduce((acc, movie) => acc + movie.imdbRating, 0);
   return ratingSum / movies.length;
 };
 ```
 
-Another possible solution is to compute the rating sum by using `map()` before reducing an array containing only movie ratings.
+Kemungkinan solusi lainnya adalah dengan menghitung jumlah rating dengan menggunakan `map()` sebelum memperkecil array yang mengandung rating film saja.
 
 ```js
 // ...
-// Compute the sum of all movie IMDB ratings
+// Menghitung jumlah rating semua film IMDB 
 const ratingSum = movies.map(movie => movie.imdbRating).reduce((acc, value) => acc + value, 0);
 // ...
 ```
 
-## Higher-order functions
+## Fungsi higher-order 
 
-Throughout this chapter, we have leveraged the fact that JavaScript functions can be passed around just like any other value. We say that functions are **first-class citizens** in JavaScript, which means that they are treated equal to other types.
+Pada bab ini, kita sudah mengetahui bahwa fungsi JavaScript bisa dipindah-pindah seperti nilai lainnya. Kita namakan fungsi ini **penduduk kelas utama** di JavaScript, yang artinya fungsi ini diperlakukan sama dengan tipe lainnya.
 
-Thanks to their first-class citizenry, functions can be combined together, rendering programs even more expressive and enabling a truly functional programming style. A function that takes another function as a parameter or returns another function is called a **higher-order function**.
+Terima kasih ke sifat penduduk kelas utamanya, fungsi bisa dikombinasikan bersama, membuat program lebih ekspresif dan memungkinkan gaya pemrograman fungsional. Fungsi yang mengambil fungsi lain sebagai parameter atau mengembalikan fungsi lainnya dinamakan **fungsi higher-order**.
 
-Check out this final version of our example program.
+Lihat versi akhir dari contoh program kita.
 
 ```js
 const titles = movies => movies.map(movie => movie.title);
@@ -430,19 +430,19 @@ console.log(titles(filter(movieList, goodRating)));
 console.log(average(ratings(nolanMovieList)));
 ```
 
-We have defined helper functions that we combine to achieve the desired behaviour. The code is concise and self-describing. Since it takes the filtering function as a parameter, our own `filter()` function is an example of an higher-order function.
+Kita telah mendefinisikan fungsi pembantu yang kita kombinasikan untuk mendapatkan hasil yang diinginkan. Kodenya ringkas dan jelas. Karena fungsi ini mengambil fungsi filter sebagai parameter, fungsi `filter()` adalah contoh dari fungsi higher-order.
 
-## JavaScript: a multi-paradigm language
+## JavaScript: bahasa multi paradigma
 
-The JavaScript language is full of paradoxes. It has famously been [invented in ten days](https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript), and is now enjoying a popularity almost unique in programming history. Its syntax borrows heavily from mainstream imperative languages like C or Java, but its design principles are closer to functional languages like [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)).
+Bahasa JavaScript penuh dengan paradox. Bahasa ini telah terkenal dengan [penemuannya dalam sepuluh hari](https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript), dan sekarang menikmati popularitasnya yang unik dalam sejarah pemrograman. Sintaksnya lebih banyak meminjam dari bahasa imperatif yang mainstream seperti C atau Java, tetapi prinsip desainnya lebih dekat ke bahasa fungsional seperti [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)).
 
-JavaScript's multi-paradigm nature means you can write imperative, object-oriented or functional code, choosing the right tool for the job and leveraging your previous programming experience. As always, diversity is a source of flexibility and ultimately a strength.
+Sifat alami JavaScript yang multi-paradigma membuat Kamu bisa menulis imperatif, object-oriented atau kode fungsional, memilih alat yang tepat untuk tugas dan memanfaatkan secara maksimal pengalaman pemrograman Kamu. Seperti biasa, perbedaan adalah sumber dari fleksibilitas dan kekuatan yang luar biasa.
 
-## Coding time!
+## Waktu koding!
 
-### Older movies
+### Film lawas
 
-Improve the example movie program from above so that it shows the titles of movies released before year 2000, using functional programming.
+Kembangkan contoh program sebelumnya di atas sehingga bisa menampilkan judul film yang dirilis sebelum tahun 2000, menggunakan pemrograman fungsional.
 
 ```js
 const movieList = [
@@ -490,16 +490,16 @@ const movieList = [
   }
 ];
 
-// TODO: Make an array of the titles of movies released before 2000
+// TODO: Buat satu array judul film yang dirilis sebelum tahun 2000
 
 console.log(moviesBefore2000);
 ```
 
 ![Execution result](images/chapter10-02.png)
 
-### Government forms
+### Formulir pemerintah
 
-Complete the following program to compute and show the names of political forms ending with `"cy"`.
+Lengkapi program berikut untuk menghitung dan menampilkan istilah politik yang berakhir dengan `"cy"`.
 
 ```js
 const governmentForms = [
@@ -529,27 +529,27 @@ const governmentForms = [
   }
 ];
 
-// TODO: compute the formsEndingWithCy array
+// TODO: komputasi array formsEndingWithCy 
 
-// Should show ["Plutocracy", "Kleptocracy", "Theocracy", "Democracy", "Autocracy"]
+// Harus menampilkan ["Plutocracy", "Kleptocracy", "Theocracy", "Democracy", "Autocracy"]
 console.log(formsEndingWithCy);
 ```
 
-### Arrays sum
+### Jumlah array 
 
-Complete the following program to compute and show the total sum of the values in each of the arrays.
+Lengkapi program berikut untuk menghitung dan menampilkan jumlah total nilai di setiap elemen array.
 
 ```js
 const arrays = [[1, 4], [11], [3, 5, 7]];
 
-// TODO: compute the value of the arraysSum variable
+// TODO: hitung nilai variabel arraysSum 
 
-console.log(arraysSum); // Should show 31
+console.log(arraysSum); // Harus menampilkan 31
 ```
 
-### Student results
+### Hasil siswa 
 
-Here's a program that shows female students results (name and average grade).
+Berikut program yang menampilkan hasil siswi (nama dan rata-rata nilai).
 
 ```js
 const students = [
@@ -576,7 +576,7 @@ const students = [
   }
 ];
 
-// Compute female student results
+// Hitung hasil siswi
 const femaleStudentsResults = [];
 for (const student of students) {
   if (student.sex === "f") {
@@ -595,6 +595,6 @@ for (const student of students) {
 console.log(femaleStudentsResults);
 ```
 
-Refactor it using functional programming. Execution result must stay the same.
+Refactor program di atas dengan menggunakan pemrograman fungsional. Hasil eksekusi haruslah sama.
 
 ![Execution result](images/chapter10-03.png)
