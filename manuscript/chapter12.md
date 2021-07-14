@@ -1,57 +1,57 @@
-# What's a web page?
+# Apa itu halaman web?
 
-This short chapter summarizes what you need to know about the Web and web pages.
+Di bab singkat ini meringkas apa yang perlu Kamu ketahui tentang web dan halaman web.
 
 ## TL;DR
 
-* The [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web) (or **Web**) is an information space built on top of the [Internet](https://en.wikipedia.org/wiki/Internet). Web resources are accessible via their [URL](https://en.wikipedia.org/wiki/Uniform_Resource_Locator), and can contain [hyperlinks](https://en.wikipedia.org/wiki/Hyperlink) to other resources.
+* [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web) (atau **Web**) adalah sebuah ruang informasi yang dibuat di atas [Internet](https://en.wikipedia.org/wiki/Internet). Sumber daya Web bisa diakses melalui [URL](https://en.wikipedia.org/wiki/Uniform_Resource_Locator), dan bisa mengandung [hyperlinks](https://en.wikipedia.org/wiki/Hyperlink) ke sumber lainnya.
 
-* A **web page** is a document suitable for the Web. Creating web pages usually involves three technologies: [HTML](https://en.wikipedia.org/wiki/HTML) to structure the content, [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) to define its presentation and JavaScript to add interactivity.
+* Halaman web adalah dokumen yang cocok dengan Web. Membuat halaman web biasanya melibatkan tiga teknologi: [HTML](https://en.wikipedia.org/wiki/HTML) untuk strukturisasi konten, [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) untuk mendefinisikan presentasi halaman web dan JavaScript untuk menambah interaktivitas. 
 
-* An HTML document is made of text and structural elements called **tags** that describe the page content, such as: paragraphs, headings, hyperlinks, images, etc.
+* Dokumen HTML terbuat dari teks dan struktural elemen dinamakan **tag** yang mendeskripsikan konten halaman, seperti: paragraf, heading, hyperlink, gambar, dan lainnya.
 
-* CSS uses **selectors** to declare which HTML elements a style applies to. Elements can be selected by tag name (`h1`), by class (`.done`) or by identifier (`#rude`).
+* CSS menggunakan **selector** untuk mendeklarasikan elemen HTML yang akan diterapkan. Elemen bisa dipilih dengan nama tag (`h1`), dengan class (`.done`) atau dengan identifier (`#rude`).
 
-* An HTML document can include a CSS stylesheet with a `<link>` tag and a JavaScript file with a `<script>` tag.
+* Dokumen HTML di dalamnya termasuk CSS stylesheet dengan sebuah tag `<link>` tag dan JavaScript file dengan tag `<script>`.
 
 ```html
 <!doctype html>
 <html>
 
 <head>
-    <!-- Info about the page: title, character set, etc -->
+    <!-- Informasi halaman: judul, karakter, dan lainnya -->
 
-    <!-- Link to a CSS stylesheet -->
+    <!-- Link ke CSS stylesheet -->
     <link href="path/to/file.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-    <!-- Page content -->
+    <!-- Konten halaman -->
 
-    <!-- Link to a JavaScript file -->
+    <!-- Link ke file JavaScript -->
     <script src="path/to/file.js"></script>
 </body>
 
 </html>
 ```
 
-* A **browser** is the software you use to visit webpages and use web applications. The modern ones include a set of **developer tools** to ease the task of developing for the web.
+* **Browser** adalah perangkat lunak yang Kamu gunakan untuk mengunjungi halan web dan menggunakan aplikasi web. Pada browser modern juga terdapat seperangkat **developer tool** untuk memudahkan dalam pengembangan web.
 
-## Internet and the Web
+## Internet dan Web
 
-As you probably know, the [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web) (or **Web** for short) is an ever-expanding information space built on top of the [Internet](https://en.wikipedia.org/wiki/Internet). Web resources are accessible via their address, called their [URL](https://en.wikipedia.org/wiki/Uniform_Resource_Locator), and can contain [hyperlinks](https://en.wikipedia.org/wiki/Hyperlink) to other resources. Together, all these interlinked resources form a huge mesh analogous to a spider web.
+Seperi yang Kamu ketahui, [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web) (atau disingkat **Web**) adalah ruang informasi luas yang dibangun di atas [Internet](https://en.wikipedia.org/wiki/Internet). Sumber daya Web bisa diakses melalu alamatnya, dinamakan [URL](https://en.wikipedia.org/wiki/Uniform_Resource_Locator), dan bisa mengandung [hyperlink](https://en.wikipedia.org/wiki/Hyperlink) ke sumber lainnya. Bersamaan, semua sumber daya ini tersambung  membentuk jaringan besar yang mirip dengan jala laba-laba.
 
-Documents suitable for the Web are called **web pages**. They are grouped together on **websites** and visited through a special kind of software called a [browser](https://en.wikipedia.org/wiki/Web_browser).
+Dokumen yang cocok untuk web dinamakan halaman web. Dokumen ini dikelompokkan dalam **website** dan dapat dikunjungi melalui perangkat lunak khusus dinamakan [browser](https://en.wikipedia.org/wiki/Web_browser).
 
-## The languages of the Web
+## Bahasa Web
 
-There are three main technologies for creating web pages: HTML, CSS and JavaScript.
+Ada tiga teknologi utama dalam membuat halaman web: HTML, CSS dan JavaScript.
 
 ### HTML
 
-HTML, short for [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML), is the document format of web pages. An HTML document is made of text and structural elements called **tags**. Tags are used to describe the page content: paragraphs, headings, hyperlinks, images, etc.
+HTML, singkatan dari [HyperText Markup Language](https://en.wikipedia.org/wiki/HTML), adalah format dokumen dari halaman web. Sebuah dokumen HTML dibuat dari teks dan elemen struktural dinamakan **tag**. Tag digunakan untuk mendeskripsikan konten halaman: paragrag, heading, hyperlinks, gambar, dan lainnya.
 
-Here is an example of a simple web page, usually stored as an `.html` file.
+Berikut contoh dari halaman web sederhana, biasanya disimpan dalam file `.html`.
 
 ```html
 <!doctype html>
@@ -73,7 +73,7 @@ Here is an example of a simple web page, usually stored as an `.html` file.
 
 ![Display result](images/chapter13-01.png)
 
-Here are a few references for learning more about HTML:
+Berikut beberapa referensi untuk pembelajaran lebih lanjut tentang HTML:
 
 * [Interneting is Hard - A friendly web development tutorial for complete beginners](https://internetingishard.com/html-and-css/)
 * [Khan Academy - Intro to HTML](https://www.khanacademy.org/computing/computer-programming/html-css#intro-to-html)
@@ -81,70 +81,70 @@ Here are a few references for learning more about HTML:
 
 ### CSS
 
-CSS, or [Cascading Style Sheets](https://en.wikipedia.org/wiki/Cascading_Style_Sheets), is a language used to alter the presentation of web pages.
+CSS, atau [Cascading Style Sheets](https://en.wikipedia.org/wiki/Cascading_Style_Sheets), adalah bahasa yang digunakan untuk mengubah tampilan dari halaman web.
 
-CSS uses **selectors** to declare which HTML elements a style applies to. Many selecting strategies are possible, most notably:
+CSS menggunakan **selector** untuk mendeklarasikan elemen HTML mana yang akan diterapkan. Banyak strategi pemilihan yang memungkinkan, beberapa diantaranya: 
 
-* All elements of a given tag name.
-* Elements matching a given **class** (selector syntax: `.myClass`).
-* The element matching a given and unique **identifier** (selector syntax: `#MyId`).
+* Semua elemen yang ada nama tag-nya.
+* Elemen yang ada  **class**-nya (sintaks selector: `.myClass`).
+* Elemen yang ada **identifier** unik (sintaks selector: `#MyId`).
 
-Here is an example of a simple CSS style sheet, usually stored as a `.css` file.
+Berikut contoh penulisan CSS, biasanya disimpan dalam file `.css`.
 
 ```css
-/* All h1 elements are pink */
+/* Semua halaman elemen h1 elements berwarna merah muda */
 h1 {
    color: pink;
 }
 
-/* All elements with the class "done" are strike through */
+/* Semua elemen dengan "done" dicoret */
 .done {
   text-decoration: line-through;
 }
 
-/* The element having id "rude" is shown uppercase with a particular font */
+/* Semua elemen yang memiliki id "rude" ditampilkan dengan huruf kapital dengan font tertentu */
 #rude {
   font-family: monospace;
   text-transform: uppercase;
 }
 ```
 
-A style sheet is associated with an HTML document using a `link` tag in the `head` part of the page.
+Style sheet diasosiasikan dengan dokumen HTML menggunakan tag `link` di bagian halaman `head`.
 
 ```html
-<!-- Link to a CSS stylesheet -->
+<!-- Link ke stylesheet -->
 <link href="path/to/file.css" rel="stylesheet" type="text/css">
 ```
 
-To learn more about CSS, visit the following links:
+Untuk pembelajaran lebih lanjut, kunjungi link berikut:
 
 * [Khan Academy - Intro to CSS](https://www.khanacademy.org/computing/computer-programming/html-css#intro-to-css)
 * [Mozilla Developer Network - CSS reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 
 ### JavaScript
 
-JavaScript can interact with an HTML document to provide dynamic interactivity: responses to user actions on the page, dynamic styling, animations, etc. It is the only programming language understood by all web browsers.
+JavaScript bisa berinteraksi dengan dokumen HTML supaya lebih interaktif dan dinamis: response terhadap aksi dari pengguna pada halaman, tampilan dinamis, animasi, dan lainnya. Hanya bahasa ini yang dipahami oleh semua browser web.
 
-A JavaScript file, usually stored in a `.js` file, is loaded by a web page with a `<script>` tag.
+File JavaScript, biasanya disimpan dalam file `.js`, dibuka oleh halaman web dengan tag `<script>`.
 
 ```html
-<!-- Load a JavaScript file -->
+<!-- Membuka file JavaScript -->
 <script src="path/to/file.js"></script>
 ```
 
-## Developing web pages
+## Mengembangkan halaman web 
 
-To create interactive web pages, you need to write HTML, CSS and JavaScript code. If you're just starting out, the easiest way to do so is by using an online JavaScript playground. However, you will likely want to develop in a more professional fashion at some point, or need to work offline.
+Untuk membuat halaman web interaktif, Kamu perlu menulis kode HTML, CSS dan JavaScript. Jika Kamu baru saja mulai, cara termudahnya adalah dengan menggunakan playround JavaScript. Tetapi, Kamu mungkin juga ingin mengembangkan web secara lebih profesional nantinya, atau Kamu perlu bekerja secara offline.
 
-Refer to the appendix for details on setting up your environment.
+Lihat lampiran untuk detail cara menge-set environment Kamu.
 
-## Coding time!
+## Waktu koding!
 
-You can skip this exercise if you have prior experience with HTML and CSS.
+Kamu bisa lewatkan latihan ini jika Kamu sudah berpengalaman dengan HTML dan CSS.
 
-### Your first web page
+### Halamn web pertama Kamu 
 
-Follow the beginning of the [Getting started with the Web](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web) tutorial from Mozilla Developer Network to create a simple web page using HTML and CSS. The required steps are:
+Ikuti tutorial [Getting started with the Web](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web) dari Mozilla Developer Network untuk membuat halaman web sederhana menggunakan HTML dan CSS. Langkah yang diperlukan adalah:
 
 1. [What will your website look like?](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/What_will_your_website_look_like)
 1. [Dealing with files](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files)
