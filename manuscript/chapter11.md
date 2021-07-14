@@ -1,34 +1,34 @@
-# Project: a social news program
+# Proyek: program berita sosial
 
-Now that you've discovered the basics of programming, let's go ahead and build a real project.
+Sekarang Kamu sudah mengetahui pemrograman dasar, mari kita lanjutkan dan membuat proyek nyata.
 
-## Objective
+## Tujuan
 
-The goal of this project is to build a basic social news program. Its users will be able to show a list of links and add new ones.
+Tujuan proyeik ini adalah untuk membuat program berita sosial sederhana. Pengguna akan bisa menampilkan daftar link dan menambah link baru.
 
-## Functional requirements
+## Kebutuhan fungsional
 
-* A link is defined by its title, its URL and its author (submitter).
-* If a new link URL does not start with `"http://"` or `"https://"`, `"http://"` is automatically added to its beginning.
-* At launch, the program displays a start menu with the possible actions in an alert window and asks the user for his choice. Possible actions are:
-  * Show the list of links.
-  * Add a new link.
-  * Remove an existing link.
-  * Quit the program.
-* Showing the list of links displays the index (rank) and the properties of each link in an alert window, or a message in the absence of any link.
-* When adding a link, the program asks the user for the new link properties (title, URL and author). The link is then created. Subsequently, it must appear in the shown links.
-* When removing a link, the user is asked for the link index until it is correct. The associated link is then removed. Subsequently, it must disappear from the shown links. Removing a link is not possible if there are no existing links.
-* After an action is performed, the start menu is shown again. This goes on until the user chooses to quit the program.
+* Sebuah link didefinisikan oleh judulnya, URL-nya, dan pengirimnya (submitter).
+* Jika URL link tidak dimulai dengan "http://"` atau `"https://"`, `"http://"` otomatis ditambahkan di awalnya.
+* Saat pertama kali dibuka, program menampilkan menu awal dengan beberapa aksi yang dapat dilakukan dalam bentuk window alert dan menanyakan ke pengguna mau pilih apa. Aksi yang dapat dilakukan sebagai berikut:
+  * Menampilkan daftar link.
+  * Menambah link baru.
+  * Menghapus link eksisting.
+  * Keluar program.
+* Menampilkan daftar indeks untuk setiap link (rank) dalam window alert dan propertinya dalam window alert, atau pesan jika ada link yang tidak valid.
+* Ketika menambah link, program menanyakan pengguna untuk properti link (judul, URL, pengirim). Lalu link dibuat. Selain itu, link ini juga muncul di daftar link yang ditampilkan.
+* Ketika menghapus link, pengguna ditanya untuk indeks link sampai indeks-nya valid. Link tersebut lalu dihapus. Selanjutnya, link tersebut harus hilang dalam daftar link yang ditampilkan. Menghapus sebuah link tidak dapat dilakukan jika tidak ada link eksisting.
+* Setelah satu aksi dilakukan, menu awal kembali tampil. Hal ini berlangsung terus sampai dengan pengguna memilih untuk keluar dari program.
 
-## Technical requirements
+## Kebutuhan teknikal
 
-* All your code should be correctly indented.
-* Names should be wisely chosen and adhere to the camelCase convention.
-* Code duplication should be avoided.
+* Semua kode Kamu harus teridentasi dengan benar.
+* Nama variable harus dipilih dengan baik dan mengikuti kaidah konvensi camelCase.
+* Kode duplikasi haru dihindari.
 
-## Expected result
+## Hasil yang diharapkan
 
-Here are a few screenshots of the expected result.
+Berikut beberapa tampilan untuk hasil yang diharapkan.
 
 ![Start menu](images/chapter11-01.png)
 
