@@ -1,24 +1,24 @@
-# Discover the DOM
+# Temukan DOM
 
-This chapter will help you discover how a web page is shown by a browser.
+Bab ini akan membantu Kamu untuk menemukan bagaimana halaman web ditampilkan dengan manggunakan browser.
 
 ## TL;DR
 
-* A **web page** is a structured document containing both text and HTML tags. The **DOM**, or *Document Object Model*, is a standardized way to define a web page's structure.
+* **Halaman web** adalah dokumen terstruktur yang mengandung teks dan tag HTML. **DOM**, atau *Document Object Model*, adalah cara terstandarisasi untuk mendefinisikan struktur halaman web.
 
-* The DOM is also an **API** allowing programmatical interactions with the web page. With JavaScript, you can access the structure of a page displayed in a browser and modify it.
+* DOM juga adalah **API** yang memungkinkan interaksi secara programatik dengan halaman web. Dengan JavaScript, Kamu bisa mengakses struktur halaman yang ditampilkan di browser dan memodifikasinya.
 
-* The DOM represents a web page as a hierarchy of **objects**, where each object corresponds to a node in the nested HTML element tree.
+* DOM merepresentasikan halaman web sebagai hirearki **objek**, di mana setiap objek berkorespondensi ke satu node pada pohon elemen bersarang HTML.
 
-* The `document` variable provides access to the root of the DOM tree and corresponds to the `<html>` element in the HTML itself.
+* Variabel `document` menyediakan akses ke akar dari pohon DOM dan berkoresponden ke elemen `<html>` di dalam HTML itu sendiri.
 
-* DOM objects have **properties** and **methods** that you can manipulate with JavaScript. For example, `nodeType` returns the node type, `childNodes` contains a collection of child nodes, and `parentNode` returns the parent node.
+* Objek DOM memiliki **properti** dan **method** yang dapat Kamu manipulasi dengan JavaScript. Contohnya, `nodeType` mengembalikan tipe node, `childNodes` mengandung koleksi dari node child, dan `parentNode` mengembalikan node parent.
 
-## Introduction to the DOM
+## Pengenalan DOM
 
-You already know that a web page is a document that contains text and tags such as headings, paragraphs, links, etc. This happens in a language called **HTML**.
+Kamu sudah mengetahui bahwa halaman web adalah dokumen yang mengandung teks dan tag seperti heading, paragraf, link, dan lainnya. Hal ini terjadi di bahasa yang dinamakan **HTML**.
 
-Let's take this simple web page as an example. Feel free to add your own information!
+Mari kita lihat contoh halaman web sederhana ini. Silakan tambahkan informasi dari Kamu sendiri!
 
 ```html
 <!doctype html>
@@ -40,46 +40,46 @@ Let's take this simple web page as an example. Feel free to add your own informa
 
 ![Display result](images/chapter13-01.png)
 
-To create this result, the browser first takes the HTML code and builds a representation of its structure. It then displays this structure in the browser.
+Untuk membuat hasil ini, browser pertama-tama mengambil kode HTML dan membangun representasi dari strukturnya. Lalu struktur ini ditampilkan di browser.
 
-The browser also offers *programmatic* access to its structured representation of a displayed web page. Using this interface, you can dynamically update the page by adding or removing elements, changing styles, etc. This is how you create **interactive** web pages.
+Browser juga menawarkan akses *programatik* pada representasi strukturnya dari halaman web yang ditampilkan. Menggunakan antar muka ini, Kamu bisa meng-update halaman dengan menambah atau menghapus elemen, mengubah style, dan lainnya secara dinamis. Beginilah Kamu membuat halaman web yang **interaktif**. 
 
-The structured representation of a web page is called **DOM**, short for *Document Object Model*. The DOM defines the structure of a page and a way to interact with it. This means it's a programming interface, or **API** (*Application Programming Interface*). JavaScript is the language of choice for interacting with the DOM.
+Representasi terstruktur dari halaman web dinamakan **DOM**, singkatan dari *Document Object Model*. DOM mendefinisikan struktur halaman dan bagaimana cara berinteraksi dengannya. Hal ini berarti pemrograman antar muka, atau **API** (*Application Programming Interface*). JavaScript adalah pilihan bahasa untuk berinteraksi dengan DOM.
 
-> At the dawn of the Web, each browser was using its own DOM, giving headaches to JavaScript developers trying to code web pages. These hard times are over. Through a [World Wide Web Consortium](https://w3c.org) (W3C) effort, the first version of a unified DOM was created in 1998. Nowadays, all recent browsers use a standardized DOM.
+> Waktu dulu, setiap browser menggunakan DOM-nya masing-masing, membuat pusing pengembang JavaScript saat mencoba kode halaman web. Waktu sulit ini berakhir. Melalui usaha [World Wide Web Consortium](https://w3c.org) (W3C), versi pertama DOM gabungan telah dibuat di tahun 1998. Sekarang, semua browser terbaru sudah menggunakan DOM yang terstandarisasi. 
 
-## Web page structure
+## Struktur halaman web
 
-A web page is a set of nested tags. You can represent a web page in a hierarchical form called a **tree**. The `<html>` element sets up your document as HTML and contains two sub-elements, `<head>` and `<body>`, which themselves contain several sub-elements.
+Halaman web adalah sekumpulan tag bersarang. Kamu bisa representasi halaman web pada bentuk hirearki yang dinamakan **pohon**. Elemen `<html>` menge-set dokumen Kamu sebagai HTML dan mengndung dua sub-elemen, `<head>` dan `<body>`, yang di dalamnya lagi mengandung beberapa sub-elemen.
 
-Here is the tree corresponding to our example HTML page.
+Berikut adalah korespondensi pohon terhadap contoh halaman HTML kita.
 
 ![Example structure](images/chapter13-02.png)
 
-Each entity in the tree is called a **node**. There are two types of nodes:
+Setiap entitas di pohon dinamakan **node**. Ada dua tipe node:
 
-* Those (in blue here) that correspond to HTML tags like `<body>` or `<p>`. These nodes are called **element nodes** and they can have subnodes, called **child nodes** or children.
+* Yang berwarna biru berkoresponden ke tag HTML tag seperti `<body>` atau `<p>`. Node ini dinamakan **elemen node** dan node ini bisa memiliki subnode, dinamakan **node child**.
 
-* Those (in red) that match the textual content of the page. These nodes are called **text nodes** and do not have children.
+* Yang berwarna merah, cocok dengan konten tekstual dari halaman. Node ini dinamakan **node teks** dan tidak memiliki child.
 
-## Get started with the DOM in JavaScript
+## Mulai dengan DOM JavaScript
 
-The DOM represents a web page as a hierarchy of objects, where each object corresponds to a node in the nested HTML element tree. DOM objects have **properties** and **methods** that you can manipulate with JavaScript.
+DOM merepresentasikan halaman web sebagai hirearki objek, di mana setiap objek berkoresponden ke satu node di pohon elemen bersarang HTML. Objek DOM memiliki **properti** dan **method** yang bisa Kamu manipulasi dengan JavaScript.
 
-### Access the DOM with the `document` variable
+### Akses DOM dengan variabel `document` 
 
-When a JavaScript program runs in the context of a web browser, it can access the root of the DOM using the variable `document`. This variable matches the `<html>` element.
+Ketika program JavaScript berjalan di dalam konten browser web, program tersebut bisa mengakses akar DOM menggunakan variabel `document`. Variabel ini mirip dengan elemen `<html>`.
 
-`document` is an object that has `head` and `body` properties which allow access to the `<head>` and `<body>` elements of the page.
+`document` adalah satu objek yang memiliki properti `head` dan `body` yang memungkinkan untuk mengakses elemen `<head>` dan `<body>` dari halaman web.
 
 ```js
-const h = document.head; // "h" variable contains the contents of the DOM's head
-const b = document.body; // "b" variable contains the contents of the DOM's body
+const h = document.head; // "h" variabel mengandung konten dari head DOM 
+const b = document.body; // "b" variabel mengandung konten dari body DOM 
 ```
 
-### Discover a node's type
+### Temukan tipe node 
 
-Each object has a property called `nodeType` which indicates its type. The value of this property is `document.ELEMENT_NODE` for an "element" node (otherwise known as an HTML tag) and `document.TEXT_NODE` for a text node.
+Setiap objek memiliki properti dinamakan `nodeType` yang mengindikasikan tipenya. Nilai dari properti ini adalah `document.ELEMENT_NODE` untuk satu node "elemen" (atau dikenal dengan tag HTML) dan `document.TEXT_NODE` untuk teks node.
 
 ```js
 if (document.body.nodeType === document.ELEMENT_NODE) {
@@ -91,119 +91,119 @@ if (document.body.nodeType === document.ELEMENT_NODE) {
 
 ![Execution result](images/chapter13-03.png)
 
-As expected, the DOM object `body` is an element node because it's an HTML tag.
+Sesuai ekspektasi, objek DOM `body` adalah satu elemen node karena ini adalah tag HTML.
 
-### Access a node's children
+### Akses child node 
 
-Each element-typed object in the DOM has a property called `childNodes`. This is an ordered collection containing all its child nodes as DOM objects. You can use this array-like collection to access the different children of a node.
+Setiap objek bertipe elemen di DOM memiliki properti dinamakan `childNodes`. Ini adalah koleksi terurut yang mengandung semua child node sebagai objek DOM. Kamu bisa menggunakan koleksi seperti array ini untuk mengakses anak node yang berbeda.
 
-W> The `childNodes` property of an element node is not a real JavaScript array, but rather a [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) object. Not all of the standard array methods are applicable to it.
+> Properti `childNodes` dari node elemen bukanlah array JavaScript sebenarnya, melainkan objek [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList). Tidak semua mehtod array standar bisa diterapkan.
 
-The following code would display the first child of the `body` node.
+Kode berikut akan menampilkan child pertama dari node `body`.
 
 ```js
-// Access the first child of the body node
+// Akses child pertama dari node body 
 console.log(document.body.childNodes[0]);
 ```
 
 ![Execution result](images/chapter13-04.png)
 
-Q> Wait... Why isn't the first child node `h1`, since that's the first element in the body's HTML?
+> Tunggu... Kenapa child pertama bukan adalah `h1`, karena ini merupakan elemen pertama dari HTML body? 
 
-That's because spaces between tags and line returns in HTML code are considered text nodes by the browser. The node `h1` is therefore the *second* child node of the body. Let's double check that:
+Ini karena jarak antara tag dan garis pengembalian di kode HTML dipertimbangkan sebagai node teks oleh browser. Node `h1` jadinya dianggap sebagai child *kedua* dari body. Mari kita cek lagi bahwa:
 
 ```js
-// Access the second child of the body node
+// Akses child kedua dari node body 
 console.log(document.body.childNodes[1]);
 ```
 
 ![Execution result](images/chapter13-05.png)
 
-To eliminate these text nodes between tags, you could have written the HTML page in a more condensed way.
+Untuk menghilangkan node teks di antara tag, Kamu bisa menulis halaman HTML page secara ringkas.
 
 ```html
 <body><h1>My web page</h1><!-- ... -->
 ```
 
-It's better, however, to take the text nodes between tags into account than to sacrifice visibility and code indentation.
+Ini lebih baik, namun pertimbangkan hal ini. Kalau ditulis seperti ini, maka kode jadi agak sulit dibaca karena tidak menggunakan indentasi kode.
 
-### Browse child nodes
+### Jelajahi child node
 
-To browse a list of child nodes, you can use a classical `for` loop, the `forEach()` method or the newer `for-of` loop as seen below:
+Untuk menjelajahi daftar child node, Kamu bisa menggunakan loop `for`, method `forEach()` atau yang lebih baru `for-of` berikut ini:
 
 ```js
-// Browse the body node's children using a for loop@
+// Jelajahi child body node menggunakan loop for
 for (let i = 0; i < document.body.childNodes.length; i++) {
   console.log(document.body.childNodes[i]);
 }
 
-// Browse the body node's children using the forEach() method
+// Jelajahi child body node menggunakan methode forEach()
 document.body.childNodes.forEach(node => {
   console.log(node);
 });
 
-// Browse the body node's children using a for-of loop
+// Jelajahi child body node menggunakan loop for-of 
 for (const node of document.body.childNodes) {
   console.log(node);
 }
 ```
 
-Each of these techniques gives the following result.
+Setiap teknik ini memberikan hasil berikut.
 
 ![Execution result](images/chapter13-06.png)
 
-Again, spaces and line returns count as text nodes in the DOM.
+Lagi, jarak dan garis pengembalian dihitung sebagai node teks di DOM.
 
-### Access a node's parent
+### Akses parent node 
 
-Each DOM object has a property called `parentNode` that returns its parent node as a DOM object.
+Setiap objek DOM memiliki properti dinamakan `parentNode` yang mengembalikan parent node-nya sebagai objek DOM.
 
-> For the DOM root node (`document`), the value of `parentNode` is `null` since it has no parent node.
+> Untuk akar node DOM (`document`), nilai dari `parentNode` adalah `null` karena tidak memiliki node parent.
 
 ```js
 const h1 = document.body.childNodes[1];
-console.log(h1.parentNode);       // Show the body node
-console.log(document.parentNode); // Will show null, since body has no parent node
+console.log(h1.parentNode);       // Menampilkan node body 
+console.log(document.parentNode); // Akan menampilkan null, karena tidak memiliki node parent
 ```
 
 ![Execution result](images/chapter13-07.png)
 
-> There are other properties that we will not discuss here that let you navigate through the DOM, like `firstChild`, `lastChild` or `nextSibling`.
+> Ada properti lain yang tidak kita diskusikan di sini yang memungkinkan Kamu menavigasi melalu DOM, seperti `firstChild`, `lastChild` atau `nextSibling`.
 
-## Coding time!
+## Waktu koding!
 
-### Showing a node's child
+### Menampilkan child node 
 
-Your mission here is to create a `showChild()` function that shows one of the children of a DOM element node. This function takes as parameter the parent node and the child node index. Error cases like a non-element node or an out-of-limits index must be taken into account.
+Misi Kamu di sini adalah untuk membuat fungsi `showChild()` yang menampilkan satu dari child node elemen DOM. Fungsi ini mengambil parent node parameter dan child node index. Kasus eror seperti node non-elemen atau atau out-of-limits index harus dipertimbangkan juga.
 
-Here's the associated HTML code.
+Berikut kode HTML yang digunakan.
 
 ```html
 <h1>A title</h1>
 <div>Some text with <a href="#">a link</a>.</div>
 ```
 
-Complete the following program to obtain the expected results.
+Lengkapi program berikut untuk mendapatkan hasil yang diharapkan.
 
 ```js
-// Show a DOM object's child node
-// "node" is the DOM object
-// "index" is the index of the child node
+// Tampilkan child node dari objek DOM 
+// "node" adalah objek DOM 
+// "index" adalah indeks dari child node
 const showChild = (node, index) => {
-  // TODO: add code here
+  // TODO: tambahkan kode di sini 
 };
 
-// Should show the h1 node
+// Harus menampilkan node h1 
 showChild(document.body, 1);
 
-// Should show "Incorrect index"
+// Harus menampilkan "Incorrect index"
 showChild(document.body, -1);
 
-// Should show "Incorrect index"
+// Harus menampilkan "Incorrect index"
 showChild(document.body, 8);
 
-// Should show "Wrong node type"
+// Harus menampilkan "Wrong node type"
 showChild(document.body.childNodes[0], 0);
 ```
 
-> Use `console.error()` rather than `console.log()` to display an error message in the console.
+> Gunakan `console.error()` daripada `console.log()` untuk menampilkan pesan eror di console.
