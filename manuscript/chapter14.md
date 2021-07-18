@@ -1,22 +1,22 @@
-# Traverse the DOM
+# Jelajahi DOM
 
-In this chapter, you'll see how to use JavaScript to traverse the DOM.
+Di bab ini, Kamu akan tahu bagaimana cara menggunakan JavaScript untuk menjelajahi DOM.
 
 ## TL;DR
 
-* Rather than go through the DOM node by node, you can quickly access one or more elements using **selection methods**.
+* Daripada memapai DOM node satu per satu, Kamu bisa mengakses satu atau lebih elemen menggunakan **metode seleksi** dengan cepat.
 
-* The `getElementsByTagName()`, `getElementsByClassName()` and `getElementById()` methods respectively search items by **tag name**, **class**, and **ID**. The first two methods return a list, which can further be converted to an array with `Array.from()`. The latter method returns a single item.
+* Method `getElementsByTagName()`, `getElementsByClassName()` dan `getElementById()` masing-masing mencari item berdasarkan **nama tag**, **class**, dan **ID**. Dua method yang pertama mengembalikan satu daftar yang nantinya bisa dikonversi menjadi array dengan `Array.from()`. Method yang terakhir mengembalikan satu item.
 
-* The `querySelectorAll()` and `querySelector()` methods make it possible to search for items using a **CSS selector**. The first method returns all matching items, and the second returns only the first.
+* Method `querySelectorAll()` dan `querySelector()` memungkinkan untuk mencari item menggunakan **CSS selector**. Method yang pertama mengembalikan seluruh item yang cocok, dan method yang kedua mengembalikan hanya item yang pertama.
 
-* The `innerHTML` property returns the **HTML content** of an element. The `textContent` property returns its **textual content** without any HTML markup.
+* Properti `innerHTML` mengembalikan **konten HTML** dari satu elemen. Properti `textContent` mengembalikan **konteks tekstualnya** tanpa markup HTML.
 
-* The `getAttribute()` and `hasAttribute()` methods allow access to element **attributes**. The `classList` property and its method `contains()` provides access to an element's **classes**.
+* Method `getAttribute()` dan `hasAttribute()` memungkinkan untuk bisa mengakses **atribut** elemen. Properti `classList` dan method-nya `contains()` digunakan untuk mengakses elemen **class**.
 
-## Sample web page
+## Contoh halaman web 
 
-Here's the example web page used throughout this chapter.
+Berikut adalah contoh halaman web yang digunakan di seluruh bab ini.
 
 ```html
 <h1>Seven wonders of the world</h1>
@@ -52,51 +52,51 @@ Here's the example web page used throughout this chapter.
 </div>
 ```
 
-## Selecting elements
+## Memilih elemen
 
-### The limits of node-by-node traversal
+### Keterbatasan penjelajahan node satu per satu 
 
-In the previous chapter, you saw how to navigate the DOM node structure of a web page beginning with the root node and using the `childNodes` property to move down levels in the structure of the page.
+Di bab sebelumnya, Kamu sudah tahu cara menavigasi struktur node DOM dari halaman web yang dimulai dari akar node dan menggunakan properti `childNodes` untuk turun tingkat pada struktur halaman web.
 
-Suppose you want to select the title `"Wonders from Antiquity"` of our web page. Taking into account the text nodes between elements, this node is the second child node of the sixth child node of the `body` element. So you could write something like this.
+Misalnya Kamu ingin memilih judul `"Wonders from Antiquity"` dari halaman web kita. Perhatikan node teks diantara elemen, node ini adalah child node kedua dari enam child node dari elemen `body`. Jadi Kamu bisa menulis sesuatu seperti ini.
 
 ```js
-// Show the "Wonders from Antiquity" h2 element
+// Menampilkan elemen h2: "Wonders from Antiquity" 
 console.log(document.body.childNodes[5].childNodes[1]);
 ```
 
 ![Execution result](images/chapter14-06.png)
 
-This technique is pretty awkward and error-prone. The code is difficult to read and must be updated if new elements are further inserted in the web page. Fortunately, there are much better solutions.
+Teknik ini sangatlah aneh dan rentan eror. Kodenya sulit untuk dibaca dan harus di-update jika elemen baru disisipkan di halaman web. Untungnya, ada solusi yang lebih baik. 
 
-### Selecting items according to HTML tag
+### Memilih item berdasarkan tag HTML 
 
-All DOM elements have a method called `getElementsByTagName()`. This returns, under the form of a [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList) object, a list of items that have the name of the tag that's passed as a parameter. The search happens through all the sub-elements of the node on which the method is called -- not only its direct children.
+Semua elemen DOM memiliki satu method dinamakan `getElementsByTagName()`. Method ini mengembalikan, dalam bentuk objek [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList), daftar item yang memiliki nama tag yang ditempatkan sebagai parameter. Pencarian terjadi melalui semua sub-elemen dari node di mana method dipanggil -- tidak hanya child-nya secara langsung.
 
-With the `getElementsByTagName()` method, selecting the first `h2` element becomes super easy:
+Dengan method `getElementsByTagName()`, memilih elemen `h2` pertama menjadi super mudah:
 
 ```js
-// Get all h2 elements into an array
+// Mendapatkan semua elemen h2 dalam bentuk array 
 const titleElements = document.getElementsByTagName("h2");
 
-console.log(titleElements[0]);     // Show the first h2
-console.log(titleElements.length); // 3 (total number of h2 elements in the page)
+console.log(titleElements[0]);     // Menampilkan h2 yang pertama 
+console.log(titleElements.length); // 3 (jumlah total elemen h2 yang ada di halaman)
 ```
 
 ![Execution result](images/chapter14-07.png)
 
-T> Suffixing JavaScript variables associated to DOM element nodes with `Element` (or `Elements` when the variable contains several nodes) is a popular naming convention. We'll stick to it throughout this book.
+> Memberikan nama variabel JavaScript yang berhubungan dengan node elemen DOM dengan `Element` (atau `Elements` ketika variabel mengandung beberapa node) adalah konvensi penamaan yang populer. Kita akan menggunakan ini di seluruh buku ini. 
 
-### Selecting items according to class
+### Memilih item berdasarkan class
 
-DOM elements also feature a method called `getElementsByClassName()`. This method returns a `NodeList` object of elements with the class name as a parameter. Again, the search covers all sub-elements of the node on which the method is called.
+Elemen DOM juga ada method dinamakan `getElementsByClassName()`. Method ini mengembalikan elemen objek `NodeList` dengan nama class sebagai parameter. Lagi, pencarian mencakup semua sub-elemen node di mana method dipanggil.
 
 It's important to note that `NodeList` objects are *not* real JavaScript arrays, so not all array operations are applicable to them. To turn a `NodeList` object into an array, use the `Array.from()` method.
 
-To select and display all document elements with a class `"exists"`, you can write the following code.
+Untuk memilih dan menampilkan semua elemen dokumen dengan menggunakan class `"exists"`, Kamu bisa menulis kode berikut.
 
 ```js
-// Show all elements that have the class "exists"
+// Menampilkan semua elemen yang memiliki class "exists"
 const existingElements = Array.from(document.getElementsByClassName("exists"));
 existingElements.forEach(element => {
   console.log(element);
@@ -105,166 +105,166 @@ existingElements.forEach(element => {
 
 ![Execution result](images/chapter14-08.png)
 
-### Selecting an item according to its ID
+### Memilih item berdasarkan ID
 
-Lastly, the `document` variable provides a method called `getElementById()` that returns the element with the specified ID among all elements of the document. It returns `null` if no associated element can be found.
+Terakhir, variabel `document` menyediakan method dinamakan `getElementById()` yang mengembalikan elemen dengan ID spesifik diantara semua elemen yang ada di dokumen. Method ini mengembalikan `null` jika tidak ada elemen terkait yang bisa ditemukan.
 
-The following code selects and displays the list with ID `"new"`.
+Kode berikut memilih dan menampilkan daftar dengan ID `"new"`.
 
 ```js
-// Show element with the ID "new"
+// Menampilkan elemen dengan ID "new"
 console.log(document.getElementById("new"));
 ```
 
 ![Execution result](images/chapter14-09.png)
 
-E> Beware: contrary to others, the `getElementById()` method does not contain any `'s'` after the word `"Element"`.
+> Hati-hati: kebalikan dari yang lain, method `getElementById()` tidak mengandung `'s'` setelah kata `"Element"`.
 
-### Selecting elements via CSS selectors
+### Memilih elemen melalui CSS selector
 
-For more complex use cases, you can also use CSS selectors to access DOM elements.
+Untuk kasus yang lebih kompleks, Kamu juga bisa menggunakan CSS selector untuk mengakses elemen DOM.
 
-For example, let's say that you want to grab all the `<li>` elements of wonders that are both ancient and still exist.
+Contohnya, katakanlah Kamu ingin mengambil semua elemen `<li>` dari keajaiban kuno (ancient) dan masih ada. 
 
 ```js
-// All "ancient" wonders that still exist
+// Semua keajaiban "ancient" yang masih ada 
 console.log(document.getElementById("ancient").getElementsByClassName("exists").length); // 1
 ```
 
-This syntax is a little clunky though. Let's learn two new methods that make finding elements easier.
+Sintaks ini sedikit aneh. Mari kita belajar dua method baru yang membuat pencarian elemen menjadi lebih mudah.
 
-The first is `querySelectorAll()`, with which you can use CSS selectors to identify elements.
+Yang pertama adalah `querySelectorAll()`, yang Kamu bisa gunakan CSS selector untuk mengidentifikasi elemen.
 
 ```js
-// All paragraphs
+// Semua paragraf 
 console.log(document.querySelectorAll("p").length); // 3
 
-// All paragraphs inside the "content" ID block
+// Semua paragraf di dalam blok ID "konten"
 console.log(document.querySelectorAll("#content p").length); // 2
 
-// All elements with the "exists" class
+// Semua elemen dengan class "exists" 
 console.log(document.querySelectorAll(".exists").length); // 8
 
-// All "ancient" wonders that still exist
+// Semua keajaiban "ancient" yang masih ada 
 console.log(document.querySelectorAll("#ancient > .exists").length); // 1
 ```
 
-> Check the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) for a primer on the different CSS selectors available.
+> Cek [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) untuk CSS selector utama yang bisa digunakan.
 
-The second method using CSS selectors is called `querySelector()`. It works the same way as `querySelectorAll()` but only returns the first matching element. It returns `null` if no associated element can be found.
+Method kedua menggunakan CSS selector dinamakan `querySelector()`. Method ini mirip dengan `querySelectorAll()` tetapi hanya mengembalikan elemen pertama yang cocok. Jika tidak ada elemen yang cocok, maka akan mengembalikan nilai `null`.
 
 ```js
-// Show the first paragraph
+// Menampilkan paragraf pertama
 console.log(document.querySelector("p"));
 ```
 
 ![Execution result](images/chapter14-10.png)
 
-### Choosing a selection method
+### Menentukan metode pemilihan 
 
-You just discovered several ways of selecting DOM elements. How do you choose the right one?
+Kamu baru saja mengetahui beberapa cara memilih elemen DOM. Bagaimana Kamu memilih yang benar?
 
-Since they use CSS selectors, `querySelectorAll()` and `querySelector()` could cover all your needs, but they might perform [slower](https://jsperf.com/getelementsbyclassname-vs-queryselectorall/195) than the others.
+Karena Kamu menggunakan CSS selector, `querySelectorAll()` dan `querySelector()` bisa mencakup semua keperluan Kamu, tetapi cara ini mungkin [lebih lambat](https://jsperf.com/getelementsbyclassname-vs-queryselectorall/195) daripada cara yang lain.
 
-Here are the general rules of thumb that you should follow.
+Berikut aturan umum yang bisa Kamu ikuti.
 
-| Number of items to get | Selection criterion | Method to use |
+| Jumlah item yang akan didapat | Kriteria pemilihan | Metode yang digunakan |
 |---|---|---|
-| Many | By tag | `getElementsByTagName()` |
-| Many | By class | `getElementsByClassName()` |
-| Many | Not by class or tag | `querySelectorAll()` |
-| Only one | By ID | `getElementById()` |
-| Only one (the first) | Not by ID | `querySelector()` |
+| Banyak | Dengan tag | `getElementsByTagName()` |
+| Banyak | Dengan class | `getElementsByClassName()` |
+| Banyak | Tidak dengan class atau tag | `querySelectorAll()` |
+| Hanya satu | Dengan ID | `getElementById()` |
+| Hanya satu (yang pertama) | Tidak dengan ID | `querySelector()` |
 
-## Obtaining information about elements
+## Mendapatkan informasi tentang elemen 
 
-The DOM also provides information on the items you've just selected.
+DOM juga menyediakan informasi tentang item yang baru saja Kamu pilih.
 
-### HTML content
+### Konten HTML 
 
-The `innerHTML` property will retrieve the HTML content of your DOM element.
+Properti `innerHTML` akan mengambil konten HTML dari elemen DOM Kamu.
 
 ```js
-// The HTML content of the DOM element with ID "content"
+// Konten HTML dari elemen DOM dengan ID "content"
 console.log(document.getElementById("content").innerHTML);
 ```
 
 ![Execution result](images/chapter14-01.png)
 
-> This property has been introduced by Microsoft and is not part of the W3C DOM specification, but it is nonetheless supported by all major browsers.
+> Properti ini telah diperkenalkan oleh Microsoft dan tidak menjadi bagian dari spesifikasi W3C DOM. Walaupun begitu, properti ini tetap didukung oleh kebanyakan browser populer. 
 
-### Textual content
+### Konten tekstual 
 
-The `textContent` property returns all the text content of a DOM element, without any HTML markup.
+Properti `textContent` mengembalikan semua konten teks dari elemen DOM, tanpa markup HTML.
 
 ```js
-// The textual content of the DOM element with ID "content"
+// Konten tekstual dari elemen DOM dengan ID "content"
 console.log(document.getElementById("content").textContent);
 ```
 
 ![Execution result](images/chapter14-02.png)
 
-### Attributes
+### Atribut
 
-The `getAttribute()` method can be applied to a DOM element and will return the value of a given attribute.
+Method `getAttribute()` bisa diterapkan pada elemen DOM dan akan mengembalikan nilai dari atributnya.
 
 ```js
-// Show href attribute of the first link
+// Menampilkan atribut href  dari link yang pertama
 console.log(document.querySelector("a").getAttribute("href"));
 ```
 
 ![Execution result](images/chapter14-11.png)
 
-Some attributes are directly accessible as properties. This is true for the `id`, `href`, and `value` attributes.
+Beberapa atribut bisa langsung diakses sebagai properti. Hal ini benar untuk atribut `id`, `href`, dan `value`.
 
 ```js
-// Show ID attribute of the first list
+// Menampilkan atribut ID dari daftar yang pertama
 console.log(document.querySelector("ul").id);
 
-// Show href attribute of the first link
+// Menampilkan atribut href dari daftar yang pertama
 console.log(document.querySelector("a").href);
 ```
 
 ![Execution result](images/chapter14-12.png)
 
-You can check for the existence of an attribute using the `hasAttribute()` method as seen in the example below.
+Kamu bisa memeriksa keberadaan dari atribut dengan menggunakan method `hasAttribute()` seperti contoh berikut ini.
 
 ```js
 if (document.querySelector("a").hasAttribute("target")) {
   console.log("The first link has a target attribute.");
 } else {
-  console.log("The first link does not have a target attribute."); // Will be shown
+  console.log("The first link does not have a target attribute."); // Akan ditampilkan
 }
 ```
 
-### Classes
+### Class
 
-In a web page, a tag can have multiple classes. The `classList` property retrieves a DOM element's list of classes.
+Di halaman web, sebuah tag bisa memiliki beberapa class. Properti `classList` mengambil daftar class elemen DOM.
 
 ```js
-// List of classes of the element identified by "ancient"
+// Daftar class dari elemen yang diidentifikasi oleh "ancient"
 const classes = document.getElementById("ancient").classList;
-console.log(classes.length); // 1 (since the element only has one class)
+console.log(classes.length); // 1 (karena elemen hanya memiliki satu class)
 console.log(classes[0]);     // "wonders"
 ```
 
-You also have the opportunity to test the presence of a class on an element by calling the `contains()` on the class list, passing the class to test as a parameter.
+Kamu juga bisa menge-tes keberadaan class dari elemen dengan memanggil `contains()` pada daftar class, menempatkan class untuk dites sebagai satu parameter.
 
 ```js
 if (document.getElementById("ancient").classList.contains("wonders")) {
-  console.log("The element with ID 'ancient' has the class 'wonders'."); // Will be shown
+  console.log("The element with ID 'ancient' has the class 'wonders'."); // Akan ditampilkan
 } else {
   console.log("The element with ID 'ancient' does not have the class 'wonders'.");
 }
 ```
 
-> This is only a part of the DOM traversal API. For more details, check the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/API/Element).
+> Ini hanyalah sebagian dari penjelajahan API DOM. Untuk lebih detail, cek[Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/API/Element).
 
-## Coding time!
+## Waktu koding!
 
-### Counting elements
+### Menghitung elemen 
 
-Here is some HTML code (content is by French poet Paul Verlaine).
+Berikut ini beberapa kode HTML code (konten dari puisi Prancis Paul Verlaine).
 
 ```html
 <h1>Mon rêve familier</h1>
@@ -275,20 +275,20 @@ Here is some HTML code (content is by French poet Paul Verlaine).
 <p>Ni tout à fait une autre, et m'aime et me comprend.</p>
 ```
 
-Complete the following program to write the `countElements()` function, that takes a CSS selector as a parameter and returns the number of corresponding elements.
+Lengkapi program berikut untuk menulis fungsi `countElements()`, yang mengambil CSS selector sebagai satu parameter dan mengembalikan jumlah elemen yang berkoresponden. 
 
 ```js
-// TODO: write the countElements() function here
+// TODO: tulis fungsi countElements() di sini
 
-console.log(countElements("p"));              // Should show 4
-console.log(countElements(".adjective"));     // Should show 3
-console.log(countElements("p .adjective"));   // Should show 3
-console.log(countElements("p > .adjective")); // Should show 2
+console.log(countElements("p"));              // Harus menampilkan 4
+console.log(countElements(".adjective"));     // Harus menampilkan 3
+console.log(countElements("p .adjective"));   // Harus menampilkan 3
+console.log(countElements("p > .adjective")); // Harus menampilkan 2
 ```
 
-### Handling attributes
+### Menangani atribut
 
-Here is the description of several musical instruments.
+Berikut ini deskripsi dari beberapa instrumen musik.
 
 ```html
 <h1>Some musical instruments</h1>
@@ -308,16 +308,16 @@ Here is the description of several musical instruments.
 </ul>
 ```
 
-Write a JavaScript program containing a `linkInfo()` function that shows:
+Tulis program JavaScript yang di dalamnya terdapat fungsi `linkInfo()` yang menampilkan:
 
-* The total number of links.
-* The target of the first and last links.
+* Jumlah total link.
+* Sasaran link pertama dan terakhir.
 
-This function should work even if no links are present.
+Fungsi ini harus jalan walaupun saat ini tidak ada link.
 
 ![Expected result](images/chapter14-03.png)
 
-Add the following new instrument at the end of the HTML list, then check your program's new result.
+Tambah instrumen baru berikut di akhir daftar HTML list, lalu cek hasil terbaru dari program Kamu.
 
 ```html
 <li id="harpsichord">
@@ -327,22 +327,22 @@ Add the following new instrument at the end of the HTML list, then check your pr
 
 ![Expected result](images/chapter14-04.png)
 
-### Handling classes
+### Menangani class
 
-Improve the previous program to add a `has()` function that tests if an element designated by its ID has a class. The function shows `true`, `false` or an error message if the element can't be found.
+Kembangkan program sebelumnya, tambahkan fungsi `has()` yang memeriksa apakah satu elemen yang dibuat dengan ID memiliki class. Fungsi ini menampilkan `true`, `false` atau pesan eror jika elemen tidak dapat ditemukan.
 
 ```js
-// Show if an element has a class
+// Menampilkan apakah elemen memiliki class
 const has = (id, someClass) => {
-  // TODO: write the function code
+  // TODO: tulis kode fungsi
 };
 
-has("saxophone", "woodwind");     // Should show true
-has("saxophone", "brass");        // Should show false
-has("trumpet", "brass");          // Should show true
-has("contrabass", "chordophone"); // Should show an error message
+has("saxophone", "woodwind");     // Harus menampilkan true
+has("saxophone", "brass");        // Harus menampilkan false
+has("trumpet", "brass");          // Harus menampilkan true
+has("contrabass", "chordophone"); // Harus menampilkan pesan eror 
 ```
 
-> Use `console.error()` rather than `console.log()` to display an error message in the console.
+> Gunakan `console.error()` dibandingkan `console.log()` untuk menampilkan pesan eror di console.
 
 ![Expected result](images/chapter14-05.png)
