@@ -1,34 +1,34 @@
-# Modify page structure
+# Modifikasi struktur halaman 
 
-Let's see how to use JavaScript to modify a web page once it's been loaded by the browser! You can thus make your content more dynamic and interactive.
+Mari kita lihat bagaimana menggunakan JavaScript untuk memodifikasi halaman web ketika halaman sudah terbuka oleh browser! Lalu kamu bisa membuat konten Kamu menjadi lebih dinamis dan interaktif. 
 
 ## TL;DR
 
-* The `innerHTML`, `textContent` and `classList` properties, as well as the `setAttribute` method, let you modify a DOM element's information.
+* Properti `innerHTML`, `textContent` dan `classList` properties, juga method `setAttribute`, memungkinkan Kamu memodifikasi informasi elemen DOM.
 
-* You create new DOM nodes via methods `createTextNode()` (for, well, text nodes) and `createElement()` (for elements themselves).
+* Kamu membuat node DOM baru melalui method `createTextNode()` (untuk node teks) dan `createElement()` (untuk elemen itu sendiri).
 
-* The `appendChild()` method lets you insert a new node as the last child of a DOM element.
+* Method `appendChild()` memungkinkan Kamu menyisipkan satu node baru sebagai child terakhir dari elemen DOM.
 
-* The `insertBefore()` and `insertAdjacentHTML()` methods are alternative possibilities for adding content.
+* Method `insertBefore()` dan `insertAdjacentHTML()` adalah kemungkinan alternatif untuk menambah konten.
 
-* You can replace existing nodes with the `replaceChild()` method or remove them with `removeChild()`.
+* Kamu bisa mengganti node eksisting dengan method `replaceChild()` atau menghapusnya dengan `removeChild()`.
 
-* The JavaScript `style` property represents the `style` attribute of a DOM node. It lets you modify the element's style by defining values of its CSS properties.
+* Properti JavaScript `style` merepresentasikan atribut `style` dari node DOM. Properti ini memungkinkan Kamu untuk memodifikasi tampilan elemen dengan mendefinisikan nilai properti CSS-nya.
 
-* CSS properties that involve multiple words are written in **camelCase** when dealing with JavaScript. For example, `font-family` becomes `fontFamily`.
+* Properti CSS yang terdiri dari beberapa kata ditulis dalam **camelCase** saat berurusan dengan JavaScript. Contohnya, `font-family` menjadi `fontFamily`.
 
-* The `style` property is not intended to access an element's style. You should use the `getComputedStyle()` function instead.
+* properti `style` tidak digunakan untuk mengakses tampilan elemen. Kamu harus menggunakan fungsi `getComputedStyle()`.
 
-* Manipulating the DOM with JavaScript should be done sparingly so that page performance doesn't suffer.
+* Memanipulasi DOM dengan JavaScript harus dilakukan tidak dengan berlebihan sehingga performansi halaman tidak terganggu.
 
-## Modify an existing element
+## Modifikasi elemen eksisting 
 
-The DOM traversal properties studied in the previous chapter can also be used to update elements in the page.
+Properti penjelajahan DOM yang dipelajari pada bab sebelumnya bisa juga digunakan untuk meng-update elemen pada halaman web.
 
-### Example page
+### Contoh halaman
 
-The examples in the next paragraphs use the HTML code below.
+Contoh di paragraf selanjutnya menggunakan kode HTML berikut.
 
 ```html
 <h3 class="beginning">Some languages</h3>
@@ -42,165 +42,165 @@ The examples in the next paragraphs use the HTML code below.
 </div>
 ```
 
-### HTML content
+### Konten HTML 
 
-The `innerHTML` property can be used to change the content of an element within the DOM.
+Properti `innerHTML` bisa digunakan untuk mengubah konten elemen di dalam DOM.
 
-For example, you can add a new language to our list with the code below. We'll access the `<ul>` tag identified by `"languages"` and then add an entry to the end of the list via an operator (`+=`) and an `<li>`.
+Contohnya, Kamu bisa menambah bahasa baru pada daftar kita dengan kode di bawah. Kita akan mengakses tag `<ul>` yang diidentifikasi oleh `"languages"` lalu menambahkan entri di akhir daftar melalui operator (`+=`) dan `<li>`.
 
 ```js
-// Modifying an HTML element: adding an <li>
+// Memodifikasi elemen HTML element: menambah <li>
 document.getElementById("languages").innerHTML += '<li id="c">C</li>';
 ```
 
 ![Execution result](images/chapter15-01.png)
 
-The `innerHTML` property is often used to "empty" content. Try the following example:
+Properti `innerHTML` sering digunakan untuk "mengosongkan" konten. Coba contoh berikut:
 
 ```js
-// Delete the HTML content of the list, replacing it with nothing
+// Menghapus daftar konten HTML, menggantinya dengan kosong 
 document.getElementById("languages").innerHTML = "";
 ```
 
-> Before moving on, remove the above line from your JavaScript program. Otherwise, you'll have no content!
+> Sebelum lanjut, hapus kode di atas dari program JavaScript Kamu. Jika tidak, Kamu tidak memiliki konten!
 
-T> When using `innerHTML`, you put HTML content into strings. To keep your code readable and avoid mistakes, you should only use `innerHTML` to make small content changes. You'll discover more versatile solutions below.
+> Ketika menggunakan `innerHTML`, Kamu menaruh konten HTML di dalam string. Untuk menjaga kode Kamu tetap terbaca dan mencegah kesalahan, Kamu harus menggunakan `innerHTML` untuk membuat sedikit perubahan konten. Kamu nanti akan mengetahui alternatif solusi lainnya di bawah.
 
-### Text content
+### Konten teks
 
-Use the `textContent` property to modify the text content of a DOM element. Here is how to complete the title displayed by our page.
+Gunakan properti `textContent` untuk memodifikasi konten teks dari elemen DOM. Berikut cara melengkapi judul yang ditampilkan oleh halaman kita.
 
 ```js
-// Modify the title's text content
+// Memodifikasi konten teks judul
 document.querySelector("h3").textContent += " for programming";
 ```
 
 ![Execution result](images/chapter15-02.png)
 
-### Attributes
+### Atribut
 
-The `setAttribute()` method sets the value of an attribute of an element. You pass the name and value of the attribute as parameters.
+Method `setAttribute()` mengeset nilai atribut elemen. Kamu menempatkan nama dan nilai dari atribut sebagai parameter.
 
 ```js
-// Define the id attribute of the first title
+// Mendefinisikan atribut id dari judul pertama
 document.querySelector("h3").setAttribute("id", "title");
 ```
 
-As you saw in the previous chapter, some attributes exist as properties and can be directly updated.
+Seperti yang Kamu lihat di bab sebelumnya, beberapa atribut eksis sebagai properti dan bisa langsung di update.
 
 ```js
-// Define the id attribute of the first title
+// Mendefinisikan atribut id dari judul pertama
 document.querySelector("h3").id = "title";
 ```
 
-### Classes
+### Class
 
-You can use the `classList` property to add or remove classes from a DOM element!
+Kamu bisa menggunakan properti `classList` untuk menambah atau menghapus class elemen DOM!
 
 ```js
-const titleElement = document.querySelector("h3"); // Grab the first h3
-titleElement.classList.remove("beginning");        // Remove the class "beginning"
-titleElement.classList.add("title");               // Add a class called "title"
+const titleElement = document.querySelector("h3"); // Ambil h3 pertama
+titleElement.classList.remove("beginning");        // Hapus class "beginning"
+titleElement.classList.add("title");               // Tambah class bernama "title"
 console.log(titleElement);
 ```
 
 ![Execution result](images/chapter15-03.png)
 
-## Adding a new element
+## Menambah elemen baru
 
-Adding a new element to a web page can be broken into three steps:
+Menambah elemen baru pada halaman web bisa dibagi menjadi tiga langkah:
 
-* Create the new element.
-* Set element properties.
-* Insert the new element in the DOM.
+* Buat elemen baru.
+* Set properti elemen.
+* Sisipkan elemen baru pada DOM.
 
-For example, suppose you want to add the language "Python" to the list of languages on our page. Here's the JavaScript code you'd use to do so.
+Misalnya Kamu ingin menambah bahasa "Python" pada daftar bahasa di halaman kita. Berikut kode JavaScript yang bisa Kamu gunakan.
 
 ```js
-const pythonElement = document.createElement("li"); // Create an "li" element
-pythonElement.id = "python";          // Define element ID
-pythonElement.textContent = "Python"; // Define its text content
-document.getElementById("languages").appendChild(pythonElement); // Insert the new element into the DOM
+const pythonElement = document.createElement("li"); // Buat elemen "li" 
+pythonElement.id = "python";          // Definisikan elemen ID
+pythonElement.textContent = "Python"; // Definisikan konten teksnya 
+document.getElementById("languages").appendChild(pythonElement); // Sisipkan elemen baru pada DOM
 ```
 
 ![Execution result](images/chapter15-04.png)
 
-Let's study each of these steps.
+Mari kita pelajari setiap langkah tersebut.
 
-### Creating the element
+### Membuat elemen 
 
-You'd create an element using the `createElement()` method (surprising, isn't it?). This method is used on the document object and takes the tag of the new element as a parameter. This method also returns the element created as an object (here stored in a variable called `pythonElement`).
+Kamu akan membuat elemen menggunakan method `createElement()` (mengagetkan ya?). Method ini digunakan pada objek dokumen dan mengambil tag dari elemen baru sebagai parameter. Method ini juga mengembalikan elemen yang dibuat sebagai objek (disimpan di variabel bernama `pythonElement`).
 
 ```js
-const pythonElement = document.createElement("li"); // Create an li element
+const pythonElement = document.createElement("li"); // Buat elemen li 
 ```
 
-### Setting element properties
+### Mengeset properti elemen 
 
-Once the element is created and stored in a variable, you can add some detail to it (ID, class, text content, etc.) by using the aforementioned DOM properties.
+Setelah elemen dibuat dan disimpan di sebuah variabel, Kamu bisa menambah beberapa detail seperti ID, class, konten teks, dan lainnya dengan menggunakan properti DOM tersebut di atas.
 
-In the example, the element ID becomes `"python"` and its text content becomes `"Python"`.
+Di contoh, elemen ID menjadi `"python"` dan konten teksnya menjadi `"Python"`.
 
 ```js
 // ...
-pythonElement.id = "python";          // Define element ID
-pythonElement.textContent = "Python"; // Define its text content
+pythonElement.id = "python";          // Definisikan elemen ID
+pythonElement.textContent = "Python"; // Definisikan konten teksnya
 ```
 
-### Inserting the element into the DOM
+### Menyisipkan elemen pada DOM
 
-There are several techniques to insert a new node in the DOM. The most common is to call the `appendChild()` method on the element that will be the future parent of the new node. The new node is added to the end of the list of child nodes of that parent.
+Ada beberapa teknik untuk menyisipkan node baru pada DOM. Biasanya adalah dengan memanggil method `appendChild()` pada elemen yang akan menjadi parent masa depan dari node baru tersebut. Node baru ini ditambahkan di akhir daftar child node dari parent tersebut.
 
-In our example, the new item is added as a new child of the `<ul>` tag identified by `"languages"`, after all the other children of this tag.
+Di contoh kita, item baru ditambahkan sebagai child baru dari tag `<ul>` diidentifikasi oleh `"languages"`, setelah semua child lainnya di tag ini.
 
 ```js
 // ...
-document.getElementById("languages").appendChild(pythonElement); // Insert the new element into the DOM
+document.getElementById("languages").appendChild(pythonElement); // Sisipkan elemen baru pada DOM 
 ```
 
-## Variations on adding elements
+## Variasi penambahan elemen 
 
-### Adding a textual node
+### Menambah node tekstual
 
-Instead of using the `textContent` property to define the new element's textual content, you can create a textual node with the `createTextNode()` method. This node can then be added to the new element with `appendChild()`.
+Daripada menggunakan properti `textContent` untuk mendefinisikan konten tekstual elemen baru, Kamu bisa membuat node tekstual dengan method `createTextNode()`. Node ini lalu bisa ditambahkan ke elemen baru dengan `appendChild()`.
 
-The following code demonstrates this possibility by inserting the Ruby language at the end of the list.
+Kode berikut mendemonstrasikan kemungkinan ini dengan menyisipkan bahasa Ruby di akhir daftar.
 
 ```js
-const rubyElement = document.createElement("li"); // Create an "li" element
-rubyElement.id = "ruby"; // Define element ID
-rubyElement.appendChild(document.createTextNode("Ruby")); // Define its text content
-document.getElementById("languages").appendChild(rubyElement); // Insert the new element into the DOM
+const rubyElement = document.createElement("li"); // Buat elemen "li" 
+rubyElement.id = "ruby"; // Definisikan elemen ID
+rubyElement.appendChild(document.createTextNode("Ruby")); // Definisikan konten teksnya
+document.getElementById("languages").appendChild(rubyElement); // Sisipkan elemen baru pada DOM
 ```
 
 ![Execution result](images/chapter15-05.png)
 
-### Adding a node before another one
+### Menambah node sebelum lainnya 
 
-Sometimes, inserting a new node at the end of its parent's children list is not ideal. In that case, you can use the `insertBefore()` method. Called on the future parent, this method takes as parameters the new node and the node before which the new one will be inserted.
+Terkadang, menyisipkan node baru di akhir parent dari daftar child tidaklah ideal. Di kasus ini, Kamu bisa menggunakan method `insertBefore()`. Dipanggil di parent masa depan, method ini mengambil node baru dan node di mana yang baru akan disisipkan sebagai parameter.
 
-As an example, here's how the Perl language could be inserted before PHP in the list.
+Sebagai contoh, berikut bagaimana bahasa Perl bisa disisipkan sebelum PHP di dalam daftar.
 
 ```js
-const perlElement = document.createElement("li"); // Create an "li" element
-perlElement.id = "perl"; // Define element ID
-perlElement.textContent = "Perl"; // Define its text content
-// Insert the new element before the "PHP" node
+const perlElement = document.createElement("li"); // Buat elemen "li" 
+perlElement.id = "perl"; // Definisikan elemen ID
+perlElement.textContent = "Perl"; // Definisikan konten teksnya
+// Sisipan elemen baru sebelum node "PHP" 
 document.getElementById("languages").insertBefore(perlElement, document.getElementById("php"));
 ```
 
 ![Execution result](images/chapter15-06.png)
 
-### Determining the exact position of the new node
+### Menentukan posisi node baru dengan tepat
 
-There is a method to more precisely define the position of inserted elements: `insertAdjacentHTML()`. Call it on an existing element and pass it the position and a string of HTML characters that represent the new content to be added. The new content's position should be either:
+Ada method yang bisa mendefinisikan posisi elemen yang disisipkan secara tepat: `insertAdjacentHTML()`. Panggil method ini di elemen eksisting dan tempatkan posisi dan HTML karakter string yang merepresentasikan konten baru yang akan ditambahkan. Posisi konten baru harus ditempatkan sebagai berikut:
 
-* `beforebegin`: before the existing element.
-* `afterbegin`: inside the existing element, before its first child.
-* `beforeend`: inside the existing element, after its last child.
-* `afterend`: after the existing element.
+* `beforebegin`: sebelum elemen eksisting.
+* `afterbegin`: di dalam elemen eksisting, sebelum child pertamanya.
+* `beforeend`: di dalam elemen eksisting, setelah child terakhirnya.
+* `afterend`: setelah elemen eksisting.
 
-Here's how these positions translate relative to an existing `<p>` tag.
+Berikut bagaimana posisi ini relatif diterjemahkan ke tag `<p>` eksisting.
 
 ```html
 <!-- beforebegin -->
@@ -212,49 +212,49 @@ Here's how these positions translate relative to an existing `<p>` tag.
 <!-- afterend -->
 ```
 
-The following example uses `insertAdjacentHTML()` to add JavaScript at the top of the language list.
+Contoh berikut menggunakan `insertAdjacentHTML()` untuk menambah JavaScript di atas daftar bahasa.
 
 ```js
-// Add an element to the beginning of a list
+// Menambah elemen di awal daftar
 document.getElementById('languages').insertAdjacentHTML("afterBegin", '<li id="javascript">JavaScript</li>');
 ```
 
 ![Execution result](images/chapter15-07.png)
 
-## Replacing or removing nodes
+## Mengganti atau menghapus nodes
 
-### Replacing a node
+### Mengganti node
 
-A DOM element can be replaced with the `replaceChild()` method. This replaces a child node of the current element with another node. The new node and node-to-be-replaced are passed as parameters (in that order).
+Elemen DOM bisa diganti dengan method `replaceChild()`. Method ini mengganti child node dari elemen saat ini dengan node lainnya. Node baru dan node yang akan diganti ditempatkan sebagai parameter (sesuai urutannya).
 
-The example shows replacing the Perl language with Lisp.
+Contoh berikut menampilkan cara mengganti bahasa Perl dengan Lisp.
 
 ```js
-const lispElement = document.createElement("li"); // Create an li element
-lispElement.id = "lisp";          // Define its ID
-lispElement.textContent = "Lisp"; // Define its text content
-// Replace the element identified by "perl" with the new element
+const lispElement = document.createElement("li"); // Buat elemen li 
+lispElement.id = "lisp";          // Definisikan ID-nya
+lispElement.textContent = "Lisp"; // Definisikan konten teksnya
+// Ganti elemen yang diidentifikasi oleh "perl" dengan elemen baru
 document.getElementById("languages").replaceChild(lispElement, document.getElementById("perl"));
 ```
 
 ![Execution result](images/chapter15-08.png)
 
-### Removing a node
+### Menghapus node
 
-Lastly, you can delete a node thanks to a method called `removeChild()`, to which you'll pass the node-to-be-removed as a parameter.
+Terakhir, Kamu bisa menghapus node dengan method dinamakan `removeChild()`, dengan menempatkan node yang akan dihapus sebagai parameter.
 
 ```js
-// Remove the element with the "lisp" id
+// Menghapus elemen dengan id "lisp" 
 document.getElementById("languages").removeChild(document.getElementById("lisp"));
 ```
 
 ![Execution result](images/chapter15-09.png)
 
-## Styling elements
+## Menata tampilkan elemen
 
-JavaScript not only lets you interact with your web page structure, but it also lets you change the style of elements. It's time to learn how.
+JavaScript tidak hanya memungkinkan Kamu bisa berinteraksi dengan struktur halaman web Kamu, tetapi juga bisa mengganti tampilan elemen. Sekarang waktunya untuk belajar bagaimana caranya.
 
-Here is the example HTML content used in the next paragraphs.
+Berikut contoh konten HTML yang digunakan di paragraf selanjutnya.
 
 ```html
 <p>First</p>
@@ -262,7 +262,7 @@ Here is the example HTML content used in the next paragraphs.
 <p id="para">Third</p>
 ```
 
-And here is the associated CSS **stylesheet**. The rules in a stylesheet determine the appearance of elements on a page. Here, the one element we're adjusting via CSS is the element with the `para` ID. Its text will be blue and in italics.
+Dan berikut ini CSS **stylesheet** terkait. Peraturan di stylesheet menentukan tampilan elemen halaman web. Di sini, salah satu elemen yang kita sesuaikan melalui CSS adalah elemen dengan ID `para` ID. Teksnya akan berwarna biru dan ditulis miring.
 
 ```css
 #para {
@@ -273,11 +273,11 @@ And here is the associated CSS **stylesheet**. The rules in a stylesheet determi
 
 ![Display result](images/chapter15-13.png)
 
-### The `style` property
+### Properti `style` 
 
-DOM elements are equipped with a property called `style`, which returns an object representing the HTML element's `style` attribute. This object's properties match up to its CSS properties. By defining these properties with JavaScript, you're actually modifying the element's style.
+Elemen DOM dilengkapi dengan properti yang dinamakan `style`, yang mengembalikan objek yang merepresentasikan atribut elemen HTML `style`. Objek properti ini berpasangan dengan properti CSS-nya. Dengan mendefinisikan properti ini dengan JavaScript, Kamu sebenarnya memodifikasi style elemen.
 
-The code below selects the page's first paragraph and modifies its text color and margins.
+Kode di bawah ini memilih paragraf pertama dari halaman web dan memodifikasi warna teks, dan margin.
 
 ```js
 const paragraphElement = document.querySelector("p");
@@ -285,11 +285,11 @@ paragraphElement.style.color = "red";
 paragraphElement.style.margin = "50px";
 ```
 
-#### Compound CSS properties
+#### Properti CSS gabungan 
 
-Some CSS properties have compound names, meaning they're composed of two words (like `background-color`). To interact with these properties via JavaScript, you have to ditch the hyphen and capitalize the first letter of following words.
+Beberapa properti CSS memiliki nama gabungan, artinya properti ini terdiri dari dua kata (seperti `background-color`). Untuk berinteraksi dengan properti ini melalui JavaScript, Kamu harus menyingkirkan tanda sambung (-) dan mengkapitalkan huruf pertama dari kata tersebut.
 
-This example modifies the same paragraph element's `font-family` and `background-color` properties.
+Contoh ini memodifikasi elemen properti `font-family` dan `background-color` di paragraf yang sama.
 
 ```js
 // ...
@@ -299,101 +299,101 @@ paragraphElement.style.backgroundColor = "black";
 
 ![Execution result](images/chapter15-14.png)
 
-This naming convention, already encountered in previous chapters, is called [camelCase](https://en.wikipedia.org/wiki/Camel_case).
+Aturan penamaan ini sudah pernah dibahas di bab sebelumnya, disebut [camelCase](https://en.wikipedia.org/wiki/Camel_case).
 
-You can see CSS properties and their JavaScript properties on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference).
+Kamu bisa lihat properti CSS dan properti JavaScript-nya di [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference).
 
-### The limits of the `style` property
+### Keterbatasan properti `style` 
 
-Let's try to display the text color of each of our example paragraphs.
+Mari kita coba menampilkan warna teks dari setiap contoh paragraf kita.
 
 ```js
 const paragraphElements = document.getElementsByTagName("p");
 console.log(paragraphElements[0].style.color); // "red"
 console.log(paragraphElements[1].style.color); // "green"
-console.log(paragraphElements[2].style.color); // Show an empty string
+console.log(paragraphElements[2].style.color); // Menampilkan string kosong
 ```
 
 ![Execution result](images/chapter15-15.png)
 
-Why is the color of the third paragraph (blue) not showing?
+Kenapa warna paragraf ketiga tidak muncul?
 
-Because the `style` property used in this code only represents the `style` attribute of the element. Using this property, you cannot access style declarations defined elsewhere, for example in a CSS stylesheet. This explains why the third paragraph's style, defined externally, is not shown here.
+Karena properti `style` yang digunakan di kode ini hanya merepresentasikan atribut `style` dari elemen tersebut. Mengunakan properti ini, Kamu tidak bisa mengakses deklarasi style yang didefinisikan di tempat lain, contohnya di dalam stylesheet CSS. Hal ini menjelaskan kenapa style di paragraf ketiga, didefinisikan eksternal, tidak tampil di sini.
 
-### Access element styles
+### Mengakses elemen style 
 
-A better solution for accessing element styles is to use a function called `getComputedStyle()`. This function takes a DOM node as a parameter and returns an object that represents the element's style. You can then see the different CSS properties of the object.
+Solusi yang lebih baik dalam mengakses elemen style adalah dengan menggunakan fungsi dinamakan `getComputedStyle()`. Fungsi ini mengambil node DOM sebagai parameter dan mengembalikannya sebagai objek yang merepresentasikan elemen style. Kamu lalu bisa melihat perbedaan properti CSS properties dari objek tersebut.
 
-The following example will show the style properties of the third paragraph:
+Contoh berikut akan menampilkan properti style dari paragraf ketiga:
 
 ```js
 const paragraphStyle = getComputedStyle(document.getElementById("para"));
 console.log(paragraphStyle.fontStyle); // "italic"
-console.log(paragraphStyle.color);     // color blue in RGB values
+console.log(paragraphStyle.color);     // warna biru di nilai RGB
 ```
 
 ![Execution result](images/chapter15-16.png)
 
-> The blue color is represented as 3 color values: red, green, and blue (RGB). For each of these primary colors, values will always be between or equal to 0 and 255.
+> Warna biru merepresentasikan tiga nilai: merah, hijau, dan biru (RGB). Untuk setiap warna dasar ini, nilainya selalu antara ata sama dengan 0 dan 255.
 
-## DOM manipulations and performance
+## Manipulasi dan performansi DOM 
 
-Updating the DOM through JavaScript code causes the browser to compute the new page display. Frequent manipulations can lead to slowdowns and sub-par performance. As such, you should keep DOM access and update operations to a minimum.
+Mengupdate DOM melalui kode JavaScript membuat browser memproses tampilan halaman yang baru. Terlalu sering memanipulasi halaman bisa membuat performansi menjadi lambat. Untuk itu, Kamu harus menjaga operasi akses dan update DOM seminimum mungkin.
 
-Creating and setting element properties *before* they're inserted into the DOM is a good way to preserve performance.
+Membuat dan mengeset properti elemen *sebelum* disisipkan ke DOM adalah salah satu cara agar performansi tetap terjaga.
 
 ```js
-// Bad: DOM is updated multiple times
-const newNode = document.createElement(...); // Create new element
-parentNode.appendChild(newNode); // Add it to the DOM
-newNode.id = ...; // Set some element properties
+// Buruk: DOM diupdate beberapa kali
+const newNode = document.createElement(...); // Buat elemen baru
+parentNode.appendChild(newNode); // Tambah DOM
+newNode.id = ...; // Set beberapa properti elemen
 newNode.textContent = "...";
 // ...
 
-// Better: DOM is updated only once
-const newNode = document.createElement(...); // Create new element
-newNode.id = ...; // Set some element properties
+// Lebih baik: DOM diupdate hanya sekali
+const newNode = document.createElement(...); // Buat elemen baru
+newNode.id = ...; // Set beberapa properti elemen
 newNode.textContent = "...";
 // ...
-parentNode.appendChild(newNode); // Add it to the DOM
+parentNode.appendChild(newNode); // Tambah DOM
 ```
 
-## Coding time!
+## Waktu koding!
 
-### Adding a paragraph
+### Menambah satu paragraf
 
-Improve the languages example to add a paragraph (`<p>` tag) containing a link (`<a>` tag) to the URL <https://en.wikipedia.org/wiki/List_of_programming_languages>.
+Kembangkan contoh bahasa sehingga ada penambahan satu paragraf (`<p>` tag) mengandung satu link (`<a>` tag) ke URL <https://en.wikipedia.org/wiki/List_of_programming_languages>.
 
 ![Execution result](images/chapter15-10.png)
 
-### Newspaper list
+### Daftar koran 
 
-Here is the HTML code of a web page.
+Berikut kode HTML dari sebuah halaman web. 
 
 ```html
 <h3>Some newspapers</h3>
 <div id="content"></div>
 ```
 
-Write a program that shows on the page a list of newspapers defined in a JavaScript array. Each link must be clickable.
+Tulis program yang menampilkan daftar link koran di sebuah halaman dalam bentuk array JavaScript. Setiap link harus bisa di klik.
 
 ```js
-// Newspaper list
+// Daftar koran
 const newspapers = ["https://www.nytimes.com", "https://www.washingtonpost.com", "http://www.economist.com"];
 ```
 
 ![Execution result](images/chapter15-11.png)
 
-### Mini-dictionary
+### Kamus kecil
 
-Here is the HTML code of a web page.
+Berikut kode HTML dari sebuah halaman web. 
 
 ```html
 <h3>A mini-dictionary</h3>
 <div id="content"></div>
 ```
 
-Write a program that shows on the page a list of terms and definitions defined in a JavaScript array.
+Tulis program yang menampilkan daftar istilah dan definisi di sebuah halaman dalam bentuk array JavaScript. 
 
 ```js
 const words = [{
@@ -408,13 +408,13 @@ const words = [{
 }];
 ```
 
-Use the HTML `<dl>` tag to create the list ([more on this tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl)). Each term of the dictionary should be given more importance with a `<strong>` tag.
+Gunakan tag HTML `<dl>` untuk membuat daftar ([untuk tahu lebih detail kunjungi link ini](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl)). Setiap istilah pada kamus harus ditebalkan dengan tag `<strong>`.
 
 ![Execution result](images/chapter15-12.png)
 
-### Updating colors
+### Meng-update warna 
 
-The following HTML content defines three paragraphs.
+Konten HTML berikut ada tiga paragraf.
 
 ```html
 <h1>Paragraph 1</h1>
@@ -427,13 +427,13 @@ The following HTML content defines three paragraphs.
 <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet pharetra massa. Nulla blandit erat nulla, et scelerisque libero varius ut. Praesent bibendum eu magna ullamcorper venenatis. Sed ut pellentesque leo. Sed ultrices sapien consequat odio posuere gravida.</div>
 ```
 
-Write a program that asks the user for the new text color, and then asks for the new background color. The page is then updated accordingly.
+Tulis satu program yang meminta pengguna untuk warna teks baru, lalu tanya untuk warna latar belakang yang baru. Halaman ini nantinya ter-update berdasarkan pilihan pengguna.
 
 ![Execution result with red text on white background](images/chapter15-17.png)
 
-### Information about an element
+### Informasi tentang elemen
 
-Here is this exercise's HTML code.
+Berikut kode HTML untuk latihan kali ini.
 
 ```html
 <div id="content">ABC
@@ -443,7 +443,7 @@ Here is this exercise's HTML code.
 <div id="infos"></div>
 ```
 
-And the associated CSS stylesheet.
+Dan CSS stylesheet-nya.
 
 ```css
 #content {
@@ -453,6 +453,6 @@ And the associated CSS stylesheet.
 }
 ```
 
-Write a program that adds to the page a list showing the height and width of the element identified by "content".
+Tulis program yang bisa menambahkan daftar yang menampilkan tinggi dan lebar elemen yang diidentifikasi oleh "content" pada halaman web tersebut.
 
 ![Execution result](images/chapter15-18.png)
