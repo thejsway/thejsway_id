@@ -1,118 +1,118 @@
-# React to events
+# Reaksi terhadap event
 
-To make a web page interactive, you have to respond to user actions. Let's discover how to do so.
+Untuk membuat halaman web interaktif, Kamu harus merespons aksi pengguna. Mari kita cari tahu bagaimana caranya.
 
 ## TL;DR
 
-* You can make a web page interactive by writing JavaScript code tied to **events** within the browser.
+* Kamu bisa membuat halaman web interaktif dengan menulis kode JavaScript yang terikat pada **event** pada browser.
 
-* Numerous types of events can be handled. Each event type is associated with an `Event` object that contains properties giving information about the event.
+* Beberapa tipe even bisa ditangani. Setiap tipe event terhubung dengan objek `Event` yang mengandung properti yang memberikan informasi tentang event.
 
-* `keypress`, `keydown` and `keyup` events let you react to keyboard-related events.
+* Event `keypress`, `keydown` dan `keyup` memungkinkan Kamu bereaksi terhadap event yang berhubungan dengan keyboard.
 
-* `click`, `mousedown` and `mouseup` events let you react to mouse-related events.
+* Event `click`, `mousedown` dan `mouseup` memungkinkan Kamu bereaksi terhadap event yang berhubungan dengan mouse.
 
-* Page loading and closing are associated with the events `load` and `beforeunload`, respectively.
+* Membuka dan menutup halaman web berhubungan dengan event `load` dan `beforeunload`.
 
-* An event propagates within the DOM tree from its node of origin up to the document root. This propagation can be interrupted with the `stopPropagation()` method.
+* Event meluas di pohon DOM dari node-nya sampai dengan ke akar dokumen. Perluasan ini bisa diinterupsi dengan method `stopPropagation()`.
 
-* Calling the `preventDefault()` method on an `Event` object cancels the default behavior associated with the action that triggered the event.
+* Memanggil method `preventDefault()` pada objek `Event` membatalkan perilaku awal yang berhubungan dengan aksi yang memicu event.
 
-## Introduction to events
+## Pengenalan event
 
-Up until now, your JavaScript code was executed right from the start. The execution order of statements was determined in advance and the only user interactions were data input through `prompt()` calls.
+Sampai saat ini, kode JavaScript Kamu dieksekusi langsung dari awal. Urutan eksekusi pernyataan ditentukan di awal dan hanya interaksi user hanyalah input data melalui pemanggilan `prompt()`.
 
-To add more interactivity, the page should react to the user's actions: clicking on a button, filling a form, etc. In that case, the execution order of statements is not determined in advance anymore, but depends on the user behavior. His actions trigger **events** that can be handled by writing JavaScript code.
+Untuk menambah interaktivitas, halaman web harus bereaksi terhadap aksi pengguna: klik tombol, isi formulir, dan lainnya. Di kasus ini, urutan eksekusi pernyataan tidak lagi ditentukan di awal, tetapi tergantung dari perilaku pengguna. Aksi mereka memicu **event** yang bisa ditangani dengan penulisan kode JavaScript.
 
-This way of writing programs is called **event-driven programming**. It is often used by user interfaces, and more generally anytime a program needs to interact with a user.
+Cara penulisan program ini dinamakan **event-driven programming**. Hal ini sering digunakan dalam antar muka pengguna, dan umumnya pada program yang membutuhkan interaksi dengan pengguna.
 
-### A first example
+### Contoh pertama 
 
-Here's some starter HTML code.
+Berikut contoh awal kode HTML.
 
 ```html
 <button id="myButton">Click me!</button>
 ```
 
- And here's the associated JavaScript code.
+ Dan berikut kode JavaScript-nya .
 
 ```js
 const showMessage = () => {
   alert("Hello!");
 };
 
-// Access the button
+// Akses tombol
 const buttonElement = document.getElementById("myButton");
-// Listen to the "click" event
+// Mendengar (listen) event "click" 
 buttonElement.addEventListener("click", showMessage);
 ```
 
-Clicking on the web page button shows an `"Hello!` message.
+Meng-klik tombol di halaman web menampilkan pesan `"Hello!`.
 
 ![Execution result](images/chapter16-01.png)
 
-### Adding an event listener
+### Menambah event listener
 
-Called on a DOM element, the `addEventListener()` method adds a **handler** for a particular event. This method takes as parameter the **event type** and the associated **function**. This function gets called whenever an event of the corresponding type appears for the DOM element.
+Mengambil elemen DOM, method `addEventListener()` menambah **handler** untuk event tertentu. Method ini mengambil parameter **event type** dan **fungsi** yang berhubungan. Fungsi ini dipanggil ketika event yang bertipe korespondensi muncul pada elemen DOM.
 
-The above JavaScript code could be rewritten more concisely using an anonymous function, for an identical result.
+Kode JavaScript bisa ditulis kembali dengan lebih ringkan menggunakan fungsi anonim, untuk hasil yang sama.
 
 ```js
-// Show a message when the user clicks on the button
+// Menampilkan pesan ketika pengguna klik tombol
 document.getElementById("myButton").addEventListener("click", () => {
   alert("Hello!");
 });
 ```
 
-### Removing an event listener
+### Menghapus event listener
 
-In some particular cases, you might want to stop reacting to an event on a DOM element. To achieve this, call the `removeEventListener()` on the element, passing as a parameter the function which used to handle the event.
+Di beberapa kasus tertentu, Kamu mungkin ingin menghentikan reaksi terhadap event pada elemen DOM. Untuk mendapatkan ini, panggil `removeEventListener()` pada elemen, dilalui sebagai fungsi parameter yang digunakan untuk menangani event.
 
-> This can only work if the handler function is not anonymous.
+> Hal ini hanya bisa bekerja jika handler fungsi tidak anonim
 
 ```js
-// Remove the handler for the click event
+// Menghapus handler untuk klik event
 buttonElement.removeEventListener("click", showMessage);
 ```
 
-## The event family
+## Keluarga event 
 
-Many types of events can be triggered by DOM elements. Here are the main event categories.
+Banyak tipe event bisa dipicu oleh elemen DOM. Berikut ini adalah kategori utama event.
 
-| Category | Examples |
+| Kategori | Contoh |
 |---|---|
-| Keyboard events | Pressing or releasing a key |
-| Mouse events | Clicking on a mouse button, pressing or releasing a mouse button, hovering over a zone |
-| Window events | Loading or closing a page, resizing, scrolling |
-| Form events | Changing focus on a form field, submitting a form |
+| Keyboard events | Memencet atau melepas tombol keyboard |
+| Mouse events | Meng-klik tombol mouse, memencet atau melepas tombol mouse button, menunjuk di area tertentu |
+| Window events | Membuka atau menutup halaman, mengubah ukuran, scrolling |
+| Form events | Mengubah fokus kolom formulir, kirim formulir |
 
-Every event is associated to an `Event` object which has both **properties** (information about the event) and **methods** (ways to act on the event). This object can be used by the handler function.
+Setiap event terkait kepada objek `Event` yang keduanya memiliki **property** (informasi tentang event) dan **method** (cara beraksi terhadap event). Objek ini bisa digunakan oleh fungsi handler.
 
-Many properties of the `Event` object associated to an event depend on the event type. Some properties are always present, like `type` that returns the event type and `target` that return the event target (the DOM element that is the event source).
+Banyak properti objek `Event` terkait pada event tergantung pada tipe event. Beberapa properti selalu ada, seperti `type` yang mengembalikan tipe event dan `target` yang megembalikan target event (elemen DOM yang merupakan sumber event).
 
-The `Event` object is passed as a parameter to the handler function. The following code uses this object to show the event type and target in the console.
+Objek `Event` dilalui sebagai parameter untuk fungsi handler. Kode berikut menggunakan objek ini untuk menampilkan tipe event dan target di console.
 
 ```js
-// Show event type and target when the user clicks on the button
+// Menampilkan tipe event dan target ketika pengguna klik tombol
 document.getElementById("myButton").addEventListener("click", e => {
   console.log(`Event type: ${e.type}, target: ${e.target}`);
 });
 ```
 
-> The parameter name chosen for the `Event` object is generally `e` or `event`.
+> Nama parameter yang dipilih untuk objek `Event` umumnya adalah `e` atau `event`.
 
 ![Execution result](images/chapter16-02.png)
 
-## Reacting to common events
+## Reaksi pada event umum 
 
-### Key presses
+### Penekanan tombol keyboard 
 
-The most common solution for reacting to key presses on a keyboard involves handling `keypress` events that happen on a web page (the DOM `body` element, which corresponds to the global variable called `document` in JavaScript).
+Solusi paling umum untuk reaksi pada penekanan tombok keyboard melibatkan penanganan evenet `keypress` yang terjadi pada halaman web (elemen DOM `body`, yang berhubungan dengan variabel global `document` di JavaScript).
 
-The following example shows in the console the character associated to a pressed key. The character info is given by the `charCode` property of the `Event` object associated to the event. This property returns a numerical value (called **Unicode value**) that can be translated to a string value by the `String.FromCharCode()` method.
+Contoh berikut menampilkan di console karakter yang berhubungan dengan penekanan tombol keyboard. Info karakter diberikan oleh properti `charCode` dari objek `Event` yang terkait pada event. Properti ini mengembalikan nilai numerik (disebut **nilai Unicode**) yang bisa diterjemahkan ke nilai string oleh method `String.FromCharCode()`.
 
 ```js
-// Show the pressed character
+// Menampilkan karakter yang ditekan 
 document.addEventListener("keypress", e => {
   console.log(`You pressed the ${String.fromCharCode(e.charCode)} key`);
 });
@@ -120,54 +120,54 @@ document.addEventListener("keypress", e => {
 
 ![Execution result](images/chapter16-03.png)
 
-To manage the press and release of any key (not only the ones producing characters), you'll use the `keydown` and `keyup` events. This example uses the same function to manage two events. This time, the key's code is accessible in the `keyCode` property of the `Event` object.
+Untuk mengatur penekanan dan pelepasan semua tombol keyboard (tidak hanya karakter saja), Kamu akan menggunakan event `keydown` dan `keyup`. Contoh ini menggunakan fungsi yang sama untuk mengatur dua event. Kali ini, kode keyboard nya bisa diakses melalui properti `keyCode` dari objek `Event`.
 
 ```js
-// Show information on a keyboard event
+// Menampilkan informasi event pada keyboard 
 const keyboardInfo = e => {
   console.log(`Keyboard event: ${e.type}, key: ${e.keyCode}`);
 };
 
-// Integrate this function into key press and release:
+// Integrasi fungsi ini ke penekanan dan pelepasan tombol keyboard 
 document.addEventListener("keydown", keyboardInfo);
 document.addEventListener("keyup", keyboardInfo);
 ```
 
 ![Execution result](images/chapter16-04.png)
 
-This results demonstrates that the launch order of keyboard-related events is as follows: `keydown` -> `keypress` -> `keyup`.
+Hasil ini menunjukkan bahwa urutan peluncuran event yang berkaitan dengan keyboard adalah sebagai berikut : `keydown` -> `keypress` -> `keyup`.
 
-> The `keydown` is fired several times when a key is kept pressed.
+> `keydown` akan beberapa kali nyala jika tombol ini terus ditekan.
 
-### Mouse clicks
+### Klik mouse 
 
-Mouse clicks on any DOM element produce a event of the `click` type. Tactile interfaces like smartphones and tablets also have `click` events associated with buttons, which are kicked off by actually pressing a finger on the button.
+Klik mouse pada elemen DOM menghasilkan satu event bertipe `click`. Antar muka peraba seperti smartphone dan tablet juga memiliki event `click` yang berhubungan dengan tombol, yang dipicu dengan sentuhan jari.
 
-The `Event` object associated with a `click` event has a `button` property which lets you know the mouse button used, as well as `clientX` and `clientY` properties that return the horizontal and vertical coordinates of the place where the click happened. These coordinates are defined relative to the page zone currently shown by the browser.
+Objek `Event` yang berhubungan dengan event `click` memiliki properti `button` yang memungkinkan Kamu tahu tombol mouse yang digunakan, juga properti `clientX` dan `clientY` yang mengembalikan koordinat horizontal dan vertikal di tempat di mana klik terjadi. Koordinat ini didefinisikan relatif pada zona halaman yang saat ini ditampilkan oleh browser.
 
 ![Difference between absolute and relative coordinates](images/chapter16-05.png)
 
-The below code shows information on all click events that happen on a web page. The `mouseInfo()` function associated to the event uses another function, called `getMouseButton()`, to retrieve the clicked mouse button.
+Kode di bawah ini menampilkan informasi semua event klik yang terjadi di sebuah halaman web. Fungsi `mouseInfo()` berkaitan dengan event menggunakan fungsi lain, dinamakan `getMouseButton()`, untuk mendapatkan klik tombol mouse.
 
 ```js
-// Return the name of the mouse button
+// Mengembalikan nama tombol mouse
 const getMouseButton = code => {
   let button = "unknown";
   switch (code) {
-    case 0: // 0 is the code for the left mouse button
+    case 0: // 0 adalah kode untuk tombol mouse kiri
       button = "left";
       break;
-    case 1: // 1 is the code for the middle mouse button
+    case 1: // 1 adalah kode untuk tombol mouse tengah
       button = "middle";
       break;
-    case 2: // 2 is the code for the right button
+    case 2: // 2 adalah kode untuk tombol mouse kanan
       button = "right";
       break;
   }
   return button;
 };
 
-// Show info about mouse event
+// Menampilkan info tentang event mouse 
 const mouseInfo = e => {
   console.log(
     `Mouse event: ${e.type}, button: ${getMouseButton(
@@ -176,78 +176,78 @@ const mouseInfo = e => {
   );
 };
 
-// Add mouse click event listener
+// Menambah listener event klik mouse 
 document.addEventListener("click", mouseInfo);
 ```
 
 ![Execution result](images/chapter16-06.png)
 
-You can use `mousedown` and `mouseup` events similarly to `keydown` and `keyup` to deal with mouse buttons' press and release events. The code below associates the same handler to these two events.
+Kamu bisa menggunakan event `mousedown` dan `mouseup` yang mirip dengan `keydown` dan `keyup` untuk menangani tombol penekan dan pelepasan mouse. Kode di bawah ini berkaitan dengan handler yang sama untuk kedua event tersebut.
 
 ```js
-// Handle mouse button press and release
+// Menangani penekanan dan pelepasan tombol mouse 
 document.addEventListener("mousedown", mouseInfo);
 document.addEventListener("mouseup", mouseInfo);
 ```
 
 ![Execution result](images/chapter16-07.png)
 
-The appearance order for mouse-related events is: `mousedown` -> `mouseup` -> `click`.
+Urutan event terkait mouse adalah: `mousedown` -> `mouseup` -> `click`.
 
-### Page loading
+### Membuka halaman 
 
-Depending on how complex it is, a web page can take time to be entirely loaded by the browser. You can add an event listener on the `load` event produced by the `window` object (which represents the browser window) to know when this happens. This avoids messy situations where JavaScript interacts with pages that aren't fully loaded.
+Tergantung kompleksitas, sebuah halaman web bisa butuh waktu untuk membuka sepenuhnya oleh browser. Kamu bisa menambah event listener pada event `load` yang dihasilkan oleh objek `window` (yang merepresentasikan halaman browser) untuk mengetahui kapan hal ini terjadi. Hal ini mencegah situasi kacau di mana JavaScript berinteraksi dengan halaman yang tidak sepenuhnya terbuka.
 
-The following code displays a message in the console once the page is fully loaded.
+Kode berikut menampilkan sebuah pesan di console ketika halaman terbuka sepenuhnya.
 
 ```js
-// Web page loading event
+// Event pembukaan halaman web
 window.addEventListener("load", e => {
-  console.log("The page has been loaded!");
+  console.log("Halaman ini telah terbuka");
 });
 ```
 
-### Page closing
+### Menutup halaman 
 
-You sometimes want to react to page closing. Closing happens when the user closes the tab displaying the page or navigates to another page in this tab. A frequent use case consists of showing a confirmation dialog to the user. Handling page closing is done by adding a handler for the `beforeunload` event on the `window` object.
+Kamu terkadang ingin bereaksi terhadap penutupan halaman. Penutupan terjadi ketika pengguna menutup tab yang menampilkan halaman atau bernavigasi ke halaman lainnya di tab ini. Contoh kasus yang sering digunakan adalah menampilkan dialog konfirmasi ke pengguna. Menangani penutupan halaman dilakukan dengan menambah satu handle untuk event `beforeunload` pada halaman objek `window`.
 
 ```js
-// Handle page closing
+// Menangani penutupan halaman 
 window.addEventListener("beforeunload", e => {
   const message = "Should you stay or should you go?";
-  // Standard way of showing a confirmation dialog
+  // Cara tandar menampilkan dialog konfirmasi
   e.returnValue = message;
-  // Browser-specific way of showing a confirmation dialog
+  // Cara spesifik browser dalam menampilkan dialog konfirmasi
   return message;
 });
 ```
 
-> Setting the value of the `returnValue` property on the `Event` object is the standard way of triggering a confirmation dialog showing this value. However, some browsers use the return value of the event listener instead. The previous code associate the two techniques to be universal.
+> Mengatur nilai properti `returnValue` pada objek `Event` merupakan cara umum dalam memicu dialog konfirmasi dalam menampilkan nilai ini. Meskipun begitu, beberapa browser menggunakan nilai pengembalian dari event listener. Kode sebelumnya berkaitan dengan dua teknik yang universal.
 
-## Go farther with events
+## Lebih lanjut dengan event
 
-### Event propagation
+### Perluasan event 
 
-The DOM represents a web page as a hierarchy of nodes. Events triggered on a child node are going to get triggered on the parent node, then the parent node of the parent node, up until the root of the DOM (the `document` variable). This is called **event propagation**.
+DOM merepresentasikan halaman web sebagai hirearki node. Event yang dipicu pada child node akan dipicu pada parent node, lalu parent node dari parent node, sampai dengan akar DOM (variabel `document`). Hal ini dinamakan **perluasan event**.
 
-To see propagation in action, use this HTML code to create a small DOM hierarchy.
+Untuk melihat bagaimana perluasan bekerja, gunakan kode HTML ini untuk membuat hirearki DOM kecil.
 
 ```html
 <p id="para">A paragraph with a <button id="propa">button</button> inside</p>
 ```
 
-Here's the complementary JavaScript code. It adds `click` event handlers on the button, its parent (the paragraph), and the parent of that too (the root of the DOM).
+Berikut kode tambahan JavaScript-nya. Kode ini menambah event handler `click` pada tombol, parent-nya (paragraf), dan parent dari parent tersebut (akar dari DOM).
 
 ```js
-// Click handler on the document
+// Klik handler pada dokumen
 document.addEventListener("click", e => {
   console.log("Document handler");
 });
-// Click handler on the paragraph
+// Klik handler pada paragraf
 document.getElementById("para").addEventListener("click", e => {
   console.log("Paragraph handler");
 });
-// Click handler on the button
+// Klik handler pada tombol
 document.getElementById("propa").addEventListener("click", e => {
   console.log("Button handler");
 });
@@ -255,61 +255,61 @@ document.getElementById("propa").addEventListener("click", e => {
 
 ![Execution result](images/chapter16-08.png)
 
-The result in the browser console demonstrates the propagation of `click` events from the button up to the document level. You clicked the button, which means you also clicked the paragraph, which means you also clicked the document.
+Hasil di console browser mendemonstrasikan perluasan event `click` dari mulai tombol sampai dengan tingkat dokumen. Kamu klik tombol, yang artinya Kamu juga meng-klik paragraf, yang artinya Kamu juga meng-klik dokumen.
 
-But maybe you only want an event to kick off once the button is clicked and not count its larger ecosystem? Event propagation can be interrupted at any moment by calling the `stopPropagation()` method on the `Event` object from an event handler. This is useful to avoid the same event being handled multiple times.
+Tetapi mungkin Kamu hanya ingin satu event bekerja saat tombol di-klik dan tidak mempertimbangkan ekosistem yang lebih besar? Perluasan event bisa diinterupsi kapanpun dengan memanggil method `stopPropagation()` pada objek `Event` dari satu event handler. Hal ini berguna untuk mencegah event yang sama ditangani secara berulang.
 
-Adding a line in the button's click handler prevents the `click` event from propagating everywhere in the DOM tree.
+Menambah satu baris pada tombol handler klik mencegah event `click` dari perluasan di mana-mana di pohon DOM.
 
 ```js
-// Click handler on the button
+// Klik handler pada tombol
 document.getElementById("propa").addEventListener("click", e => {
   console.log("Button handler");
-  e.stopPropagation(); // Stop the event propagation
+  e.stopPropagation(); // Menghentikan perluasan event
 });
 ```
 
 ![Execution result](images/chapter16-09.png)
 
-### Cancelling the default behavior of an action
+### Membatalkan perilaku bawaan dari satu aksi
 
-Most of the user actions on a page are associated to a default behavior. Clicking on a link navigates to the link target, clicking anywhere with the right mouse button show a contextual menu, etc. Cancelling a default behavior is possible by calling the `preventDefault()` method on the `Event` object in an event handler.
+Kebanyakan aksi pengguna pada halaman berkaitan dengan perilaku bawaan. Meng-klik link yang menavigasi ke sasaran link, meng-klik di manapun dengan tombol kanan mouse menunjukkan menu kontekstual, dan lainnya. Membatalkan perilaku bawaan memungkinan dengan memanggil method `preventDefault()` pada objek `Event` pada event handler.
 
-Let's use the following HTML code to see this possibility in action.
+Mari kita gunakan kode HTML berikut untuk melihat kemungkinannya.
 
 ```html
 <p>Time on your hands? <a id="forbidden" href="https://9gag.com/">Click here</a></p>
 ```
 
 ```js
-// Handling clicking on the forbidden link
+// Menangani klik pada link yang dilarang
 document.getElementById("forbidden").addEventListener("click", e => {
   alert("Yes... But no.");
-  e.preventDefault(); // Cancels the default behavior
+  e.preventDefault(); // Membatalkan perilaku bawaan 
 });
 ```
 
-Now clicking on the links shows a dialog instead of navigating to its target.
+Sekarang meng-klik pada link akan menunjukkan dialog alih-alih pindah ke halaman sesuai target link-nya.
 
 ![Execution result](images/chapter16-10.png)
 
-## Coding time!
+## Waktu koding!
 
-### Counting clicks
+### Menghitung klik
 
-Start with the following HTML content.
+Mulai dari konten HTML berikut.
 
 ```html
 <button id="myButton">Click me!</button>
 <p>You clicked on the button <span id="clickCount">0</span> times</p>
-<button id="deactivate">Désactivate counting</button>
+<button id="deactivate">Deactivate counting</button>
 ```
 
-Write the JavaScript code that counts the number of clicks on the `myButton` button by updating the `clickCount` element. The `deactivate` button stops the counting.
+Tulis kode JavaScript yang bisa menghitung jumlah klik pada tombol `myButton` dengan meng-update elemen `clickCount`. Tombol `deactivate` menghentikan perhitungan.
 
-### Changing colors
+### Mengubah warna
 
-Here is some HTML content to start with.
+Berikut konten HTML yang digunakan.
 
 ```html
 <p>Press the R (red), Y (yellow), G (green) or B (blue) key to change paragraph colors accordingly.</p>
@@ -324,13 +324,13 @@ Here is some HTML content to start with.
 <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet pharetra massa. Nulla blandit erat nulla, et scelerisque libero varius ut. Praesent bibendum eu magna ullamcorper venenatis. Sed ut pellentesque leo. Sed ultrices sapien consequat odio posuere gravida.</div>
 ```
 
-Write the associated JavaScript code that updates the background color of all `div` tags according to the key (R, Y, G or B) pressed by the user.
+Tulis kode JavaScript yang dapat meng-update semua warna latar belakang tag `div` sesuai tombol keyboard yang ditekan pengguna (R, Y, G or B).
 
 ![Execution result](images/chapter16-11.png)
 
 ### A dessert list
 
-The following HTML code defines a list of desserts, empty for now.
+Berikut kode HTML yang mendefinisikan daftar desserts, sekarang masih kosong.
 
 ```html
 <h1>My favourite desserts</h1>
@@ -341,21 +341,21 @@ The following HTML code defines a list of desserts, empty for now.
 <button id="addButton">Add a dessert</button>
 ```
 
-Write the JavaScript code that adds a new dessert to the list when the user clicks on the button. The dessert name is chosen by the user.
+Tulis kode JavaScript yang bisa menambah dessert baru ke daftar ketika pengguna klik tombol. Nama dessert dipilih oleh pengguna.
 
-Bonus points for adding the possibility of changing a dessert's name when clicking on it.
+Poin bonus untuk penambahan kemungkinan mengubah nama dessert ketika klik tombol tersebut.
 
 ![Execution result](images/chapter16-12.png)
 
-### Interactive quiz
+### Kuis interaktif
 
-Here is the starter HTML code.
+Berikut kode awal.
 
 ```html
 <div id="content"></div>
 ```
 
-And the associated JavaScript code that defines a question list.
+Dan kode JavaScript yang berkaitan dengan daftar pertanyaan.
 
 ```js
 // List of questions (statement + answer)
@@ -376,6 +376,6 @@ const questions = [
 ];
 ```
 
-Complete this code to display the questions in the `<div>` element of the page, with a `"Show the answer"` button next to each question. Clicking this button replaces it with the answer for this question.
+Lengkapi kode ini sehingga bisa menampilkan pertanyaan di elemen `<div>` pada halaman, dengan tombol `"Show the answer"` di sebelah setiap pertanyaan. Klik tombol ini akan mengganti tombol menjadi jawaban dari pertanyaan ini.
 
 ![Execution result](images/chapter16-13.png)
