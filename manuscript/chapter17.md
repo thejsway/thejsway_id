@@ -1,44 +1,44 @@
-# Manipulate forms
+# Manipulasi form
 
-JavaScript lets you manage forms defined within your web page, in order to further improve interactivity.
+JavaScript memungkinkan Kamu mengatur form yang didefinisikan di halaman web Kamu, untuk meningkatkan interaktivitas.
 
 ## TL;DR
 
-* A **form** lets users input data through a web page. Inputted data is usually sent to a **web server**. Before data gets sent off, you can use JavaScript to interact with the form data and validate it.
+* **form** memungkinkan pengguna input data melalui halaman web. Data yang di-input biasanya dikirim ke **web server**. Sebelum data dikirimkan, Kamu bisa menggunakan JavaScript untuk berinteraksi dengan data form dan memvalidasinya.
 
-* Text zones (`input type="text">` or `<textarea>`) each have a `value` property to access the inputted value.
+* Zona teks (`input type="text">` atau `<textarea>`) masing-masing memiliki properti `value` untuk mengakses nilai yang di-input.
 
-* When a text field becomes the input target, this field has the **focus**. The `focus` and `blur` events are triggered when the field gets or loses the focus, respectively. The `focus()` and `blur()` methods can update the focus target programmatically.
+* Ketika isian teks menjadi sasaran input, isian ini memiliki **fokus**. Event `focus` dan `blur` dipiscu ketika isian dapat atau hilang fokus. Method `focus()` dan `blur()` bisa meng-update sasaran fokus secara pemrograman.
 
-* Checkboxes, radio buttons, and dropdown lists generate `change` events whenever a user modifies their choice.
+* Checkboxe, radio button, dan daftar dropdown menghasilkan event `change` kapanpun pengguna memodifikasi pilihan mereka.
 
-* The DOM element that corresponds to the form has an `elements` property that lets you access its input fields programmatically.
+* Elemen DOM yang berkorespenden terhadap form memiliki properti `element` yang memungkinkan Kamu mengakses isian input-nya secara pemrograman.
 
-* Submitting a form triggers a `submit` event on the form DOM element. You can prevent the sending of form data to the server by using the `preventDefault()` method on the associated `Event` object.
+* Mengirim form memicu event `submit` pada elemen DOM form. Kamu bisa mencegah pengiriman data form ke server dengan menggunakan method `preventDefault()` pada objek `Event` terkait.
 
-* Any modification of a text field triggers an `input` event, which can be used to validate its data as the user enters it.
+* Modifikasi apapun pada isian teks memicu event `input`, yang bisa digunakan untuk memvalidasi data tersebut saat pengguna memasukannya.
 
-* A **regular expression** is a pattern to which strings can be compared. Regular expressions are often used to perform fine-grained validations of form data.
+* **Ekspresi regular** adalah pola di mana string bisa dibandingkan. Ekspresi regular ini biasanya digunakan untuk melakukan validasi data form. 
 
-## JavaScript and forms
+## JavaScript dan form
 
-### Form recap
+### Rekapitulasi form 
 
-Forms enhance web pages by allowing users to input information through text fields, check boxes, dropdown menus, and more. Inside a web page, a form is defined with a `<form>` HTML tag, and within this tag, you have your different `<input>` tags, `<select>` tags, or `<textarea>` tags.
+Form meningkatkan halaman web dengan cara memungkinkan pengguna untuk meng-input informasi melalui isian teks, check box, menu dropdown, dan lainnya. Di dalam halaman web, form didefinisikan dengan tag HTML `<form>`, dan di dalam tag ini, Kamu memiliki beberapa tag berbeda:  tag `<input>`, tag `<select>`, atau tag `<textarea>`.
 
-> If forms are totally new to you, the Mozilla Developer Network has a great intro aptly named [Your first HTML form](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Your_first_HTML_form). For a more general recap on forms, check out this [course chapter]( https://openclassrooms.com/courses/build-your-website-with-html5-and-css3/forms) on OpenClassrooms.
+> Kalau form benar-benar baru untuk Kamu, Mozilla Developer Network punya intro yang bagus bernama [Your first HTML form](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Your_first_HTML_form). Untuk rekapitulasi form secara umum, bisa cek berikut: [course chapter]( https://openclassrooms.com/courses/build-your-website-with-html5-and-css3/forms) di OpenClassrooms.
 
-### Handling forms with JavaScript
+### Menangani form dengan JavaScript
 
-Data entered into a form by users is normally sent via a network to a **web server** that processes and sends a response to the browser as a new web page. To do this, web servers use backend programming languages like PHP or Ruby.
+Data yang dimasukkan di form oleh pengguna biasanya dikirim melalui jaringan ke **web server** yang memproses dan mengirim respons ke browser sebagai halaman web baru. Untuk bisa melakukan ini, web server menggunakan pemrograman backend seperti PHP atau Ruby.
 
-Thanks to JavaScript, you can manage forms (and their data) directly within the browser *before* sending them to an external server. You can notify users of incorrect input data, make suggestions on what they type, and more. Who said forms were boring?
+Terima kasih ke JavaScript, kamu bisa mangatur form (dan data form) langsung di dalam browser *sebelum* mengirimkannya ke server eksternal. Kamu bisa menotifikasi data/anomali yang diinput pengguna, membuat saran tentang tipenya, dan lainnya. Siap bilang form membosankan?
 
-## Form fields
+## Isian form 
 
-### Example form
+### Contoh form 
 
-Let's start with a simple form that allows users to sign up for a service.
+Mari kita mulai dengan form sederhana yang memungkinkan pengguna untuk daftar sebuah layanan.
 
 ```html
 <form>
@@ -90,17 +90,17 @@ Let's start with a simple form that allows users to sign up for a service.
 
 ![Display result](images/chapter17-01.png)
 
-This example contains multiple input zones: text, checkboxes, radio buttons, a dropdown menu, as well as submit and cancel buttons. We'll learn how to deal with each of these elements with JavaScript.
+Contoh ini mengandung beberapa zona input: teks, checkboxe, tombol radio, menu dropdown, juga tombol kirim dan batal. Kita akan belajar bagaimana menangani setiap elemen ini dengan JavaScript.
 
-> You might have noticed that the `<form>` tag doesn't have the usual `action` and `method` attributes. These attributes allow you to define the requested server resource when the form is submitted by the user. Since our form will only be handled by JavaScript in the browser, they're not necessary.
+> Kamu mungkin menyadari bahwa tag `<form>` tidak memiliki atribut `action` dan `method` seperti biasanya. Atribut ini memungkinkan Kamu untuk mendefinisikan permintaan sumber daya server ketika form dikirim oleh pengguna. Karena form kita hanya akan ditangani oleh JavaScript di browser, hal ini tidaklah perlu.
 
-### Text zones
+### Zona teks
 
-#### Access input values
+#### Akses nilai input
 
-A **text field** allows a user to input text on single or multiple lines. You have two options for defining text fields: a single-line text field is defined in HTML as `<input type="text">`, and a multi-line text input field will be defined via `<textarea>` instead.
+**Isian teks** memungkinkan pengguna meng-input teks pada satu atau beberapa baris. Kamu memiliki dua opsi untuk mendefinisikan isian teks: satu baris isian teks yang didefinisikan di HTML sebagai `<input type="text">`, dan isian teks ganda yang didefinisikan dengan `<textarea>`.
 
-Here's the extract from the above code that lets users input a username.
+Berikut ini contoh kode yang memungkinkan pengguna dapat meng-input username.
 
 ```html
 <label for="username">Username</label>:
@@ -108,69 +108,68 @@ Here's the extract from the above code that lets users input a username.
 <span id="usernameHelp"></span>
 ```
 
-In JavaScript, you can access the value of a text field by using the `value` property of the corresponding DOM element. By setting a new value for this property, you'll modify the value shown in the text field.
+Di JavaScript, Kamu bisa mengakses nilai dari isian teks dengan menggunakan properti `value` yang berkoresponden dengan elemen DOM. Dengan mengatur nilai baru untuk properti ini, Kamu akan memodifikasi nilai yang ditampilkan di isian teks.
 
-The following example adds the value "MyCoolUsername" to the text field.
+Berikut contoh menambah nilai "MyCoolUsername" di isian teks.
 
 ```js
-// Define the value of the "username" input field
+// Mendefinisikan nilai input isian teks "username" 
 const usernameElement = document.getElementById("username");
 usernameElement.value = "MyCoolUsername";
 ```
 
-#### Handling focus
+#### Menangani fokus
 
-When a text zone is selected, it becomes the focused area of the form. You may have noticed field borders turning blue or other effects when you're accessing a particular input area. This helps you know where you are in the form. A user clicking on a text field (or tabbing down into it) kicks off a `focus` event. Additionally, a `focus` event triggers a `blur` event on the field that previously had the focus.
+Saat zona teks dipilih, zona ini menjadi area fokus form. Kamu mungkin menyadari kotak isia teks menjadi biru atau efek lain saat Kamu mengakses area input tertentu. Hal ini membantu Kamu mengetahui di mana Kamu berada di dalam form. Pengguna meng-klik di isian teks (atau menggunakan tab) akan menyalakan event `focus`. Selain itu, event `focus` memicu event `blur` di isian teks yang sebelumnya memiliki fokus.
 
-You can use these events to show the user tips related to the current text field, as in the following example:
+Kamu bisa menggunakan event ini untuk menampilkan petunjuk pengguna yang berhubungan dengan isian teks saat ini, seperti contoh berikut:
 
 ```js
-// Show a tip associated with a selected text area
+// Menampilkan petunjuk yang berhubungan dengan area teks yang dipilih
 usernameElement.addEventListener("focus", e => {
   document.getElementById("usernameHelp").textContent = "Enter a unique username!";
 });
-// Hide the advice when the user moves onto a different field
+// Menyembunyikan petunjuk ketika pengguna menggerakkan ke isian teks yang lain
 usernameElement.addEventListener("blur", e => {
   document.getElementById("usernameHelp").textContent = "";
 });
 ```
 
-By selecting the `username` input field, you'll see a helpful message in the HTML `<span>` defined specifically for that purpose and initially empty.
+Dengan memilih isian teks `username`, Kamu akan melihat beberapa pesan berguna di HTML `<span>` yang didefinisikan secara khusus untuk tujuan ini dan pada awalnya kosong.
 
 ![Execution result](images/chapter17-02.png)
 
-From JavaScript code, you can modify the input target by calling the `focus()` (to give focus) and `blur()` methods (to remove it) on a DOM element.
+Dari kode JavaScript, Kamu bisa memodifikasi sasaran input dengan memanggil `focus()` (untuk memberikan fokus) dan method `blur()` (untuk menghilangkannya) pada elemen DOM.
 
 ```js
-// Give focus to the "username" input field
+// Memberikan fokus pada isian teks "username" 
 usernameElement.focus();
 ```
+Isian teks ganda (tag `<textarea>`) bekerja mirip dengan tag `<input>`.
 
-Multi-line text fields (`<textarea>` tags) work similarly to `<input>` tags.
+> Kamu akan belajar bagaimana cara memvalidasi teks yang di-input pengguna (untuk memastikan cocok dengan kriteria) nanti di bab ini.
 
-> You'll learn how to validate text that a user inputs (to make sure it fits certain criteria) later in this chapter.
+### Elemen pemilihan
 
-### Choice elements
+Kamu sering melihat elemen form yang mengizinkan pengguna untuk membuat pilihan dari beberapa kemungkinan yang ada. Event `change` akan menyala saat pengguna mengubah pilihan mereka.
 
-You often see form elements that allow users to make a choice among multiple possibilities. A `change` event will be kicked off once a user changes their choice.
+#### Checkbox
 
-#### Checkboxes
+Kamu bisa menambah checkbox ke form HTML Kamu dengan menggunakan tag `<input type="checkbox">`.
 
-You can add checkboxes to your HTML form by using the tag `<input type="checkbox">`.
-
-Here's the code from the example form that offers a user the choice to receive a confirmation email (or not).
+Berikut kode dari contoh form yang menawarkan pengguna pilihan untuk menerima email konfirmasi (atau tidak).
 
 ```html
 <input type="checkbox" name="confirmation" id="confirmation">
 <label for="confirmation">Send me a confirmation email</label>
 ```
 
-Whenever the box is checked or unchecked by the user, a `change` event is kicked off. The `Event` object associated to this event has a `checked` boolean property that gives the new state of the field (checked or not checked).
+Kapanpun kotak di cek atau di un-cek oleh pengguna, event `change` akan aktif. Objek `Event` yang berhubungan dengan event ini memiliki properti boolean yang memberikan keadaan baru dari isian teks (di cek atau di un-cek).
 
-The below code handles the `change` event on the checkbox to show a message in the console.
+Kode di bawah ini mengangani event `change` pada checkbox untuk menampilkan pesan di console.
 
 ```js
-// Show if the email confirmation checkbox is checked
+// Menampilkan apakah konfirmasi email di ceklis atau tidak
 document.getElementById("confirmation").addEventListener("change", e => {
   console.log(`Email confirmation request: ${e.target.checked}`);
 });
@@ -178,11 +177,11 @@ document.getElementById("confirmation").addEventListener("change", e => {
 
 ![Execution result](images/chapter17-03.png)
 
-#### Radio buttons
+#### Tombol radio
 
-Radio buttons allow users to make a choice out of multiple possibilities. You create radio buttons with `<input type="radio">` tags, which have the same `name` attribute and different `value` attributes.
+Tombol radio memungkinkan pengguna untuk membuat pilihan dari beberapa kemungkinan yang ada. Kamu bisa membuat tombol radio dengan tag `<input type="radio">`, yang memiliki `name` atribut yang sama dan atribut `value` yang berbeda.
 
-Here's the extract from the example form that lets a user select between three radio buttons, each representing a subscription option.
+Berikut kode yang diambil dari contoh form yang memungkinkan pengguna memilih tiga tombol radio, masing-masing merepresentasikan opsi berlangganan.
 
 ```html
 <input type="radio" name="subscription" id="newsroom" value="newspromo">
@@ -196,10 +195,10 @@ Here's the extract from the example form that lets a user select between three r
 <br>
 ```
 
-The following JavaScript code adds a message to the console when the radio button selection changes.
+Kode JavaScript berikut menambah pesan ke console ketika pilihan tombol radio berubah. 
 
 ```js
-// Show the subscription type selected via radio button
+// Menampilkan tipe langganan melalui tombol radio
 const subscriptionElements = Array.from(document.getElementsByName("subscription"));
 subscriptionElements.forEach(element => {
   element.addEventListener("change", e => {
@@ -210,13 +209,13 @@ subscriptionElements.forEach(element => {
 
 ![Execution result](images/chapter17-04.png)
 
-The `target.value` property of the `change` event matches the `value` attribute of the newly selected `<input>` tag.
+Properti `target.value` event `change` cocok dengan atribut `value` tag `<input>` yang baru saja dipiih.
 
-#### Dropdown lists
+#### Daftar dropdown 
 
-A dropdown list is created using the `<select>` tag (for the menu overall) in which you can add `<option>` tags for possible choices.
+Daftar dropdown dibuat menggunakan tag `<select>` (untuk menu secara umum) di mana Kamu bisa menambah tag `<option>` untuk beberapa kemungkinan pilihan.
 
-Here's the code extract from above that lets users choose a nationality:
+Berikut kode yang diambil dari atas yang memungkinkan pengguna memilih bangsanya:
 
 ```html
 <label for="nationality">Nationality</label>:
@@ -228,10 +227,10 @@ Here's the code extract from above that lets users choose a nationality:
 </select>
 ```
 
-The following code uses the `change` event triggered on the dropdown list to show the new choice made by the user.
+Kode berikut menggunakan event `change` yang dipicu daftar dropdown untuk menunjukkan pilihan baru yang dibuat pengguna.
 
 ```js
-// Show the selected nationality
+// Menunjukkan bangsa yang dipilih
 document.getElementById("nationality").addEventListener("change", e => {
   console.log("Nationality code: " + e.target.value);
 });
@@ -239,41 +238,41 @@ document.getElementById("nationality").addEventListener("change", e => {
 
 ![Execution result](images/chapter17-05.png)
 
-Like with radio buttons, the `target.value` property of the `change` event matches the `value` attribute of the `<option>` tag associated with the new choice -- not the text shown in the dropdown list!
+Seperti tombol radio, properti `target.value` dari event `change` cocok dengan atribut `value` pada tag `<option>` tag yang berkaitan degan pilihan yang baru -- bukan teks yang ditunjukkan di daftar the dropdown!
 
-## Forms as DOM elements
+## Form sebagai elemen DOM 
 
-### Accessing form fields
+### Mengakses isian form 
 
-A `<form>` tag corresponds to a DOM element. This element has an `elements` property that pulls together all the form input fields. You can use this property to access a field via its `name` attribute or by its index (order of appearance in the form).
+Tag `<form>` berhubungan dengan elemen DOM. Elemen ini memiliki properti `elements` yang menarik semua isian input form. Kamu bisa menggunakan properti ini untuk mengakses isian melalui atribut `name` atau dengan indeks-nya (sesuai urutan pada form).
 
-The below example shows some information on the input fields of our example form.
+Contoh berikut menunjukkan beberapa informasi pada isian input dari contoh form.
 
 ```js
-// Show some info about the first form element
+// Menunjukkan beberapa info tentang elemen pertama form
 const formElement = document.querySelector("form");
 console.log(`Number of fields: ${formElement.elements.length}`); // 10
 console.log(formElement.elements[0].name);       // "username"
 console.log(formElement.elements.password.type); // "password"
 ```
 
-### Submitting a form
+### Mengirim form
 
-A form will be submitted when a user clicks on the submit button, which will have an `<input type="submit">` tag. An `<input type="reset">` tag shows a button that resets the form data.
+Form akan dikirim saat pengguna meng-klik tombol submit, yang akan memiliki tag `<input type="submit">`. Tag `<input type="reset">` menunjukkan tombol yang me-reset data form.
 
-Here are the two buttons from the sample form.
+Berikut ini dua tombol dari contoh form. 
 
 ```html
 <input type="submit" value="Submit">
 <input type="reset" value="Cancel">
 ```
 
-When a user submits a form, the default behavior of the browser is to contact a web server and request the resource identified by the `action` attribute of the `<form>` tag, sending form data along the way. Prior to this, a `submit` event is triggered on the DOM element corresponding to the form. By adding a handler for this type of event, you can access form data before it gets sent. You can cancel the request to the server by calling the `preventDefault()` method on the `Event` object associated to the event.
+Ketika pengguna mengirimkan form, perilaku awal browser adalah untuk mengkontak server web dan meminta sumber daya yang diidentifikasi oleh atribut `action` dari tag `<form>`, sambil mengirim data form. Sebelum ini, event `submit` dipicu oleh elemen DOM yang berkorespenden dengan form. Dengan menambah handler untuk tipe event ini, Kamu bisa mengakses data form sebelum form dikirimkan. Kamu bisa membatalkan permintaan ke server dengan memanggil method `preventDefault()` pada objek `Event` terkait event tersebut.
 
-The following code shows in the console all user input in the form, then cancels the request to the server.
+Kode berikut menunjukkan di console semua input di form, lalu membatalkan permintaan ke server. 
 
 ```js
-// Shows all user input and cancels form data sending
+// Menunjukkan semua user input dan membatalkan pengiriman data form
 formElement.addEventListener("submit", e => {
   const username = e.target.elements.username.value;
   const password = e.target.elements.password.value;
@@ -317,57 +316,57 @@ formElement.addEventListener("submit", e => {
 
 ![Form submit result](images/chapter17-06.png)
 
-## Form validation
+## Validasi form 
 
-Checking data inputted by users before it gets sent to a server is a major use of JavaScript with web forms. Using form validation, you can improve the user's experience by immediately alerting him on problems with their input. This is also an efficient way to prevent useless server requests with wrong data.
+Mengecek data yang diinput oleh pengguna sebelum dikirim ke server merupakan penggunaan JavaScript yang cukup besar dengan form web. Menggunakan validasi form, Kamu bisa meningkatkan kesan pengguna dengan cara mengingatkan pengguna tentang permasalahan saat meng-input form. Hal ini merupakan cara yang efisien untuk mencegah permintaan server yang tidak berguna dengan data yang salah. 
 
-Validation can happen in several ways:
+Validasi bisa dilakukan dengan beberapa cara:
 
-* as input is being entered;
-* after input is entered;
-* when the user submits the form.
+* saat input dimasukkan;
+* setelah input dimasukkan;
+* saat pengguna mengirim form.
 
-This last technique only involves adding validation in the `submit` event handler for the form: you already know how to do that.  We'll look at the other two techniques one at a time, using the same example form as before.
+Teknik terakhir ini hanya menambahkan validasi di events handler `submit` untuk form: Kamu sudah tahu cara melakukan hal ini. Kita akan melihat dua teknik lainnya satu per satu, menggunakan contoh form yang sama dengan sebelumnya.
 
-### Instant validation
+### Validasi instan 
 
-Validation while a user is inputting information is based on `input` events, which are triggered on an input zone each time its value changes.
+Validasi saat pengguna meng-input informasi berdasarkan event `input`, yang dipicu pada zona input setiap kali nilai berubah. 
 
-The following code example adds an input event handler on the password field. This handler checks the length (number of characters) of the password being typed and shows a message to the user with specific content and color.
+Contoh kode berikut menambah input event handler pada isian password. Handler ini mengecek panjang (jumlah karakter) password yang diketik dan menunjukkan pesan kepada pengguna dengan konten dan warna yang spesifik.
 
 ```js
-// Validate password length
+// Validasi panjang password 
 document.getElementById("password").addEventListener("input", e => {
-  const password = e.target.value; // Value of the password field
+  const password = e.target.value; // Nilai isian password 
   let passwordLength = "too short";
-  let messageColor = "red"; // Short password => red
+  let messageColor = "red"; // Password pendek => merah
   if (password.length >= 8) {
     passwordLength = "adequate";
-    messageColor = "green"; // Long password => green
+    messageColor = "green"; // Password panjang => hijau
   } else if (password.length >= 4) {
     passwordLength = "moderate";
-    messageColor = "orange"; // Moderate password => orange
+    messageColor = "orange"; // Password sedang => oranye
   }
   const passwordHelpElement = document.getElementById("passwordHelp");
-  passwordHelpElement.textContent = `Length: ${passwordLength}`; // helper text
-  passwordHelpElement.style.color = messageColor; // helper text color
+  passwordHelpElement.textContent = `Length: ${passwordLength}`; // teks pembantu
+  passwordHelpElement.style.color = messageColor; // teks warna pembantu
 });
 ```
 
 ![Execution result](images/chapter17-07.png)
 
-### Post-input validation
+### Validasi setelah input 
 
-A text zone's input is considered finished once focus is lost on the zone, which kicks off a `blur` event that you can use to trigger validation.
+Zona input teks dikatakan selesai saat fokus hilang pada zona tersebut, yang mengaktifkan event `blur` yang Kamu bisa gunakan untuk memicu validasi. 
 
-Let's imagine that you want to validate the presence of an `@` character in the email address entered by a user. Here's the JavaScript code which shows this validation.
+Mari kita bayangkan Kamu ingin memvalidasi keberadaan karakter `@` pada alaman email yang diinput oleh pengguna. Berikut kode JavaScript yang menunjukkan validasi ini.
 
 ```js
-// Checking an email address once it's entered
+// Mengecek alamat email saat dimasukkan
 document.getElementById("emailAddress").addEventListener("blur", e => {
   let emailAddressValidity = "";
   if (e.target.value.indexOf("@") === -1) {
-    // the email address doesn't contain @
+    // alamat email tidak mengandung @
     emailAddressValidity = "Invalid address";
   }
   document.getElementById("emailHelp").textContent = emailAddressValidity;
@@ -376,75 +375,75 @@ document.getElementById("emailAddress").addEventListener("blur", e => {
 
 ![Execution result](images/chapter17-08.png)
 
-### Regular expressions
+### Ekspresi regular 
 
-The previous validations were quite primitive: many strings containing a `@` character are not valid email addresses. To perform more advanced checks, you can use a powerful tool: **regular expressions**.
+Validasi sebelumnya cukup primitif: banyak string yang mengandung karakter `@` bukan merupakan alamat email yang valid. Untuk melakukan pengecekan lebih lanjut, Kamu bisa menggunakan tool powerful: **ekspresi regular**.
 
-A regular expression defines a **pattern** to which strings are compared, searching for matches. Many programming languages support them. A powerful addition to a programmer's toolbelt, they can nonetheless take quite a bit of time to be comfortable with. What follows is just an introduction to the vast domain of regular expression.
+Ekspresi regular mendefinisikan **pola** di mana string dibandingkan, dicari sampai terjadi kecocokan. Banyak bahasa pemrograman yang mengandungnya. Salah satu skill tambahan yang sangat berguna bagi programer, namun mungkin butuh sedikit waktu sampai nyaman menggunakannya. Berikut adalah sekadar pengenalan ke penggunaan dari ekspresi regular.
 
-Let's get started by trying to create a regular expression checking for the presence of an `@` character inside a string. Here's the associated JavaScript code.
+Mari kita mulai dengan mencoba membuat regular ekspresi untuk mengecek presensi dari karakter `@` di dalam string. Berikut kode JavaScript-nya.
 
 ```js
-const regex = /@/; // String must contain @
-console.log(regex.test(""));  // false
-console.log(regex.test("@")); // true
-console.log(regex.test("sophie&mail.fr")); // false
-console.log(regex.test("sophie@mail.fr")); // true
+const regex = /@/; // String harus mengandung @
+console.log(regex.test(""));  // salah
+console.log(regex.test("@")); // benar
+console.log(regex.test("sophie&mail.fr")); // salah
+console.log(regex.test("sophie@mail.fr")); // benar
 ```
 
-A JavaScript regular expression is defined by placing its pattern between a pair of `/` characters. It's an object whose `test()` method checks matches between the pattern and the string passed as a parameter. If a match is detected, this method returns `true`, and `false` otherwise.
+Ekspresi regular JavaScript didefinisikan dengan menempatkan pola diantara sepasang karakter `/`. Ini adalah objek di mana method `test()` mengecek kecocokan antara pola dan string yang ditempatkan sebagai parameter. Jika kecocokan terdeteksi, method ini mengembalikan `true`, atau `false`.
 
-The following table presents some of the numerous possibilities offered by regular expressions.
+Tabel berikut menunjukkan beberapa kemungkinan yang ditawarkan ekspresi regular. 
 
-| Pattern | Matches if | Match  | No match |
+| Pola | Cocok jika | Cocok  | Tidak cocok |
 |---|---|---|---|
-| `abc` | String contains `"abc"` | `"abc"`, `"abcdef"`, `"123abc456"` | `"abdc"`, `"1bca"`, `"adbc"`, `"ABC"` |
-| `[abc]` | String contains either `"a"`, `"b"` or `"c"` | `"abc"`, `"daef"`, `"bbb"`, `"12c34"` | `"def"`, `"xyz"`, `"123456"`, `"BBB"` |
-| `[a-z]` | String contains a lowercase letter | `"abc"`, `"12f43"`, `"_r_"` | `"123"`, `"ABC"`, `"_-_"` |
-| `[0-9]` or `\d` | String contains a digit | `"123"`, `"ab4c"`, `"a56"` | `"abc"` |
-| `a.c` | String contains `"a"`, followed by any character, followed by `"c"`  | `"abc"`, `"acc"`, `"12a.c34"` | `"ac"`, `"abbc"`, `"ABC"` |
-| `a\.c` | String contains `"a.c"` | `"a.c"`, `"a.cdef"`, `"12a.c34"` | `"ac"`, `"abc"` |
-| `a.+c` | String contains `"a"`, followed by at least one character, followed by `"c"` | `"abc"`, `"abbc"`, `"12a$ùc34"` | `"ac"`, `"bbc"` |
-| `a.*c` | String contains `"a"`, followed by zero or more characters, followed by `"c"`  | `"abc"`, `"abbc"`, `"ac"` | `"ABC"`, `"bbc"` |
+| `abc` | String mengandung `"abc"` | `"abc"`, `"abcdef"`, `"123abc456"` | `"abdc"`, `"1bca"`, `"adbc"`, `"ABC"` |
+| `[abc]` | String mengandung antara `"a"`, `"b"` atau `"c"` | `"abc"`, `"daef"`, `"bbb"`, `"12c34"` | `"def"`, `"xyz"`, `"123456"`, `"BBB"` |
+| `[a-z]` | String mengandung satu huruf kecil | `"abc"`, `"12f43"`, `"_r_"` | `"123"`, `"ABC"`, `"_-_"` |
+| `[0-9]` or `\d` | String mengandung satu digit | `"123"`, `"ab4c"`, `"a56"` | `"abc"` |
+| `a.c` | String mengandung `"a"`, diikuti oleh karakter apapun, diikuti oleh `"c"`  | `"abc"`, `"acc"`, `"12a.c34"` | `"ac"`, `"abbc"`, `"ABC"` |
+| `a\.c` | String mengandung `"a.c"` | `"a.c"`, `"a.cdef"`, `"12a.c34"` | `"ac"`, `"abc"` |
+| `a.+c` | String mengandung `"a"`, diikuti oleh paling sedikit satu karakter, diikuti oleh `"c"` | `"abc"`, `"abbc"`, `"12a$ùc34"` | `"ac"`, `"bbc"` |
+| `a.*c` | String mengandung `"a"`, diikuti oleh nol atau lebih karakter, diikuti oleh `"c"`  | `"abc"`, `"abbc"`, `"ac"` | `"ABC"`, `"bbc"` |
 
-Observing these examples leads us to the following rules:
+Observasi contoh ini mengarahkan kita ke beberapa aturan berikut: 
 
-* Brackets `[]` define a character interval. Any string with at least a character in this interval will match the pattern.
+* Kurung kotak `[]` mendefinisikan interval karakter. String dengan paling sedikit satu karakter pada interval ini akan cocok dengan pola.
 
-* The `[a-z]` and `[A-Z]` patterns are used to search for the presence of any letter, respectively lowercase and uppercase.
+* Pola `[a-z]` dan `[A-Z]` digunakan untuk mencari keberadaan dari semua huruf, baik huruf kecil maupun kapital.
 
-* The `[0-9]` and `\d` patterns are essentially identical and match a digit in a string.
+* Pola `[0-9]` dan `\d` mencocokkan digit di dalam string.
 
-* The `.` character replaces any one character.
+* Karakter `.` menggantikan satu karakter apapun. 
 
-* The `\` (*backslash*) character indicates that the following character should be searched as-if. . For example, `\.` is used to match the `.` character itself.
+* Karakter `\` (*backslash*) mengindikasikan bahwa karakter berikutnya harus dicari seadanya. Sebagai contoh `\.` digunakan untuk mencocokkan karakter `.` itu sendiri. 
 
-* The `+` character matches one or several instances of the preceding expression.
+* Karakter `+` mencocokkan satu atau beberapa karakter dari ekspresi yang mendahuluinya.
 
-* The `*` character matches zero, one, or several instances of the preceding expression.
+* Karakter `*` mencocokkan nol, satu, atau beberapa karakter dari ekspresi yang mendahuluinya.
 
-T> The site <https://regex101.com> is useful to understand, test and debug regular expressions.
+> Situs <https://regex101.com> mudah dipahami untuk mengetes dan debug ekspresi regular.
 
-Let's get back to our example and check the email address field. Here's a possible regular expression (among many others) to test it against: `/.+@.+\..+/`.
+Mari kita kembali ke contoh kita sebelumnya dan cek isian alamat email. Berikut kemungkinan ekspresi regular-nya (diantara yang lainnya) untuk mengetes terhadap: `/.+@.+\..+/`.
 
-Q> Before reading further, can you decode this pattern to understand what conditions a string must respect to match it?
+> Sebelum membaca lebih lanjut, apakah Kamu bisa men-decode pola ini untuk memahami kondisi seperti apa sebuah string cocok dengan ekspresi tersebut? 
 
-OK, here is the answer. This pattern matches a string that:
+OK, berikut jawabannya. Pola ini mencocokkan string yang: 
 
-* Starts with one or several characters (`.+`).
-* Next, contains the `@` character (`@`).
-* Next, contains one or several characters (`.+`).
-* Next, contains the `.` character (`\.`).
-* Finishes with one or several characters (`.+`).
+* Dimulai dengan satu atau beberapa karakter (`.+`).
+* Selanjutnya, mengandung karakter `@` (`@`).
+* Selanjutnya, mengandung satu atau beberapa karakter (`.+`).
+* Selanjutnya, mengandung karakter`.` (`\.`).
+* Diakhiri dengan satu atau beberapa karaker (`.+`).
 
-In other words, any string of the form `xxx@yyy.zzz` will match this pattern. This is not the end-all, be-all way to validate an email address, but it's a start.
+Dengan kata lain, string apapun dari bentuk `xxx@yyy.zzz` akan cocok dengan pola ini. Ini bukanlah satu-satunya cara untuk memvalidasi alamat email, tapi hanyalah satu permulaan. 
 
-Check out how to put this solution into practice.
+Cek bagaimana menggunakan solusi ini dalam praktik. 
 
 ```js
-// Check email validity when field loses focus
+// Mengecek validitas email ketika isian hilang fokus
 document.getElementById("emailAddress").addEventListener("blur", e => {
-  // Match a string of the form xxx@yyy.zzz
+  // Mencocokkan string dari bentuk xxx@yyy.zzz
   const emailRegex = /.+@.+\..+/;
   let validityMessage = "";
   if (!emailRegex.test(e.target.value)) {
@@ -456,11 +455,11 @@ document.getElementById("emailAddress").addEventListener("blur", e => {
 
 ![Execution result](images/chapter17-09.png)
 
-## Coding time!
+## Waktu koding!
 
-### Password checker
+### Pengecek password 
 
-Start with the following HTML code.
+Mulai dengan kode HTML berikut.
 
 ```html
 <form>
@@ -479,21 +478,21 @@ Start with the following HTML code.
 <p id="passwordHelp"></p>
 ```
 
-Write the JavaScript code that validates the password when the user submits the form. The validation rules are as follow:
+Tulis kode JavaScript yang memvalidasi password ketika pengguna mengirim form. Aturan validasi sebagai berikut: 
 
-* The two inputted passwords must be identical.
-* The minimal password length is 6 characters.
-* The password must contain at least one digit.
+* Dua password yang diisi pengguna haruslah sama persis.
+* Panjang password 6 karakter.
+* Password harus mengandung paling sedikit satu digit.
 
-The validation result must be shown on the page with an appropriate message in each case.
+Hasil validasi harus terlihat di halaman dengan pesan yang tepat di setiap kasus. 
 
 ![Execution rrsult](images/chapter17-10.png)
 
-### Character list
+### Daftar karakter
 
-The TV show Game of Thrones is about the struggle for power between several noble families. In this exercise, you'll have to show characters belonging to the house selected by the user.
+Pertunjukkan TV Game of Thrones adalah tentang perebuta kekuasaan antar keluarga bangsawan. Di latihan ini, Kamu harus bisa menunjukkan karakter yang merupakan bagian dari keluarga tersebut yang dipilih oleh pengguna.
 
-Here is the associated HTML code.
+Berikut kode HTML-nya.
 
 ```html
 <h1>A few of the Game of Thrones characters</h1>
@@ -509,10 +508,10 @@ Here is the associated HTML code.
 </p>
 ```
 
-The starter JavaScript code is as follows.
+Kode permulaan JavaScript sebagai berikut.
 
 ```js
-// Character list. Each house has a name and a code
+// Daftar karakter. Setiap rumah memiliki nama dan kode.
 const houses = [
   {
     code: "ST",
@@ -532,7 +531,7 @@ const houses = [
   }
 ];
 
-// Return an array of characters belonging to a house
+// Mengembalikan array karakter milik satu rumah
 const getCharacters = houseCode => {
   switch (houseCode) {
     case "ST":
@@ -544,25 +543,25 @@ const getCharacters = houseCode => {
     case "TA":
       return ["Aerys", "Daenerys", "Viserys"];
     default:
-      return []; // Empty array
+      return []; // Array kosong
   }
 };
 ```
 
-Complete this code so that:
+Lengkapi kode ini sehingga:
 
-* The house dropdown list is filled during page load.
-* The list of characters is shown whenever the user selects a new house in the list.
+* Daftar dropdown rumah terisi saat halaman dibuka.
+* Daftar karakter ditampilkan ketika pengguna memilih rumah baru pada daftar.
 
 ![Execution result](images/chapter17-11.png)
 
 ### Autocomplete
 
-In this exercise, you'll have to assist the user in selecting a country. As he enters the country name in an input box, the page shows a list of corresponding countries. Clicking on a suggested country replaces the value in the input box.
+Di latihan ini, Kamu akan membantu pengguna dalam memilih satu negara. Saat dia memasukkan nama negara pada kotak input, halaman menampilkan daftar negara tersebut. Mengklik negara yang dipilih menggantikan nilai pada kotak input.
 
-> To keep things simple, only countries starting with a `"A"` letter are taken into account.
+> Agar membuat hal ini sederhana, hanya negara yang dimulai dengan huruf `"A"` yang masuk dalam program ini.
 
-Here is the HTML code that creates the input box.
+Berikut kode HTML yang membuat kotak input.
 
 ```html
 <label for="country">Enter a country name</label>:
@@ -570,22 +569,22 @@ Here is the HTML code that creates the input box.
 <div id="suggestions"></div>
 ```
 
-The following CSS code improves the page presentation.
+Kode CSS berikut membuat tampilan halaman lebih baik.
 
 ```css
-/* Add spacing between each country suggestion */
+/* Menambah spasi antar negara */
 .suggestion {
     padding-left: 2px;
     padding-right: 2px;
 }
 
-/* Change suggestion color when hovering it with the mouse */
+/* Mengubah warna saat di-hover mouse */
 .suggestion:hover {
     background-color: #adf;
     cursor: pointer;
 }
 
-/* Position the suggestion list just below the input box */
+/* Posisi daftar di bawah kotak input */
 #suggestions {
     position: absolute;
     border: 1px solid black;
@@ -593,7 +592,7 @@ The following CSS code improves the page presentation.
 }
 ```
 
-At last, the starter JavaScript code defines the list of countries.
+Terakhir, kode JavaScript untuk daftar negara.
 
 ```js
 // Country list
@@ -615,6 +614,6 @@ const countryList = [
 ];
 ```
 
-Complete this code to implement country autocompletion.
+Lengkapi kode ini untuk mengimplementasikan autocompletion negara.
 
 ![Execution result](images/chapter17-12.png)
