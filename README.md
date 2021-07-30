@@ -58,7 +58,7 @@ Terima kasih sebelumnya atas semua dukungan Kamu!
   * [Modifikasi struktur halaman](manuscript/chapter15.md)
   * [Reaksi terhadap event](manuscript/chapter16.md)
   * [Manipulasi form](manuscript/chapter17.md)
-  * [Animasi element](manuscript/chapter18.md)
+  * [Animasi elemen](manuscript/chapter18.md)
   * [Proyek: halaman web berita sosial](manuscript/chapter19.md)
 * Bagian III: Bangun aplikasi web
   * [Pengembangan Web 101](manuscript/chapter20.md)
