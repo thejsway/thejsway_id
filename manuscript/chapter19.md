@@ -1,34 +1,34 @@
-# Project: a social news web page
+# Proyek: halaman web berita sosial
 
-You know now enough JavaScript and DOM to go ahead and create interactive web pages for real!
+Kamu sudah cukup tahu JavaScript sekarang dan DOM untuk lanjut dan membuat halaman web interaktif!
 
-## Objective
+## Tujuan
 
-This project builds upon the social news program you created previously. This time, the objective is to make a social news web page.
+Proyek ini dibuat berdasarkan program berita sosial yang sudah Kamu buat sebelumnya. Kali ini, tujuannya adalah untuk membuat halaman web berita sosial.
 
-> The general idea and page layout for this project are inspired by the [Discover Meteor book](https://www.discovermeteor.com/)'s example application.
+> Ide umum dan layout halaman untuk proyek ini terinspirasi dari contoh aplikasi [Discover Meteor book](https://www.discovermeteor.com/).
 
-## Functional requirements
+## Kebutuhan fungsional
 
-* A link is defined by its title, its URL and its author (submitter).
-* If a new link URL does not start with `"http://"` or `"https://"`, `"http://"` is automatically added at its beginning.
-* The web page displays a list of at least three already existing links.
-* A button exists for the user to submit a new link. When clicked, a form appears before the link list to input the new link properties (author, title and URL).
-* In this form, all link fields are mandatory.
-* When the new link is validated by the user, it is displayed at the top of the link list, replacing the form. A message indicates the success of the operation, then disappears after two seconds.
+* Satu link didefinisikan oleh judul, URL, dan penulisnya (pengirim).
+* Jika link baru tidak dimulai dengan `"http://"` atau `"https://"`, `"http://"` ditambahkan otomatis di awalnya.
+* Halaman web menampilkan daftar setidaknya 3 link eksisting.
+* Satu tombol digunakan pengguna untuk mengirimkan link baru. Ketika diklik, muncul formulir sebelum daftar link untuk memasukkan properti link baru (penulis, judul, dan URL).
+* Di formulir ini, semua isian properti link adalah wajib.
+* Ketika link baru divalidasi oleh pengguna, link tersebut ditampilkan di atas daftar link, menggantikan formulir. Sebuah pesan mengindikasikan sukses operasi, lalu menghilang setelah dua detik.
 
-## Technical requirements
+## Kebutuhan teknikal
 
-* You should reuse any useful code from the previous project.
-* All your code should be correctly indented.
-* Names should be wisely chosen and adhere to the camelCase convention.
-* Code duplication should be avoided.
+* Kamu harus menggunakan kembali kode yang berguna dari proyek sebelumya.
+* Semua kode Kamu harus teridentasi dengan benar.
+* Penamaan harus dipilih dengan bijak dan mematuhi aturan camelCase.
+* Duplikasi kode harus dihindari.
 
-## Starter code
+## Kode permulaan
 
-Because this is first and foremost a JavaScript project, here is the complete HTML/CSS code of the web page. It is also online as a [CodePen](https://codepen.io/bpesquet/pen/pPyxLG/).
+Karena ini merupakan proyek JavaScript, berikut ini kode HTML/CSS dari halaman web. Kode ini juga online di [CodePen](https://codepen.io/bpesquet/pen/pPyxLG/).
 
-> This web page uses the [Bootstrap](http://getbootstrap.com/) framework to improve presentation and make it responsive. However, Bootstrap knowledge is not mandatory to achieve the desired result. You can pretty much ignore it and code ahead.
+> Halaman web ini menggunakan kerangka [Bootstrap](http://getbootstrap.com/) untuk meningkatkan presentasi dan membuat halaman responsif. Walaupun begitu, pengetahuan Bootstrap tidaklah wajib untuk mendapatkan hasil yang diinginkan. Kamu bisa langsung koding tanpa harus tahu Bootstrap.
 
 ```html
 <!doctype html>
@@ -65,12 +65,12 @@ Because this is first and foremost a JavaScript project, here is the complete HT
     </nav>
 
     <div id="content">
-      <!-- Dynamic content goes here -->
+      <!-- Konten dinamis di sini -->
     </div>
 
   </div>
 
-  <!-- JavaScript code goes into this file -->
+  <!-- Kode JavaScript ada di file ini -->
   <script src="../js/publink.js"></script>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -87,14 +87,14 @@ body {
   background-color: #eee;
 }
 
-/* Main link element (<div> tag) */
+/* Elemen utama link (<div> tag) */
 .link {
   background: white;
   padding: 10px;
   margin-bottom: 10px;
 }
 
-/* Link title (<a> tag) */
+/* Link judul (<a> tag) */
 .linkTitle {
   color: #428bca;
   text-decoration: none;
@@ -110,12 +110,12 @@ body {
   font-size: 80%;
 }
 
-/* Link headline containing title & URL (<h4> tag) */
+/* Link headline mengandung judul & URL (<h4> tag) */
 .linkHeadline {
   margin: 0;
 }
 
-/* Link author (<span> tag) */
+/* Link penulis (<span> tag) */
 .linkAuthor {
   font-weight: normal;
   font-size: 80%;
@@ -126,9 +126,9 @@ body {
 }
 ```
 
-## Expected result
+## Hasil yang diharapkan
 
-Here are a few screenshots of the expected result.
+Berikut ini beberapa tampilan dari hasil yang diharapkan.
 
 ![Link list](images/chapter19-01.png)
 
