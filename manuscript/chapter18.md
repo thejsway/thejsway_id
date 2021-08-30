@@ -1,33 +1,33 @@
-# Animate elements
+# Animasi elemen
 
-This chapter will get you started with JavaScript for animations! We'll see how to kick off animations that should run repeatedly or should stop at a certain point.
+Di bab ini Kamu akan memulai dengan JavaScript untuk animasi! Kita akan lihat bagaimana cara membuat animasi yang berjalan secara berulang atau harus berhenti saat poin tertentu.
 
 ## TL;DR
 
-* The `setInterval()` function kicks off a repeated action and is called at regular intervals. The `clearInterval()` function stops a repeated action that was launched with `setInterval()`.
+* Fungsi `setInterval()` memulai aksi berulang dan dipanggil pada rentang tertentu. Fungsi `clearInterval()` memberhentikan aksi berulang yang diluncurkan oleh `setInterval()`.
 
-* The `setTimeout()` function executes an action once after a certain delay.
+* Fungsi `setTimeout()` mengeksekusi aksi sekali setelah jeda tertentu.
 
-* The `requestAnimationFrame()` function asks the browser to execute a function that updates the animation as soon as possible. This works well for real-time animations. The `cancelAnimationFrame()` function stops an in-progress animation that was launched with `requestAnimationFrame()`.
+* Fungsi `requestAnimationFrame()` meminta browser untuk mengeksekusi satu fungsi yang mengupdate animasi secepat mungkin. Hal ini cocok diterapkan untuk animasi real-time. Fungsi `cancelAnimationFrame()` memberhentikan animasi yang sedang berlangsung yang diluncurkan oleh `requestAnimationFrame()`.
 
-* You can also create web animations via **CSS**.
+* Kamu juga bisa membuat animasi web dengan **CSS**.
 
-## Repeat an action at regular intervals
+## Mengulangi satu aksi pada regular interval 
 
-Let's get started with animations by learning how to repeatedly modify an element's content. Here is the associated HTML code.
+Mari kita mulai dengan animasi dengan belajar bagaimana cara memodifikasi konten elemen secara berulang. Berikut kode HTML-nya.
 
 ```html
 <h1 id="title">This page will self-destruct in <span id="counter">10</span> second(s)...</h1>
 ```
 
-And now for the corresponding JavaScript code.
+Berikut kode JavaScript-nya.
 
 ```js
-// Count down the counter
+// Hitung mundur 
 const decreaseCounter = () => {
-  // Convert counter text to a number
+  // Mengkonversi teks counter ke angka
   const counter = Number(counterElement.textContent);
-  // Decrease counter by one
+  // Mengurangi penghitung 1 angka
   counterElement.textContent = counter - 1;
 };
 
@@ -37,38 +37,38 @@ const counterElement = document.getElementById("counter");
 setInterval(decreaseCounter, 1000);
 ```
 
-[Click here](https://codepen.io/bpesquet/pen/RVWLeY?editors=1010) to see it in action. It works as expected... Kind of: the countdown never stops. We'll fix this a little later.
+[Klik di sini](https://codepen.io/bpesquet/pen/RVWLeY?editors=1010) untuk bisa melihatnya secara langsung. Program ini bekerja dengan semestinya.. Counter-nya tidak pernah berhenti. Kita akan memperbaikinya nanti.
 
-### Kick off a repeated action
+### Memulai aksi berulang
 
-How did the previous example work? The JavaScript code defines a function called `decreaseCounter()` that accesses and then decreases one by one the value of the HTML element named `counter`.
+Bagaimana contoh sebelumnya bisa bekerja? Kode JavaScript mendefinisikan fungsi bernama `decreaseCounter()` yang mengakses dan mengurangi nilai satu per satu nilai elemen HTML bernama `counter`.
 
-> Calling `Number()` in the function code is mandatory: it converts the counter string into a number, which endows it with subtraction functionality.
+> Memanggil `Number()` di dalam kode fungi adalah wajib: fungsi ini mengkonversi string counter menjadi angka, yang berfungsi untuk mengurangi nilai.
 
-The call to `setInterval()` triggers a repeated action. This function lets you call a function at regular intervals. Its parameters are the function to call and the time in milliseconds between each call. The returned value is an ID for the repeated action, which can be used to further modify it.
+Pemanggilan `setInterval()` memicu perulangan aksi. Fungsi ini memungkinkan Kamu untuk memanggil fungsi pada regular interval. Parameternya adalah fungsi untuk memanggil dan waktu pemanggilan dalam millisecond diantara setiap panggilan. Nilai yang dikembalikan adalah ID untuk perulangan aksi, yang bisa digunakan untuk dimodifikasi nantinya.
 
 ```js
-// Set up a repeated action
+// Mengatur aksi berulang
 const intervalId = setInterval(callbackFunction, timeBetweenEachCall);
 ```
 
-### Stop a repeated action
+### Menghentikan aksi berulang
 
-Let's try to stop the counter once the countdown is complete. We'll also modify the text of the page. Here's the JavaScript code for our example, updated to produce our desired result:
+Mari kita coba untuk menghentikan counter saat perhitungan mundur selesai. Kita  juga akan memodifikasi teks di halaman. Berikut ini kode JavaScript di contoh kita, di update untuk memproduksi hasil yang diinginkan:
 
 ```js
-// Count down the counter until 0
+// Hitung mundur counter sampai 0
 const decreaseCounter = () => {
-  // Convert counter text to a number
+  // Mengubah teks counter ke angka
   const counter = Number(counterElement.textContent);
   if (counter > 1) {
-    // Decrease counter by one
+    // Mengurangi counter dengan 1
     counterElement.textContent = counter - 1;
   }
   else {
-    // Cancel the repeated execution
+    // Membatalkan eksekusi berulang 
     clearInterval(intervalId);
-    // Modify the page title
+    // Modifikasi judul halaman
     const title = document.getElementById("title");
     title.textContent = "BOOM!!";
   }
@@ -76,41 +76,41 @@ const decreaseCounter = () => {
 
 const counterElement = document.getElementById("counter");
 
-// Call the decreaseCounter function every second (1000 milliseconds)
+// Memanggil fungsi decreaseCounter setiap detik (1000 millisecond)
 const intervalId = setInterval(decreaseCounter, 1000);
 ```
 
-[Click here](https://codepen.io/bpesquet/pen/zwvEVz?editors=1010) to see it in action.
+[Klik di sini](https://codepen.io/bpesquet/pen/zwvEVz?editors=1010) untuk melihat lebih lanjut.
 
-In the `decreaseCounter()` function, we only decrease the counter if the current value is higher than 1. If not, we call the function `clearInterval()` and then modify the title of the page.
+Pada fungsi `decreaseCounter()`, kita hanya mengurangi counter jika nilai saat ini lebih tinggi dari 1. Jika tidak, kita memanggil fungsi `clearInterval()`, lalu memodifikasi judul halaman.
 
-The `clearInterval()` function lets you cut off repeated code execution. It takes as a parameter the ID of the action set by the call to `setInterval()`.
+Fungsi `clearInterval()` memungkinkan Kamu memotong eksekusi kode berulang. Fungsi ini mengambil ID aksi sebagai parameter yang di set oleh panggilan ke `setInterval()`.
 
 ```js
-// Cancel a repeated action set up with setInterval()
+// Membatalkan aksi berulang yang di set dengan setInterval()
 clearInterval(intervalId);
 ```
 
-## Trigger an action after a delay
+## Memicu aksi setelah delay
 
-Imagine that you want to modify the page text after its "explosion" in the previous example. You'd modify our example as follows:
+Bayangkan ketika Kamu ingin memodifikasi teks halaman setelah "ledakan" di contoh sebelumnya. Kamu akan memodifikasi contoh tersebut sebagai berikut:
 
 ```js
-// Count down the counter until 0
+// Menghitung mundur sampai dengan 0 
 const decreaseCounter = () => {
-  // Convert counter text to a number
+  // Mengkonversi teks counter ke angka 
   const counter = Number(counterElement.textContent);
   if (counter > 1) {
-    // Decrease counter by one
+    // Mengurangi counter dengan 1 
     counterElement.textContent = counter - 1;
   }
   else {
-    // Cancel the repeated execution
+    // Membatalkan eksekusi yang berulang
     clearInterval(intervalId);
-    // Modify the page title
+    // Modifikasi judul halaman 
     const titleElement = document.getElementById("title");
     titleElement.textContent = "BOOM!!";
-    // Modify the title after 2 seconds
+    // Modifikasi judul setelah 2 detik
     setTimeout(() => {
       titleElement.textContent = "Everything's broken now :(";
     }, 2000);
@@ -119,26 +119,26 @@ const decreaseCounter = () => {
 
 const counterElement = document.getElementById("counter");
 
-// Call the decreaseCounter function every second (1000 milliseconds)
+// Memanggil fungsi decreaseCounter setiap detik (1000 milliseconds)
 const intervalId = setInterval(decreaseCounter, 1000);
 ```
 
-[Click here](https://codepen.io/bpesquet/pen/ybYPbb?editors=1010) to see it in action.
+[Klik di sini](https://codepen.io/bpesquet/pen/ybYPbb?editors=1010) untuk lihat contohnya secara langsung.
 
-Once the countdown has finished, we call the `setTimeout()` function to set a new page title after a 2 second (2000 millisecond) delay.
+Ketika perhitungan mundur selesai, kita panggil fungsi `setTimeout()` untuk mengatur judul halaman baru setelah delay 2 detik (2000 millisecond).
 
-The `setTimeout()` function lets you execute a function once after a particular delay, expressed in milliseconds.
+Fungsi `setTimeout()` memungkinkan Kamu mengeksekusi fungsi setelah delay tertentu, diekspresikan dalam millisecond.
 
 ```js
-// Execute an action once, after a delay
+// Eksekusi aksi sekali, setelah delay
 setTimeout(callbackFunction, timeBeforeCall);
 ```
 
-## Animate page elements
+## Animasi elemen halaman 
 
-The previous solutions were convenient for making our pages a bit more dynamic, but weren't enough for adding real-time animation. Let's look at a better-performing solution.
+Solusi sebelumnya sangatlah memudahkan dalam membuat halaman kita menjadi lebih sedikit lebih dinamis, tetapi tidak cukup untuk menambah animasi real-time. Mari kita lihat solusi yang lebih baik dari sisi performansinya.
 
-Take, for example, the movement of a `<div>` type element from left to right on the page. We start with the following HTML and CSS code that display a red block on the page.
+Ambil contoh, pergerakan tiep elemen `<div>` dari kiri ke kanan pada halaman. Kita mulai dengan kode HTML dan CSS berikut yang menampilkan blok merah di halaman.
 
 ```html
 <div id="frame">
@@ -161,110 +161,110 @@ Take, for example, the movement of a `<div>` type element from left to right on 
 
 ![Display result](images/chapter18-01.png)
 
-And here is the JavaScript code that lets you move the red block.
+Dan berikut ini kode JavaScript yang memungkinkan Kamu untuk memindahkan blok merah tersebut.
 
 ```js
-// Move the block to the left
+// Memindahkan blok ke kiri
 const moveBlock = () => {
-  // Convert the left position of the block (value of the form "XXpx") to a number
+  // Mengkonversi posisi kiri blok (nilai dari bentuk "XXpx") ke angka
   const xBlock = parseFloat(getComputedStyle(blockElement).left);
-  // Move the block to the right
+  // Memindahkan blok ke kanan
   blockElement.style.left = (xBlock + movement) + "px";
-  // Have the browser call moveBlock as soon as possible
+  // Membuat browser memanggil moveBlock sesegera mungkin 
   requestAnimationFrame(moveBlock);
 };
 
 const blockElement = document.getElementById("block");
 
-// Movement value in pixels
+// Nilai pergerakan dalam pixel
 const movement = 7;
 
-// Start the animation
+// Memulai animasi
 requestAnimationFrame(moveBlock);
 ```
 
-[Click here](https://codepen.io/bpesquet/pen/RVWxbW) to see it in action.
+[Klik di sini](https://codepen.io/bpesquet/pen/RVWxbW) untuk lihat secara langsung.
 
-Upon page load, the red block moves (indefinitely) from left to right.
+Saat halaman terbuka, blok merah bergerak (terus menerus) dari kiri ke kanan.
 
-### Start an animation
+### Memulai animasi
 
-The example code defines a function called `moveBlock()` which moves the block horizontally to the right. It grabs the current position of the block's left border than adds the value contained in the `movement` variable. Next, the code calls the `requestAnimationFrame()` method to keep the animation going.
+Contoh kode mendefinisikan sebuah fungsi `moveBlock()` yang memindahkan blok secara horizontal ke kanan. Fungsi ini mengambil posisi blok sisi kiri saat ini lalu menambahkan nilai yang ada di dalam variabel `movement`. Selanjutnya, kode memanggil method `requestAnimationFrame()` untuk menjaga agar animasi tetap bergerak. 
 
-Position values are written in pixels. These are the strings you saw that resemble "XXpx," which requires the use of the JavaScript `parseFloat()` function to convert numeric values before making calculations.
+Nilai posisi ditulis dalam pixel. Nilai ini adalah string yang Kamu lihat yang menyerupai format "XXpx", yang memerlukan penggunaan fungsi `parseFloat()` untuk mengkonversi nilai numerik sebelum melakukan perhitungan.
 
-> Don't use `Number()` to convert a string with `"px"` into a numerical value. This won't work, and you'll get a `NaN` value (*Not a Number*) as a result!
+> Jangan gunakan konversi `Number()` untuk mengkonversi satu string dengan `"px"` ke nilai numerik. Tidak bisa dan Kamu akan mendapat nilai `NaN` (*Not a Number*) sebagai hasilnya!
 
-The `requestAnimationFrame()` function lets you ask the browser to execute a function as soon as possible, which updates the animation. It's the browser's job to make the animation as smooth as possible. The returned value of `requestAnimationFrame()` is an ID for the animation, which can be used to further modify it.
+Fungsi `requestAnimationFrame()` memungkinkan Kamu untuk meminta browser untuk mengeksekusi fungsi sesegera mungkin, fungsi yang mengupdate animasi. Merupakan tugas browser untuk memastikan animasi berjalan selancar mungkin. Nilai yang dikembalikan dari `requestAnimationFrame()` adalah sebuah ID untuk animsi, yang bisa digunakan untuk dimodifikasi lebih lanjut.
 
-Here is how `requestAnimationFrame()` is used in combination with an animation function.
+Berikut ini adalah cara `requestAnimationFrame()` digunakan dan dikombinasikan dengan fungsi animasi.
 
 ```js
 const animate = () => {
-    // Animation code
+    // Kode animasi
     // ...
-    // At end of animation, request another one
+    // Di akhir animasi, meminta yang lainnya
     animationId = requestAnimationFrame(animate);
 };
 
-// Animation start
+// Animasi dimulai
 let animationId = requestAnimationFrame(animate);
 ```
 
-### Stop an animation
+### Mengehentikan animasi 
 
-Let's now see how to stop the block before it reaches the border of the frame that contains it. We'll have to verify that the left border position is less than the width of the frame, bearing in mind the thickness of the block itself.
+Sekarang mari kita lihat bagaimana menghentikan blok sebelum mencapai batas frame yang ada di dalamnya. Kita haru menverifikasi bahwa posisi perbatasan kiri lebih kecil dari lebar frame, perhatikan ketebalan blok tersebut.
 
-Here's the updated JavaScript code.
+Berikut kode JavaScript terbarunya.
 
 ```js
-// Move the block to the right, all the way to the end of the frame
+// Memindahkan blok ke kanan, sampai dengan akhir frame
 const moveBlock = () => {
-  // Convert the left position of the block (value of the form "XXpx") to a number
+  // Konversi posisi kiri dari blok (nilai dari bentuk "XXpx") ke angka 
   const xBlock = parseFloat(getComputedStyle(blockElement).left);
-  // Convert the width of the frame (value of the form "XXpx") to a number
+  // Konversi lebar frame (nilai dari bentuk "XXpx") ke angka 
   const xMax = parseFloat(getComputedStyle(frame).width);
-  // If the block isn't already to the end of the frame
+  // Jika blok belum sampai dengan akhir frame
   if (xBlock + blockWidth <= xMax) {
-    // Block movement
+    // Pergerakan blok
     blockElement.style.left = (xBlock + movement) + "px";
     animationId = requestAnimationFrame(moveBlock);
   }
   else {
-    // Cancel the animation
+    // Membatalkan animasi 
     cancelAnimationFrame(animationId);
   }
 };
 
 const blockElement = document.getElementById("block");
-// Convert the block width (value of the form "XXpx") to a number
+// Konversi lebar blok (nilai dari bentuk "XXpx") ke angka 
 const blockWidth = parseFloat(getComputedStyle(block).width);
 
-// Movement value in pixels
+// Nilai pergerakan dalam pixel
 const movement = 7;
 
-// Start the animation
+// Memulai animasi
 let animationId = requestAnimationFrame(moveBlock);
 ```
 
-[Click here](https://codepen.io/bpesquet/pen/rmOpZE) to see it in action.
+[Klik di sini](https://codepen.io/bpesquet/pen/rmOpZE) untuk lihat secara langsung.
 
-The new `moveBlock()` function checks that the block has arrived at the end of the frame before moving. If that's the case, the animation stops via a call to `cancelAnimationFrame()`.
+Fungsi baru `moveBlock()` mengecek blok telah sampai di akhir frame sebelum bergerak. Jika ini kasusnya, animasi berhenti melalui panggilan ke `cancelAnimationFrame()`.
 
-The `cancelAnimationFrame()` functions stops the animation and takes the ID of the animation set by a prior call to `requestAnimationFrame()`.
+Fungsi `cancelAnimationFrame()` menghentikan animasi dan mengambil animasi ID yang diset oleh pemanggilan sebelumnya ke `requestAnimationFrame()`.
 
 ```js
-// Stop an animation
+// Hentikan animasi 
 cancelAnimationFrame(animationID);
 ```
 
-### An alternative: CSS animations
+### Alternatif: CSS animasi
 
-You just learned about the different possibilities that JavaScript offers for animating web pages. Just bear in mind there's another alternative: CSS.
+Kamu baru saja belajar tentang perbedaan kemungkinan yang JavaScript tawarkan untuk menganimasikan halaman web. Ada juga alternatif lainnya: CSS.
 
-> This paragraph barely scratches the surface of CSS animations.
+> Paragraf ini hanyalah kulit dari animasi CSS.
 
-Let's check out how to get a similar effect as the previous example by using CSS instead of JavaScript. Remove any JavaScript code from your example and modify your CSS code as follows.
+Mari kita cek bagaimana mendapatkan efek yang sama dengan contoh sebelumnya dengan menggunakan CSS dibandingkan JavaScript. Hapus semua kode JavaScript code dari contoh Kamu dan modifikasi kode CSS sebagai berikut.
 
 ```css
 #frame {
@@ -276,49 +276,49 @@ Let's check out how to get a similar effect as the previous example by using CSS
   height: 40px;
   background: red;
   position: relative;
-  margin-left: -20px; /* Negative margin to simplify position calculations */
-  animation-name: moveBlock; /* Name of animation */
-  animation-duration: 6s; /* Length of animation */
-  animation-fill-mode: forwards; /* Let the block in its final position */
+  margin-left: -20px; /* Margin negatif untuk menyederhanakan kalkulasi posisi */
+  animation-name: moveBlock; /* Nama animasi */
+  animation-duration: 6s; /* Panjang animasi */
+  animation-fill-mode: forwards; /* Membiarkan blok di posisi akhir */
 }
 
 @keyframes moveBlock {
   from {
-    /* Initial position: to the left of the frame (taking negative margin into account) */
+    /* Posisi awal: ke kiri frame (mempertimbangkan margin negatif) */
     left: 20px;
   }
   to {
-    /* Final position: within the right side of the frame (taking negative margin into account) */
+    /* Posisi akhir: di sebelah kanan frame (mempertimbangkan margin negatif) */
     left: 100%;
   }
 }
 ```
 
-[Click here](https://codepen.io/bpesquet/pen/wdKyQb?editors=1100) to see it in action.
+[Klik di sini](https://codepen.io/bpesquet/pen/wdKyQb?editors=1100) untuk lihat secara langsung.
 
-This code defines a CSS animation named `moveBlock()`, which moves the block from the left to the right side of its containing frame. The result is virtually identical to the JavaScript version.
+Kode ini mendefinisikan animasi CSS dinamakan `moveBlock()`, yang memindahkan blok dari kiri ke kanan frame. Hasilnya hampir sama dengan versi JavaScript.
 
-## Choosing the right animation technique
+## Memilih teknik animasi yang tepat
 
-Now, decision time. How should you choose between `setInterval()`, `requestAnimationFrame()`, or CSS to animate your page? The answer depends on how complex your animation is. In theory, CSS animations are more efficient performance-wise, but you can't do everything with them.
+Sekarang, waktu memutuskan. Bagaimana Kamu memilih antara `setInterval()`, `requestAnimationFrame()`, atau CSS untuk menganimasikan halaman Kamu? Jawabannya tergantung seberapa kompleks animasi Kamu. Teorinya, animasi CSS lebih efisien secara performansi, tetapi Kamu tidak bisa melakukan semuanya dengan ini.
 
-Here's how you might want to approach your decision:
+Berikut bagaimana Kamu melakukan pendekatan untuk pengambilan keputusan:
 
-* Use `setInterval()` if the animation isn't in real-time and should just happen at regular intervals.
-* Favor CSS if the animation happens in real-time and can be managed with it.
-* Use `requestAnimationFrame()` for any other case.
+* Gunakan `setInterval()` jika animasi tidak real-time dan bergerak secara regular.
+* Pilih CSS jika animasi terjadi secara real-time dan bisa dikelola dengan cara ini.
+* Gunakan `requestAnimationFrame()` untuk kasus lainnya.
 
-## Coding time!
+## Waktu koding!
 
 ### Chronometer
 
-Write an interactive web page with a button to start and stop a chronometer counting the number of elapsed seconds.
+Tulis halaman web interaktif dengan tombol untuk memulai dan memberhentikan chronometer dalam menghitung detik yang berlalu.
 
-### Bouncing ball
+### Bola pantul
 
-The goal of this exercise is to make a basketball bounce across the screen. You can download the ball image [here](https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/basketball.jpg).
+Tujuan dari latihan ini adalah membuat bola basket memantul di layar. Kamu bisa download gambar [di sini](https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/basketball.jpg).
 
-Start with the following HTML and CSS content.
+Mulai dengan konten HTML dan CSS berikut.
 
 ```html
 <p>
@@ -339,8 +339,8 @@ Start with the following HTML and CSS content.
 }
 ```
 
-Write the JavaScript code that makes the ball bounce horizontally.
+Tulis kode JavaScript yang bisa membuat bola tersebut memantul secara horizotal.
 
 ![Execution result](images/chapter18-04.png)
 
-With your solution, create a variable with values 1 or -1 that dictates the direction in which the ball should move.
+Dengan solusi Kamu, buat satu variabel dengan nilai 1 atau -1 yang mengarahkan ke mana bola harus bergerak.
