@@ -1,72 +1,72 @@
-# Web development 101
+# Pengembangan web 
 
-Understanding the fundamentals of web development is crucial for every JavaScript developer. Let's dive into this topic.
+Memahami dasar atau fundamental pengembangan web merupakan hal krusial bagi setiap developer JavaScript developer. Mari kita bahas topik ini.
 
-> Some of this chapter is inspired by the [Symfony PHP framework documentation](http://symfony.com/doc/current/introduction/http_fundamentals.html).
+> Beberapa bab ini terinspirasi dari [Dokumentasi Symfony PHP framework](http://symfony.com/doc/current/introduction/http_fundamentals.html).
 
 ## TL;DR
 
-* Data exchanges on the Web follow a **request/response** paradigm. A **client** issues a request to a **server**, which process it and sends back its result to the client.
+* Data bertukaran di web mengikuti paradigma **permintaan/respons**. Satu **client** melakukan permintaan ke **server**, yang memproses permintaan tersebut dan mengirimkan kembali hasilnya ke client.
 
-* **HTTP** (HyperText Transfer Protocol), is the protocol that allows two machines to communicate with each other on the web. Its secured version is **HTTPS**.
+* **HTTP** (HyperText Transfer Protocol), adalah protokol yang memungkinkan dua mesin untuk berkomunikasi dengan lainnya di web. Versi amannya adalah **HTTPS**.
 
-* HTTP is based on textual commands. The HTTP **method** defines the type of the request. The main HTTP methods are `GET` to access a resource and `POST` to push some information on the server.
+* HTTP didasari oleh perintah tekstual. **Method** HTTP mendefinisikan tipe dari permintaan. Method utama HTTP adalah `GET` untuk mengakses satu resource dan `POST` untuk mendorong beberapa informasi ke server.
 
-* An HTTP response contains a **status code** indicating the result of the request: 200 for success, 404 for a resource not found, etc.
+* Respons HTTP mengandung **kode status** yang mengindikasikan hasil dari permintaan: 200 untuk sukses, 404 untuk resource yang tidak ditemukan, dan lainnya.
 
-* Web resources are uniquely addressed by their **URL** (Uniform resource locator). A URL is a text of the form `http://www.mywebsite.com/myresourcepath/myresource`.
+* Resources web beralamat unik diambil dari **URL** (Uniform resource locator). URL adalah teks dari bentuk `http://www.mywebsite.com/myresourcepath/myresource`.
 
-* In a traditional web development scenario, user actions on a page trigger a full reload after a synchronous request to a server. Another web development model, nicknamed **AJAX** (Asynchronous JavaScript and XML), uses JavaScript and **asynchronous** HTTP requests to fetch data when needed and update only the desired portions of the page. This enables the creation of **web applications**, aiming to offer the user experience of a native app.
+* Pada skenario pengembangan web tradisional, aksi pengguna di halaman web memicu pembukaan kembali halaman secara penuh setelah permintaan sinkron ke server. Pengembangan web lainnya, disebut **AJAX** (Asynchronous JavaScript and XML), menggunakan JavaScript dan permintaan HTTP secara **asynchronous** untuk mengambil data ketika dibutuhkan dan meng-update hanya bagian yang diinginkan dari halaman. Hal ini memungkinkan pembuatan **aplikasi web**, yang bertujuan untuk menawarkan *user experience* dari aplikasi *native*.
 
-* Cross-domain AJAX requests are only possible if the server has been configured to accept them by setting on **cross-origin resource sharing** (CORS).
+* Permintaan cross-domain AJAX dimungkinkan jika server telah dikonfigurasi untuk menerima permintaan tersebut dengan mengatur **cross-origin resource sharing** (CORS).
 
-* **JSON** (JavaScript Object Notation), a textual syntax for describing structured information, has replaced XML as the data format of the web. A JSON document is a set of name/value pairs.
+* **JSON** (JavaScript Object Notation), sintaks tekstual untuk mendeskripsikan informasi yang terstruktur, telah menggantikan XML sebagai format data di web. Dokumen JSON terdiri dari satu set pasangan nama/nilai.
 
-## How the Web works
+## Bagaimana web bekerja
 
-Surfing the web is easy as pie. Let's say you want to read today's comic from the popular web site [xkcd](https://xkcd.com). You type the text `"xkcd.com"` in your browser's address bar and voila, the comic appears (assuming no network issues).
+Menjelajahi web sangatlah mudah. Katakanlah Kamu ingin baca komik hari ini dari situs web populer [xkcd](https://xkcd.com). Kamu ketik teks `"xkcd.com"` di kotak alamat browser Kamu dan tadaa, komik muncul (asumsi tidak ada permasalahan jaringan).
 
-Let's try to understand what's going on behind the scene.
+Mari kita coba memahami apa yang terjadi dibalik layar.
 
-### Web servers
+### Server web 
 
-To be online, a web site has to be published on a **server**. This is a special kind of machine whose task is to listen and answer to the demands of clients. A server that publishes resources on the Web is logically called a **web server**.
+Untuk bisa online, sebuah situs web harus dipublikasikan di **server**. Ini adalah mesin jenis spesial yang tugasnya adalah untuk menunggu dan menjawab permintaan dari klien. Server yang mempublikasikan resource di web secara logika dinamakan **server web**.
 
-More precisely, a web server machine runs a particular software program (also called a web server) able to publish web sites. The most popular ones are [Apache](http://httpd.apache.org/), [Microsoft IIS](http://www.iis.net/) and [nginx](http://nginx.org).
+Lebih tepatnya, mesin server web menjalankan program perangkat lunak tertentu (juga dinamakan server web) dapat mempublikasikan situs web. Yang paling populer adalah [Apache](http://httpd.apache.org/), [Microsoft IIS](http://www.iis.net/) dan [nginx](http://nginx.org).
 
-### Web clients
+### Web client
 
-The machine asking a server for a resource is called a **web client**. Actually, the real client is a software program running on the machine. a well-known type of web client is the **browser**, a program specialized in displaying web pages. Famous web browsers include [Mozilla Firefox](https://www.mozilla.org/firefox), [Chrome](https://www.google.com/chrome/browser/), [Safari](https://www.apple.com/safari/) and [Opera](http://www.opera.com/fr).
+Mesin yang meminta server untuk resource dinamakan **web client**. Sebenarnya, client sebenarnya adalah program perangkat lunak berjalan di mesin. Web client yang cukup dikenal adalah **browser**, satu program yang memiliki spesialisasi dalam menampilkan halaman web. Web browser terkenal diantaranya [Mozilla Firefox](https://www.mozilla.org/firefox), [Chrome](https://www.google.com/chrome/browser/), [Safari](https://www.apple.com/safari/) dan [Opera](http://www.opera.com/fr).
 
-Not all web clients are browsers, through. For example, search engines robots and mobile applications also contact servers and ask them for content.
+Tidak semua web client adalah browser. Contohnya, robot mesin pencari dan aplikasi mobile juga mengkontak server dan memintanya untuk konten.
 
-### Communications between clients and servers
+### Komunikasi antara client dan server
 
-Data exchanges on the Web follow a **request/response** paradigm.
+Pertukaran data di Web mengikuti paradigma **permintaan/respons**.
 
 ![A web exchange example](images/chapter20-01.png)
 
-1. The exchange is started by the client, which sends a **request** to the server to access a particular web resource.
-1. The server prepares a result for the request.
-1. The server send backs this result to the client.
+1. Pertukaran dimulai oleh client, yang mengirimkan satu **permintaan** ke server untuk mengakses resource web tertentu.
+1. Server mempersiapkan hasil dari permintaan.
+1. Server mengirim balik hasil ini ke client.
 
-To understand each other, web clients and servers use a common protocol: HTTP.
+Untuk memahami satu dengan yang lainnya, client dan server web menggunakan protokol umum: HTTP.
 
-## HTTP, the web protocol
+## HTTP, protokol web 
 
-HTTP, which stands for **HyperText Transfer Protocol**, is the technical foundation of the World Wide Web. It is a **protocol**, a language that allows two machines to communicate with each other.
+HTTP, singkatan dari **HyperText Transfer Protocol**, adalah fondasi teknikal dari World Wide Web. Ini adalah **protokol**, bahasa yang memungkinkan dua mesin untuk berkomunikasi satu dengan lainnya.
 
-> HTTPS is the secured version of HTTP.
+> HTTPS adalah versi aman dari HTTP.
 
-Technically speaking, HTTP is a pretty simple protocol based on **textual commands**.
+Dari sisi teknis, HTTP cukup sederhana didasari oleh **perintah tekstual**.
 
-### Anatomy of an HTTP request
+### Anatomi permintaan HTTP 
 
-Let's study the first part of the web exchange described previously: the request.
+Mari kita pelajari bagian pertama pertukaran web yang sebelumnya dijelaskan: permintaan.
 
 ![A web request example](images/chapter20-02.png)
 
-This HTTP request comes under the form as a multi-line piece of text similar to the following one.
+Permintaan HTTP ini datang dari bentuk teks yang mirip dengan berikut.
 
 ```http
 GET / HTTP/1.1
@@ -76,23 +76,23 @@ User-Agent: Mozilla/5.0 (Macintosh)
 ...
 ```
 
-The most important line is the first one. It contains:
+Yang paling penting adalah baris pertama. Baris tersebut mengandung:
 
-* The HTTP **method** (the request type, also named **command**). Here, the `GET` method indicates a resource access request.
-* The requested **resource**. Here, `/` (root symbol) indicates a request for the default document.
-* The HTTP protocol **version**, here 1.1.
+* HTTP **method** (tipe permintaan, juga dinamakan **perintah**). Di sini, method `GET` mengindikasikan satu permintaan akses resource.
+* **Resource** yang diminta. Di sini, `/` (simbol root) mengindikasikan satu permintaan untuk dokumen biasa.
+* **Versi** protokol HTTP, di sini 1.1.
 
-The other lines of text are called **header fields**. They give more information about the client request: server name (`Host`), accepted content types (`Accept`), client software details (`User-Agent`). They are many other possible header fields.
+Baris lain dari teks dinamakan **header fields**. Baris ini memberikan tambaha informasi tentang permintaan client: nama server (`Host`), menerima tipe konten (`Accept`), detail perangkat lunak client (`User-Agent`). Ada banyak kemungkinan header fields lainnya.
 
-The main HTTP methods are `GET` to access a resource and `POST` to push some information on the server. Other ones exist, such as `HEAD`, `PUT` or `DELETE`.
+Method utama HTTP adalah `GET` untuk mengakses satu resource dan `POST` untuk mendorong informasi ke server. Ada juga lainnya seperti `HEAD`, `PUT` atau `DELETE`.
 
-### Anatomy of an HTTP response
+### Anatomi respons HTTP 
 
-When receiving an HTTP request, the server looks inside for information. It then builds an appropriate answer and sends it back.
+Saat menerima permintaan HTTP, server mencari informasi ke dalam. Lalu membuat jawaban yang tepat dan mengembalikannya.
 
 ![A web response example](images/chapter20-01.png)
 
-The HTTP response sent by the server looks something like this.
+Respons HTTP dikirim oleh server seperti ini.
 
 ```http
 HTTP/1.1 200 OK
@@ -106,75 +106,75 @@ Content-Type: text/html
 </html>
 ```
 
-The first line contains the response **status**: a three-digit number indicating the request result. Other lines are **header fields** (`Date`, `Content-Type`, etc) giving additional info about the response.
+Baris pertama mengandung **status** respons: tiga digit angka mengindikasikan hasil dari permintaan. Baris lainnya adalah **header fields** (`Date`, `Content-Type`, dan lainnya) memberikan tambahan informasi tentang respons.
 
-An HTTP response might also include data. In this example, it contains the HTML code of the web page corresponding to the requested resource.
+Respons HTTP kemungkinan juga termasuk data. Di contoh ini, respons mengandung kode HTML dari halaman web yang berkaitan dengan resource yang diminta.
 
-### HTTP status codes
+### Kode status HTTP 
 
-The HTTP status codes belong to different families, depending on their first digit.
+Kode status HTTP ada beberapa keluarga, tergantung dari digit pertamanya.
 
-Family | Meaning | Examples
+Keluarga | Arti | Contoh 
 --------|---------------|---------
-**1xx** | Information |
-**2xx** | Success | 200: request handled successfully
+**1xx** | Informasi |
+**2xx** | SUkses | 200: permintaan ditangani dengan sukses 
 **3xx** | Redirection |
-**4xx** | Client error | 404: resource not found
-**5xx** | Server error | 500: internal server error
+**4xx** | Eror client | 404: resource tidak ditemukan 
+**5xx** | Eror server | 500: eror internal server 
 
-> For a more in-depth presentation of the HTTP protocol, head over to the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview).
+> Untuk detail lebih dalam tentang protokol HTTP protocol, bisa kunjungi [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview).
 
-### Addressing a resource with a URL
+### Menangani resource dengan URL
 
-Web sites are usually accessed using their address, a piece of text of the form:
+Situs web biasanya diakses melalui alamatnya, sepotong teks dalam bentuk:
 
 <http://www.sitename.com/path/to/resource>
 
-This address can be split into several subparts
+Alamat ini bisa dibagi menjadi beberapa bagian kecil
 
-* `http://` means an access through the HTTP protocol.
-* `www.sitename.com` is the **domain name** of the web site.
-* `/path/to/resource` is the **path** of the requested resource.
+* `http://` artinya satu akses melalui protokol HTTP.
+* `www.sitename.com` adalah the **nama domain** dari situs web.
+* `/path/to/resource` adalah **jalur** dari resource yang diminta.
 
-An address like this one is called a URL, or **Uniform Resource Locator**. A URL uniquely describes a web resource and the way to request it.
+Satu alamat seperti ini dinamakan URL, atau **Uniform Resource Locator**. URL secara unik mendeskripsikan resource web dan cara memintanya.
 
-## From web sites to web apps
+## Dari situs web ke aplikasi web 
 
-### The web development models
+### Model pengembangan web 
 
-In a traditional web development scenario, when you click a link or submit a form, your browser sends to the server a request that returns a full new web page tailored to your request. This model is subject to longer load times and limited interactivity.
+Pada skenario pengembangan web tradisional, ketika Kamu meng-klik satu link atau mengirim formulir, browser Kamu mengirim ke server satu permintaan yang mengembalikan halaman penuh web sesuai permintaan Kamu. MOdel ini biasanya membutuhkan waktu membuka halaman lebih lama dan interaksi yang terbatas. 
 
-Another web development model aims to avoid transmitting a whole new page for each user action. Here's how things works in that model:
+Model pengembangan lainnya bertujuan mencegah pengiriman halaman penuh web untuk setiap aksi pengguna. Begini yang terjadi:
 
-* User actions on the page are intercepted through JavaScript event handlers.
-* HTTP requests are sent to the server without interrupting the navigation on the page.
-* Only the needed portions of the page are updated with the requests' results.
+* Aksi pengguna pada halaman dicegat melalui event handler JavaScript.
+* Permintan HTTP dikirim ke server tanpa mengganggu navigasi pada halaman.
+* Hanya porsi yang dibutuhkan dari halaman yang di update dengan hasil yang diminta.
 
-Albeit more challenging, this web development model can lead to limited resource loads, improved interactivity and a user experience nearly on par with native applications.
+Walaupun lebih menantang, model pengembangan web ini bisa berujung pada pembatasan pembukaan resource, meningkatkan interaksi dan experience pengguna yang hampir setara dengan aplikasi native.
 
-The set of technologies enabling the creation of web applications is codenamed **AJAX** (*Asynchronous JavaScript and XML*). An AJAX call is an asynchronous HTTP request made to retrieve or send data from/to a server.
+Sekumpulan teknologi yang dapat memicu pembuatan aplikasi web di kode namakan **AJAX** (*Asynchronous JavaScript and XML*). Panggilan AJAX adalah permintaan HTTP asinkron untuk menerima atau mengirimkan data dari/ke server.
 
-### Synchronous vs asynchronous requests
+### Permintaan sinkron vs asinkron
 
-In a **synchronous** exchange, the asker waits until he gets the needed info. A telephone call is an example of a synchronous exchange.
+Pada pertukaran **sinkron**, peminta menunggu sampai dia mendapat info yang diinginkan. Panggilan telepon merupakan satu contoh pertukaran sinkron.
 
-On the contrary, the asker in an **asynchronous** exchange can do something else while waiting for the completion of his request. Email is an example of an asynchronous exchange.
+Sebaliknya, peminta di pertukaran **asinkron** bisa melakukan hal lainnya sambil menunggu penyelesaian permintaannya. Email adalah satu contoh pertukaran asinkron.
 
-The traditional web development model uses synchronous requests: the web client is blocked while waiting for the server to complete its request. The AJAX model uses asynchronous requests: data is fetched when needed in the background.
+Model pengembangan web tradisional menggunakan permintaan sinkron: web client diblok ketika menunggu server untuk menyelesaikan permintaannya. Model AJAX menggunakan permintaan asinkron: data diambil sesuai kebutuhan dibalik layar.
 
-### Cross-domain requests
+### Permintaan cross-domain 
 
-For security reasons, many websites have a conservative policy regarding AJAX requests. This *same origin policy* states that requests are limited to their origin domain: `"http://mysite"` cannot send a request to `"http://anothersite"`. This prevents some servers to be accessible via AJAX calls.
+Untuk alasan keamanan, banyak situs web memiliki kebijakan konservatif terkait permintaan AJAX. *Same origin policy* ini menyatakan bahwa permintaan dibatasi pada domain asal: `"http://mysite"` tidak boleh mengirim permintaan ke `"http://anothersite"`. Hal ini mencegah beberapa server bisa diakses melalui panggilan AJAX.
 
-Enabling cross-domain requests is done by setting on **cross-origin resource sharing** (CORS) in the server configuration.
+Mengaktifkan permintaan cross-domain bisa dilakukan dengan mengeset konfigurasi **cross-origin resource sharing** (CORS) pada server.
 
-> For more information about this topic, check out this [MDN article](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
+> Untuk informasi lebih lanjut tentang topik ini, lihat [artikel MDN ini](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS).
 
-## JSON, a data format for the web
+## JSON, data format untuk web
 
-The `"X"` letter in AJAX stands for XML, a generic markup language that used to be the standard for cross-platform data exchanges. While still in use, XML is quite verbose and tends to be replaced by JSON as the standard data format on the web.
+Huruf `"X"` AJAX merupakan singkatan dari XML, bahasa markup umum yang digunakan untuk pertukaran data cross-platform. Karena masih digunakan, XML cukup kompleks dan kemungkinan akan digantikan oleh JSON sebagai standar data format di web.
 
-JSON, or **JavaScript Object Notation**, is a textual syntax for describing structured information. As you'll see in the following example, JSON borrows heavily from the JavaScript object syntax.
+JSON, atau **JavaScript Object Notation**, adalah sintaks tekstual untuk mendeskripsikan informasi terstruktur. Seperti yang akan Kamu lihat di contoh berikut, JSON mengambil inspirasi dari sintaks objek JavaScript.
 
 ```json
 {
@@ -195,6 +195,6 @@ JSON, or **JavaScript Object Notation**, is a textual syntax for describing stru
 }
 ```
 
-A JSON document is a set of name/value pairs. Name are always within double quotes `""`. Values can be numbers, strings, booleans, arrays or objects.
+Dokumen JSON adalah satu set pasangan nama/nilai. Nama selalu diapit oleh tanda petik ganda `""`. Nilai bisa angka, string, boolean, array, ataupun objek.
 
-Many programming languages have native support for the JSON format... Including JavaScript, of course!
+Banyak bahasa pemrograman memiliki dukungan native untuk format JSON format... termasuk JavaScript, tentunya!
