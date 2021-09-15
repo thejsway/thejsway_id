@@ -1,101 +1,101 @@
-# Query a web server
+# Query web server
 
-This chapter will teach you how to retrieve data from a web server through HTTP requests.
+Di bab ini akan mengajarkan Kamu bagaimana mendapatkan data dari web server melalui permintaan HTTP.
 
 ## TL;DR
 
-* HTTP requests sent to a web server need to be **asynchronous** to prevent blocking the client application while waiting for the server's response.
+* Permintaan HTTP yang dikirim ke web server harus **asinkron** untuk mencegah pengeblokan aplikasi client saat menunggu respons dari server.
 
-* The JavaScript `fetch()` method is replacing `XMLHttpRequest` as the go-to way of creating an asynchronous request. Its `then()` and `catch()` methods respectively handle the success and failure of the request.
+* Method `fetch()` JavaScript menggantikan `XMLHttpRequest` sebagai cara mudah membuat permintaan asinkron. Method `then()` dan `catch()` masing-masing menangani sukses dan kegagalan permintaan.
 
 ```js
-// Sends an asynchronous HTTP request to the target url
+// Mengirim permintaan HTTP asinkron ke sasaran url
 fetch(url)
   .then(() => {
-    // Code called in the future when the request ends successfully
+    // Kode dipanggil di masa mendatang ketika permintaan berakhir dengan sukses
   })
   .catch(() => {
-    // Code called in the future when an errors occurs during the request
+    // Kode dipanggil di masa mendatang ketika eror terjadi saat permintaan
   });
 ```
 
-* The `fetch()` method demonstrates the use of **promises** to write asynchronous code in JavaScript. A promise is a wrapper for an operation whose result might be available in the future. It is either *pending* (initial state),  *fulfilled* (operation completed successfully) or *rejected* (operation failed).
+* Method `fetch()` mendemonstrasikan penggunaan **promise** untuk menulis kode asinkron di JavaScript. Promise adalah pembungkus untuk operasi yang hasilnya akan tersedia di masa mendatang. Hasilnya antara *pending* (status awal),  *fulfilled* (operasi selesai dengan sukses) atau *rejected* (operasi gagal).
 
-* JavaScript deals with JSON content with the `JSON.parse()` (to transform a JSON text into an object) and `JSON.stringify()` method (to do the opposite).
+* JavaScript berurusan dengan konten JSON dengan `JSON.parse()` (untuk mengubah teks JSON ke objek) dan method `JSON.stringify()` (untuk melakukan hal sebaliknya).
 
-* The result of a call to `fetch()` is an HTTP `Response` object. Its `text()` and `json()` methods are used to read content as plain text or JSON data. These two methods return a promise that resolves either as a string or as JSON.
+* Hasil pemanggilan `fetch()` adalah objek `Response` HTTP . Method `text()` dan `json()` digunakan untuk membaca konten sebagai teks polos atau data JSON. Kedua method ini mengembalikan promise yang dapat diselesaikan dalam bentuk string atau JSON.
 
-## Creating asynchronous HTTP requests in JavaScript
+## Membuat permintaan HTTP asinkron di JavaScript
 
-In the previous chapter, we discussed synchronous vs asynchronous requests. Since synchronous requests block the calling process until their result is received, only asynchronous HTTP requests should be used when building a web application. However, asynchronous code can be tricky to write and to understand, since statements won't be executed in a linear and sequential fashion like with synchronous operations.
+Di bab sebelumnya, kita mendiskusikan permintaan sinkron vs asinkron. Karena permintaan sinkron mengeblok proses pemanggilan sampai dengan hasilnya diterima, hanya permintaan HTTP asinkron yang seharusnya digunakan ketika membuat aplikasi web. Walaupun begitu, kode asinkron bisa agak rumit ditulis dan dipahami, karena pernyataan tidak akan dieksekusi secara linear dan berurutan seperti operasi sinkron.
 
-### The `fetch()` method
+### Method `fetch()` 
 
-The best way to send asynchronous HTTP requests in JavaScript is to use the `fetch()` method. Here is its general usage form.
+Cara terbaik untuk mengirim permintaan HTTP asinkron di JavaScript adalah dengan menggunakan method `fetch()`. Berikut penggunaannya secara umum.
 
 ```js
-// Sends an asynchronous HTTP request to the target url
+// Mengirim permintaan HTTP asinkron ke url sasaran
 fetch(url)
   .then(() => {
-    // Code called in the future when the request ends successfully
+    // Kode dipanggil di masa mendatang ketika permintaan selesai dengan sukses
   })
   .catch(() => {
-    // Code called in the future when an errors occurs during the request
+    // Kode dipanggil di masa mendatang ketika eror terjadi saat permintaan
   });
 ```
 
-> You might encounter JavaScript code that uses an object called `XMLHttpRequest` to perform HTTP operations. This is a more ancient technique now replaced by `fetch()`.
+> Kamu mungkin menemui kode JavaScript yang menggunakan objek bernama `XMLHttpRequest` untuk melakukan operasi HTTP. Hal ini merupakan teknik lebih kuno yang kini digantikan oleh `fetch()`.
 
-### Under the hood: promises
+### Dibalik layar: promise
 
-When the `fetch()` method is executed, it immediately returns a **promise**, which is a wrapper for an operation whose result might be available in the future. A promise is in one of these states:
+Ketika method `fetch()` dieksekusi, secara langsung mengembalikan **promise**, yang merupakan pembungkus untuk satu operasi yang hasilnya kemungkinan tersedia di masa depan. Promise adalah salah satu kondisi berikut:
 
-* *pending*: initial state, not fulfilled or rejected.
-* *fulfilled*: meaning that the operation completed successfully.
-* *rejected*: meaning that the operation failed.
+* *pending*: status awal, tidak fulfilled atau rejected.
+* *fulfilled*: artinya operasi selesai dengan sukses.
+* *rejected*: artinya operasi gagal.
 
-A JavaScript promise is an object with `then()` and `catch()` methods. `then()` is called when the promise is **fulfilled**. It takes the operation result as a parameter. On the contrary, `catch()` is called when the promise is **rejected**.
+Promise JavaScript adalah objek dengan method `then()` dan `catch()`. `then()` dipanggil ketika promise telah dipenuhi (**fulfilled**). Method ini mengambil hasil operasi sebagai parameter. Sebaliknya, `catch()` dipanggil saat promise ditolak (**rejected**).
 
-What's great about promises is that they can be chained together. Here's how you could perform a series of asynchronous operations in JavaScript.
+Yang luar biasa dari promise adalah bisa dirangkai secara bersamaan. Berikut bagaimana Kamu bisa melakukan serangkaian operasi asinkron di JavaScript.
 
 ```js
 getData()
-  .then(a => filterData(a)) // Called asynchronously when getData() returns
-  .then(b => processData(b)) // Called asynchronously when filterData() returns
-  .then(c => displayData(c)) // Called asynchronously when processData() returns
+  .then(a => filterData(a)) // Dipanggil secara asinkron ketika getData() kembali
+  .then(b => processData(b)) // Dipanggil secara asinkron ketika filterData() kembali
+  .then(c => displayData(c)) // Dipanggil secara asinkron ketika processData() kembali
   // ...
 ```
 
-### Example: retrieving a text file
+### Contoh: mengambil file teks 
 
-Let's start with a very basic example: displaying the content of a text file located on a web server. The file is [hosted on GitHub](https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/languages.txt) and it has the following content.
+Mari kita mulai dengan contoh dasar: menampilkan konten file teks yang berlokasi di web server. File-nya [ada di GitHub](https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/languages.txt) dan memiliki konten berikut.
 
 ```text
 C++;Java;C#;PHP
 ```
 
-Here's how to do this in JavaScript using `fetch()`.
+Berikut bagaimana melakukannya di JavaScript menggunakan `fetch()`.
 
 ```js
 fetch(
   "https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/languages.txt"
 )
-  .then(response => response.text()) // Access and return response's text content
+  .then(response => response.text()) // Akses dan mengembalikan response konten teks
   .then(text => {
-    console.log(text); // Display file content in the console
+    console.log(text); // Menampilkan konten file di console
   });
 
 ```
 
 ![Execution result](images/chapter21-01.png)
 
-The result of the asynchronous HTTP request created by `fetch()` comes under the the form of a `Response` object. This object has several methods to deal with the response of the HTTP call. The `text()` method used in this example reads the response's text content and returns another promise. Its result is managed by the second `then()` method, which simply displays the file's textual content in the console.
+Hasil dari permintaan HTTP asinkron yang dibuat oleh `fetch()` tersaji dalam bentuk objek `Response`. Objek ini memiliki beberapa method untuk menangani panggilan respons HTTP. Method `text()` yang digunakan di contoh ini membaca response konten teks dan mengembalikan promise lainnya. Hasilnya diatur oleh method kedua, yang menampilkan file konten tekstual di console.
 
-To learn more about the `Response` object, consult, as usual, the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/API/Response).
+Untuk belajar lebih lanjut tentang objek `Response`, bisa membaca [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/API/Response).
 
-### Dealing with errors
+### Menangani eror
 
-By nature, external HTTP requests are subject to errors: network failure, missing resource, etc. Handling these errors is done by adding a `catch()` method to the `fetch()` call. A basic level of error handling is to log the error message in the console.
+Secara alami, permintaan eksternal HTTP rentan terhadap eror: kegagalan jaringan, resource yang tak terpenuhi, dan lainnya. Menangani eror ini dilakukan dengan menambah method `catch()` ke panggilan `fetch()`. Penanganan dasar eror adalah dengan membuat log pesan eror di console.
 
 ```js
 fetch("http://non-existent-resource")
@@ -106,37 +106,37 @@ fetch("http://non-existent-resource")
 
 ![Execution result](images/chapter21-02.png)
 
-## Handling JSON data
+## Menangani data JSON 
 
-Let's advance to a more interesting and realistic scenario. Very often, data available on web servers are published under the JSON format.
+Mari kita lanjut ke skenario yang lebih menarik dan realistik. Seringkali data tersedia di web server dipublikasikan dalam bentuk format JSON.
 
-### JSON and JavaScript
+### JSON dan JavaScript
 
-The JavaScript language offers native support for the JSON format:
+Bahasa JavaScript menawarkan dukungan native untuk format JSON:
 
-* The `JSON.parse()` method transforms a JSON string into a JavaScript object.
-* On the contrary, the `JSON.stringify()` method transforms a JavaScript object into a JSON string.
+* Method `JSON.parse()` mengubah string JSON ke objek JavaScript.
+* Sebaliknya, method `JSON.stringify()` mengubah objek JavaScript ke string JSON.
 
 ```js
-// Define a JavaScript object
+// Mendefinisikan objek JavaScript 
 const plane = {
   manufacturer: "Airbus",
   model: "A320"
 };
-console.log(plane); // Display the object
+console.log(plane); // Menampilkan objek
 
 const planeText = JSON.stringify(plane);
-console.log(planeText); // Display the object as a JSON string
+console.log(planeText); // Menampilkan objek sebagai string JSON 
 
-console.log(JSON.parse(planeText)); // Display the object
+console.log(JSON.parse(planeText)); // Menampilkan objek
 ```
 
 ![Execution result](images/chapter21-03.png)
 
-These methods can also handle JSON arrays.
+Method ini bisa juga menangani array JSON.
 
 ```js
-// Define an array containing two objects
+// Mendefinisikan array yang mengandung dua objek
 const planes = [
   {
     manufacturer: "Airbus",
@@ -147,19 +147,19 @@ const planes = [
     model: "737"
   }
 ];
-console.log(planes); // Display the array of objects
+console.log(planes); // Menampilkan objek array 
 
 const planesText = JSON.stringify(planes);
-console.log(planesText); // Display the array as a JSON string
+console.log(planesText); // Menampilkan array sebagai string JSON
 
-console.log(JSON.parse(planesText)); // Display the array of objects
+console.log(JSON.parse(planesText)); // Menampilkan objek array 
 ```
 
 ![Execution result](images/chapter21-04.png)
 
-### Example: retrieving JSON content
+### Contoh: mengambil konten JSON
 
- For example, the following JSON file `movies.json` contains information about some movies. This file defines an array containing three objects.
+ Contohnya, file JSON `movies.json` mengandung informasi tentang film. File ini mendefinisikan array yang mengandung tiga objek.
 
 ```json
 [
@@ -181,17 +181,17 @@ console.log(JSON.parse(planesText)); // Display the array of objects
 ]
 ```
 
-Here's how to retrieve this file from its URL and display each movie title in the console.
+Berikut bagaimana mendapatkan file ini dari URL-nya dan menampilkan setiap judul film di console.
 
 ```js
 fetch(
   "https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/movies.json"
 )
-  .then(response => response.json()) // Access and return response's JSON content
+  .then(response => response.json()) // Akses dan mengembalikan response konten JSON 
   .then(movies => {
-    // Iterate on the movie array
+    // Iterasi array film 
     movies.forEach(movie => {
-      // Display title of each movie
+      // Menampilkan judul setiap film 
       console.log(movie.title);
     });
   })
@@ -202,13 +202,13 @@ fetch(
 
 ![Execution result](images/chapter21-05.png)
 
-The `json()` method of the HTTP `Response` object returns a promise that resolves with the result of parsing the response text as JSON. As such, the `movies` parameter of the second `then()` is a plain JavaScript array that can be iterated upon.
+Method `json()` dari objek `Response` HTTP mengembalikan promise yang mengubah respons teks ke bentuk JSON. Dengan demikian, parameter `movies` dari `then()` kedua adalah array JavaScript yang bisa diiterasi.
 
-## Coding time!
+## Waktu koding!
 
-### Language list
+### Daftar bahasa 
 
-The objective of this exercise is to display the languages of the previous file `languages.txt` on a web page. Here is the starter HTML code.
+Tujuan dari latihan ini adalah untuk menampilkan bahasa dari file sebelumnya: `languages.txt` pada halaman web. Berikut kode HTML-nya.
 
 ```html
 <h2>A few programming languages</h2>
@@ -216,17 +216,17 @@ The objective of this exercise is to display the languages of the previous file 
 </ul>
 ```
 
-Write the JavaScript code that fetches the file from the web server and fills the HTML list.
+Tulis kode JavaScript yang dapat mengambil file dari web server dan isi daftar HTML-nya.
 
 ![Expected result](images/chapter21-06.png)
 
-### Famous paintings
+### Lukisan terkenal
 
-In this exercise, you'll show information about some famous paintings on a web page table. Information about the paintings is located at URL:
+Di latihan ini, Kamu akan diberikan informasi tentang beberapa lukisan terkenal pada tabel halaman web. Informasi tentang lukisan ini terdapat di URL:
 
 <https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/paintings.json>
 
- It has the following content.
+Berikut kontennya.
 
 ```json
 [
@@ -248,7 +248,7 @@ In this exercise, you'll show information about some famous paintings on a web p
 ]
 ```
 
-Start from the following HTML code.
+Mulai dengan kode HTML berikut.
 
 ```html
 <h2>Some famous paintings</h2>
@@ -261,6 +261,6 @@ Start from the following HTML code.
 </table>
 ```
 
-Write the JavaScript code that fills a table with details about the paintings.
+Tulis kode JavaScript yang dapat mengisi tabel dengan detail tentang lukisan.
 
 ![Expected result](images/chapter21-07.png)
