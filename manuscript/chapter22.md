@@ -1,21 +1,21 @@
-# Use web APIs
+# Gunakan web API
 
-In this chapter, you'll learn how to leverage real-world web services in your applications.
+Di bab ini, Kamu akan belajar bagaimana menggunakan layanan web secara nyata di aplikasi Kamu.
 
 ## TL;DR
 
-* An **API** or **Application Programming Interface** is a set of well-defined services offered by a software program or service to others. Developers use them to integrate external technologies or services into their applications.
+* **API** atau **Application Programming Interface** adalah sekumpulan layanan yang sudah ditentukan dan didefinisikan dengan baik yang ditawarkan oleh program perangkat lunak atau layanan untuk aplikasi lainnya. Developer menggunakan API ini untuk mengintegrasikan teknologi eksternal atau layanan ke aplikasi mereka.
 
-* A **web API** is an API accessible through web technologies (HTTP or HTTPS). They often use JSON as their data format.
+* **Web API** adalah API yang dapat diakses melalui teknologi web (HTTP atau HTTPS). Data format yang digunakan biasanya JSON.
 
-* A web API can be consumed programmatically using an **AJAX call**. Before that, the API must be checked out and its documentation studied in order to understand how it works and what it returns.
+* Web API bisa dikonsumsi secara pemrograman menggunakan **panggilan AJAX**. Sebelum itu, API harus dicek dan dipelajari terlebih dulu dokumentasinya agar dapat dimengerti bagaimana cara kerjanya dan apa yang dikembalikan.
 
 ```js
-// Fetch data from the API
+// Fetch data dari API
 fetch("http://my-api-url")
-  .then(response => response.json()) // Translate JSON into JavaScript
+  .then(response => response.json()) // Translasi JSON ke JavaScript
   .then(content => {
-    // Use returned content
+    // Gunakan konten yang dikembalikan 
     // ...
   })
   .catch(err => {
@@ -23,62 +23,62 @@ fetch("http://my-api-url")
   });
 ```
 
-* A ever growing number of services are exposed through web APIs. Some are open, others require the **authentication** of the client, for example with an **access key**.
+* Banyak layanan yang berkembang diekspos melalui web API. Beberapa terbuka, lainnya memerlukan **autentikasi** klien, contohnya dengan **kunci akses**.
 
-## Introducing web APIs
+## Memperkenalkan api
 
-The **API** acronym stands for **Application Programming Interface**. An API is an entry point offered by a software program or service to other programs. It is a set of well-defined methods of communication. Through APIs, developers can easily integrate external technologies or services into their applications.
+**API** merupakan singkatan dari **Application Programming Interface**. API adalah titik masuk yang ditawarkan oleh program perangkat lunak atau layanan ke program atau aplikasi lainnya. API merupakan sekumpulan metode komunikasi layanan yang sudah ditentukan dan didefinisikan dengan baik. Melalui API, developer bisa dengan mudah mengintegrasikan teknologi eksternal atau layanan ke aplikasi mereka.
 
-APIs exist under a wide variety of forms. As an example, the Document Object Model is itself an API for interacting programmatically with a web page: it defines methods for navigating and updating the page structure.
+API dibentuk dari berbagai variasi. Sebagai contoh, Document Object Model ini adalah API untuk berinteraksi secara pemrograman dengan halaman web: API ini mendefinisikan metode untuk menavigasi dan meng-update struktur halaman.
 
-A **web API** is an API available on the Web and accessible through web technologies, namely the HTTP protocol or its secured counterpart HTTPS. Web APIs are a key technology for software interactions: whenever you authenticate into a website using your Google account, or click a button to post something on your favorite social network, you're using them. A ever growing number of services are exposed through web APIs, forming a thriving ecosystem for building digital products.
+**Web API** adalah API yang tersedia di Web dan bisa diakses melalui teknologi web, yang dinamakan protokol HTTP atau versi amannya HTTPS. Web API merupakan teknologi kunci untuk interaksi perangkat lunak: kapanpun Kamu mengautentikasi ke website menggunakan akun Google, atau klik tombol untuk post sesuatu di jaringan sosial favorit Kamu, Kamu menggunakan API. Banyak layanan yang berkembang diekspos melalui web APIs, membentuk eksosistem pesat untuk membangun produk digital.
 
-## Consuming a web API
+## Mengkonsumsi web API
 
-To be able to use a web API, you have to know its address and its usage mode. Most of web APIs are accessible via an **URL** and use the **JSON** format for data exchanges.
+Untuk bisa menggunakan web API, Kamu harus tahu alamat dan mode penggunaannya. Kebanyakan web APIs bisa diakses melalui **URL** dan menggunakan format **JSON** untuk pertukaran data.
 
-### Checking out an API
+### Mengecek API
 
-The first web API you'll use here simulates a blog and exposes a series of articles. Its URL is <https://thejsway-server.herokuapp.com/api/articles>. Opening it in a browser shows the JSON data returned by the API.
+Web API yang pertama kali Kamu gunakan di sini mensimulasikan sebuah blog dan mengekspos artikel berseri. URL nya adalah <https://thejsway-server.herokuapp.com/api/articles>. Membuka URL tersebut di sebuah browser menampilkan data JSON yang dikembalikan oleh API.
 
 ![API result in a browser](images/chapter22-01.png)
 
-This raw result is not easy to read. For an easier interaction with web API, using a specialized tool like [Postman](https://www.getpostman.com) or [RESTClient](https://addons.mozilla.org/fr/firefox/addon/restclient/) is strongly recommended. Here's how the result looks like on Postman.
+Hasil mentah ini tidaklah mudah dibaca. Agar mudah berinteraksi dengan web API, gunakan alat spesial seperti [Postman](https://www.getpostman.com) atau [RESTClient](https://addons.mozilla.org/fr/firefox/addon/restclient/) sangatlah disarankan. Berikut bagaimana hasilnya di Postman.
 
 ![API result in Postman](images/chapter22-02.png)
 
-This web API returns an array containing some articles. Each article corresponds to a JavaScript object with `id`, `title` and `content` properties.
+Web API ini mengembalikan array yang mengandung beberapa artikel. Setiap artikel berkorespondensi ke objek JavaScript object dengan properti `id`, `title` dan `content`.
 
-> Curious about creating such an API? You'll learn how to build this very service (and others) in an upcoming chapter.
+> Penasaran tentang membuat API ini? Kamu akan belajar bagaimana membuat layanan ini (dan lainnya) di bab berikutnya.
 
-Real-world APIs are almost always accompanied by an online **documentation** showing how to use it. Studying this documentation is essential for using the API flawlessly.
+API di dunia nyata hampir selalu ditemani dengan **dokumentasi** online yang menunjukkan bagaimana menggunakannya. Mempelajari dokumentasi ini merupakan keharusan untuk menggunakan API dengan lancar.
 
-### Calling an API with JavaScript
+### Memanggil API dengan JavaScript
 
-Now that we know the address and data format of our example API, let's try to show its result on a web page. To do so, we'll leverage our AJAX knowledge from the previous chapter. Check out the following example, which shows how to access the article list from the API.
+Sekarang kita tahu alamat dan format data dari contoh API kita, mari kita coba untuk menampilkan hasilnya di halaman web. Untuk bisa melakukan ini, kita akan memaksimalkan pengetahuan AJAX kita dari bab sebelumnya. Cek contoh berikut ini yang menampilkan bagaimana mengakses daftar artikel dari API.
 
-Here's the HTML code for the page.
+Berikut kode HTML untuk halaman webnya.
 
 ```html
 <h2> Some blog articles</h2>
 <div id="articles"></div>
 ```
 
-And here's the associated JavaScript code.
+Dan berikut ini kode JavaScript-nya.
 
 ```js
-// Fetch data from the API
+// Fetch data API
 fetch("https://thejsway-server.herokuapp.com/api/articles")
-  .then(response => response.json()) // Translate JSON into JavaScript
+  .then(response => response.json()) // Terjemahkan JSON ke JavaScript
   .then(articles => {
     articles.forEach(article => {
-      // Create title element
+      // Buat judul element
       const titleElement = document.createElement("h3");
       titleElement.textContent = article.title;
-      // Create content element
+      // Buat konten element
       const contentElement = document.createElement("p");
       contentElement.textContent = article.content;
-      // Add title and content to the page
+      // Tambah judul dan konten ke halaman 
       const articlesElement = document.getElementById("articles");
       articlesElement.appendChild(titleElement);
       articlesElement.appendChild(contentElement);
@@ -89,26 +89,26 @@ fetch("https://thejsway-server.herokuapp.com/api/articles")
   });
 ```
 
-Using a web API works just like querying a web server: fetching the API URL, translating the JSON response into a JavaScript array and iterating on it.
+Menggunakan web API seperti query ke web server: mengambil URL API, menerjemahkan respons JSON ke array JavaScript dan iterasi pada array tersebut.
 
-Here is the resulting web content.
+Berikut ini hasil konten web-nya.
 
 ![Execution result](images/chapter22-03.png)
 
-## Web APIs and authentication
+## Web API dan autentikasi
 
-Web APIs can be classified into two categories:
+Web API bisa diklasifikasikan ke dua kategori:
 
-* Open APIs that don't need any authentication to be used.
-* APIs requiring the consumer to authenticate himself through various methods.
+* Open API yang tidak memerlukan autentikasi untuk digunakan.
+* API yang memerlukan pengkonsumsi untuk meng-autentikasi diri melalui beberapa metode.
 
-### Open APIs
+### Open API
 
-These APIs are free to use by anyone, anyhow. To prevent abuse, they often use **rate limiting** instead: the number of calls from one specific source (identified by its IP address) is capped.
+API ini bebas digunakan semua orang, dengan segala cara. Untuk mencegah penyalahgunaan, biasanya penyedia API menggunakan **rate limiting**: pembatasan jumlah paggilan dari satu sumber spesifik (diidentifikasi oleh alamat IP-nya).
 
-Many public institutions like the [British Police](https://data.police.uk/docs/) or the [French government](https://www.data.gouv.fr/) publish data to citizens using open APIs.
+Banya institusi publik seperti [Polisi Inggris](https://data.police.uk/docs/) atau [Pemerintah Perancis](https://www.data.gouv.fr/) mempublikasikan data ke masyarakat menggunakan open API.
 
-There is also a lot of fun little APIs out there. For example, the [Punk API](https://punkapi.com) lets you search into a huge catalog of beers. Here's how to renew your drinking habits by getting a random one from this API.
+Banyak juga API seru di luaran. Contohnya, [Punk API](https://punkapi.com) memungkinkan Kamu mencari ke katalog bir yang sangat besar. Berikut ini cara memperbarui kebiasaan minum Kamu dengan mendapatkan informasi minuman acak dari API ini.
 
 ```html
 <button id="grabButton">Grab a beer</button>
@@ -116,23 +116,23 @@ There is also a lot of fun little APIs out there. For example, the [Punk API](ht
 ```
 
 ```js
-// Anonymous function for retrieving and displaying a random beer
+// Fungsi anonim untuk mendapatkan dan menampilkan bir secara acak
 const grabRandomBeer = () => {
-  // Fetching random beer data from API
+  // Mengambil data beer secara acak dari API
   fetch("https://api.punkapi.com/v2/beers/random")
     .then(response => response.json())
     .then(beers => {
-      // API returns an array containg only one element: we get it
+      // API mengembalikan array mengandung hanya satu elemen: kita mendapatkannya 
       const beer = beers[0];
       // Creating DOM element for some beer properties
       const nameElement = document.createElement("h2");
       nameElement.textContent = beer.name;
       const descriptionElement = document.createElement("p");
       descriptionElement.textContent = beer.description;
-      // Clear previous beer data
+      // Hapus data bir sebelum
       const beerElement = document.getElementById("beer");
       beerElement.innerHTML = "";
-      // Add beer info to the page
+      // Tambah info bir ke halaman
       beerElement.appendChild(nameElement);
       beerElement.appendChild(descriptionElement);
     })
@@ -141,31 +141,31 @@ const grabRandomBeer = () => {
     });
 };
 
-// Grab a new beer when clicking the button
+// Pegang bir baru saat klik tombol
 document.getElementById("grabButton").addEventListener("click", grabRandomBeer);
 ```
 
-Each time the `"Grab a beer"` button is clicked on the web page, an anonymous function is called to retrieve and display a random beer.
+Setiap kali tombol `"Grab a beer"` diklik di halaman web, fungsi anonim dipanggil untuk mendapatkan dan menampilkan bir secara acak.
 
 ![Execution result](images/chapter22-04.png)
 
-### Key-based authentication
+### Autentikasi berbasis kunci
 
-Another class of APIs requires the client to authenticate himself when accessing the service. Authentication can be done via several techniques. In this paragraph, we'll use the simplest one: access key. An **access key** is a generated string containing characters and digits and associated to a user.
+Kelas lainnya dari API membutuhkan klien untuk mengautentikasi dirinya ketika mengakses layanan. Autentikasi bisa dilakukan melalui beberapa teknik. Di paragraf ini, kita akan menggunakan cara yang paling sederhana: kunci akses. **Kunci akses** adalah string yang dihasilkan, mengandung karakter dan angka dan terkait dengan pengguna.
 
-> Of course, authentication-based APIs often also have rate limits.
+> Tentu saja API berbasis autentikasi seringkali juga memiliki rate limit.
 
-There is no universal standard regarding access keys. Each service is free to use its own custom format. The client must provide its access key when accessing the API, generally by adding it at the end of the API URL.
+Tidak ada standar universal yang baku terkait kunci akses. Setiap layanan bebas digunakan dalam format tertentu. Klien harus menyediakan kunci aksesnya ketika mengakses API, secara umum dengan menambahkannya di akhir URL API.
 
-A prerequisite for using any key-based web API is to generate oneself an access key for this particular service.
+Prasyarat menggunakan web API berbasis kunci adalah dengan dihasilkannya kunci akses untuk layanan tertentu ini.
 
-Let's put this into practice for obtaining about the current weather in your area. To do so, you could simply look outside the window, but it's way cooler to use the [Weather Underground](https://www.wunderground.com/weather/api) web service instead.
+Mari kita praktikkan dengan mendapatkan kondisi cuaca hari ini di daerah Kamu. Untuk mengetahui ini, Kamu bisa saja dengan mudah melihat keluar jendela, tetapi lebih seru lagi dengan menggunakan layanan web [weather Underground](https://www.wunderground.com/weather/api).
 
-This service has a key-based API for retrieving the weather in any place. To obtain it, you'll have to sign up as a user (it's free) and generate a new API key by registering your application.
+Layanan ini memiliki API berbasis kunci untuk mendapatkan kondisi cuaca di manapun. Untuk mendapatkannya, Kamu harus daftar terlebih dulu sebagai pengguna (gratis) dan hasilkan kunci API baru dengan mendaftarkan aplikasi Kamu.
 
-Once you've done this, weather data is available through an URL of the form <http://api.wunderground.com/api/ACCESS_KEY/conditions/q/COUNTRY/TOWN.json>. Replace `ACCESS_KEY`, `COUNTRY` and `TOWN` with your own settings, and you should obtain the weather in your surroundings.
+Setelah ini, data cuaca tersedia di URL dalam bentuk <http://api.wunderground.com/api/ACCESS_KEY/conditions/q/COUNTRY/TOWN.json>. Ganti `ACCESS_KEY`, `COUNTRY` dan `TOWN` dengan pengaturan Kamu, dan Kamu bisa mendapatkan kondisi cuaca di sekitar Kamu.
 
-The necessary first step is to check out and understand the API data format. The result of an API call looks like this when getting weather for Bordeaux, France.
+Langkah awal utama adalah dengan mengecek dan memahami format data API. Hasil dari pemanggilan API seperti ini ketika mendapatkan kondisi cuaca untuk Bordeaux, Perancis.
 
 ```json
 {
@@ -204,7 +204,7 @@ The necessary first step is to check out and understand the API data format. The
 
 ```
 
-Now we just have to call the API from our JavaScript code and displays the main result on a web page.
+Sekarang kita hanya perlu memanggil API dari kode JavaScript kita dan menampilkannya di halaman web.
 
 ```html
 <h2>The weather in</h2>
@@ -217,19 +217,19 @@ fetch(
 )
   .then(response => response.json())
   .then(weather => {
-    // Access some weather properties
+    // Akses beberapa properti cuaca
     const location = weather.current_observation.display_location.full;
     const temperature = weather.current_observation.temp_c;
     const humidity = weather.current_observation.relative_humidity;
     const imageUrl = weather.current_observation.icon_url;
-    // Create DOM elements for properties
+    // Buat elemen DOM untuk properti 
     const summaryElement = document.createElement("div");
     summaryElement.textContent = `Temperature is ${temperature} °C with ${humidity} humidity.`;
     const imageElement = document.createElement("img");
     imageElement.src = imageUrl;
-    // Add location to title
+    // Tambah lokasi ke judulnya
     document.querySelector("h2").textContent += ` ${location}`;
-    // Add elements to the page
+    // Tambah elemen ke halaman
     const weatherElement = document.getElementById("weather");
     weatherElement.appendChild(summaryElement);
     weatherElement.appendChild(imageElement);
@@ -241,29 +241,29 @@ fetch(
 
 ![Weather is usually much nicer around here...](images/chapter22-05.png)
 
-## Coding time!
+## Waktu koding!
 
-### More beer please
+### Tambah bir lagi
 
-Improve the previous Punk API example to display additional information about the showcased beer : alcohol by volume (ABV), volume and date of first brewage.
+Kembangkan contoh Punk API sebelumnya untuk menampilkan tambahan informasi tentang beer yang dipamerkan: alcohol by volume (ABV), volume dan tanggal pembuatan bir pertama kali.
 
 ![Expected result](images/chapter22-06.png)
 
-### GitHub profile
+### Profil GitHub 
 
-The ubiquitous code sharing platform [GitHub](https://github.com) has a public API. The goal of this exercise is to display some information about a GitHub user, identified by his login. The API documentation is available [here](https://developer.github.com/v3/users/).
+Platform sharing kode, [GitHub](https://github.com) memiliki API publik. Tujuan dari latihan ini adalah untuk menampilkan beberapa informasi tentang pengguna GitHub, diidentifikasi dari loginnya. Dokumentasi API-nya ada di [sini](https://developer.github.com/v3/users/).
 
-Use this API to show the profile picture, name and website address of a GitHub user whose login is entered in a text box.
+Gunakan API ini untuk menampilkan gambar profil, nama dan alamat website pengguna GitHub yang login-nya dimasukkan di sebuah kotak teks.
 
 ![Expected result](images/chapter22-07.png)
 
-> You can test your code by using the GitHub logins of prominent JS community members like `brendaneich` (JavaScript's father), `douglascrockford` or `vjeux`.
+> Kamu bisa mengetes kode Kamu dengan menggunakan login dari anggota komunitas JS terkenal seperti `brendaneich` (ayah JavaScript), `douglascrockford` atau `vjeux`.
 
-### Star Wars universe
+### Semesta Star Wars 
 
-The open [Star Wars API](https://swapi.co/) has all the Star Wars data you've ever wanted. In this exercise, you'll show information about some of the planets in the  universe.
+Open [Star Wars API](https://swapi.co/) memiliki semua data Star Wars yang Kamu inginkan. Di latihan ini, Kamu akan menampilkan informasi tentang beberapa planet yang ada di angkasa.
 
-Here is the starting HTML code.
+Berikut kode permulaan HTML-nya.
 
 ```html
 <h2>Some Star Wars planets</h2>
@@ -271,6 +271,6 @@ Here is the starting HTML code.
 <div id="infos"></div>
 ```
 
-Write the associated JavaScript code so that a list of links for the first ten planets identifiers (from 1 to 10) is generated automatically. Clicking on a planet link shows information about it.
+Tulis kode JavaScript terkait sehingga daftar link id untuk sepuluh planet (dari 1 sampai 10) dihasilkan secara otomatis. Klik di link planet menampilkan informasi tentang planet tersebut.
 
 ![Expected result](images/chapter22-08.png)
