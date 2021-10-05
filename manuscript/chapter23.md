@@ -1,17 +1,17 @@
-# Send data to a web server
+# Kirim data ke web server
 
-You know now how to retrieve some data from web servers or APIs. This chapter will teach you how to send data to them.
+Kamu sekarang tahu cara mendapatkan beberapa data dari web server atau API. Bab ini akan mengajarkan Kamu bagaimana mengirim data ke web server.
 
 ## TL;DR
 
-* You can send information to a web server through an AJAX call translating into an HTTP `POST` request using the `fetch()` method.
+* Kamu bisa mengirim informasi ke web server melalui panggilan AJAX yang menerjemahkan ke permintaan HTTP `POST` menggunakan method `fetch()`.
 
-* For sending HTML form data or key/value pairs, you use the `FormData` object.
+* Untuk mengirimkan data formulir (form data) HTML atau pasangan kunci/nilai, Kamu bisa menggunakan objek `FormData`.
 
 ```js
-// Create a FormData object containing the HTML form data
+// Buat objek FormData yang mengandung object form data HTML 
 const formData = new FormData(myForm);
-// Send form data to the server with an asynchronous POST request
+// Kirim form data ke server dengan permintaan POST asiknron
 fetch("https://my-server-url", {
   method: "POST",
   body: formData
@@ -19,26 +19,26 @@ fetch("https://my-server-url", {
   .then();
 ```
 
-* The `FormData` object can also be used to send arbitrary key/value pairs to a server.
+* Objek `FormData` bisa juga digunakan untuk mengirim pasangan kunci/nilai ke server.
 
 ```js
-// Create a new, empty FormData object
+// Buat objek FormData yang baru dan kosong
 const formData = new FormData();
-// Fill the object with key/value pairs
+// Isi objek dengan pasangan kunci/nilai
 formData.append("size", "L");
 formData.append("color", "blue");
 // ...
 ```
 
-* When the information expected by the server is more structured, sending it as JSON data is more convenient.
+* Ketika informasi yang akan dikirim ke server diharuskan lebih terstruktur, mengirimkan data dalam bentuk JSON akan lebih mudah.
 
 ```js
-// Create some JavaScript data
+// Buat beberapa data JavaScript 
 const myData = {
   // ...
 };
 
-// Send this data as JSON to the server
+// Kirim data ini sebagai JSON ke server
 fetch("https://https://my-server-url", {
   method: "POST",
   headers: {
@@ -50,20 +50,20 @@ fetch("https://https://my-server-url", {
   .then();
 ```
 
-## Sending data: the basics
+## Mengirim data: dasar 
 
-Sending data to a server is usually done via an HTTP `POST` method. In that case, the request body contains the data to be sent.
+Mengirim data ke server biasanya dilakukan melalui method HTTP `POST`. Di contoh ini, body permintaan mengandung data yang akan dikirim.
 
-The data format depends on what the server expects. It can either be:
+Formata data tergantung pada apa yang diharapkan oleh server. Ini bisa diantara:
 
-* Key/value pairs like when a form is directly submitted.
-* JSON for more structured data.
+* Pasangan kunci/nilai saat formulir dikirim secara langsung.
+* JSON untuk data yang lebih terstruktur.
 
-## Sending form data
+## Mengirim form data
 
-If the web server expects direct form data, you can use the JavaScript `FormData` object to encapsulate the information to be sent.
+Jika web server mengharapkan form data secara langsung, Kamu bisa menggunakan objek JavaScript `FormData` untuk membungkus informasi yang akan dikirim.
 
-Here's an example form for choosing the strongest animal of all.
+Berikut ini contoh form untuk memilih hewan terkuat.
 
 ```html
 <h2>Which one is the strongest?</h2>
@@ -90,16 +90,16 @@ Here's an example form for choosing the strongest animal of all.
 
 ![Form display](images/chapter23-01.png)
 
-And here is the associated JavaScript code which handles the form submission.
+Dan berikut ini kode JavaScript terkait yang menangani pengiriman form.
 
 ```js
-// Handle form submission
+// Tangani pengiriman form
 document.querySelector("form").addEventListener("submit", e => {
-  // Cancel default behavior of sending a synchronous POST request
+  // Batalkan perilaku bawaan (mengirim permintaan POST asinkron)
   e.preventDefault();
-  // Create a FormData object, passing the form as a parameter
+  // Buat objek FormData, melewatkan form sebagai parameter
   const formData = new FormData(e.target);
-  // Send form data to the server with an asynchronous POST request
+  // Kirim data form ke server dengan permintaan POST asinkron
   fetch("https://thejsway-server.herokuapp.com/animals", {
     method: "POST",
     body: formData
@@ -114,31 +114,31 @@ document.querySelector("form").addEventListener("submit", e => {
 });
 ```
 
-The event listener starts by disabling the default form submission behavior, which is to send a synchronous HTTP `POST` request to a server. Instead, a `FormData` object is created with the form itself (the `e.target` expression) as a parameter. All form fields are automatically added as key/value pairs in this object.
+Event listener memulai dengan menonaktifkan perilaku bawaan pengiriman form, yakni mengirimkan permintaan HTTP `POST` asiknron ke server. Sebagai gantinya, objek `FormData` dibuat dengan form itu sendiri (ekspresi `e.target`) sebagai parameter. Semua isian form ditambahkan secara otomatis sebagai pasangan kunci/nilai di objek ini.
 
-Once the form fields are encapsulated in the `FormData` object, the `fetch()` method seen previously is used to send an asynchronous request to the `https://thejsway-server.herokuapp.com/animals` URL. The second parameter of the `fetch()` call sets the HTTP method as `POST` and adds the form data into the body of the request.
+Saat isian form dibungkus dalam objek `FormData`, method `fetch()` yang dibahas sebelumnya digunakan untuk mengirim permintaan asinkron ke URL `https://thejsway-server.herokuapp.com/animals`. Parameter kedua dari panggilan `fetch()` mengeset method HTTP method sebagai `POST` dan menambahkan data form ke body permintan.
 
-Lastly, the page's `result` element is updated when the server responds to the asynchronous request.
+Terakhir, `hasil` elemen halaman diupdate ketika server merespon ke permintaan asinkron.
 
 ![Submission result](images/chapter23-02.png)
 
-The `FormData` object can also be used independently of any form, to send custom key/value pairs to a server. Here is a very basic example form containing only a button.
+Objek `FormData` bisa juga digunakan secara mandiri dari form apapun, untuk mengirimkan pasangan kunci/nilai sesuai pesanan ke server. Berikut ini contoh dasar form yang mengandung hanya satu tombol.
 
 ```html
 <button id="buyButton">Buy a new t-shirt</button>
 <p id="result"></p>
 ```
 
-When the user clicks on the button, custom data is added to a `FormData` object and sent to the server through an asynchronous `POST` request.
+Ketika pengguna mengklik tombol, data custom ditambahkan ke objek `FormData` dan mengirimkannya ke server melalui permintaan `POST` asinkron.
 
 ```js
 document.getElementById("buyButton").addEventListener("click", () => {
-    // Create a new, empty FormData object
+    // Buat objek FormData baru dan kosong 
     const formData = new FormData();
-    // Fill the object with key/value pairs
+    // Isi objek dengan pasangan kunci/nilai
     formData.append("size", "L");
     formData.append("color", "blue");
-    // Send data to the server
+    // Kirim data ke server
     fetch("https://thejsway-server.herokuapp.com/tshirt", {
       method: "POST",
       body: formData
@@ -155,14 +155,14 @@ document.getElementById("buyButton").addEventListener("click", () => {
 
 ![Submission result](images/chapter23-03.png)
 
-## Sending JSON data
+## Mengirimkan data JSON 
 
-When the information expected by the web server is more structured (with complex types, nested fields, etc), it's often a better choice to send it as JSON data.
+Ketika informasi diharapkan web server lebih terstruktur (dengan tipe kompleks, isian bersarang, dan lainnya), seringkali biasanya, pilihan terbaiknya adalah dengan mengirimkannya dengan data JSON.
 
-For example, check out how to send a JavaScript array as JSON data to a web server.
+Sebagai contoh, cek bagaimana mengirimkan array JavaScript dalam bentuk data JSON ke web server.
 
 ```js
-// Create an array containing two objects
+// Buat array yang mengandung dua objek
 const cars = [
   {
     model: "Peugeot",
@@ -178,7 +178,7 @@ const cars = [
   }
 ];
 
-// Send this array as JSON data to the server
+// Kirim array ini sebagai data JSON ke server
 fetch("https://thejsway-server.herokuapp.com/api/cars", {
   method: "POST",
   headers: {
@@ -198,27 +198,27 @@ fetch("https://thejsway-server.herokuapp.com/api/cars", {
 
 ![Execution result](images/chapter23-04.png)
 
-The second parameter of the `fetch()` call sets `POST` as the HTTP method to use, updates the request headers to indicate that the data format is JSON, and adds the JSON representation of the JavaScript array into the body of the request.
+Parameter kedua dari panggilan `fetch()` mengeset `POST` sebagai method HTTP untuk menggunakan, update header permintaan yang mengindikasikan bahwa format datanya adalah JSON, dan menambah representasi JSON dari array JavaScript pada body permintaan.
 
-## Coding time!
+## Waktu koding!
 
-### New article
+### Artikel baru 
 
-Write the HTML code that shows input fields for creating a new blog article by entering its title and content.
+Tulis kode HTML yang menampilkan isian untuk membuat artikel blog baru dengan mengisi judul dan kontennya.
 
-Then, write the associated JavaScript code to send the article fields as form data to the URL `https://thejsway-server.herokuapp.com/articles`. You should receive a confirmation message from the server and display it on the page.
+Lalu, tulis kode JavaScript terkait untuk mengirimkan isian artikel sebagai data form ke URL `https://thejsway-server.herokuapp.com/articles`. Kamu hrus menerima pesan konfirmasi dari server dan menampilkannya di halaman.
 
 ![Execution result](images/chapter23-05.png)
 
-W> The server only accepts `POST` requests at this URL.
+W> Server hanya menerima permintaan `POST` pada URL ini.
 
-### Visited countries
+### Negara yang dikunjungi
 
-The goal of this exercise is to send your traveling info to a server. Data is expected as a JSON object containing two fields:
+Tujuan dari latihan ini adalah untuk mengirimkan info perjalanan wisata Kamu ke server. Data diharapkan dalam bentuk objek JSON yang mengandung dua isian:
 
-* A `name` field representing your name. Its value is a string.
-* A `countries` field representing the countries you already visited. Its value is an array of objects. Each object has a `name` field (string) for the country name, and a `year` field (integer) for the year you last visited it.
+* `name` yang merepresentasikan nama Kamu. Nilainya adalah string.
+* `countries` yang merepresentasikan negara yang sudah Kamu kunjungi. Nilainya adalah objek array. Setiap objek memiliki isian `name` (string) untuk nama negara, dan isian `year` (integer) untuk tahun saat Kamu mengunjungi negara tersebut.
 
-This data must be sent to the URL `https://thejsway-server.herokuapp.com/api/countries`. You should receive a confirmation message from the server and display it in the console.
+Data ini harus dikirim ke URL `https://thejsway-server.herokuapp.com/api/countries`. Kamu harus menerima pesan konfirmasi dari server dan menampilkannya di console.
 
 ![Execution result](images/chapter23-06.png)
