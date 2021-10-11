@@ -1,54 +1,54 @@
-# Discover Node.js
+# Temukan Node.js
 
-In this chapter, you'll discover how to create JavaScript applications outside the browser thanks to a technology called Node.js.
+Di bab ini, Kamu akan temukan bagaimana cara membuat aplikasi JavaScript di luar browser, terima kasih kepada teknologi bernama Node.js.
 
 ## TL;DR
 
-* **Node.js** (or simply Node) is a platform built on Chrome's JavaScript engine (V8) to create JavaScript applications outside the browser.
+* **Node.js** (atau cukupNode) adalah platform yang dibangun dari mesin JavaScript Chrome (V8) untuk membuat aplikasi JavaScript di luar browser.
 
-* Node emphasizes modularity: instead of being monolithic, applications are designed as a set of small, focused **modules** working together to achieve the desired behavior.
+* Node mengutamakan ke-modularan: dibandingkan menjadi monolitik, aplikasi didesain dari beberapa set modul kecil dan terfokus yang bekerja bersamaan untuk mendapatkan perilaku aplikasi yang diinginkan.
 
-* Node adheres to the [CommonJS](http://requirejs.org/docs/commonjs.html) module format. It provides a `require()` for loading a module.
+* Node mengacu pada format modul [CommonJS](http://requirejs.org/docs/commonjs.html). Modul ini menyediakan `require()` untuk memuat satu modul.
 
-* Inside a module, the `module.exports` object is used to export pieces of code. You can **add properties** to it to export element. You can also **reassign** `module.exports` to export only a specific element.
+* Di dalam sebuah modul, objek `module.exports` digunakan untuk mengekspor potongan kode. Kamu bisa **menambah properti** pada modul tersebut untuk mengekspor elemen. Kamu juga bisa **menugaskan kembali** `module.exports` untuk mengekspor hanya untuk elemen yang spesifik.
 
-* Node provides a way to structure an application under the form of a **package**. A package is a folder containing an application described by a `package.json` file. The default entry point of a package is the `index.js` file.
+* Node menyediakan satu cara untuk menstruktur aplikasi dalam bentuk **package**. Package adalah berkas mengandung aplikasi yang dideskripsikan oleh file `package.json`. Titik masuk bawaan package adalah file `index.js`.
 
-* Package versions are defined using the **semantic versioning** format: a three-digit string of the form `MAJOR.MINOR.PATCH`. This format facilitates the management of **dependencies** between packages.
+* Versi package didefinisikan menggunakan format **pem-versi-an semantik**: tiga digit string dalam bentuk `MAJOR.MINOR.PATCH`. Format ini memfasilitasi manajemen of **dependensi** antar package.
 
-* [npm](https://www.npmjs.com) (Node Package Manager) is the standard package manager for the Node ecosystem. It consists of a command line client and an online registry of public packages accessed by the client. This registry is the largest ecosystem of open source libraries in the world.
+* [npm](https://www.npmjs.com) (Node Package Manager) adalah standar pengelola package untuk ekosistem Node. npm terdiri dari klien baris perintah dan registrasi online dari package publik yang diakses oleh klien. Registrasi ini adalah ekosistem terbesar library open source di dunia.
 
-* The main npm commands are `npm install` (to install all the dependencies of a package or adding a new one) and `npm update` (to update all the packages and install missing ones according to `package.json`).
+* Perintah utama npm adalah `npm install` (untuk menginstal semua ketergantungan package atau menambah package) dan `npm update` (untuk mengupdate semua package dan instal package yang terlewati berdasarkan `package.json`).
 
-* Once installed through npm, packages defined as dependencies are stored in the `node_modules/` subfolder and can be loaded as modules using `require()`.
+* Ketika sudah terinstal melalui npm, package yang didefinisikan sebagai dependensi disimpan di subfolder `node_modules/` dan bisa dimuat sebagai module menggunakan `require()`.
 
-* Some packages (containing only executable files or no entry point) cannot be loaded as modules. Some modules (single JavaScript files) are not packages.
+* Beberapa package (mengandung hanya file yang dapat dieksekusi atau tidak ada titik masuknya) tidak bisa dimuat sebagai modul. Beberapa modul (satu file JavaScript) bukanlah package.
 
-## Introducing Node.js
+## Memperkenalkan Node.js
 
-### A bit of history
+### Sedikit sejarah
 
-To understand what [Node.js](https://nodejs.org) (or Node for short) is, we have to travel back in time to the 2000's. As JavaScript was becoming increasingly important for improving the user experience on the web, web browser designers spent a considerable amount of resources on executing JS code as fast as possible. In particular, the Chrome JavaScript engine, codenamed V8, became open source in 2008 and was a huge step forward in general performance and optimization.
+Untuk memahami apa itu [Node.js](https://nodejs.org) (atau Node), kita harus kembali ke tahun 2000-an. Ketika JavaScript meningkat menjadi sangat penting untuk meng-improve user experience di web, desainer web browser menghabiskan banyak sumber daya dalam mengeksekusi kode JS secepat mungkin. Pada waktu tertentu, mesin JavaScript Chrome, bernama kode V8, menjadi open source di tahun 2008 dan merupakan langkah besar dalam performansi dan optimasi secara umum.
 
 ![Chrome V8 logo](images/chapter24-01.png)
 
-The core idea behind Node.js was simple yet visionary: since the V8 engine is so good at executing code, why not leverage its power to create efficient JavaScript applications *outside the browser*? And thus Node.js was born in 2009, originally written by Ryan Dahl. Its project quickly became very popular and Node is now one of the top technologies for building apps and creating APIs with JavaScript.
+Ide utama dibalik Node.js adalah sederhana namun visioner: karena mesin V8 sangatlah baik dalam mengeksekusi kode, kenapa tidak memanfaatkan kekuatannya untuk membuat aplikasi JavaScript yang efisien *di luar browser*? Dan akhirnya Node.js dilahirkan di tahun 2009, ditulis asli oleh Ryan Dahl. Proyeknya menjadi sangat populer dan Node sekarang merupakan salah satu teknologi papan atas untuk membuat app dan membuat API dengan JavaScript.
 
 ![The official Node logo](images/chapter24-02.png)
 
-Node also made it easier for developers to publish, share and reuse code. Today, hundreds of thousands of ready-to-use JavaScript libraries, called **packages**, are available and easy to integrate in any Node-based project (more on that later). This rich ecosystem is one of Node's greatest strengths.
+Node juga mempermudah developer untuk mempublikasikan, membagi, dan menggunakan kembali kode. Hari ini, ratus ribuan library yang siap untuk digunakan, dinamakan **packages**, tersedia dan mudah untuk diintegrasikan ke proyek berbasis Node (akan dibahas nanti). Ekosistem kaya ini adalah salah satu kekuatan terkuat dari Node.
 
-### A first example
+### Contoh pertama
 
-> The rest of this chapter assumes a working Node environnement. Refer to the appendix for setting one up.
+> Mulai dari sini sampai akhir bab ini diasumsikan menggunakan environment kerja Node. Rujuklah ke lampiran tentang bagaimana mengeset environment ini.
 
-The simplest possible Node program is as follows.
+Program Node paling sederhana sebagai berikut.
 
 ```js
 console.log("Hello from Node!");
 ```
 
-As you see, the `console.log()` command is also available in Node. Just like in a web browser, it outputs the value passed as parameter to the console. Assuming this code is saved into a file named `hello.js`, here's how to execute it through Node in a terminal.
+Seperti yang Kamu lihat, perintah `console.log()` juga tersedia di Node. Seperti di web browser, perintah ini mengeluarkan output nilai yang ditempatkan sebagai parameter ke console. Diasumsikan kode ini disimpan di file bernama `hello.js`, berikut ini cara mengeksekusinya melalui Node di terminal.
 
 ```console
 node hello.js
@@ -56,76 +56,76 @@ node hello.js
 
 ![Execution result](images/chapter24-04.png)
 
-An in-depth study of the Node platform is out of this book's scope. Let's focus on two of its defining features: **modules** and **packages**.
+Studi mendalam platform Node di luar lingkup buku ini. Mari kita fokus pada dua dari fitur utamanya: **module** and **package**.
 
-## Node.js modules
+## Module Node.js 
 
-### The benefits of modularity
+### Manfaat modularitas
 
-The general idea behind modules is pretty straightforward and similar to the one behind functions. Instead of writing all the code in one place, thus creating a monolithic application, it's often better to split the functionalities into smaller, loosely coupled parts. Each part should focus on a specific task, making it far easier to understand and reuse. The general application's behavior results from the interactions between these building blocks.
+Ide umum dibalik module cukup mudah dan mirip dengan fungsi. Daripada menulis semua kode di satu tempat, lalu membuat aplikasi monolitik, seringkali lebih baik membagi fungsionalitas ke bagian-bagian kecil yang terpisah. Setiap bagian harus fokus pada satu tugas spesifik, membuat bagian tersebut lebih mudah dipahami dan digunakan kembali. Perilaku umum aplikasi dihasilkan dari interaksi antara blok bangunan ini.
 
-These smaller parts are sometimes referred to as components in other environments. In Node, they are called **modules** and can come under different forms. The general definition of a module is: anything that can be loaded using Node's `require()` function. The Node.js platform adheres to the [CommonJS](http://requirejs.org/docs/commonjs.html) module format.
+Bagian-bagian kecil ini terkadang disebut sebagai komponen di environment lain. Di Node, ini dinamakan **module** dan bisa dilihat dari bentuk yang berbeda. Definisi umum module adalah: apapun yang bisa dimuat menggunakan fungsi Node `require()`. Platform Node.js mengikuti format module [CommonJS](http://requirejs.org/docs/commonjs.html).
 
-### Creating a module
+### Membuat module
 
-The simplest form of module is a single JavaScript file, containing special commands to **export** specific pieces of code. The rest of the code is **private** to the module and won't be visible outside of it.
+Bentuk paling sederhana dari module adalah satu file JavaScript, mengandung perintah spesial untuk **mengekspor** bagian kode yang spesifik. Sisa kodenya adalah **privat** terhadap module dan tidak dapat dilihat dari luar.
 
-For example, a `greetings.js` module could contain the following code.
+Contohnya, module `greetings.js` bisa mengandung kode berikut.
 
 ```js
-// Create three functions
+// Buat tiga fungsi
 const sayHello = name => `Hello, ${name}`;
 const flatter = () => `Look how gorgeous you are today!`;
 const sayGoodbye = name => `Goodbye, ${name}`;
 
-// Export two of them
+// Ekspor dua diantaranya
 module.exports.sayHello = sayHello;
 module.exports.flatter = flatter;
 ```
 
-In Node, functions can be *exported* (made accessible outside) by specifying additional properties on the special `module.exports` object. Here, two functions are exported under the names `sayHello` and `flatter`. The third one is not exported.
+Di Node, fungsi bisa *diekspor* (dapat diakses di luar) dengan menetapkan properti tambahan pada objek spesial `module.exports`. Di sini, dua fungsi diekspor di bawah nama `sayHello` dan `flatter`. Fungsi ketiga tidak diekspor.
 
-This module could have been written in a slightly more concise way by directly defining the functions as properties of the `module.exports` object.
+Module ini bisa ditulis dengan cara yang lebih ringkas dengan mendefinisikan secara langsung fungsi sebagai properti dari objek `module.exports`.
 
 ```js
-// Create and export two functions
+// Buat dan ekspor dua fungsi
 module.exports.sayHello = name => `Hello, ${name}`;
 module.exports.flatter = () => `Look how gorgeous you are today!`;
 
-// Create a non-exported function
+// Buat fungsi non-ekspor 
 const sayGoodbye = name => `Goodbye, ${name}`;
 ```
 
-### Loading a module
+### Memuat modul
 
-Assuming both files are located in the same directory, another JavaScript file could load the previously created module by using the `require()` function provided by Node.js.
+Diasumsikan kedua file terletak di directory yang sama, file JavaScript lainnya bisa memuat module yang sebelumnya dimuat dengan menggunakan fungsi `require()` yang disediakan oleh Node.js.
 
 ```js
-// Load the module "greetings.js"
+// Memuat module "greetings.js"
 const greetings = require("./greetings.js");
 
-// Use exported functions
+// Gunakan fungsi yang diekspor
 console.log(greetings.sayHello("Baptiste")); // "Hello, Baptiste"
 console.log(greetings.flatter()); // "Look how gorgeous you are today!"
 console.log(greetings.sayGoodbye("Baptiste")); // Error: sayGoodbye doesn't exist
 ```
 
-The parameter passed to `require()` identifies the module to load. Here, the `"./"` substring at the beginning indicates a **relative path**: the module should be searched for in the same directory as the file that loads it.
+Parameter yang ditempatkan di `require()` mengidentifikasi module yang akan dimuat. Di sini, substring `"./"` di awal mengindikasi **relative path**: module seharusnya dicari di directory yang sama dengan file yang memuatnya.
 
-The result of the call to `require()` is an object, named `greetings` here. This object references the value of the `module.exports` object defined inside the module. Thus, the `greetings` object has two functions `sayHello` and `flatter` as properties. Trying to access its non-existent `sayGoodbye` property triggers an error during execution.
+Hasil dari panggilan ke `require()` adalah sebuah objek, yang bernama `greetings` di sini. Objek ini mereferensikan nilai objek `module.exports` di dalam module. Maka, objek `greetings` memiliki dua fungsi `sayHello` dan `flatter` sebagai properti. Mencoba untuk mengakses properti fungsi yang tidak ada: `sayGoodbye` memicu eror saat eksekusi.
 
-> Giving the object resulting from a call to `require()` the same name as the loaded module's name, through not mandatory, is a common practice.
+> Memberikan objek yang dihasilkan dari panggilan ke `require()` yang namanya sama dengan nama module yang dimuat, walaupun tidak wajib, adalah praktis yang umum.
 
-### Exporting only a specific object
+### Mengekspor hanya satu objek spesifik
 
-Numerous modules in the Node.js ecosystem export only a single object aggregating all of the module's functionality. To do so, they reassign the `module.exports` object instead of adding properties to it.
+Beberapa module di ekosistem Node.js hanya mengekspor hanya satu objek yang meng-agregasi semua fungsionalitas module. Untuk melakukan ini, module menugaskan kembali objek `module.exports` dibandingkan menambah properti pada module tersebut.
 
-For example, check out how the following module `calculator.js` is defined.
+Sebagai contoh, cek bagaimana module `calculator.js` ini didefinisikan.
 
 ```js
-// Declare a factory function that returns an object literal
+// Deklarasi fungsi factory yang mengembalikan objek literal
 const createCalc = () => {
-  // The returned object has 4 methods
+  // Objek yang dikembalikan memiliki 4 method
   return {
     add(x, y) {
       return x + y;
@@ -142,37 +142,37 @@ const createCalc = () => {
   };
 };
 
-// Export the factory function
+// Ekspor fungsi factory 
 module.exports = createCalc;
 ```
 
-In this module, the only exported element is a function that returns an object literal. Using it in another file (located in the same folder) is as follows.
+Di module ini, elemen yang diekspor hanyalah satu fungsi yang mengembalikan objek literal. Menggunakan fungsi ini di file yang lain (terletak di folder yang sama) sebagai berikut.
 
 ```js
 const calculator = require("./calculator.js");
 
-// Create an object by calling the exported function of this module
+// Buat objek dengan memanggil fungsi yang diekspor dari module ini
 const calc = calculator();
 
-// Use the object's methods
+// Gunakan method objek
 console.log(`2 + 3 = ${calc.add(2, 3)}`); // "2 + 3 = 5"
 ```
 
-The result of the call to `require()` is a function stored in the `calculator` variable, referencing the `createCalc()` function. Calling this function returns an object with several methods, which can be subsequently used.
+Hasil dari pemanggilan `require()` adalah fungsi yang tersimpan di variabel `calculator`, mereferensikan fungsi `createCalc()`. Memanggil fungsi ini mengembalikan objek dengan beberapa method, yang dapat digunakan nantinya.
 
-### Exporting only a class
+### Mengekspor hanya satu class
 
-When you want a module to only export a specific class, you can also reassign the `module.exports` object.
+Ketika Kamu ingin module hanya mengekspor satu class yang spesifik, Kamu bisa juga menugaskan kembali objek `module.exports`.
 
-Here is a module `user.js` that defines and exports a `User` class.
+Berikut ini module `user.js` yang mendefinisikan dan mengekspor class `User`.
 
 ```js
-// Export a User class
+// Ekspor class User 
 module.exports = class User {
   constructor(firstName, lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
-    // Create user login by combining first letter of first name + last name
+    // Buat pengguna login dengan mengkombinasikan huruf pertama dari nama pertama + nama terakhir
     this.login = (firstName[0] + lastName).toLowerCase();
   }
   describe() {
@@ -181,42 +181,42 @@ module.exports = class User {
 };
 ```
 
-Here's how to use this class in another file (located in the same folder).
+Berikut bagaimana menggunakan class ini di file lainnya (terletak di folder yang sama).
 
 ```js
-// Notice the first uppercase letter, since User is a class
+// Perhatikan huruf kapital pertama, karena User adalah sebuah class
 const User = require("./user.js");
 
-// Create an object from this class
+// Buat objek dari class ini
 const johnDoe = new User("John", "Doe");
 
-// Use the created object
+// Gunakan objek yang dibuat
 console.log(johnDoe.describe());
 ```
 
 ![Execution result](images/chapter24-08.png)
 
-## Node.js packages
+## Package Node.js 
 
-The Node platform provides a way to structure an application under the form of a **package**.
+Platform Node menyediakan satu cara untuk menstruktur satu aplikasi dalam bentuk **package**.
 
-### Anatomy of a package
+### Anatomi package
 
-Technically, a package is a folder containing the following elements:
+Secara teknis, package adalah yang mengandung elemen berikut:
 
-* A `package.json` file which describes the application and its dependencies.
-* A entry point into the application, defaulting to the `index.js` file.
-* A `node_modules/` subfolder, which is the default place where Node looks for modules to be loaded into the application.
-* All the other files forming the source code of the application.
+* File `package.json` yang mendeskripsikan aplikasi dan ketergantungannya.
+* Titik masuk ke aplikasi, yang secara bawaan merujuk ke file `index.js`.
+* Subfolder `node_modules/`, yang lokasi bawaannya di mana Node mencari module yang akan dimuat ke aplikasi.
+* Semua file lainnya yang membentuk sumber kode aplikasi.
 
-### The `package.json` file
+### File `package.json`
 
-This JSON file describes the application and its dependencies: you can think of it as the app's ID document. It has a well-defined format consisting of many fields, most of them optional. The two mandatory fields are:
+File JSON ini mendeskripsikan aplikasi dan dependensinya: Kamu bisa bayangkan ini sebagai dokumen ID dari aplikasi. File ini memiliki format yang telah didefinisikan dengan baik, terdiri dari banyak isian, kebanyakan opsional. Dua isian wajib diantaranya:
 
-* `name` (all lowercase letters without dots, underscores and any non-URL safe character in it).
-* `version` (following the semantic versioning format - more on that later).
+* `name` (semua huruf kecil tanpa titik, garis bawah, dan karakter non-URL safe).
+* `version` (mengikuti format versi semantik - dibahas nanti).
 
-Below is an example of a typical `package.json` file.
+Di bawah ini adalah contoh khas file `package.json`.
 
 ```json
 {
@@ -239,120 +239,120 @@ Below is an example of a typical `package.json` file.
 }
 ```
 
-### Semantic versioning
+### Pembuatan versi semantik (semantic versioning) 
 
-Node packages are versioned using a format called **semantic versioning**. A version number is a three-digit string of the form `MAJOR.MINOR.PATCH` (example : `2.18.1`).
+Package Node diversikan menggunakan format yang dinamakan **semantic versioning**. Nomor versi adalah tiga digit string dalam bentuk `MAJOR.MINOR.PATCH` (contoh : `2.18.1`).
 
-Here are the rules for defining a version number:
+Berikut ini adalah aturan untuk mendefinisikan nomor versi:
 
-* The very first version should be `1.0.0`.
-* Bug fixes and minor changes should increment the `PATCH` digit.
-* New features added in a backwards-compatible way should increment the `MINOR` digit.
-* Breaking changes should increment the `MAJOR` digit.
+* Versi paling pertama seharusnya `1.0.0`.
+* Perbaikan bug dan perubahan minor sebaiknya menaikkan digit `PATCH`.
+* Fitur baru yang ditambahkan dengan cara backwards-compatible harus menaikkan digit `MINOR`.
+* Perubahan besar harus menaikkan digit `MAJOR`.
 
-These strict rules exist to facilitate the management of **dependencies** between packages.
+Aturan ketat ini ada untuk memfasilitasi manjemen **dependensi** antar package.
 
-### Dependencies
+### Dependensi
 
-In the `package.json` file definition, the `dependencies` field is used to declared the external packages needed by the current package. Each dependency is created with the package name followed by a **version range**. This version range specifies the package versions that are acceptable to use.
+Di definisi file `package.json`, isian `dependencies` digunakan untuk mendeklarasikan package eksternal yang dibutuhkan oleh package saat ini. Setiap dependensi dibuat dengan nama package diikuti oleh **version range**. Version range ini menentukan versi package yang diterima untuk digunakan.
 
-There are many ways to define a version range. The most commonly used ones are:
+Ada beberapa cara untuk mendefinisikan version range. Yang sering digunakan adalah:
 
-* Targeting a very specific version. Example: `2.18.1`.
-* Using the `~` operator to allow patch-level changes. For example, the `~2.18.1` version range accepts version `2.18.7`, but not `2.19.0` nor `3.0.0`.
-* Using the `^` operator to allow changes that do not modify the left-most non-zero digit in the version. Examples:
-  * The `^2.18.1` version range accepts versions `2.18.7` and `2.19.0`, but not `3.0.0`.
-  * The `^0.2.3` version range accepts version `0.2.5` but not `0.3.0` nor `1.0.0`.
+* Mensasar versi yang sangat spesifik. Contoh: `2.18.1`.
+* Menggunakan operator the `~` untuk mengijinkan perubahan patch-level. Contohnya, version range `~2.18.1` menerima versi `2.18.7`, tetapi tidak untuk versi `2.19.0` ataupun versi `3.0.0`.
+* Menggunakan operator `^` untuk mengijinkan perubahan yang tidak memodifikasi digit tidak nol yang paling kiri pada versi. Contoh:
+  * Version range `^2.18.1` menerima versi `2.18.7` dan `2.19.0`, tetapi tidak untuk versi `3.0.0`.
+  * version range `^0.2.3` tidak menerima versi `0.2.5` tetapi tidak untuk versi `0.3.0` ataupun `1.0.0`.
 
-Fine-tuning the targeted versions of external packages though version ranges helps limiting the risk of breaking the application apart when updating its dependencies.
+Mencari konfigurasi versi yang pas dari package eksternal melalui version range membantuk membatasi risiko merusak aplikasi ketika mengupdate dependensinya.
 
-## Package management with **npm**
+## Manajemen package dengan **npm**
 
-Soon after the creation of Node.js, it became apparent that something was missing to orchestrate code sharing and reuse through modules. So [npm](https://www.npmjs.com) (Node Package Manager) was born in 2010. It is still the standard package manager for the Node ecosystem, even if it is being challenged by [yarn](https://yarnpkg.com), a more recent alternative. It consists of a command line client, also called **npm**, and an online database of public packages, called the **npm registry** and accessed by the client.
+Segera setelah pembuatan Node.js, sangatlah jelas ada yang terlewatkan terkait bagaimana mengorkestrasi sharing kode dan menggunakannya kembali melalui module. Maka [npm](https://www.npmjs.com) (Node Package Manager) muncul di tahun 2010. npm ini masih menjadi standar pengelola package untuk ekosistem Node, walaupun ditantang oleh [yarn](https://yarnpkg.com), yang merupakan alternatif terbaru. npm ini terdiri dari baris perintah dari klien, juga dinamakan **npm**, dan database online dari package publik, dinamakan **npm registry** dan diakses oleh klien.
 
 ![npm logo](images/chapter24-03.png)
 
- Over 477,000 packages are now available on the registry, ready to reuse and covering various needs. This makes npm the largest ecosystem of open source libraries in the world.
+Lebih dari 477,000 package saat ini tersedia di registry, siap untuk digunakan kembali dan meng-cover banyak kebutuhan. Hal ini membuat npm menjadi ekosistem library sumber kode terbesar di dunia.
 
-The npm client is used by typing commands in a terminal open in the package's folder. It offers numerous possibilities for managing packages. Let's study two of the most important ones.
+Klien npm digunakan dengan mengetik perintah di terminal di folder package. Perintah ini memberikan banyak kemungkinan untuk mengelola package. Mari kit pelajari dua diantaranya yang paling penting.
 
-### Installing dependencies
+### Instal dependensi
 
-To install all the dependencies of a package, you type the following npm command.
+Untuk menginstal semua dependensi package, Kamu ketik perintah npm berikut.
 
 ```console
 npm install
 ```
 
-This will read the `package.json` file, look for the packages satisfying the version ranges declared in the `dependencies` field, and download and install them (and their own dependencies) in the `node_modules/` subfolder.
+Perintah ini akan membaca file `package.json`, cari package yang memenuhi version range yang dideklaraikan di isian `dependencies`, dan unduh dan instal (dan dependensinya sendiri) pada subfolder `node_modules/`.
 
-### Adding a new dependency
+### Menambah dependensi baru
 
-There are two ways for adding a new dependency to a package. The first one is to manually edit the `package.json` to declare the dependency and its associated version range. The next step is to run the following npm command.
+Ada dua cara untuk menambah dependensi baru ke sebuah package. Cara pertama adalah dengan mengedit secara manual `package.json` untuk mendeklarasikan dependesinya dan version range terkait. Langkah selanjutnya adalah dengan menjalankan perintah npm berikut.
 
 ```console
 npm update
 ```
 
-This will update all the packages listed to the latest version respecting their version range, and install missing packages.
+Perintah ini akan mengupdate semua package yang terdaftar pada versi terbaru yang memenuhi version range-nya, dan instal package yang terlewat.
 
-The other way is to run the following command.
+Cara lainnya adalah dengan menjalankan perintah berikut.
 
 ```console
 npm install <package-id>
 ```
 
-This command will fetch a specific package from the registry, download it in the `node/modules/` subfolder and (since npm 5) update the `package.json` file to add it as a new dependency. The `<package-id>` parameter is usually the dependency's package name.
+Perintah ini akan mengambil package yang spesifik dari registry, unduh di subfolder `node/modules/` dan (sejak npm 5) update file `package.json` untuk menambahkannya sebagai dependensi baru. Parameter `<package-id>` biasanya merupakan nama package dependensi.
 
-### Using a dependency
+## Menggunakan dependensi
 
-Once external packages have been installed in `node_modules/`, the application can load them as modules with the `require()` function.
+Saat package eksternal telah terinstal di `node_modules/`, aplikasi bisa dimuat sebagai module dengan fungsi `require()`.
 
-For example, the npm registry has a **semver** package that handles semantic versioning. Assuming this package has been installed as a dependency, it can be used to perform manual version range checks.
+Contohnya, daftar npm memiliki package **semver** yang menangani semantic versioning. Diasumsikan package ini telah terinstal sebagai dependensi, package ini bisa digunakan untuk menjalankan pengecekan manual version range.
 
 ```js
-// Load the npm semver package as a module
-// Notice the omission of "./" since the package was installed in node_modules/
+// Muat package npm semver sebagai module
+// Perhatikan dihilangkannya "./" karena package diinstal di node_modules/
 const semver = require("semver");
 
-// Check if specific versions satisfy a range
-console.log(semver.satisfies("2.19.0", "^2.18.1")); // true
-console.log(semver.satisfies("3.0.0", "^2.18.5")); // false
+// Cek jika versi yang spesifik memenuhi range
+console.log(semver.satisfies("2.19.0", "^2.18.1")); // benar
+console.log(semver.satisfies("3.0.0", "^2.18.5")); // salah
 ```
 
-### Relationship between packages and modules
+### Hubungan antara package dan module
 
-Let's recap what you learned so far:
+Mari kita ringkas apa yang telah Kamu pelajari sampai sini:
 
-* A *module* is anything that can be loaded with `require()`.
-* A *package* is a Node application described by a `package.json` file.
+* *module* adalah apapun yang bisa dimuat dengan `require()`.
+* *package* adalah aplikasi Node yang dideskripsikan oleh file `package.json`.
 
-A package used in another Node application is loaded with `require()`, making it a module. To be loaded as a module, a package must contain an `index.js` file or a `main` field in `package.json` defining a specific entry point.
+Package digunakan di aplikasi Node lainnya dimuat dengan `require()`, membuatnya menjadi sebuah module. Agar bisa dimuat sebagai module, package harus mengandung file `index.js` atau isian `main` di `package.json` didefinisikan titik masuk yang spesifik.
 
-Some packages only contain an executable command and thus cannot be loaded as modules. On the other hand, a single JavaScript file loaded with `require()` is a module but not a package, since it doesn't have a `package.json` file.
+Beberapa package hanya mengandung satu perintah yang dapat dieksekusi dan tidak dapat dimuat sebagai module. Di samping itu, satu file JavaScript dimuat dengan `require()` adalah module tetapi bukan package, karena tidak memiliki file `package.json`.
 
-Check out the [npm documentation](https://docs.npmjs.com/how-npm-works/packages) for more details on this aspect.
+Cek [dokumentasi npm](https://docs.npmjs.com/how-npm-works/packages) untuk informasi detail tentang aspek ini.
 
-## Coding time!
+## Waktu koding!
 
-### Circles again
+### Lingkaran lagi
 
-Create a `circle.js` module exporting two functions `circumference()` and `area()`, each taking the circle radius as a parameter.
+Buat module `circle.js` yang mengekspor dua fungsi `circumference()` dan `area()`, setiap fungsi mengambil jari-jari lingkaran sebagai parameter.
 
-Load this module in a `index.js` file and test the two functions.
+Muat module ini dalam file `index.js` dan tes kedua fungsinya.
 
 ![Execution result](images/chapter24-05.png)
 
 ### Accounting
 
-Create a `accounting.js` module exporting.
+Buat module ekspor `accounting.js`.
 
-Load this module in a `index.js` file and test the two functions.
+Muat module ini di file `index.js` dan tes kedua fungsinya.
 
 ```js
-// TODO: load the "accounting.js" module
+// TODO: muat module "accounting.js"
 
-// Create object from the exported class
+// Buat objek dari class yang diekspor
 const myAccount = new Account("Jeff");
 myAccount.credit(150);
 console.log(myAccount.describe());
@@ -360,15 +360,15 @@ console.log(myAccount.describe());
 
 ![Execution result](images/chapter24-06.png)
 
-### Playing with dates
+### Bermain dengan tanggal
 
-The npm package [moment](https://momentjs.com/) is very popular for managing dates and times.
+Package npm [moment](https://momentjs.com/) sangatlah populer untuk mengelola tanggal dan waktu.
 
-Create a Node package and install the current `moment` version as a dependency. Then, load this package and use it to:
+Buat package Node dan instal versi terbaru `moment` sebagai dependensi. Lalu, muat package ini dan gunakan untuk:
 
-* Display the current date.
-* Compute the number of years since 1976, November 26th.
+* Menampilkan tanggal saat ini.
+* Hitung jumlah tahun dari 26 Nopember 1976.
 
 ![Execution result](images/chapter24-07.png)
 
-T> Use the [moment documentation](https://momentjs.com/docs/) to discover how to use this package.
+> Gunakan [dokumentasi moment](https://momentjs.com/docs/) untuk mempelajari cara menggunakan package ini.
