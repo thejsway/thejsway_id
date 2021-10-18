@@ -1,36 +1,36 @@
-# Project: a social news web app
+# Proyek: aplikasi web berita sosial 
 
-This final project is the culmination of the book. You can check out the [expected result](https://thejsway-publink.herokuapp.com). Good luck!
+Proyek akhir ini adalah puncak dari buku ini. Kamu bisa mengecek [hasil yang diharapkan](https://thejsway-publink.herokuapp.com). Sukses ya!
 
-## Objective
+## Tujuan
 
-This project builds upon the social news program and web pages you created previously. This time, the objective is to make a social news *application* based on a Node.js server.
+Proyek ini dibangun dari program berita sosial dan halaman web yang Kamu buat sebelumnya. Kali ini, tujuannya adalah untuk membuat *aplikasi* berita sosial berbasis server Node.js.
 
-## Functional requirements
+## Kebutuhan fungsional
 
-* A link is defined by its title, its URL and its author (submitter).
-* If a new link URL does not start with `"http://"` or `"https://"`, `"http://"` is automatically added at its beginning.
-* The web app displays a list of at least three already existing links, fetched from the server through an AJAX request.
-* A button exists for the user to submit a new link. When clicked, a form appears before the link list to input the new link properties (author, title and URL).
-* In this form, all link fields are mandatory.
-* When the new link is validated by the user, it is sent as form data to the server. If the operation is successful, the server returns the new link as JSON data. The new link is added at the top of the link list, replacing the form. A message indicates the success of the operation, then disappears after two seconds.
+* Sebuah link didefinisikan berdasarkan judul, URL, dan penulisnya (pengirim).
+* Jika URL link baru tidak dimulai dengan `"http://"` atau `"https://"`, `"http://"` ditambahkan secara otomatis di depannya.
+* Aplikasi web menampilkan daftar setidaknya tiga eksisting link, diambil dari server melalui permintaan AJAX.
+* Satu tombol digunakan oleh pengguna untuk mengirim link baru. Ketika diklik, sebuah formulir muncul sebelum daftar link untuk memasukkan properti link yang baru (penulis, judul, dan URL).
+* Pada formulir ini, semua isian link adalah wajib.
+* Saat link baru divalidasi oleh pengguna, link tersebut dikirim sabagai data formulir ke server. Jika operasi sukses, server mengembalikan link baru sebagai data JSON. Link baru ditambahkan di atas daftar link, menggantikan formulir. Satu pesan mengindikasikan kesuksesan operasi, lalu hilang setelah dua detik.
 
-## Technical requirements
+## Kebutuhan teknikal
 
-* The server must use a user-defined module exporting link-related code.
-* You should reuse any useful code from the previous projects.
-* All your code should be correctly indented.
-* Names should be wisely chosen and adhere to the camelCase convention.
-* Code duplication should be avoided.
+* Server harus menggunakan module yang didefinisikan pengguna yang mengekspor kode link terkait.
+* Kamu harus menggunakan kembali kode yang berguna dari proyek sebelumnya.
+* Semua kode Kamu harus terindentasi dengan benar.
+* Nama variabel harus dipilih dengan bijak dan mentaati aturan camelCase.
+* Duplikasi kode harus dihindari.
 
-## Expected result
+## Hasil yang diharapkan
 
-Here are a few screenshots of the expected result.
+Berikut beberapa screenshot dari hasil yang diharapkan.
 
-![Link list](images/chapter26-01.png)
+![Daftar link](images/chapter26-01.png)
 
-![Submitting a new link](images/chapter26-02.png)
+![Mengirim link baru](images/chapter26-02.png)
 
-![Success message after adding a new link](images/chapter26-03.png)
+![Pesan sukses setelah menambahkan link baru](images/chapter26-03.png)
 
-![Updated link list](images/chapter26-04.png)
+![Daftar link yang terupdate](images/chapter26-04.png)
