@@ -1,50 +1,50 @@
-# Create a web server
+# Buat web server
 
-It's time to put your Node.js knowledge into practice and create a real-world web server in JavaScript. This is often called **back-end programming**.
+Inilah saatnya untuk mempraktikkan pengetahuan Kamu dan buat web server secara nyata di JavaScript. Hal ini seringkali disebut **back-end programming**.
 
-> You will build exactly the server that was used in the previous chapters dealing with client-side web development. To test your server code, you can go back to code examples from chapters 22 and 23, and only change the start of the server URL from `https://thejsway-server.herokuapp.com` to your own server URL (which would be `http://localhost:3000` if your server runs on your local machine).
+> Kamu akan membuat server yang digunakan di bab sebelumnya yang menangani pengembangan web di sisi klien. Untuk mengetes kode server, Kamu bisa balik lagi ke contoh kode dari bab 22 dan 23, dan hanya mengganti URL server dari `https://thejsway-server.herokuapp.com` ke URL server Kamu sendiri (yang nantinya adalah `http://localhost:3000` jika server Kamu berjalan di mesin lokal Kamu).
 
 ## TL;DR
 
-* The Node.js platform is well suited for creating **web servers** in JavaScript, with or without the help of a framework.
+* Platform Node.js sangat cocok untuk membuat **web server** di JavaScript, dengan atau tanpa bantuan framework.
 
-* A **framework** provides a standard way to design and structure an application. **Express** is a common choice for building a web server with Node.
+* **Framework** menyediakan satu cara terstandarisasi untuk mendesain dan menstrukturisasi sebuah aplikasi. **Express** adalah framework yang biasanya dipilih untuk membangun web server dengan Node.
 
-* In order to respond to requests, an Express app defines **routes** (entry points associated to URLs) and listens to incoming HTTP requests.
+* Untuk merespons permintaan, aplikasi Express mendefinisikan **rute** (titik masuk yang berkaitan dengan URL) dan menanti permintaan HTTP yang akan tiba.
 
-* The main Express method are `get()` to handle a `GET` request, `post()` to handle a `POST` request and `use()` to define a **middleware** (code that runs during the request/response cycle).
+* Method utama Express adalah `get()` untuk menangani permintaan `GET`, `post()` untuk menangani permintaan `POST` dan `use()` untuk mendefinisikan **middleware** (kode yang berjalan saat siklus permintaan/respons).
 
-* Incoming form or JSON data can be managed through specialized packages like **multer** and **body-parser**.
+* Data formulir atau JSON yang akan tiba bisa dikelola melalui package spesial seperti **multer** dan **body-parser**.
 
-* JavaScript can be used on both the client side (browser) and the server side of a web application. This empowers you to create complete **web applications**.
+* JavaScript bisa digunakan pada sisi klien dan sisi server dari aplikasi web. Hal ini memberdayakan Kamu untuk membuat **aplikasi web** yang komplit.
 
-## Using a framework
+## Menggunakan framework
 
-We saw in the previous chapter that Node.js is a platform for building JavaScript applications outside the browser. as such, Node is well suited for creating **web servers** in JavaScript.
+Kita sudah lihat di bab sebelumnya bahwa Node.js adalah platform untuk membangun aplikasi JavaScript di luar browser. Karena inilah, Node sangatlah cocok untuk membuat **web server** di JavaScript.
 
-> As a reminder, a web server is a machine built specially to publish resources on the Web.
+> Sebagai pengingat, web server adalah mesin yang dibuat secara khusus untuk mempublikasikan resource di Web.
 
-### About frameworks
+### Tentang framework
 
-It's entirely possible to build a web server from scratch with Node, but we'll take a different approach and use a framework for it.
+Sangatlah mungkin untuk membangun web server secara keseluruhan dari awal dengan Node, tetapi kita akan ambil pendekatan berbeda dan menggunakan framework.
 
-In computer programming, a **framework** provides a standard way to design and structure an application. It typically takes care of many low-level details so that the developer can concentrate on high-level, business-related tasks.
+Dalam pemrograman komputer, **framework** menyediakan cara terstandarisasi untuk  mendesain dan menstrukturisasi aplikasi. Framework ini membereskan banyak detail kecil sehingga developer bisa berkonsentrasi pada pekerjaan yang high-level, yang terkait bisnis.
 
-### Choosing a framework
+### Memilih framework
 
-Among the many possible frameworks for creating a web server in JavaScript, we'll use one of the most well-known: **Express**. To paraphrase its [web site](http://expressjs.com/), Express is "a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications".
+Di antara banyak kemungkinan frameworks untuk membuat web server di JavaScript, kita akan membuat salah satu yang paling terkenal: **Express**. Di ambil dari [situs webnya](http://expressjs.com/), Express adalah "a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications".
 
-In other words, Express provides a foundation on which you can easily and quickly build a web server.
+Dengan kata lain, Express menyediakan satu fondasi di mana Kamu bisa dengan mudah dan dengan cepat membangun web server.
 
-### Installing Express
+### Instal Express
 
-The Express framework is available as an npm package and its installation is straightforward. First, you'll need an existing Node application with a  `package.json` file it. Run the following command in a terminal open in your application folder to install Express as a dependency.
+Framework Express tersedia sebagai pacakage npm dan instalasinya cukup mudah. Pertama, Kamu akan memerlukan aplikasi Node eksisting dengan file `package.json` di dalamnya. Jalankan perintah berikut di terminal di foler aplikasi Kamu untuk menginstal Express sebagai dependensi.
 
 ```console
 npm install express
 ```
 
-As an alternative, you can directly add Express as a dependency in your `package.json` file and run the `npm install` command.
+Alternatif lainnya, Kamu bisa secara langsung manambah Express sebagai dependensi di file `package.json` Kamu dan jalankan perintah `npm install`.
 
 ```json
 "dependencies": {
@@ -52,86 +52,86 @@ As an alternative, you can directly add Express as a dependency in your `package
 },
 ```
 
-## Responding to requests
+## Merespons ke permintaan
 
-The main job of a web server is to respond to HTTP requests. Here's the JavaScript code for a minimal Express-based web server that returns `"Hello from Express!"` for a request to the root URL.
+Tugas utama web server adalah untuk merespons permintaan HTTP. Berikut ini kode JavaScript untuk web server minimal berbasis Express yang mengembalikan `"Hello from Express!"` untuk permintaan ke URL root.
 
 ```js
-// Load the Express package as a module
+// Muat pacakage Express sebagai module
 const express = require("express");
 
-// Access the exported service
+// Akses layanan yang diekspor
 const app = express();
 
-// Return a string for requests to the root URL ("/")
+// Kembalikan string untuk permintaan ke URL root ("/")
 app.get("/", (request, response) => {
   response.send("Hello from Express!");
 });
 
-// Start listening to incoming requests
-// If process.env.PORT is not defined, port number 3000 is used
+// Mulai menanti permintaan yang masuk
+// Jika process.env.PORT tidak didefinisikan, nomor port 3000 digunakan
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log(`Your app is listening on port ${listener.address().port}`);
 });
 ```
 
-You can launch your server with either `node index.js` or `npm start`, then type its root URL (<http://localhost:3000> if your server runs on your local machine) in a browser. You should see the string `"Hello from Express!"` appear.
+Kamu bisa meluncurkan server Kamu dengan `node index.js` atau `npm start`, lalu ketik URL root (<http://localhost:3000> jika server Kamu berjalan di lokal mesin Kamu) di browser. Kamu akan lihat string `"Hello from Express!"` muncul.
 
 ![Execution result](images/chapter25-01.png)
 
-Let's dissect this example.
+Mari kita uraikan contoh ini.
 
-### Accessing Express services
+### Mengakses layanan Express
 
-Once Express is installed, you can load its package in your main application file and access the exported services provided by the framework. The beginning of the server code does just that.
+Sekali Express diinstal, Kamu bisa memuat package-nya di file aplikasi utama aplikasi dan mengakses layanan yang diekspor yang disediakan oleh framework. Permulaan kode server berikut ini.
 
 ```js
-// Load the Express package as a module
+// Muat package Express sebagai module
 const express = require("express");
 
-// Access the main Express object
+// Akses objek utama Express 
 const app = express();
 ```
 
-### Defining routes
+### Mendefinisikan route
 
-In web development terminology, a **route** is an entry point into an application. It is relative to the application URL. The `"/"` route matches the root of the application.
+Di terminologi pengembangan web, **route** adalah titik masuk ke aplikasi yang relatif terhadap URL aplikasi. Route `"/"` route cocok dengan aplikasi root.
 
 ```js
-// Return a string for requests to the root URL ("/")
+// Kembalikan string untuk permintaan ke URL root ("/")
 app.get("/", (request, response) => {
   response.send("Hello from Express!");
 });
 ```
 
-When an HTTP request is made to the route URL, the associated callback function is executed. This function takes as parameters objects representing the HTTP request and response. Here, the function body sends a text response with the content `"Hello from Express!"`.
+Ketika permintaan HTTP dibuat ke URL route, fungsi callback terkait dieksekusi. Fungsi ini mengambil parameter objek yang merepresentasikan permintaan dan respons HTTP. Berikut ini body fungsi mengirimkan respons teks dengan konten `"Hello from Express!"`.
 
-### Listening to requests
+### Menanti permintaan
 
-To process incoming request, a web server must listen on a specific port. A **port** is a communication endpoint on a machine.
+Untuk memproses permintaan masuk, web server harus menanti di port yang spesifik. **Port** adalah komunikasi endpoint pada mesin.
 
-The main Express object has a `listen()` method that tasks as parameter the listening port and a callback function called for each request. The last part of the server code calls this method to start listening.
+Objek utama Express memiliki method `listen()` yang mengambil parameter port dan fungsi callback yang dipanggil setiap permintaan. Bagian akhir dari kode memanggil method ini untuk memulai menanti.
 
 ```js
-// Start listening to incoming requests
-// If process.env.PORT is not defined, 3000 is used
+// Mulai menanti permintaan masuk
+// Jika process.env.PORT tidak didefinisikan, 3000 digunakan
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log(`Your app is listening on port ${listener.address().port}`);
 });
 ```
 
-## Creating an API
+## Membuat API
 
-Your web server is pretty limited for now, handling only one route and always returning the same string. Let's create your own little API by publishing some data in JSON format.
+Web server Kamu sangat terbatas untuk sekarang, menangani hanya satu route dan selalu mengembalikan string yang sama. Mari kita buat API kecil Kamu sendiri dengan mempublikasikan beberapa data dalam format JSON.
 
-### Enabling AJAX requests
+### Mengaktifkan permintaan AJAX 
 
-In a previous chapter, we talked about cross-origin requests (from one domain to another). Authorizing them on your server is mandatory to accept AJAX calls from clients.
+Di bab sebelumnya, kita berbicara tentang permintaan cross-origin (dari satu domain ke domain lainnya). Mengijinkan permintaan tersebut adalah wajib untuk menerima permintaan AJAX dari klien.
 
-Enabling CORS on an Express web server is done by adding the following code in your main application file.
+Mengaktifkan CORS pada web server Express dilakukan dengan menambah kode berikut di file aplikasi utama Kamu.
 
 ```js
-// Enable CORS (see https://enable-cors.org/server_expressjs.html)
+// Mengaktifkan CORS (lihat https://enable-cors.org/server_expressjs.html)
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -142,16 +142,16 @@ app.use((req, res, next) => {
 });
 ```
 
-This is an example of a **middleware**: code that runs somewhere between the reception of the HTTP request and the sending of the HTTP response.
+Ini adalah contoh **middleware**: kode yang berjalan di tempat lain diantara penerimaan permintaan HTTP dan pengiriman respons HTTP.
 
-## Exposing data
+## Membuka data
 
-To match what was done on the client side in a previous chapter, we'll publish some blog articles. The API route is `"/api/articles"`, and the associated callback return a list of JavaScript objects.
+Untuk menyesuaikan apa yang sudah selesai di sisi klien pada bab sebelumnya, kita akan mempublikasikan beberapa artikel blog. Route API-nya adalah `"/api/articles"`, dan callback terkait mengembalikan daftar objek JavaScript.
 
-Here's the code to be added to the server just before the last part (the one that starts the listening).
+Berikut ini yang akan ditambahkan ke server sebelum bagian akhir (yang akan memulai menanti permintaan).
 
 ```js
-// Define an article list
+// Definisikan daftar artikel
 const articles = [
   { id: 1, title: "First article", content: "Hello World!" },
   {
@@ -168,25 +168,25 @@ const articles = [
   }
 ];
 
-// Return the articles list in JSON format
+// Kembalikan daftar artikel dalam format JSON
 app.get("/api/articles", (request, response) => {
   response.json(articles);
 });
 ```
 
-When accessing the `"/api/articles"` route (<http://localhost:3000/api/articles> if your server runs locally) with a browser or a specialized tool like Postman or RESTClient, you should see the article list in JSON format.
+Ketika mengakses route `"/api/articles"` (<http://localhost:3000/api/articles> jika server Kamu berjalan di lokal) dengan sebuah browser atau tool khusus seperti Postman atau RESTClient, Kamu akan melihat daftar artikel dalam format JSON.
 
 ![Execution result](images/chapter25-02.png)
 
-## Accepting data
+## Menerima data
 
-So far, your web server offers a *read-only* service: it publishes some data but doesn't accept any... Until now!
+Sejauh ini, web server Kamu menawarkan layanan *read-only*: layanan ini mempublikasikan beberapa data tetapi tidak menerima apapun.. sampai sekarang!
 
-As you saw in a previous chapter, information submitted to a web server can be either form data or JSON data.
+Seperti yang Kamu lihat di beberapa bab, informasi yang dikirim ke web server bisa data formulir atau data JSON.
 
-### Handling form data
+### Menangani data formulir 
 
-Form data comes encapsulated into the HTTP `POST` request sent by the client to the server. The first server task is to extract this information from the request. The simplest way to do this is to use a specialized npm package, such as [multer](https://www.npmjs.com/package/multer). Install it with the `npm install multer` command or directly in your app dependencies.
+Data formulir dibungkus di permintaan `POST` HTTP yang dikirimkan oleh klien ke server. Tugas server pertama adalah untuk meng-ekstrak informasi ini dari permintaan. Cara termudah untuk melakukan ini adalah dengan menggunakan package npm spesial, seperti [multer](https://www.npmjs.com/package/multer). Install pacakage ini dengan perintah `npm install multer` atau secara langsung di aplikasi dependensi Kamu.
 
 ```json
 "dependencies": {
@@ -195,20 +195,20 @@ Form data comes encapsulated into the HTTP `POST` request sent by the client to 
 },
 ```
 
-Once **multer** is installed, add the following code towards the beginning of your server main file.
+Setelah **multer** diintal, tambah kode berikut di awal file utama server Kamu.
 
 ```js
-// Load the multer package as a module
+// Muat package multer sebagai module
 const multer = require("multer");
 
-// Access the exported service
+// Akses layanan yang diekspor
 const upload = multer();
 ```
 
-The following route accepts form data sent to the `"/animals"` route. Notice the use of `app.post()` instead of `app.get()` to handle `POST` HTTP requests, and the addition of `upload.array()` as a second parameter to add a `body` object containing the fields of the form to the `request` object.
+Route berikut ini menerima data formulir yang dikirimkan ke route `"/animals"`. Perhatikan penggunaan `app.post()` dibandingkan `app.get()` untuk menangani permintaan HTTP `POST`, dan penambahan `upload.array()` sebagai parameter kedua untuk menambah objek `body` yang mengandung isian dari formulir ke objek `request`.
 
 ```js
-// Handle form data submission to the "/animals" route
+// Tangani pengajuan data formulir ke route "/animals" 
 app.post("/animals", upload.array(), (request, response) => {
   const name = request.body.name;
   const vote = request.body.strongest;
@@ -216,13 +216,13 @@ app.post("/animals", upload.array(), (request, response) => {
 });
 ```
 
-The values of the `name` and `vote` variables are extracted from the request body, and a string is constructed and sent back to the client.
+Nilai variabel `name` dan `vote` di-ekstrak dari body permintaan, dan string disusun dan dikirim balik ke klien.
 
 ![Execution result](images/chapter23-02.png)
 
-### Handling JSON data
+### Menangani data JSON
 
-Managing incoming JSON data requires parsing it from the received `POST` request. Using an npm package like [body-parser](https://www.npmjs.com/package/body-parser) is the easiest solution. Install it with the `npm install body-parser` command or directly in your app dependencies.
+Mengelola data JSON yang masuk memerlukan penguraian dari penerimaan permintaan `POST`. Menggunakan package npm seperti [body-parser](https://www.npmjs.com/package/body-parser) adalah solusi termudah. Instal package tersebut dengan perintah `npm install body-parser` atau secara langsung di dependensi aplikasi Kamu.
 
 ```json
 "dependencies": {
@@ -231,20 +231,20 @@ Managing incoming JSON data requires parsing it from the received `POST` request
 },
 ```
 
-Then, add the following code towards the beginning of your server main file.
+Lalu, tambah kode berikut di permulaan file utama server Kamu.
 
 ```js
-// Load the body-parser package as a module
+// Muat pacakage body-parser sebagai module
 const bodyParser = require("body-parser");
 
-// Access the JSON parsing service
+// Akses layanan penguraian JSON 
 const jsonParser = bodyParser.json();
 ```
 
-The following code handle `POST` requests to the `"/api/cars"` route. JSON data is parsed by `jsonParser` and defined as the request body.
+Kode berikut menangani permintaan `POST` ke route `"/api/cars"`. Data JSON diurai oleh `jsonParser` dan didefinisikan sebagai permintaan body.
 
 ```js
-// Handle submission of a JSON car array
+// Tangani pengajuan array mobil JSON
 app.post("/api/cars", jsonParser, (request, response) => {
   const cars = request.body;
   response.send(`You sent me a list of cars: ${JSON.stringify(cars)}`);
@@ -253,14 +253,14 @@ app.post("/api/cars", jsonParser, (request, response) => {
 
 ![Execution result](images/chapter23-04.png)
 
-## Publishing web pages
+## Mempublikasikan halaman web
 
-Finally, let's learn how to serve HTML content so that your web server can come into its own.
+Akhirnya, mari kita belajar bagaimana melayani konten HTML sehingga web server Kamu bisa melakukan hal ini.
 
-For example, `GET` HTTP requests to the `"/hello"` route should show a basic web page. A naive way to do so would be to simply return an HTML string.
+Contoh, permintaan HTTP `GET` ke route `"/hello"` akan menampilkan halaman web dasar. Cara termudahnya adalah hanya dengan mengembalikan string HTML.
 
 ```js
-// Return HTML content for requests to "/hello"
+// Mengembalikan konten HTML untuk permintaan "/hello"
 app.get("/hello", (request, response) => {
   const htmlContent = `<!doctype html>
     <html>
@@ -276,9 +276,9 @@ app.get("/hello", (request, response) => {
 });
 ```
 
-However, things would quickly get out of hands as the complexity of the web page grows. A better solution is to define the HTML content in an external file stored in a dedicated subfolder, and return that file as a result of the request.
+Bagaimanapun, terkadang sesuatu akan cepat diluar kendali ketika halaman web berkembang menjadi cukup kompleks. Solusi yang lebih baik adalah dengan mendefinisikan konten di file eksternal yang disimpan di subfolder tersendiri, dan mengembalikan file tersebut sebagai hasil dari permintaan.
 
-For example, create a subfolder named `views` and a file named `hello.html` inside it. Give the HTML file the following content.
+Contohnya, buat subfolder bernama `views` dan satu file bernama `hello.html` di dalamnya. Berikan file HTML konten berikut.
 
 ```html
 <!doctype html>
@@ -297,67 +297,67 @@ For example, create a subfolder named `views` and a file named `hello.html` insi
 </html>
 ```
 
-Then, update the callback for the `"/hello"` route to send the HTML file as the request response.
+Lalu, update callback untuk route `"/hello"` untuk mengirim file HTML sebagai respons permintaan.
 
 ```js
-// Return a web page for requests to "/hello"
+// Kembalikan halaman web untuk permintaan "/hello"
 app.get("/hello", (request, response) => {
   response.sendFile(`${__dirname}/views/hello.html`);
 });
 ```
 
-Pointing your browser to the `"/hello"` URL (<http://localhost:3000/hello> if your server runs locally) should now display the web page.
+Tujukan browser Kamu ke URL `"/hello"` (<http://localhost:3000/hello> jika server Kamu berjalan di lokal) maka akan tampil halaman web-nya.
 
 ![Execution result](images/chapter25-03.png)
 
-Most web pages will need to load client-side resources such as images, CSS and JavaScript files. A common practice is to put these assets in a dedicated subfolder.
+Kebanyakan halaman web perlu memuat resource di sisi klien seperti gambar, CSS dan file JavaScript. Praktik umumnya adalah dengan menaruh aset ini di subfolder tersendiri.
 
-For example, create a `public` subfolder and a `hello.js` JavaScript file inside it with the following content.
+Contohnya, buat subfolder `public` dan file JavaScript `hello.js`  di dalamnya dengan konten sebagai berikut.
 
 ```js
-// Update the "content" DOM element
+// Update elemen DOM "content"
 document.getElementById("content").textContent = "Hello from JavaScript!";
 ```
 
-You should now have the following folder structure for your server.
+Sekarang Kamu punya struktur folder untuk server Kamu.
 
 ![Folder structure](images/chapter25-04.png)
 
-Update the `hello.html` to load this JavaScript file.
+Update `hello.html` untuk memuat file JavaScript ini.
 
 ```html
 <script src="/hello.js"></script>
 ```
 
-Lastly, you must tell Express that client assets are located in the `public` subfolder, so that the server can serve them directly. Add the following code towards the beginning of your main application file.
+Terakhir, Kamu harus memberitahu Express bahwa aset klien terletak di subfolder `public`, sehingga server bisa melayaninya secara langsung. Tambah kode berikut di file aplikasi utama Kamu.
 
 ```js
-// Serve content of the "public" subfolder directly
+// Layani konten subfolder "public" secara langsung
 app.use(express.static("public"));
 ```
 
-Accessing the `"/hello"` URL shows you a slightly different result. The `hello.js` file was loaded and executed by the browser, updating the web page content.
+Mengakses URL `"/hello"` memperlihatkan Kamu sedikit perbedaan hasilnya. File `hello.js` dimuat dan dieksekusi oleh browser, mengupdate konten halaman web.
 
 ![Execution result](images/chapter25-05.png)
 
-In this example, JavaScript was used both for back-end (server side) and front-end (client side) programming. This is one of its core strengths: knowing only one programming language empowers you to create complete **web applications**. How great is that?
+Di contoh ini, JavaScript digunakan pada pemrograman back-end (sisi server) dan front-end (sisi klien). Hal ini adalah salah satu dari kekuatan utamanya: mengetahui satu bahasa pemrograman memberdayakan Kamu untuk membuat **aplikasi web** secara lengkap. Keren kan?
 
-## Coding time!
+## Waktu koding!
 
-### T-shirt color
+### Warna T-shirt
 
-Add a `"/tshirt"` route to your server for handling the submission of form data containing a `size` and a `color` field, like in the chapter 23 example. In the route callback, send back a confirmation message to the client.
+Tambah route `"/tshirt"` ke server Kamu untuk menangani pengajuan data formulir yang mengandung isian `size` dan `color`, seperti di contoh bab 23. Pada callback route, kirim balik pesan konfirmasi ke klien.
 
 ![Execution result](images/chapter23-03.png)
 
-### Visited countries
+### Negara yang dikunjungi
 
-Add a `"/api/countries"` route to your server to manager traveler information received as JSON data, like in the chapter 23 exercise. In the route callback, send back a confirmation message to the client.
+Tambah route `"/api/countries"` ke server Kamu untuk  mengelola informasi wisatawan yang diterima sebagai data JSON, seperti latihan di bab 23. Pada callback route, kirim balik pesan konfirmasi ke klien.
 
 ![Execution result](images/chapter23-06.png)
 
-### New article
+### Artikel baru
 
-Add a `"/articles"` route to your server. This route should accept a new blog article as form data and add it to the server's article list, like in the chapter 23 exercise. The new article ID must be equal to the maximum ID among existing articles plus one.
+Tambah route `"/articles"` di server Kamu. Route ini menerima artikel blog baru sebagai data formulir dan menambahkannya ke daftar artikel server, seperti latihan di bab 23 exercise. ID artikel yang baru harus sama dengan ID maksimum di antara artikel eksisting ditambah 1.
 
 ![Execution result](images/chapter23-05.png)
