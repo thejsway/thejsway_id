@@ -1,71 +1,71 @@
-# Summary and perspectives
+# Ringkasan dan perspektif
 
-Congratulations, you made it to the end!
+Selamat, Kamu berhasil membaca buku ini sampai akhir!
 
 ## TL;DR
 
-This book covers a lot of ground. Here are some key takeaways.
+Buku ini mencakup banyak bahasan. Berikut ini beberapa ringkasannya.
 
-* JavaScript is a **programming language** created in 1995 for adding interactivity to web pages. Still the language of the web, it has also pervaded many other environments: servers, mobile devices, connected objects, etc.
+* JavaScript adalah **bahasa pemrograman** dibuat di tahun 1995 untuk menambah interaktivitas halaman web. Tetap sebagai bahasa web, bahasa pemrograman ini juga memiliki banyak environments lainnya: servers, perangkat mobile, objek terhubung, dan lainnya.
 
-* JavaScript has been standardized under the name **ECMAScript** and is continuously improved. Its latest major version is **ES2015**, also known as ES6.
+* JavaScript telah distandarisasi dibawah nama **ECMAScript** dan dikembangkan secara berkelanjutan. Versi akhir mayor-nya adalah **ES2015**, dikenal juga sebagai ES6.
 
-* JavaScript is **dynamically typed**: the type of a variable is deduced from the value stored in it.
+* JavaScript **ditulis secara dinamik**: tipe variabel disimpulkan dari nilai yang tersimpan di dalam variabel tersebut.
 
-* JavaScript is a **multi-paradigm** language: you can write programs using an imperative, object-oriented or functional programming style.
+* JavaScript adalah bahasa **multi-paradigma**: Kamu bisa menulis program menggunakan imperatif, berorientasi objek atau dengan gaya pemrograman fungsional.
 
-* JavaScript's object-oriented model is based on **prototypes**.
+* Model berorientasi objek JavaScript berdasarkan **prototype**.
 
-* When run into a browser, JavaScript can use the **DOM** (*Document Object Model*) to access and update dynamically the structure of a web page.
+* Ketika berjalan di browser, JavaScript bisa menggunakan **DOM** (*Document Object Model*) untuk mengakses dan mengupdate struktur halaman web secara dinamis.
 
-* JavaScript can send **AJAX** calls (asynchronous HTTP requests) to exchange data with web servers or use web APIs, enabling the creation of **web applications**.
+* JavaScript bisa mengirim panggilan **AJAX** (permintaan asinkron HTTP) untuk menukar data dengan web server or use web API, memungkinkan pembuatan **aplikasi web**.
 
-* The **Node.js** platform, created in 2009 and built on Chrome's V8 engine, brought JavaScript outside the browser.
+* Platform **Node.js**, dibuat di tahun 2009 dan dibangun dari mesin V8 Chrome, membawa JavaScript keluar dari browser.
 
-* Node emphasizes modularity. Its **npm** package registry is the largest ecosystem of open source libraries in the world.
+* Node menekankan modularitas. Daftar package **npm**-nya merupakan ekosistem library sumber terbuka (open source) terbesar di dunia.
 
-## The road ahead
+## Jalan ke depan 
 
-This book is designed to be the first step of a JavaScript-centered learning path. I hope it inspired you to go further. If so, you are only at the beginning of a long and exciting journey!
+Buku ini didesain sebagai langkah awal jalur pembelajaran JavaScript. Saya berharap buku ini menginspirasi Kamu untuk belajar lebih lanjut. Jika iya, Kamu sekarang masih berada di permulaan dari perjalanan jauh yang menyenangkan!
 
-If you feel overwhelmed for now, take heart: Rome wasn't built in a day. Grasping the concepts of programming takes time and practice. Don't get discouraged and be sure to follow the guidelines provided in the next few paragraphs.
+Jika saat ini Kamu masih kewalahan, semangat: Roma tidak dibangun dalam sehari. Menangkap konsep pemrograman butuh waktu dan latihan. Jangan patah semangat dan pastikan ikuti panduan yang disediakan di paragraf berikut ini.
 
-> All the resources listed here are freely available online, although some of them require registration or are also sold in another format. They were picked for their relevance, without any affiliation.
+> Semua daftar sumber pembelajaran di bawah ini gratis dan tersedia online, walaupun beberapa diantaranya memerlukan pendaftaran atau dijual dalam format yang lain. Sumber ini dipilih berdasarkan relevansinya, tanpa adanya afiliasi.
 
-### Keep on practicing
+### Terus berlatih
 
-This is by far the most important advice. Nothing will sharpen your skills and make you more confident as a JavaScript developer than practicing your craft on a regular basis.
+Hal ini adalah yang saran yang paling penting. Tidak ada yang dapat mempertajam skill Kamu dan membuat Kamu percaya diri sebagai developer JavaScript dibandingkan terus berlatih secara konsisten.
 
-In particular, I urge you to start building a **personal project** right now. This is the best solution to stay focused and create something meaningful while having fun along the way.
+Secara khusus, saya mendesak Kamu memulai **proyek pribadi** sekarang juga. Hal ini merupakan solusi terbaik untuk tetap fokus dan membuat sesuatu yang bermanfaat sambil bisa bersenang-senang.
 
-You may already have a project idea in the back of your mind. If not, here are a few things you could build:
+Kamu mungkin sudah punya satu ide proyek di pikiran Kamu. Jika tidak ada, berikut ini beberapa hal yang bisa Kamu buat:
 
-* An interactive quiz application.
-* A client for your favorite social network.
-* A contact or TODO list manager.
-* A simple game, like the famous [Connect 4](https://en.wikipedia.org/wiki/Connect_Four).
+* Aplikasi kuis interaktif.
+* Klien untuk jaringan sosial kesukaan Kamu.
+* Pengelolaan kontak atau daftar TODO.
+* Game sederhana, seperti [Connect 4](https://en.wikipedia.org/wiki/Connect_Four) yang terkenal.
 
-Still undecided or looking for more? Take Wes Bos' [JavaScript30](https://javascript30.com/) coding challenge and build 30 things in 30 days. Yes you can!
+Masih bingung atau masih mencari yang lainnya? Ambil tantang kode Wes Bos [JavaScript30](https://javascript30.com/) dan buat 30 hal dalam 30 hari. Ya Kamu bisa!
 
-### Get a deeper understanding of the language
+### Mendalami pemahaman bahasa
 
-You hopefully learnt a lot already, but JavaScript is a surprisingly deep language that still has a lot in store for you. Some prominent resources to strengthen your knowledge are:
+Diharapkan Kamu sudah belajar banyak, tetapi JavaScript secara mengejutkan adalah bahasa yang dalam dan masih banyak yang perlu dipelajari. Beberapa sumber terkenal yang bisa memperkuat pengetahuan Kamu adalah:
 
-* Kyle Simpson's [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS), a book series diving deep into the core mechanisms of the language.
-* Axel Rauschmayer's authoritative [blog](http://2ality.com/) and [books](http://exploringjs.com).
-* Ilya Kantor's [javascript.info](http://javascript.info), an online tutorial with a lot of interesting content.
-* The JavaScript section of the [Mozilla Developer Network](https://developer.mozilla.org/fr/docs/Web/JavaScript), full of reference material, guides and tutorials.
+* Kyle Simpson-[You Don't Know JS](https://github.com/getify/You-Dont-Know-JS), buku serial yang mendalami mekanisme inti dari bahasa.
+* Tulisan Axel Rauschmayer di [blog](http://2ality.com/) dan [books](http://exploringjs.com).
+* Ilya Kantor-[javascript.info](http://javascript.info), tutorial online dengan banyak konten yang menarik.
+* Bagian JavaScript di [Mozilla Developer Network](https://developer.mozilla.org/fr/docs/Web/JavaScript), materi referensi penuh panduan dan tutorial.
 
-Lastly, you might want to check out my own little [curated collection](http://www.pearltrees.com/t/javascript/id13385349#l634) of JavaScript-related links.
+Terkahir, Kamu mungkin ingin mengecek [kumpulan koleksi](http://www.pearltrees.com/t/javascript/id13385349#l634) link saya terkait JavaScript.
 
-### Get social
+### Bersosialisasi
 
-JavaScript's popularity is peaking. Why not becoming a part of its huge developer community?
+Popularitas JavaScript dalam puncaknya. Kenapa tidak ambil bagian dari besarnya komunitas developernya?
 
-Thanks to code sharing platforms like [GitHub](https://github.com), you can easily look for examples of code, see how other developers work and even get involved in a project. That's the beauty of open source!
+Terima kasih ke platform sharing kode seperti [GitHub](https://github.com), Kamu bisa dengan mudah mencari contoh kode, lihat bagaimana developer lainnya bekerja dan bahkan ikut terlibat di satu proyek. Inilah kecantikan dari open source!
 
-When facing a problem, knowing how to find the best answers is a critical skill. [Stack Overflow](https://stackoverflow.com/) is your best bet for asking questions and sharing knowledge with tons or other developers.
+Ketika menemui permasalahan, mencari tahu bagaimana mencari jawaban terbaik adalah skill yang kritikal. [Stack Overflow](https://stackoverflow.com/) adalah taruhan terbaik Kamu untuk bertanya dan berbagi pengetahuan dengan banyak developer lainnya.
 
-Lastly, you could join a learning community in order to share experiences (good or bad) and build relationships. There are JavaScript user groups in many cities of the world, look for one in your neighborhood. Should you prefer socializing online, Quincy Larson's [freeCodeCamp](https://www.freecodecamp.org) features a broad curriculum including many projects and a helpful, beginner-friendly community.
+Terakhir, Kamu bisa ikut komunitas belajar untuk berbagi pengalaman (baik atau buruk) dan bangun relasi. Ada grup pengguna JavaScript di berbagai kota di dunia, cari salah satunya di sekitar Kamu. Kamu harus memilih bersosialisasi online, Quincy Larson-[freeCodeCamp](https://www.freecodecamp.org) memiliki banyak kurikulum termasuk di dalamnya banyak proyek dan komunitas yang bersahabat dan sangat membantu bagi pemula.
 
-Whichever road you may take, I wish you a great journey into the wonderful world of JavaScript!
+Jalan manapun yang Kamu ambil, saya harap Kamu sukses di dunia JavaScript yang luar biasa!
