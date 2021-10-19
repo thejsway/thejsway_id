@@ -1,58 +1,58 @@
 # Style guide {#style-guide}
 
-Here are the coding rules and principles used throughout the book.
+Berikut aturan dan prinsip koding yang digunakan di seluruh buku ini.
 
-> This chapter is by nature subjective and opinionated. Feel free to make your own choices.
+> Bab ini sebenarnya subjektif dan mengandung opini. Silakan putuskan berdasarkan pilihan Kamu sendiri.
 
-## Naming
+## Penamaan
 
-Naming things right goes a long way into making code cleaner and easier to understand. Some general naming rules are presented below.
+Penamaan diatur agar kode lebih bershi dan mudah dipahami. Beberapa aturan penamaan dipresentasikan di bawah ini.
 
-### Choose meaningful names
+### Pilih nama yang bermakna
 
-The most important rule is to give each element (variable, function, class, etc) a specific name that reflects its role. A variable holding the value of a circle radius should be named `radius` rather than `num` or `myVal`.
+Aturan paling penting adalah memberikan setiap elemen (variabel, fungsi, class, dan lainnya) satu nama yang spesifik yang mencerminkan perannya. Variabel yang mengandung nilai jari-jari (radius) lingkaran harus dinamakan `radius` rather dibandingkan `num` or `myVal`.
 
-Brevity should be limited to short-lived elements, like loop counters.
+Keringkasan harus dibatasi pada elemen yang pendek penggunaannya, seperti perhitungan loop.
 
-### Don't use reserved words
+### Jangan gunakan kata yang sudah direservasi
 
-Each JavaScript keyword is a reserved name. They should not be used as variable names. Here's the [list of reserved words in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords).
+Setiap kata kunci JavaScript adalah nama yang telah direservasi. Kata ini tidak boleh digunakan untuk penamaan variabel. Berikut adalah [daftar kata direvervasi di JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords).
 
-### Follow a naming convention
+### Ikuti aturan penamaan
 
-It can take several words to describe precisely the role of certain elements. This book adopts the popular [camelCase](https://en.wikipedia.org/wiki/Camel_case) naming convention, based on two main principles:
+Dibutuhkan beberapa kata untuk mendeskripsikan peran elemen tertentu dengan tepat. Buku ini mengadopsi aturan penamaan [camelCase](https://en.wikipedia.org/wiki/Camel_case) yang populer, berdasarkan dua prinsip utama:
 
-* All names begin with a **lowercase** letter.
-* If a name consists of several words, the first letter of each word (except the first word) is **uppercase**.
+* Semua nama dimulai dengan huruf **kecil**.
+* Jika nama terdiri dari beberapa kata, huruf pertama dari setiap kata (kecuali kata pertama) adalah **kapital**.
 
-In addition, this book uses the following naming rules:
+Selain itu, buku ini menggunakan aturan penamaan berikut ini:
 
-* Functions and method names include an **action verb**: `computeTotal()`, `findFirstParent()`, `attackTarget()`, etc.
-* To be consistent with other programming languages, class names start with an **uppercase** letter: `User` instead of `user`.
-* Since they may contain multiple elements, arrays are named **plurally** or suffixed with `List`: `movies` or `movieList`, but not `movie`.
-* To distinguish them from other variables, DOM elements are suffixed with `Element` (or `Elements` for array-like variables): `divElement` rather than simply `div`.
+* Nama fungsi dan method adalah **kata kerja aktif**: `computeTotal()`, `findFirstParent()`, `attackTarget()`, dan lainnya.
+* Agar tetap konsisten dengan bahasa pemrograman lainnya, nama class dimulai dengan huruf **kapital** letter: `User` dibandingkan `user`.
+* Karena kemungkinan terdiri dari banyak element, array dimakan **secara jamak** atau diakhiri dengan `List`: `movies` atau `movieList`, bukan `movie`.
+* Untuk membedakannya dengan variabel lainnya, elemen DOM diakhiri dengan `Element` (or `Elements` untuk variabel mirip dengan array): `divElement` dibandingkan hanya `div`.
 
-W> Like many other languages, JavaScript is **case sensitive**. For example, `myVariable` and `myvariable` are two different variable names. Be careful!
+> Seperti banyak bahasa lainnya, JavaScript **sensitif terhadap huruf besar/kecil**. Sebagai contoh, `myVariable` dan `myvariable` adalah dua nama variabel yang berbeda. Hati-hati!
 
-## Code formatting
+## Memformat kode
 
-This is a subject of many debates in the JavaScript community: using spaces or tabulations for indenting, omitting semicolons, simple vs double quotes for strings, and so on.
+Hal ini merupakan subjek yang banyak diperdebatkan di komunitas JavaScript: penggunaan spasi atau tabulasi untuk indentasi, penambahan tanda titik koma, tanda kutip satu atau tanda kutip dua untuk string, dan lainnya.
 
-A simple and efficient solution is to rely on a tool to automate the low-level task of formatting code, so that you can concentrate on more high-level work. This book uses [Prettier](https://github.com/prettier/prettier) with default configuration (double quotes and semicolons).
+Solusi termudah dan sederhana adalah dengan mengandalkan tool untuk mengotomasi pekerjaan tingkat rendah dalam memformat kode, sehingga Kamu bisa fokus pada pekerjaan tingkat tinggi. Buku ini menggunakan [Prettier](https://github.com/prettier/prettier) dengan konfigurasi bawaan (penggunaan kutip dua dan tidik koma).
 
-## Code quality
+## Kualitas kode
 
-Since JavaScript is a dynamically typed language, a number of errors don't show up until execution: misnaming a function, loading a nonexistent module, etc. In addition, many other mistakes like declaring a variable without ever using it won't affect execution outcome, but make your code harder to read and lower its overall quality.
+Karena JavaScript adalah bahasa yang ditulis secara dinamis, beberapa kesalahan tidak muncul sampai ketika dieksekusi: kesalahan pemberian nama fungsi, memuat module yang tidak ada, dan lainnya. Selain itu, banyak kesalahan lainnya seperti mendeklarasikan satu variabel tanpa pernah menggunakannya tidak akan berpengaruh pada hasil eksekusi, tetapi akan membuat kode Kamu lebih sulit dibaca dan menurunkan kualitas secara keseluruhan.
 
-Fortunately, specialized tools called **linters** can check your code against rules during edition and warn about potential defects. By allowing to fix many bugs before they happen, linters greatly enhance developer productivity.
+Untungnya, tool spesial dinamakan **linters** bisa mengecek kode Kamu terhadap aturannya ketika penulisan dan memperingatkan tentang potensi kerusakan/kesalahan. Dengan memungkinkannya perbaikan banyak bug sebelum terjadi, linters dapat meningkatkan produktivitas developer dengan sangat luar biasa.
 
-This book uses [ESLint](http://eslint.org) for linting code. ESLint is a very flexible tool and you can tailor it to your specific needs. Different set of ESLint rules have emerged, notably one based on the popular [AirBnb Style Guide](https://github.com/airbnb/javascript).
+Buku ini menggunakan [ESLint](http://eslint.org) untuk kode linters. ESLint adalah tool yang sangat fleksibel dan Kamu bisa menyesuaikannya sesuai kebutuhan. Beberapa aturan ESLint telah muncul, di mana yang sangat populer adalah [AirBnb Style Guide](https://github.com/airbnb/javascript).
 
-> This opinionated style guide is well worth a read.
+> Opini style guide ini sangat pantas untuk dibaca.
 
-This book's ESLint configuration extends the AirBnb and Prettier rules (Prettier getting the precedence), with a few minor deviations.
+Konfigurasi ESLint buku ini memperluas aturan AirBnb dan Prettier (Prettier lebih diutamakan), dengan sedikit deviasi minor.
 
-Here is the content of the book's `.eslintrc` configuration file.
+Berikut ini file `.eslintrc` dari konfigurasi buku ini.
 
 ```json
 {
@@ -81,10 +81,10 @@ Here is the content of the book's `.eslintrc` configuration file.
 }
 ```
 
-The deviations from predefined rules are explained below.
+Deviasi dari aturan bawaannya dijelaskan sebagai berikut.
 
-* `"no-console"` and `"no-alert"`: to enable `console.XXX()` and `alert()` calls.
-* `"no-plusplus"`: to enable unary operators like `++`, commonly used and generally harmless.
-* `"default-case"`: to enable `switch` statements without a `default` case, which are common.
-* `"no-param-reassign"`: to enable updating properties of an object passed as a parameter.
-* `"arrow-body-style"`: to use the more explicit `return` syntax for arrow functions that return an object literal.
+* `"no-console"` dan `"no-alert"`: untuk mengaktifkan panggilan `console.XXX()` dan `alert()`.
+* `"no-plusplus"`: untuk mengaktifkan operator unary seperti `++`, umumnya digunakan dan biasanya tidak merusak.
+* `"default-case"`: untuk mengaktifkan pernyataan `switch` tanpa case `default` case, yang merupakan hal umum.
+* `"no-param-reassign"`: untuk mengaktifkan update properti dari objek yang ditempatkan sebagai parameter.
+* `"arrow-body-style"`: untuk menggunakan sintaks `return` yang lebih eksplisit untuk fungsi panah yang mengembalikan objek literal.
