@@ -141,4 +141,4 @@ Kita gunakan gaya menulis yang sederhana, dan bukan bahasa pemrograman yang spes
 
 Menulis program yang dapat mensolusikan persoalan yang diharapkan merupakan tujuan dari programer. Seorang pemula bisa belajar dengan cepat untuk membuat program yang sederhana. Menjadi suatu hal yang sangat rumit ketika program bervolusi dan menjadi sangat kompleks. Dibutuhkan pengalaman dan banyak latihan sebelum Kamu merasa bisa mengendalikan kompleksitas ini! Ketika Kamu sudah mempunyai dasar yang kuat, batasannya hanyalah imajinasi Kamu!
 
-> "Programer komputer adalah kreator semesta yang dia sendiri merupakan hakim. Bukan penulis naskah, bukan sutradara, bukan kaisar, tetapi *powerful*, bisa menggerakan dan mengatur pentas dan medan perang dengan teguhnya memerintah aktor dan pasukan yang sangat patuh kepadanya." (Joseph Weizenbaum)
+> "Programer komputer adalah kreator semesta yang dia sendiri merupakan hakim. Bukan penulis naskah, bukan sutradara, bukan kaisar, tetapi *powerful*, bisa menggerakkan dan mengatur pentas dan medan perang dengan teguhnya memerintah aktor dan pasukan yang sangat patuh kepadanya." (Joseph Weizenbaum)
