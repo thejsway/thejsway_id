@@ -6,17 +6,13 @@ Pertama-tama: terima kasih sudah memilih buku ini. Saya harap dengan membaca buk
 
 Buku ini didesain terutama untuk pemula. Berdasarkan pengalaman mengajar pemrograman ke ratusan murid, saya mencoba untuk menulis buku ini semudah mungkin. Tujuan saya adalah apapun latar belakang pendidikannya, semua orang yang tertarik pada pemrograman harus bisa mengikuti tanpa banyak kesulitan.
 
-Walaupun begitu, buku ini juga berguna untuk orang-orang yang mempunyai pengalaman dalam pengembangan *software*. Bahasa JavaScript merupakan salah satu makhluk buas yang aneh. Bahasa ini memiliki kesamaan dengan bahasa pemrograman populer lainnya seperti Java atau C#, mulai dari sintaksnya. Di sisi lain, JavaScript punya banyak karakteristik unik yang pantas dipelajari. Buku ini mencakup beberapa di antaranya. Dengan demikian, buku ini akan menjadi hal menarik bagi mereka yang ingin mempelajari JavaScript dengan serius atau bagi mereka yang perlu menyegarkan kembali keterampilan tentang evolusi bahasa terbaru ini.
+Walaupun begitu, buku ini juga berguna untuk orang-orang yang mempunyai pengalaman dalam pengembangan *software*. Bahasa JavaScript bagaikan hewan buas yang aneh. Bahasa ini memiliki kesamaan dengan bahasa pemrograman populer lainnya seperti Java atau C#, mulai dari sintaksnya. Di sisi lain, JavaScript punya banyak karakteristik unik yang pantas dipelajari. Buku ini mencakup beberapa di antaranya. Dengan demikian, buku ini akan menjadi hal menarik bagi mereka yang ingin mempelajari JavaScript dengan serius atau bagi mereka yang perlu menyegarkan kembali keterampilan tentang evolusi bahasa terbaru ini.
 
 ## Gambaran umum
 
 Buku ini dibagi menjadi 3 bagian utama. Bagian pertama mengajarkan dasar pemrograman JavaScript. Bagian kedua menjelaskan bagaimana menggunakan JavaScript untuk membuat halaman web interaktif. Bagian ketiga tentang bagaimana mengembangkan aplikasi web di sisi *client* dan *server*. Setiap bagian bergantung pada bagian sebelumnya, tetapi tidak ada prasyarat lain untuk membaca.
 
-Each chapter starts with a **TL;DR** paragraph which summarizes it, so you'll be able to skip ahead if you already know a chapter's content.
-
 Di setiap bab dimulai dengan **TL;DR** (Too Long; Didn't Read), ringkasan paragraf, sehingga Kamu bisa melanjutkan ke bab berikutnya kalau Kamu sudah tahu konten pada bab tersebut.
-
-At the end of each chapter, a series of short and focused exercises will make you put your newly acquired skills into practice. Each part ends with a project guiding you in the creation of a social news web application.
 
 Setiap akhir bab, ada latihan terfokus dan singkat yang akan membantu Kamu menerapkan apa yang sudah Kamu pelajari. Setiap bagian diakhiri dengan satu proyek yang akan memandu Kamu dalam membuat aplikasi web berita sosial.
 
